@@ -1,6 +1,6 @@
 <!-- File: /app/View/Users/index.ctp -->
 
-<h1>Users</h1>
+<h1>Ideas</h1>
 <table class="table">
     <tr>
         <th>ID</th>

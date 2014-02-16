@@ -46,6 +46,9 @@ class PagesController extends AppController {
  *	or MissingViewException in debug mode.
  */
 	public function display() {
+		$this->layout = 'bootstrap';
+        $this->set('title_for_layout', 'CIMS');
+
 		$path = func_get_args();
 
 		$count = count($path);
