@@ -9,9 +9,11 @@ echo $this->fetch('meta');
 echo $this->fetch('css');
 echo $this->fetch('script');
 
+echo $this->Html->script('jquery-1.11.0.min.js');
+
 //custom css
 echo $this->Html->css('bootstrap.min.css');
-echo $this->Html->script('boostrap.min.js');
+echo $this->Html->script('bootstrap.min.js');
 ?>
 <style type="text/css">
 body {
