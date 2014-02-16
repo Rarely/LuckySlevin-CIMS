@@ -3,7 +3,6 @@ class UsersController extends AppController {
     public $helpers = array('Html', 'Form');
     
     public function index() {
-        $this->layout = 'bootstrap';
         $this->set('title_for_layout', 'Users');
         $this->set('users', $this->User->find('all'));
     }
