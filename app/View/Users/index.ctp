@@ -23,7 +23,7 @@
             <?php echo $this->Html->link($user['User']['name'],
 array('controller' => 'users', 'action' => 'view', $user['User']['id'])); ?>
         </td>
-        <td><?php echo $user['User']['email']; ?></td>
+        <td><?php echo $user['User']['username']; ?></td>
         <td><?php echo count($user['Notifications']);?></td>
         <td><?php echo count($user['Trackings']); ?></td>
     </tr>
