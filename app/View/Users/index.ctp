@@ -1,6 +1,10 @@
 <!-- File: /app/View/Users/index.ctp -->
 
 <h1>Users</h1>
+<?php echo $this->Html->link(
+    'Create User',
+    array('controller' => 'users', 'action' => 'add')
+); ?>
 <table class="table">
     <tr>
         <th>ID</th>
