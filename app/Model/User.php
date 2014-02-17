@@ -3,10 +3,14 @@ App::uses('SimplePasswordHasher', 'Controller/Component/Auth');
 
 class User extends AppModel {
     public $hasMany = array(
-        'Notifications' => array('Notification' => 'Notification',
-                            'className' => 'Notification',
-                            'foreignKey' => 'userid',
-                            'order' => 'Notifications.created DESC',
+        'Notifications' => array('Notification' => 'Notification'
+                            ,'className' => 'Notification'
+                            ,'foreignKey' => 'userid'
+                            ,'order' => 'Notifications.created DESC'
+        ),
+        'Trackings' => array('Tracking' => 'Tracking'
+                            ,'className' => 'Tracking'
+                            ,'foreignKey' => 'userid'
         )
     );
     public $validate = array(

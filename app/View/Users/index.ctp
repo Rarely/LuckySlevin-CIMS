@@ -11,6 +11,7 @@
         <th>Name</th>
         <th>Email</th>
         <th>Notifications</th>
+        <th>Trackings</th>
     </tr>
 
     <!-- Here is where we loop through our $posts array, printing out post info -->
@@ -24,6 +25,7 @@ array('controller' => 'users', 'action' => 'view', $user['User']['id'])); ?>
         </td>
         <td><?php echo $user['User']['email']; ?></td>
         <td><?php echo count($user['Notifications']);?></td>
+        <td><?php echo count($user['Trackings']); ?></td>
     </tr>
     <?php endforeach; ?>
     <?php unset($user); ?>
