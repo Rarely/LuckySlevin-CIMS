@@ -1,5 +1,12 @@
 <?php
 class User extends AppModel {
+    public $hasMany = array(
+        'Notifications' => array('Notification' => 'Notification',
+                            'className' => 'Notification',
+                            'foreignKey' => 'userid',
+                            'order' => 'Notifications.created DESC',
+        )
+    );
     public $validate = array(
         'email' => array(
             'email' => array(

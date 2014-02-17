@@ -1,4 +1,4 @@
-<!-- File: /app/View/Users/index.ctp -->
+<!-- File: /app/View/Ideas/index.ctp -->
 
 <h1>Ideas</h1>
 <table class="table">
