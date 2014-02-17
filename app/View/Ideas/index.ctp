@@ -1,5 +1,6 @@
-<!-- File: /app/View/Ideas/index.ctp -->
 
+<!-- File: /app/View/Users/index.ctp -->
+<body>
 <h1>Ideas</h1>
 <table class="table">
     <tr>
@@ -31,3 +32,5 @@
         <?php echo $this->element('smallidea', array("idea" => $idea)); ?>
     <?php endforeach; ?>
     <?php unset($idea); ?>
+    <?php echo $this->element('newideaform'); ?>
+</body>
