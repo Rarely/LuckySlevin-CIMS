@@ -43,7 +43,7 @@ body {
             <li><a href="/users">Users</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Notifications</a></li>
+            <li><a href="/notifications">Notifications</a></li>
             <li><a href="#">Messages</a></li>
           </ul>
         </div><!--/.nav-collapse -->
