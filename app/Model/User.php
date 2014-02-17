@@ -1,28 +1,48 @@
 <?php
-class User extends AppModel {
-    public $validate = array(
-        'email' => array(
-            'rule'     => 'email',
-            'required' => true,
-            'message'  => 'Please enter a valid email address'
-        ),
-        'password' => array(
-            'rule'    => array('between', 8, 32),
-            'message' => 'Between 8 to 32 characters'
-        ),
-        'name' => array(
-            'rule'    => array('maxlength', 64),
-            'required' => true,
-            'allowEmpty' => false,
-            'message' => 'Name is too long, must not exceed 64 characters.'
+App::uses('SimplePasswordHasher', 'Controller/Component/Auth');
 
+class User extends AppModel {
+    public $hasMany = array(
+        'Notifications' => array('Notification' => 'Notification'
+                            ,'className' => 'Notification'
+                            ,'foreignKey' => 'userid'
+                            ,'order' => 'Notifications.created DESC'
         ),
-        'role' => array(
-            'rule'    => array('maxlength', 64),
-            'required' => true,
-            'allowEmpty' => false,
-            'message' => 'HEY BITCH'
+        'Trackings' => array('Tracking' => 'Tracking'
+                            ,'className' => 'Tracking'
+                            ,'foreignKey' => 'userid'
         )
     );
+    public $validate = array(
+        'username' => array(
+            'required' => array(
+                'rule' => array('notEmpty'),
+                'message' => 'A username is required'
+            )
+        ),
+        'password' => array(
+            'required' => array(
+                'rule' => array('notEmpty'),
+                'message' => 'A password is required'
+            )
+        ),
+        'role' => array(
+            'valid' => array(
+                'rule' => array('inList', array('admin', 'author')),
+                'message' => 'Please enter a valid role',
+                'allowEmpty' => false
+            )
+        )
+    );
+
+    public function beforeSave($options = array()) {
+    if (isset($this->data[$this->alias]['password'])) {
+        $passwordHasher = new SimplePasswordHasher();
+        $this->data[$this->alias]['password'] = $passwordHasher->hash(
+            $this->data[$this->alias]['password']
+        );
+    }
+    return true;
 }
-?>
+
+}

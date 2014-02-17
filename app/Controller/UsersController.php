@@ -29,4 +29,24 @@ class UsersController extends AppController {
             $this->Session->setFlash(__('Unable to add user.'));
         }
     }
+    // app/Controller/UsersController.php
+
+    public function beforeFilter() {
+        parent::beforeFilter();
+    // Allow users to register and logout.
+        $this->Auth->allow('logout');
+    }   
+
+    public function login() {
+        if ($this->request->is('post')) {
+            if ($this->Auth->login()) {
+                return $this->redirect($this->Auth->redirect());
+            }
+            $this->Session->setFlash(__('Invalid username or password, try again'));
+        }
+    }
+
+    public function logout() {
+        return $this->redirect($this->Auth->logout());
+    }
 }
