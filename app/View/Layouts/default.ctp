@@ -45,6 +45,7 @@ body {
           <ul class="nav navbar-nav navbar-right">
             <li><a href="/notifications">Notifications</a></li>
             <li><a href="#">Messages</a></li>
+            <li><?php echo $this->Html->link('Logout', array('controller'=>'users', 'action'=>'logout'));?></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
