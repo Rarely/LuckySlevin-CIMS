@@ -3,8 +3,10 @@
 <h1>Add Post</h1>
 <?php
 echo $this->Form->create('User');
-echo $this->Form->input('title');
-echo $this->Form->input('body', array('rows' => '3'));
+echo $this->Form->input('email');
+echo $this->Form->input('password');
+echo $this->Form->input('name');
+echo $this->Form->input('role');
 echo $this->Form->end('Create User');
 ?>
 

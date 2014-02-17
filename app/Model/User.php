@@ -1,5 +1,5 @@
 <?php
-class User extends appModel {
+class User extends AppModel {
     public $validate = array(
         'email' => array(
             'email' => array(

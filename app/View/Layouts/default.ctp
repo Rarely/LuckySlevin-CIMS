@@ -38,7 +38,7 @@ body {
           <ul class="nav navbar-nav">
             <li><a href="/">Home</a></li>
             <li><a href="/search">Search</a></li>
-            <li><a href="#">Tracking</a></li>
+            <li><a href="/trackings">Tracking</a></li>
             <li><a href="#">Analytics</a></li>
             <li><a href="/users">Users</a></li>
           </ul>
