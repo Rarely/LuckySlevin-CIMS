@@ -27,3 +27,7 @@
     <?php endforeach; ?>
     <?php unset($idea); ?>
 </table>
+    <?php foreach ($ideas as $idea): ?>
+        <?php echo $this->element('smallidea', array("idea" => $idea)); ?>
+    <?php endforeach; ?>
+    <?php unset($idea); ?>

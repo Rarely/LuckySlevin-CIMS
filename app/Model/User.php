@@ -9,34 +9,27 @@ class User extends AppModel {
     );
     public $validate = array(
         'email' => array(
-            'email' => array(
-                'rule'     => 'email',
-                'required' => true,
-                'message'  => 'Please enter a valid email address'
-            )
+            'rule'     => 'email',
+            'required' => true,
+            'message'  => 'Please enter a valid email address'
         ),
         'password' => array(
-            'alphaNumeric' => array(
-                'rule'     => 'alphaNumeric',
-                'required' => true,
-                'message'  => 'Alphanumeric characters only.'
-            ),
-            'between' => array(
-                'rule'    => array('between', 8, 32),
-                'message' => 'Between 8 to 32 characters'
-            )
+            'rule'    => array('between', 8, 32),
+            'message' => 'Between 8 to 32 characters'
         ),
         'name' => array(
-            'alphaNumeric' => array(
-                'rule'     => 'alphaNumeric',
-                'required' => true,
-                'message'  => 'Alphanumeric characters only.'
-            ),
-            'between' => array(
-                'rule'    => array('between', 1, 64),
-                'message' => 'Between 1 to 64 characters'
-            )
+            'rule'    => array('maxlength', 64),
+            'required' => true,
+            'allowEmpty' => false,
+            'message' => 'Name is too long, must not exceed 64 characters.'
+
         ),
+        'role' => array(
+            'rule'    => array('maxlength', 64),
+            'required' => true,
+            'allowEmpty' => false,
+            'message' => 'HEY BITCH'
+        )
     );
 }
 ?>
