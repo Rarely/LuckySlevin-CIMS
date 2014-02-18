@@ -27,8 +27,23 @@
         )); ?>
           <fieldset>
             <?php echo $this->Form->input('name', array(
-              'label' => 'Name',
-              'placeholder' => 'Name',
+              'label' => 'Idea Name',
+              'placeholder' => 'Idea Name',
+            )); ?>
+
+            <?php echo $this->Form->input('community_partner', array(
+              'label' => 'Community Partner',
+              'placeholder' => 'Community Partner',
+            )); ?>
+
+            <?php echo $this->Form->input('contact_name', array(
+              'label' => 'Contact Name',
+              'placeholder' => 'Contact Name',
+            )); ?>
+
+            <?php echo $this->Form->input('contact_email', array(
+              'label' => 'Contact Email',
+              'placeholder' => 'Contact Email',
             )); ?>
 
             <?php echo $this->Form->input('description', array(
