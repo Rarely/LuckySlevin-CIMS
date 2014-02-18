@@ -35,6 +35,8 @@
 					  <?php echo $idea['Idea']['name']; ?><br>
   					<strong>Contact Name</strong><br>
   					Need this Field<br>
+            <strong>Contact Details</strong><br>
+            Need this Frield<br>
   					<strong>Project Type</strong><br>
   					Need this Field<br>
   					<strong>Theme</strong><br>
