@@ -1,6 +1,7 @@
 <?php
 class Idea extends AppModel {
 
+<<<<<<< HEAD
 		public function getAllIdeas() {
 			return $this->Idea->find('all');
 		}
@@ -24,10 +25,23 @@ class Idea extends AppModel {
                 'message' => 'Please enter a valid role',
                 'allowEmpty' => false
             )
+=======
+	public $hasMany = array(
+        'Comments' => array('Comments' => 'Comments'
+                            ,'className' => 'Comments'
+                            ,'foreignKey' => 'ideaid'
+                            ,'order' => 'Comments.created ASC'
+>>>>>>> 59c799590924c852049575cec6513f4c4c3b3282
         )
     );
 
 
+<<<<<<< HEAD
 
+=======
+	public function getAllIdeas() {
+		return $this->Idea->find('all');
+	}
+>>>>>>> 59c799590924c852049575cec6513f4c4c3b3282
 }
 ?>
