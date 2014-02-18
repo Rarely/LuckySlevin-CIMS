@@ -53,8 +53,12 @@
               'div' => 'form-group',
               'class' => 'btn btn-primary'
             )); ?>
-          Comments:
-          <?php echo $idea['Idea']['comments']; ?>         
+          Comments:<br>
+          <?php foreach ($idea['Comments'] as $comment): ?>
+          <?php echo $comment['message'], '<br>'; ?>
+          <?php endforeach; ?>
+
+
       </div>
     </div>
   </div>
