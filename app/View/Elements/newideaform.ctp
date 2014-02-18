@@ -17,6 +17,7 @@
 <!-- File: /app/View/Posts/add.ctp -->
 
         <?php echo $this->Form->create('Idea', array(
+          'url' => array('controller' => 'ideas', 'action' => 'add'),
           'inputDefaults' => array(
             'div' => 'form-group',
             'wrapInput' => false,
@@ -33,13 +34,19 @@
             <?php echo $this->Form->input('description', array(
               'label' => 'Description',
               'placeholder' => 'Insert a description here',
-            )); ?>
-            
-            <?php echo $this->Form->input('status', array(
-              'options' => array('Open', 'Referred', 'Matched'),
-              'empty' => 'Choose One'
-            )); ?>
-          </fieldset>
+              )); ?>
+
+            <?php             
+            $status = array('Open' => 'Open', 'InProgress' => 'In Progress', 'Matched' => 'Matched');
+            echo $this->Form->input('status', 
+             array('options' => $status, 'default' => 'Open'
+             )); ?>
+             
+            <?php echo $this->Form->input('userid', array(
+             'label' => 'UserId',
+             'placeholder' => 'THIS IS TEMPORARY UNTIL WE FIX THIS'
+             )); ?>  
+           </fieldset>
 
       </div>
       <div class="modal-footer">
