@@ -1,5 +1,4 @@
-<?php echo $this->Html->css('style.css');?>
-<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#largeIdea">
+<button class="ideablock btn btn-primary btn-lg" data-toggle="modal" <?php echo "data-target=\"#largeIdea" . $idea['Idea']['id'] . "\"" ?> onclick="return false;">
   		Name:  <?php echo $idea['Idea']['name']; ?> <br>
   		Status: <?php echo $idea['Idea']['status']; ?> <br>
 		Description: <br>
@@ -10,7 +9,7 @@
 
 </button>
 
-<div class="modal fade" id="largeIdea" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" <?php echo "id=\"largeIdea" . $idea['Idea']['id'] . "\"" ?> tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -53,17 +52,21 @@
             Description:<br>
             <?php echo $idea['Idea']['description']; ?>
 				  </div>
-      </div>
-      <div class="modal-footer">
-
+        </div>
+        <div class="modal-footer">
+          <?php
+          $comments = (!isset($idea['Comments']) || is_null($idea['Comments'])) ? null : $idea['Comments'];
+          $comments = (is_null($comments) && isset($idea['Idea']['Comments'])) ? $idea['Idea']['Comments'] : $comments;
+          $comments = (is_null($comments)) ? array() : $comments;
+          ?>
 					<?php echo $this->Form->input('share', array(
              			'label' => 'Share',
               			'placeholder' => 'Share with Other Users!~',
             			)); ?>
             	    Comments:<br>
-          			<?php foreach ($idea['Comments'] as $comment): ?>
-          			<?php echo $comment['message'], '<br>'; ?>
-          			<?php endforeach; ?>
+                <?php foreach ($comments as $comment): ?>
+                <?php echo $comment['message'], '<br>'; ?>
+                <?php endforeach; ?>
 
         <?php echo $this->Form->submit('Edit', array(
               'div' => 'form-group',
@@ -72,6 +75,7 @@
                   <button type="button" class="btn btn-default" data-dismiss="modal">
         	Close
         </button>
+        </div>
       </div>
     </div>
   </div>

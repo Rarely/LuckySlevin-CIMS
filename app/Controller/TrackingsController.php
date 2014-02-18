@@ -1,21 +1,13 @@
 <?php
 class TrackingsController extends AppController {
 	public $helpers = array('Html', 'Form');
+    var $components= array('Session');
 
-	  public function index() {
+    public function index() {
         $this->set('title_for_layout', 'Currently Tracked Ideas');
-        $this->set('trackings', $this->Tracking->find('all'));
+        $this->set('trackings', $this->Tracking->find('all', array(
+            'conditions' => array('Tracking.userid' => $this->Session->read('Auth.User.id'))
+            ,'recursive' => 2
+        )));
     }
-
-    // //public function view($userid = null) {
-    // //    if (!$userid) {
-    //         throw new NotFoundException(__('Invalid User ID'));
-    //     }
-
-    //     $tracking = $this->Tracking->findById($userid);
-    //     if (!$tracking) {
-    //         throw new NotFoundException(__('Invalid User ID'));
-    //     }
-    //     $this->set('tracking', $tracking);
-    // }
 }
