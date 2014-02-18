@@ -36,14 +36,15 @@ body {
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="/">Home</a></li>
-            <li><a href="/search">Search</a></li>
-            <li><a href="/trackings">Tracking</a></li>
-            <li><a href="#">Analytics</a></li>
-            <li><a href="/users">Users</a></li>
+            <li><?php echo $this->Html->link('Home', array('controller'=>'ideas', 'action'=>'index'));?></li>
+            <li><?php echo $this->Html->link('Search', array('controller'=>'search', 'action'=>'index'));?></li>
+            <li><?php echo $this->Html->link('Trackings', array('controller'=>'trackings', 'action'=>'index'));?></li>
+            <?php if ($userData['role'] == 'admin') { ?>
+            <li><?php echo $this->Html->link('Users', array('controller'=>'users', 'action'=>'index'));?></li>
+            <?php } ?>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="/notifications">Notifications</a></li>
+            <li><?php echo $this->Html->link('Notifications', array('controller'=>'users', 'action'=>'notifications'));?></li>
             <li><a href="#">Messages</a></li>
             <li><?php echo $this->Html->link('Logout', array('controller'=>'users', 'action'=>'logout'));?></li>
           </ul>
