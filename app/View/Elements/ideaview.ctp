@@ -28,12 +28,11 @@
           ),
           'class' => 'well'
         )); ?>
-        <div class="container">
-        	<div class="row">
+        <div class="row">
         		<!--The leftside details of an Idea -->
-        		<div class="col-md-2">
-					<strong>Community Partner</strong><br>
-					<?php echo $idea['Idea']['name']; ?><br>
+          <div class="col-md-6">
+            <strong>Community Partner</strong><br>
+					  <?php echo $idea['Idea']['name']; ?><br>
   					<strong>Contact Name</strong><br>
   					Need this Field<br>
   					<strong>Project Type</strong><br>
@@ -48,12 +47,10 @@
   					<?php echo $idea['Idea']['status']; ?> <br>
   				</div>
         		<!--The Description details of an Idea -->  					
-  				<div class="col-md-3">
-					Description:<br>
-	 				<?php echo $idea['Idea']['description']; ?>
-				</div>
-
-          	</div>
+          <div class="col-md-6">
+            Description:<br>
+            <?php echo $idea['Idea']['description']; ?>
+				  </div>
       </div>
       <div class="modal-footer">
 
