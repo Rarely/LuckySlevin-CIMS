@@ -1,33 +1,15 @@
-<!-- File: /app/View/Users/login.ctp -->
-<h1>Login</h1>
-<?php if ($this->Session->flash('auth') != false) { ?>
-    <div class="bg-danger" style="">
-        <?php echo $this->Session->flash('auth'); ?>
-    </div>
-<?php } ?>
+//app/View/Users/login.ctp
 
-<?php echo $this->Form->create('User', array(
-  'url' => array('controller' => 'users', 'action' => 'login'),
-  'inputDefaults' => array(
-    'div' => 'form-group',
-    'wrapInput' => false,
-    'class' => 'form-control'
-  ),
-  'class' => 'well'
-)); ?>
-
-<fieldset>
-    <?php echo $this->Form->input('username', array(
-      'label' => 'Email',
-      'placeholder' => 'Email…',
-    )); ?>
-    
-    <?php echo $this->Form->input('password', array(
-      'label' => 'Password',
-    )); ?>
-
-    <?php echo $this->Form->submit('Login', array(
-      'div' => 'form-group',
-      'class' => 'btn btn-primary'
-    )); ?>
-</fieldset>
+<div class="users form">
+<?php echo $this->Session->flash('auth'); ?>
+<?php echo $this->Form->create('User'); ?>
+    <fieldset>
+        <legend>
+            <?php echo __('Please enter your username and password'); ?>
+        </legend>
+        <?php echo $this->Form->input('username');
+        echo $this->Form->input('password');
+    ?>
+    </fieldset>
+<?php echo $this->Form->end(__('Login')); ?>
+</div>

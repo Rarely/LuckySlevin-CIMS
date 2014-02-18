@@ -18,15 +18,4 @@ class IdeasController extends AppController {
         }
         $this->set('idea', $idea);
     }
-
-     public function add() {
-        if ($this->request->is('post')) {
-            $this->Idea->create();
-            if ($this->Idea->save($this->request->data)) {
-                $this->Session->setFlash(__('Idea has been saved.'));
-                return $this->redirect(array('action' => 'index'));
-            }
-            $this->Session->setFlash(__('Unable to add idea.'));
-        }
-    }
 }

@@ -16,7 +16,7 @@
 
     <?php echo $this->Form->input('username', array(
       'label' => 'Email',
-      'placeholder' => 'Email',
+      'placeholder' => 'Email…',
     )); ?>
     
     <?php echo $this->Form->input('password', array(
