@@ -5,3 +5,4 @@
     <?php endforeach; ?>
     <?php unset($idea); ?>
 </div>
+	<?php echo $this->element('newideaform'); ?>
