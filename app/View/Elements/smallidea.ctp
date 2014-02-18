@@ -1,12 +1,12 @@
 <?php echo $this->Html->css('style.css');?>
 <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#largeIdea">
 	<div class=smallideablock>
-  	Name:  <?php echo $idea['Idea']['name']; ?><br>
-  	Status: <?php echo $idea['Idea']['status']; ?> <br>
-	Description:<br>
-	<div id="descriptionblock">
-	 	<?php echo $idea['Idea']['description']; ?>
-	</div>
+  		Name:  <?php echo $idea['Idea']['name']; ?> <br>
+  		Status: <?php echo $idea['Idea']['status']; ?> <br>
+		Description: <br>
+		<div id="descriptionblock">
+	 		<?php echo $idea['Idea']['description']; ?>
+		</div>
 	</div>
 </button>
 
@@ -39,6 +39,10 @@
 			<div id="descriptionblock">
 	 			<?php echo $idea['Idea']['description']; ?>
 			</div>
+			<?php echo $this->Form->input('share', array(
+              'label' => 'Share',
+              'placeholder' => 'Share with Other Users!~',
+            )); ?>
 
           </fieldset>
       </div>
@@ -48,7 +52,9 @@
         <?php echo $this->Form->submit('Edit', array(
               'div' => 'form-group',
               'class' => 'btn btn-primary'
-            )); ?>        
+            )); ?>
+          Comments:
+          <?php echo $idea['Idea']['comments']; ?>         
       </div>
     </div>
   </div>
