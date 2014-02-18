@@ -31,8 +31,8 @@
             )); ?>
 
             <?php echo $this->Form->input('description', array(
-              'label' => 'Email',
-              'placeholder' => 'Description',
+              'label' => 'Description',
+              'placeholder' => 'Insert a description here',
             )); ?>
             
             <?php echo $this->Form->input('status', array(
