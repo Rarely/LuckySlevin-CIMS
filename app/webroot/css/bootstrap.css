@@ -5176,9 +5176,9 @@ button.close {
 .modal-footer .btn-block + .btn-block {
   margin-left: 0;
 }
-@media (min-width: 768px) {
+@media (min-width: 1200px) {
   .modal-dialog {
-    width: 600px;
+    width: 1200px;
     margin: 30px auto;
   }
   .modal-content {

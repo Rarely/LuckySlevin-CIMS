@@ -12,7 +12,7 @@ echo $this->fetch('script');
 echo $this->Html->script('jquery-1.11.0.min.js');
 
 //custom css
-echo $this->Html->css('bootstrap.min.css');
+echo $this->Html->css('bootstrap.css');
 echo $this->Html->script('bootstrap.min.js');
 ?>
 <style type="text/css">

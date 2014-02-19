@@ -4,15 +4,12 @@
 }
 
 #ideacontainer .descriptionblock {
-	border:5px solid #00BFFF;
-	-webkit-border-radius: 15px;
-	-moz-border-radius: 15px;
-	border-radius: 10px;
 	margin: 5px; 
 	white-space: initial;
 	text-align: left;
 	overflow:hidden;
 	text-overflow:ellipsis;
-	font-size: 20px;
-	height: 150px;
+	font-size: 12px;
+	height: 135px;
+	width:210px;
 }
