@@ -62,5 +62,6 @@ class TicketmasterComponent extends object{
     function initialize() {}
     function beforeRender() {}
     function shutdown() {}
+    function beforeRedirect() {}
 }
 ?>
