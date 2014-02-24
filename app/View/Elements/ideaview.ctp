@@ -9,7 +9,7 @@
     <?php echo $idea['Idea']['description']; ?>
   </div>
   <div class="idea-actions">
-    <div class="btn btn-default trackbtn" onclick="Ajax.<?= in_array($idea['Idea']['id'], $trackings) ? "un" : "" ?>trackIdea(this, <?=$idea['Idea']['id']?>);event.stopPropagation();"><?= in_array($idea['Idea']['id'], $trackings) ? "Untrack" : "Track" ?></div>
+    <div class="btn btn-default trackbtn" onclick="event.stopPropagation();Ajax.<?= in_array($idea['Idea']['id'], $trackings) ? "un" : "" ?>trackIdea(this, <?=$idea['Idea']['id']?>);"><?= in_array($idea['Idea']['id'], $trackings) ? "Untrack" : "Track" ?></div>
   </div>
 </div>
 

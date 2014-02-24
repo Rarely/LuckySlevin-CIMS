@@ -10,7 +10,7 @@ echo $this->fetch('css');
 echo $this->fetch('script');
 
 echo $this->Html->script('jquery-1.11.0.min.js');
-echo $this->Html->script('ajax', array('inline' => false));
+echo $this->Html->script('ajax.js');
 echo $this->Js->writeBuffer();
 //custom css
 echo $this->Html->css('bootstrap.css');
