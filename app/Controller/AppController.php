@@ -27,41 +27,50 @@ App::uses('Controller', 'Controller');
  * Add your application-wide methods in the class below, your controllers
  * will inherit them.
  *
- * @package		app.Controller
- * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
+ * @package     app.Controller
+ * @link        http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
-	public $helpers = array(
-		'Session',
-		'Html' => array('className' => 'BoostCake.BoostCakeHtml'),
-		'Form' => array('className' => 'BoostCake.BoostCakeForm'),
-		'Paginator' => array('className' => 'BoostCake.BoostCakePaginator'),
-		);
+    public $uses = array('Tracking');
+    public $helpers = array(
+        'Session',
+        'Html' => array('className' => 'BoostCake.BoostCakeHtml'),
+        'Form' => array('className' => 'BoostCake.BoostCakeForm'),
+        'Paginator' => array('className' => 'BoostCake.BoostCakePaginator'),
+        );
 
-	public $components = array(
-		'Session',
-		'Auth' => array(
-			'loginRedirect' => array(
-				'controller' => 'ideas',
-				'action' => 'index'
-				),
-			'logoutRedirect' => array(
-				'controller' => 'ideas',
-				'action' => 'index'
-				)
-			)
-		);
+    public $components = array(
+        'Session',
+        'Auth' => array(
+            'loginRedirect' => array(
+                'controller' => 'ideas',
+                'action' => 'index'
+                ),
+            'logoutRedirect' => array(
+                'controller' => 'ideas',
+                'action' => 'index'
+                )
+            )
+        );
 
-	public function isAuthorized($user) {
+    public function isAuthorized($user) {
     // Admin can access every action
-		if (isset($user['role']) && $user['role'] === 'admin') {
-			return true;
-		}
+        if (isset($user['role']) && $user['role'] === 'admin') {
+            return true;
+        }
     // Default deny
-		return false;
-	}
+        return false;
+    }
 
-	public function beforeFilter() {
-		$this->set('userData', $this->Auth->user());
+    public function beforeFilter() {
+        $this->set('userData', $this->Auth->user());
+        $trackings =  $this->Tracking->find('all', array(
+            'conditions' => array('Tracking.userid' => $this->Session->read('Auth.User.id'))
+        ));
+        $trackingIds = array();
+        foreach ($trackings as $t) {
+            array_push($trackingIds, $t['Idea']['id']);
+        }
+        $this->set('trackings', $trackingIds);
     }
 }

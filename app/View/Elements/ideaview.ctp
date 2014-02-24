@@ -9,17 +9,7 @@
     <?php echo $idea['Idea']['description']; ?>
   </div>
   <div class="idea-actions">
-  <div id="test"></div>
-    <?php echo $this->Js->submit('Track', array(
-            'url' => array(
-              'controller' => 'trackings',
-              'action' => 'track',
-              $idea['Idea']['id']
-            ),
-            'update' => '.ideablock[data-id=\"' . $idea['Idea']['id']  . '\"] #test'
-          ),
-          array('class' => 'btn btn-default')
-    ); ?>
+    <div class="btn btn-default trackbtn" onclick="Ajax.<?= in_array($idea['Idea']['id'], $trackings) ? "un" : "" ?>trackIdea(this, <?=$idea['Idea']['id']?>);event.stopPropagation();"><?= in_array($idea['Idea']['id'], $trackings) ? "Untrack" : "Track" ?></div>
   </div>
 </div>
 
