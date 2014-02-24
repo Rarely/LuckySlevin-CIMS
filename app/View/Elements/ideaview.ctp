@@ -1,4 +1,5 @@
-<button class="ideablock btn btn-primary btn-lg" 
+<div class="ideablock btn btn-primary btn-lg" 
+        <?php echo "data-id=\"" . $idea['Idea']['id'] . "\"" ?>
         data-toggle="modal" <?php echo "data-target=\"#largeIdea" . $idea['Idea']['id'] . "\"" ?> 
         onclick="return false;">     
   Name:  <?php echo $idea['Idea']['name']; ?> <br>
@@ -7,8 +8,20 @@
   <div class="descriptionblock">
     <?php echo $idea['Idea']['description']; ?>
   </div>
-
-</button>
+  <div class="idea-actions">
+  <div id="test"></div>
+    <?php echo $this->Js->submit('Track', array(
+            'url' => array(
+              'controller' => 'trackings',
+              'action' => 'track',
+              $idea['Idea']['id']
+            ),
+            'update' => '.ideablock[data-id=\"' . $idea['Idea']['id']  . '\"] #test'
+          ),
+          array('class' => 'btn btn-default')
+    ); ?>
+  </div>
+</div>
 
 <div class="modal fade" <?php echo "id=\"largeIdea" . $idea['Idea']['id'] . "\"" ?> tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">

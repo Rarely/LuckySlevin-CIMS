@@ -23,7 +23,7 @@ class TicketmasterComponent extends object{
     function createMessage($token){
  
         $ms='<html><head><title>Password Reset Request</title></head>';
-        $ms='<body>Your ema1il has been used in a password reset request at '.$this->sitename.'<br/>';
+        $ms='<body>Your email has been used in a password reset request at '.$this->sitename.'<br/>';
         $ms.='If you did not initiate this request, then ignore this message.<br/>';
         $ms.='  Copy the link below into your browser to reset your password.<br/>';
         $ms.='<a href="http://'.$this->linkdomain.'/users/useticket/'.$token.'">Reset Password</a>';
