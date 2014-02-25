@@ -5,6 +5,22 @@
     white-space: inherit;
     width: 240px;
     word-wrap: break-word;
+
+    -webkit-transition: all 200ms linear;
+    -moz-transition: all 200ms linear;
+    -o-transition: all 200ms linear;
+    transition: all 200ms linear;
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+}
+
+#ideacontainer .ideablock:hover {
+    -webkit-transform: scale(1.1) translateZ(0);
+    -moz-transform: scale(1.1) translateZ(0);
+    -o-transform: scale(1.1) translateZ(0);
+    transform: scale(1.1) translateZ(0);
 }
 
 #ideacontainer .descriptionblock {
