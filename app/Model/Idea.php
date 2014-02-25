@@ -28,7 +28,7 @@ class Idea extends AppModel {
         'status' => array(
             'valid' => array(
                 'rule' => array('inList', array('open', 'referred', 'matched')),
-                'message' => 'Please enter a valid role',
+                'message' => 'Please enter a valid status',
                 'allowEmpty' => false
             )
 	   ));

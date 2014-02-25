@@ -3,7 +3,6 @@
   		Name:  <?php echo $idea['Idea']['name']; ?> <br>
   		Status: <?php echo $idea['Idea']['status']; ?> <br>
 		Description: <br>
-		
 		<div class="descriptionblock">
 	 		<?php echo $idea['Idea']['description']; ?>
 		</div>
@@ -55,21 +54,23 @@
 				  </div>
       </div>
       <div class="modal-footer">
-
-					<?php echo $this->Form->input('share', array(
-             			'label' => 'Share',
-              			'placeholder' => 'Share with Other Users!~',
-            			)); ?>
-            	    Comments:<br>
+          <?php echo $this->Form->input('share', array(
+             	'label' => 'Share',
+              'placeholder' => 'Share with Other Users!~',
+          )); ?>
+            	Comments:<br>
           			<?php foreach ($idea['Comments'] as $comment): ?>
           			<?php echo $comment['message'], '<br>'; ?>
           			<?php endforeach; ?>
 
-        <?php echo $this->Form->submit('Edit', array(
-              'div' => 'form-group',
-              'class' => 'btn btn-primary'
-            )); ?>
-                  <button type="button" class="btn btn-default" data-dismiss="modal">
+            <?php echo $this->Html->link('Edit',
+                array('controller' => 'ideas', 
+                  'action' => 'edit', 
+                  $idea['Idea']['id'])
+                , array('class' =>'btn btn-default')
+            ); ?>
+
+        <button type="button" class="btn btn-default" data-dismiss="modal">
         	Close
         </button>
       </div>
