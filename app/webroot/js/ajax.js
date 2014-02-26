@@ -25,5 +25,31 @@ var Ajax = {
           },
           dataType: 'json'
         });
-    }
+    },
+
+    Notifications: {
+      /*
+       * Notify users with a message
+       * params:  required: message, ideaid
+       *          optional: userid
+       */
+      notify: function(message, ideaid, userid) {
+        userid = typeof userid !== 'undefined' ? userid : null;
+        var url = '/notifications/notify/' + ideaid + "?m=" + message;
+        if (userid != null) {
+          url += "&userid=" + userid;
+        }
+        $.ajax({
+          type: "POST",
+          url: url,
+          async: true,
+          success: function(data) {
+            if (data.response === "success") {
+                alert("NOTIFIED");
+            }
+          },
+          dataType: 'json'
+        });
+      }
+    },
 };

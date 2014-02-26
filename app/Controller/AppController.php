@@ -31,7 +31,7 @@ App::uses('Controller', 'Controller');
  * @link        http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
-    public $uses = array('Tracking');
+    public $uses = array('Tracking', 'Notification');
     public $helpers = array(
         'Session',
         'Html' => array('className' => 'BoostCake.BoostCakeHtml'),
@@ -72,5 +72,10 @@ class AppController extends Controller {
             array_push($trackingIds, $t['Idea']['id']);
         }
         $this->set('trackings', $trackingIds);
+
+        $notifications = $this->Notification->find('all', array(
+            'conditions' => array('Notification.userid' => $this->Session->read('Auth.User.id'))
+        ));
+        $this->set('notificationsCount', count($notifications));
     }
 }

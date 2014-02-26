@@ -10,11 +10,18 @@ echo $this->fetch('css');
 echo $this->fetch('script');
 
 echo $this->Html->script('jquery-1.11.0.min.js');
+
 echo $this->Html->script('ajax.js');
+echo $this->Html->script('autocomplete.js');
+
 echo $this->Js->writeBuffer();
 //custom css
 echo $this->Html->css('bootstrap.css');
 echo $this->Html->script('bootstrap.min.js');
+
+echo $this->Html->script('select2.min.js');
+echo $this->Html->css('select2.css');
+echo $this->Html->css('select2-bootstrap.css');
 ?>
 <style type="text/css">
 body {
@@ -45,7 +52,14 @@ body {
             <?php } ?>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><?php echo $this->Html->link('Notifications', array('controller'=>'users', 'action'=>'notifications'));?></li>
+            <li>
+              <?php echo $this->Html->link(
+                  'Notifications <span class="badge badge-important badge-notifications">'. $notificationsCount . '</span>',
+                  array('controller'=>'notifications', 'action'=>'index'),
+                  array('escape' => FALSE)
+              );
+              ?>
+            </li>
             <li><?php echo $this->Html->link('Logout', array('controller'=>'users', 'action'=>'logout'));?></li>
           </ul>
         </div><!--/.nav-collapse -->

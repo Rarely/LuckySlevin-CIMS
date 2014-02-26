@@ -33,3 +33,12 @@
     text-overflow: ellipsis;
     white-space: initial;
 }
+
+.btn-share {
+    width:100%;
+    /*padding:15px;*/
+    margin-top:20px;
+}
+.sharing-autocomplete {
+    width:100%;
+}
