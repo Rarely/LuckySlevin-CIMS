@@ -1,6 +1,8 @@
 <?php
 class UsersController extends AppController {
-    public $helpers = array('Html', 'Form');
+    var $uses =array('User','Ticket', 'CakeEmail', 'Network/Email');
+    var $helpers = array('Html', 'Form');
+    var $components =array('Email','Ticketmaster');
     
     public function index() {
         $this->set('title_for_layout', 'Users');
@@ -34,7 +36,7 @@ class UsersController extends AppController {
     public function beforeFilter() {
         parent::beforeFilter();
     // Allow us`ers to register and logout.
-        $this->Auth->allow('logout','add');
+        $this->Auth->allow('logout','add','resetpassword','useticket', 'newpassword');
     }   
 
     public function login() {
@@ -49,4 +51,105 @@ class UsersController extends AppController {
     public function logout() {
         return $this->redirect($this->Auth->logout());
     }
+
+    function resetpassword($email=null){
+        if(empty($this->request->data)){
+            $this->request->data['User']['email']=$email;
+            //show form
+        }else{
+            //already entered email
+            if(!$email) $email=$this->request->data['User']['email'];
+            // make sure whave email and a check
+            if(!$email){
+                $this->User->invalidate('email');
+            }else{
+                //email entered, check for it
+                $account=$this->User->findByUsername($email);
+
+                if(!isset($account['User']['username'])){
+                    $this->Session->setFlash('<h3>We Don\'t have such and email on record.</h3>');
+                    $this->redirect('/');
+                }
+                $hashyToken=md5(date('mdY').rand(4000000,4999999));
+                $message = $this->Ticketmaster->createMessage($hashyToken);
+                
+                $Email = new CakeEmail();
+                App::uses('CakeEmail', 'Network/Email');
+                $Email->config('default');
+                
+                $Email->to($account['User']['username']);
+                $Email->subject('Password Reset');
+                $Email->send($message);
+                $data['Ticket']['hash']=$hashyToken;
+                $data['Ticket']['data']=$email;
+                $data['Ticket']['expires']=$this->Ticketmaster->getExpirationDate();
+
+                if ($this->Ticket->save($data)){
+                    $this->Session->setFlash('An email has been sent with instructions to reset your password');
+                    $this->redirect('/');
+                }else{
+                    $this->Session->setFlash('Ticket could not be issued');
+                    $this->redirect('/');
+
+                }
+            }
+ 
+        }
+    }
+ 
+    function useticket($hash){
+        //purge old tickets
+        $results=$this->Ticketmaster->checkTicket($hash);
+ 
+        if($results){
+            //now pull up mine IF still present
+            $passTicket=$this->User->findByUsername($results['Ticket']['data']);
+ 
+            $this->Ticketmaster->voidTicket($hash);
+            $this->Session->write('tokenreset',$passTicket['User']['id']);
+            $this->Session->setFlash('Enter your new password below');
+            $this->redirect('/users/newpassword/'.$passTicket['User']['id']);
+        }else{
+            $this->Session->setFlash('Your ticket is lost or expired.');
+            $this->redirect('/');
+        }
+ 
+    }
+ 
+ 
+    function newpassword($id = null) {
+ 
+        if($this->Session->check('tokenreset')){
+            //user is not logged in, BUT has TOKEN in hand
+        }else{
+            // But you only want authenticated users to access this action.
+            //lines like the one below 'checkSession are  authentication code, so you can ignore these or use Auth
+            $this->checkSession(1,'/users/edit/'.$id);
+ 
+            //But youll need to read the user info somehow, and only the user who owns the profile 
+            $attempter=$this->Session->read('User');
+        }   
+ 
+        if (empty($this->request->data)) {
+            if($this->Session->check('tokenreset')) $id=$this->Session->read('tokenreset');
+            if (!$id) {
+                $this->Session->setFlash('Invalid id for User');
+                $this->redirect('/users/index');
+            }
+            $this->request->data = $this->User->read(null, $id);
+        } else {                
+            // $this->request->data['User']['password']=AuthComponent::password($this->request->data['User']['password']);
+            
+            $data = array('id' => $this->request->params['pass'][0], 'password' => $this->request->data['User']['password']);
+            if ($this->User->save($data)) {
+                //delkete session token and dlete used ticket from table
+                $this->Session->delete('tokenreset');
+                $this->Session->setFlash('The User\'s Password has been updated');
+                $this->redirect('/');
+            } else {
+                $this->Session->setFlash('Please correct errors below.');
+            }
+        }
+    }
+
 }

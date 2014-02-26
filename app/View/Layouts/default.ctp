@@ -10,9 +10,10 @@ echo $this->fetch('css');
 echo $this->fetch('script');
 
 echo $this->Html->script('jquery-1.11.0.min.js');
-
+echo $this->Html->script('ajax.js');
+echo $this->Js->writeBuffer();
 //custom css
-echo $this->Html->css('bootstrap.min.css');
+echo $this->Html->css('bootstrap.css');
 echo $this->Html->script('bootstrap.min.js');
 ?>
 <style type="text/css">
@@ -45,7 +46,6 @@ body {
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><?php echo $this->Html->link('Notifications', array('controller'=>'users', 'action'=>'notifications'));?></li>
-            <li><a href="#">Messages</a></li>
             <li><?php echo $this->Html->link('Logout', array('controller'=>'users', 'action'=>'logout'));?></li>
           </ul>
         </div><!--/.nav-collapse -->

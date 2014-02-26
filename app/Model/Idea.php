@@ -25,12 +25,13 @@ class Idea extends AppModel {
                 'message' => 'A description is required'
             )
         ),
-        'status' => array(
-            'valid' => array(
-                'rule' => array('inList', array('open', 'referred', 'matched')),
-                'message' => 'Please enter a valid status',
-                'allowEmpty' => false
-            )
-	   ));
+    //     'status' => array(
+    //         'valid' => array(
+    //             'rule' => array('inList', array('open', 'referred', 'matched')),
+    //             'message' => 'Please enter a valid status',
+    //             'allowEmpty' => false
+    //         )
+	   // ));
+        );
 }
 ?>

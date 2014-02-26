@@ -5,6 +5,9 @@
         <?php echo $this->Session->flash('auth'); ?>
     </div>
 <?php } ?>
+<div class="bg-success">
+<?php echo $this->Session->flash(); ?>
+</div>
 
 <?php echo $this->Form->create('User', array(
   'url' => array('controller' => 'users', 'action' => 'login'),
@@ -26,8 +29,15 @@
       'label' => 'Password',
     )); ?>
 
-    <?php echo $this->Form->submit('Login', array(
-      'div' => 'form-group',
-      'class' => 'btn btn-primary'
-    )); ?>
+    <div class="form-group">
+      <?php echo $this->Form->submit('Login', array(
+        'div' => false,
+        'class' => 'btn btn-primary'
+      )); ?>
+      <?php echo $this->Html->link(
+          'Forgot Password'
+          ,array('controller' => 'users', 'action' => 'resetpassword')
+          ,array('class' => 'btn btn-default pull-right')
+          ); ?>
+    </div>
 </fieldset>
