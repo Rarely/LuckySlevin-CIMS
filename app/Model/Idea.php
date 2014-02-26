@@ -24,13 +24,14 @@ class Idea extends AppModel {
                 'rule' => array('notEmpty'),
                 'message' => 'A description is required'
             )
-        )
-        // 'status' => array(
-        //     'valid' => array(
-        //         'rule' => array('inList', array('open', 'referred', 'matched')),
-        //         'message' => 'Please enter a valid role',
-        //         'allowEmpty' => false
-        //     )
-	   );
+        ),
+    //     'status' => array(
+    //         'valid' => array(
+    //             'rule' => array('inList', array('open', 'referred', 'matched')),
+    //             'message' => 'Please enter a valid status',
+    //             'allowEmpty' => false
+    //         )
+	   // ));
+        );
 }
 ?>
