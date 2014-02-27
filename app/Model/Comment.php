@@ -1,5 +1,7 @@
 <?php 
 class Comment extends AppModel {
-   // public $belongsTo = 'Idea';
-    public $hasOne = 'User';
+    public $belongsTo = array('User' => array(
+                       'className' => 'User'
+                       ,'foreignKey' => 'userid'
+    ));
 }

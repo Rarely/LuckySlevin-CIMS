@@ -20,5 +20,6 @@
             'class' => 'btn btn-primary'
         )); ?>
     </fieldset>
+<?php echo $this->Form->button('Export an Idea') ?>
 <?php echo $this->Form->end(); ?>
 <?php echo $this->element('idealist', array("ideas" => $ideas)); ?>

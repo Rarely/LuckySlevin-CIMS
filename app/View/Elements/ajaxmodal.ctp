@@ -43,26 +43,19 @@
           </div>
         </div>
         <div class="modal-footer">
-          <?php
-          $comments = (!isset($idea['Comments']) || is_null($idea['Comments'])) ? null : $idea['Comments'];
-          $comments = (is_null($comments) && isset($idea['Idea']['Comments'])) ? $idea['Idea']['Comments'] : $comments;
-          $comments = (is_null($comments)) ? array() : $comments;
-          ?>
 
           Comments:<br>
-          <?php foreach ($comments as $comment): ?>
-            <?php echo $comment['message'], '<br>'; ?>
-          <?php endforeach; ?>
+          <ul class="commentList">
+            <?php foreach ($comments as $comment): ?>
+              <?php echo '<li>'. $comment['User']['name'] . ': ' . $comment['Comment']['message'], '</li>'; ?>
+            <?php endforeach; ?>
+          </ul> 
+          <div class="form-group">
+            <label for"commentField">Leave a Comment</label>
+            <input type="text" class="form-control" id="commentField" placeholder="Leave a Comment" />
+            <div class="btn btn-default commentbtn">Comment</div>
+          </div>
 
-          <?php echo $this->Form->input('comments', array(
-            'label' => 'Leave a comment',
-            'placeholder' => 'Type a comment~!',
-          )); ?>
-
-          <?php echo $this->Form->submit('Comment', array(
-            'div' => 'form-group',
-            'class' => 'btn btn-primary'
-          )); ?>
           <div class="row">
             <div class="col-sm-10">
              <?php echo $this->Form->input('share', array(

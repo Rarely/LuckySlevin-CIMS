@@ -11,4 +11,9 @@ jQuery.fn.bindIdeaModal = function() {
       $('#ajax-modal .sharing-autocomplete').select2('data', null);
       alert("Shared");
     });
+
+    //bind comment button
+    $('#ajax-modal .commentbtn').bind("click", function(e) {
+      Ajax.Comments.comment($('#ajax-modal #commentField').val(), id);
+    });
 };
