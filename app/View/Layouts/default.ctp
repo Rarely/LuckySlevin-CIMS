@@ -13,6 +13,9 @@ echo $this->Html->script('jquery-1.11.0.min.js');
 
 echo $this->Html->script('ajax.js');
 echo $this->Html->script('autocomplete.js');
+echo $this->Html->script('notifications.js');
+echo $this->Html->script('custom-jquery.js');
+echo $this->Html->css('style.css');
 
 echo $this->Js->writeBuffer();
 //custom css
@@ -52,13 +55,13 @@ body {
             <?php } ?>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li>
-              <?php echo $this->Html->link(
-                  'Notifications <span class="badge badge-important badge-notifications">'. $notificationsCount . '</span>',
-                  array('controller'=>'notifications', 'action'=>'index'),
-                  array('escape' => FALSE)
-              );
-              ?>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle notifications-btn" data-toggle="dropdown">
+                Notifications <span class="badge badge-important badge-notifications"><?= $notificationsCount ?></span>
+              </a>
+              <ul class="dropdown-menu notifications-menu">
+                <li><a>Loading Notifications</a></li>
+              </ul>
             </li>
             <li><?php echo $this->Html->link('Logout', array('controller'=>'users', 'action'=>'logout'));?></li>
           </ul>
@@ -67,6 +70,7 @@ body {
     </div>
 
     <div class="container">
+      <?php // echo $this->element('ajaxmodal'); ?>
       <?php echo $this->fetch('content'); ?>
     </div> <!-- /container -->
 

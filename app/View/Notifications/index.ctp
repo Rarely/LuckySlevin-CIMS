@@ -1,15 +1,9 @@
-<!-- File: /app/View/Notification/index.ctp -->
-<table class="table">
-    <tr>
-        <th>Message</th>
-    </tr>
-
-    <!-- Here is where we loop through our $posts array, printing out post info -->
-
+<?php if (count($notifications) > 0) { ?>
     <?php foreach ($notifications as $notification): ?>
-    <tr>
-        <td><?php echo $notification['Notification']['message']; ?></td>
-    </tr>
+        <li><a onclick="Ajax.Idea.showIdea(<?= $notification['Notification']['ideaid']; ?>);"><?= $notification['Notification']['message']; ?></a></li>
     <?php endforeach; ?>
-    <?php unset($tracking); ?>
-</table>
+    <?php unset($notification); ?>
+<?php } else { 
+        echo '<li><a>No Notifications</a></li>';
+    }
+?>
