@@ -14,16 +14,30 @@ class User extends AppModel {
         )
     );
     public $validate = array(
+        'name' => array(
+            'required' => array(
+                'rule' => array('notEmpty'),
+                'message' => 'A name is required'
+            )
+        ),
         'username' => array(
             'required' => array(
                 'rule' => array('notEmpty'),
                 'message' => 'A username is required'
+            ),
+            'email' => array(
+                'rule' => array('email'),
+                'message' => 'Username must be a valid email address'
             )
         ),
         'password' => array(
             'required' => array(
                 'rule' => array('notEmpty'),
                 'message' => 'A password is required'
+            ),
+            'length' => array(
+                'rule' => array('between',8,32),
+                'message' => 'Passwords must be between 8 and 32 characters in length.'
             )
         ),
         'role' => array(
