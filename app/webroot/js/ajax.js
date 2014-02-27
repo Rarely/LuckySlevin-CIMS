@@ -25,5 +25,59 @@ var Ajax = {
           },
           dataType: 'json'
         });
-    }
+    },
+    
+    Idea: {
+      showIdea: function(ideaid) {
+        $.ajax({
+          type: "GET",
+          url: '/ideas/idea/' + ideaid,
+          async: true,
+          success: function(data) {
+            $('#ajax-modal').remove();
+            $('body').append(data);
+            $('#ajax-modal').modal();
+            $('#ajax-modal').bindIdeaModal();
+          }
+        });
+      }
+    },
+
+    Notifications: {
+      getNotifications: function() {
+        $.ajax({
+          type: "GET",
+          url: '/notifications',
+          async: true,
+          success: function(data) {
+            $('.navbar .notifications-menu').html(data);
+            $('.navbar .badge-notifications').text($('.navbar .notifications-menu li').length);
+          }
+        });
+      },
+
+      /*
+       * Notify users with a message
+       * params:  required: message, ideaid
+       *          optional: userid
+       */
+      notify: function(message, ideaid, userid) {
+        userid = typeof userid !== 'undefined' ? userid : null;
+        var url = '/notifications/notify/' + ideaid + "?m=" + message;
+        if (userid != null) {
+          url += "&userid=" + userid;
+        }
+        $.ajax({
+          type: "POST",
+          url: url,
+          async: true,
+          success: function(data) {
+            if (data.response !== "success") {
+              alert("Could not share with user");
+            }
+          },
+          dataType: 'json'
+        });
+      }
+    },
 };

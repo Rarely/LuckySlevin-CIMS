@@ -54,4 +54,19 @@ class IdeasController extends AppController {
              $this->Session->setFlash(__('Unable to add idea.'));
         } 
     }
+
+    public function idea($id = null) {
+        $this->layout = false;
+        if (!$id) {
+            throw new NotFoundException(__('Invalid idea'));
+        }
+
+        $idea = $this->Idea->findById($id);
+        
+        if (!$idea) {
+            throw new NotFoundException(__('Invalid idea'));
+        }
+        $this->set('idea', $idea);
+        $this->render('/Elements/ajaxmodal');
+    }
 }

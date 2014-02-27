@@ -20,3 +20,4 @@ ehthumbs.db
 Thumbs.db
 app/Config/database.php.default
 app/Config/email.php
+app/Config/email.php.default

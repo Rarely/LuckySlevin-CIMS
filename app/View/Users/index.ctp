@@ -12,6 +12,7 @@
         <th>Email</th>
         <th>Notifications</th>
         <th>Trackings</th>
+        <th>Delete User</th>
     </tr>
 
     <!-- Here is where we loop through our $posts array, printing out post info -->
@@ -26,6 +27,10 @@ array('controller' => 'users', 'action' => 'view', $user['User']['id'])); ?>
         <td><?php echo $user['User']['username']; ?></td>
         <td><?php echo count($user['Notifications']);?></td>
         <td><?php echo count($user['Trackings']); ?></td>
+         <td>
+            <?php echo $this->Html->link('Delete',
+array('controller' => 'users', 'action' => 'delete', $user['User']['id'])); ?>
+        </td>
     </tr>
     <?php endforeach; ?>
     <?php unset($user); ?>

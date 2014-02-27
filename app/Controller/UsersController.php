@@ -2,7 +2,7 @@
 class UsersController extends AppController {
     var $uses =array('User','Ticket', 'CakeEmail', 'Network/Email');
     var $helpers = array('Html', 'Form');
-    var $components =array('Email','Ticketmaster');
+    var $components =array('Email','Ticketmaster', 'RequestHandler');
     
     public function index() {
         $this->set('title_for_layout', 'Users');
@@ -149,6 +149,29 @@ class UsersController extends AppController {
             } else {
                 $this->Session->setFlash('Please correct errors below.');
             }
+        }
+    }
+
+    function membersList() {
+        $term = $this->request->query('term');
+
+        if ($this->RequestHandler->isAjax()) {
+            $this->set('response', 'success');
+                $conditions['or'][] = array('User.name LIKE' => "%$term%");
+                $conditions['or'][] = array('User.username LIKE' => "%$term%");
+
+                $results = $this->User->find('all', array('conditions' => 'User.id != '. $this->Session->read('Auth.User.id'), 'fields' => 'User.id, User.name, User.username'));
+                foreach ($results as $result) {
+                    $answer[] = array(
+                        "id"=>$result['User']['id'],
+                        "text" => $result['User']['name'] . "(" . $result['User']['username'] . ")", 
+                        "name"=>$result['User']['name'], 
+                        "email" => $result['User']['username']
+                    );
+                }
+
+            $this->set('response', $answer);
+            $this->render('/Elements/jsonraw');
         }
     }
 
