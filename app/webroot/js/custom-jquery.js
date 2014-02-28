@@ -17,3 +17,19 @@ jQuery.fn.bindIdeaModal = function() {
       Ajax.Comments.comment($('#ajax-modal #commentField').val(), id);
     });
 };
+
+jQuery.fn.selectable = function() {
+  var el = $(this[0]);
+  if (el.hasClass("selectable") || el.hasClass("selected")) {
+    el.removeClass("selectable").removeClass("selected");
+  } else {
+    el.addClass("selectable");
+    el.bind("click", function() {
+      if (el.hasClass("selected")) {
+        el.removeClass("selected").addClass("selectable");
+      } else {
+        el.removeClass("selectable").addClass("selected");
+      }
+    });
+  }
+};

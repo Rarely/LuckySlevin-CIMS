@@ -1,0 +1,11 @@
+.selectable {
+    border:3px solid red !important;
+}
+
+.selected {
+    border:3px solid green !important;
+}
+
+.selectable:hover {
+    border: 3px solid blue !important;
+}

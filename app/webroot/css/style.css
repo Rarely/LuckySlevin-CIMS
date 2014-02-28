@@ -15,7 +15,7 @@
     margin-right: 5px;
     background-image: url('/img/idea.png');
     background-size: 190px;
-    border-style: none;
+    border: none;
 
     -webkit-transition: all 200ms linear;
     -moz-transition: all 200ms linear;
@@ -86,3 +86,14 @@
     margin: 0 auto;
 }
 
+#export-help {
+    margin-left:10px;
+    display:none;
+}
+#btn-save-csv {
+    display:none;
+    margin-top:10px;
+}
+#btn-cancel-csv {
+    display:none;
+}
