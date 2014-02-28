@@ -1,4 +1,4 @@
-<?php
+<?php 
 class UsersController extends AppController {
     var $uses =array('User','Ticket', 'CakeEmail', 'Network/Email');
     var $helpers = array('Html', 'Form');
@@ -6,7 +6,7 @@ class UsersController extends AppController {
     
     public function index() {
         $this->set('title_for_layout', 'Users');
-        $this->set('users', $this->User->find('all'));
+        $this->set('users', $this->User->find('all'), array( 'conditions' => 'User.isdeleted != 1'));
     }
 
     public function view($id = null) {
@@ -178,26 +178,30 @@ class UsersController extends AppController {
 
     function delete($id = null){
         if (!$id) {
-            throw new NotFoundException(__('Invalid idea'));
+            throw new NotFoundException(__('Invalid user'));
         }
 
-        $idea = $this->Idea->findById($id);
+        $user = $this->User->findById($id);
         
-        if (!$idea) {
-            throw new NotFoundException(__('Invalid idea'));
+        if (!$user) {
+            throw new NotFoundException(__('Invalid user'));
         }
-        $this->set('idea', $idea);
+        $this->set('user', $user);
 
         if ($this->request->is('post')) {
-            $this->Idea->read(null, $id);
-            $this->Idea->set('name', $this->request->data['Idea']['name']);
-            $this->Idea->set('description', $this->request->data['Idea']['description']);
-            $this->Idea->set('status', $this->request->data['Idea']['status']);
-             if ($this->Idea->save()) {
+              $this->set('response', 'success');
+              $this->set('data', array('userid' => $id));
+              $this->render('/Elements/jsonreturn');
+             if ($this->User->isdeleted == true) {
                  $this->Session->setFlash(__('Idea has been saved.'));
                  return $this->redirect(array('action' => 'index'));
              }
-             $this->Session->setFlash(__('Unable to add idea.'));
+             else {
+            //non-ajax
+            $this->set('response', 'failed');
+            $this->set('data', array('userid' => $id));
+            $this->render('/Elements/jsonreturn');
+        }
         } 
     }
 
