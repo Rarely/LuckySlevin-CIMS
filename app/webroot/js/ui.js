@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $("wrapper").dotdotdot({
+    $("text-wrapper").dotdotdot({
 		ellipsis	: '... ',
  
 		/*	How to cut off the text/html: 'word'/'letter'/'children' */
@@ -15,7 +15,7 @@ $(document).ready(function() {
 		watch		: false,
 	
 		/*	Optionally set a max-height, if null, the height will be measured. */
-		height		: null,
+		height		: 10,
  
 		/*	Deviation for the height-option. */
 		tolerance	: 0,

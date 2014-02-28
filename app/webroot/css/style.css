@@ -47,8 +47,6 @@
     font-size: 18px;
     height:40px;
     width: 130px;
-    overflow: hidden;
-    text-align: left;
 }
 
 #ideacontainer .idea-list-innerwrap {

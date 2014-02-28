@@ -1,14 +1,12 @@
-<script src="jquery.js" type="text/javascript"></script>
-<script src="jquery.dotdotdot.js" type="text/javascript"></script>
-<script src="dotdotdot.js" type="text/javascript"></script>
-
 <div class="ideablock btn btn-primary btn-lg" 
         <?php echo "data-id=\"" . $idea['Idea']['id'] . "\"" ?>
         onclick="Ajax.Idea.showIdea(<?php echo $idea['Idea']['id']?>);return false;"> 
         
         <h4>
-          <div id="wrapper">
-            <?php echo $idea['Idea']['name']; ?>
+         <div class="heading1">
+            <div id="text-wrapper">
+              <?php echo $idea['Idea']['name']; ?>
+            </div>
           </div>
         </h4> <br>
         
@@ -24,3 +22,4 @@
    </div>
   </div>
 </div>
+
