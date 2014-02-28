@@ -3,7 +3,7 @@
         onclick="Ajax.Idea.showIdea(<?php echo $idea['Idea']['id']?>);return false;"> 
         
         <h4>
-         <div class="heading1">
+         <div class="title-heading">
             <div class="text-wrapper">
               <?php echo $idea['Idea']['name']; ?>
             </div>
