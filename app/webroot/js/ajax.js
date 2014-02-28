@@ -99,5 +99,23 @@ var Ajax = {
           dataType: 'json'
         });
       }
+    },
+
+    User: {
+      delete: function(userid) {
+        $.ajax({
+          type: "POST",
+          dataType: 'json',
+          url: '/users/delete/' + userid,
+          async: true,
+          success: function(data) {
+            if (data.response === "success") {
+              $("tr[data-id=" + data.data.userid + "]").remove();
+            }
+          }
+        });
+      }
     }
 };
+
+

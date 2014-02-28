@@ -25,6 +25,7 @@ echo $this->Html->script('bootstrap.min.js');
 echo $this->Html->script('select2.min.js');
 echo $this->Html->css('select2.css');
 echo $this->Html->css('select2-bootstrap.css');
+echo $this->Html->script('users');
 ?>
 <style type="text/css">
 body {
