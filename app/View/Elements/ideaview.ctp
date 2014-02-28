@@ -4,7 +4,7 @@
         
         <h4>
          <div class="heading1">
-            <div id="text-wrapper">
+            <div class="text-wrapper">
               <?php echo $idea['Idea']['name']; ?>
             </div>
           </div>
