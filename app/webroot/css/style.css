@@ -13,6 +13,9 @@
     width: 240px;
     word-wrap: break-word;
     margin-right: 5px;
+    background-image: url('/img/idea.png');
+    background-size: 240px;
+    border-style: none;
 
     -webkit-transition: all 200ms linear;
     -moz-transition: all 200ms linear;
@@ -57,3 +60,11 @@
     width:100%;
 }
 
+.trackbtn {
+    background-image: url('/img/tracked.png');
+    width:60px;
+    height:60px;
+    background-size: 100%;
+    background-color: transparent;
+    background-size: 100%;
+}
