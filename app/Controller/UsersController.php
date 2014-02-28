@@ -177,6 +177,7 @@ class UsersController extends AppController {
 
 
     function delete($id = null){
+        $this->layout = false; 
         if (!$id) {
             throw new NotFoundException(__('Invalid user'));
         }
@@ -189,12 +190,11 @@ class UsersController extends AppController {
         $this->set('user', $user);
 
         if ($this->request->is('post')) {
-              $this->set('response', 'success');
-              $this->set('data', array('userid' => $id));
-              $this->render('/Elements/jsonreturn');
-             if ($this->User->isdeleted == true) {
-                 $this->Session->setFlash(__('Idea has been saved.'));
-                 return $this->redirect(array('action' => 'index'));
+                $this->User->id = $id; 
+             if ($this->User->saveField('isdeleted', true)) {
+                 $this->set('response', 'success');
+                 $this->set('data', array('userid' => $id));
+                 $this->render('/Elements/jsonreturn');
              }
              else {
             //non-ajax
