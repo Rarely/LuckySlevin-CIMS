@@ -1,4 +1,5 @@
 var Ajax = {
+  
     trackIdea: function(dom, id) {
         $.ajax({
           type: "POST",
@@ -26,7 +27,7 @@ var Ajax = {
           dataType: 'json'
         });
     },
-    
+
     Idea: {
       showIdea: function(ideaid) {
         $.ajax({
@@ -80,4 +81,23 @@ var Ajax = {
         });
       }
     },
+
+// url: /comments/comment/<<IDEA ID>>?c=<<TEXT FOR COMMENT>>
+    Comments: {
+      comment: function(message, ideaid) {
+        var url = '/ideas/comment/' + ideaid + "?c=" + message;
+        $.ajax({
+           type: "POST",
+           url: url,
+           async: true,
+           success: function(data) {
+             if (data.response === "success") {
+                 alert("Comment has been posted!");
+                 $("#ajax-modal .commentList").append(data.data.html);
+             }
+          },
+          dataType: 'json'
+        });
+      }
+    }
 };
