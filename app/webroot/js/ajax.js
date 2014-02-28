@@ -7,7 +7,7 @@ var Ajax = {
           async: true,
           success: function(data) {
             if (data.response === "success") {
-                $(dom).unbind().text("Untrack").attr("onclick", "event.stopPropagation();").click(function() {Ajax.untrackIdea(dom, id)});
+                $(dom).unbind().removeClass("trackbtn").addClass("untrackbtn").click(function() {Ajax.untrackIdea(dom, id)});
             }
           },
           dataType: 'json'
@@ -21,7 +21,7 @@ var Ajax = {
           async: true,
           success: function(data) {
             if (data.response === "success") {
-                $(dom).unbind().text("Track").attr("onclick", "event.stopPropagation();").click(function() {Ajax.trackIdea(dom, id)});
+                $(dom).unbind().removeClass("untrackbtn").addClass("trackbtn").click(function() {Ajax.trackIdea(dom, id)});
             }
           },
           dataType: 'json'

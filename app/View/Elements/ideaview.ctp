@@ -9,6 +9,13 @@
     <?php echo $idea['Idea']['description']; ?>
   </div>
   <div class="idea-actions">
-    <div class="btn btn-default trackbtn" onclick="event.stopPropagation();Ajax.<?= in_array($idea['Idea']['id'], $trackings) ? "un" : "" ?>trackIdea(this, <?=$idea['Idea']['id']?>);"><?= in_array($idea['Idea']['id'], $trackings) ? "Untrack" : "Track" ?></div>
+   <?php $trackclass = (in_array($idea['Idea']['id'], $trackings)) ? "untrackbtn" : "trackbtn"; ?>
+   <div class="idea-action-btn <?php echo $trackclass ?>" 
+     <?php if (in_array($idea['Idea']['id'], $trackings)) { ?>
+       onclick="event.stopPropagation();Ajax.untrackIdea(this, <?=$idea['Idea']['id']?>);">
+     <?php } else { ?>
+       onclick="event.stopPropagation();Ajax.trackIdea(this, <?=$idea['Idea']['id']?>);">
+     <?php } ?>
+   </div>
   </div>
 </div>

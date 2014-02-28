@@ -60,11 +60,22 @@
     width:100%;
 }
 
-.trackbtn {
-    background-image: url('/img/tracked.png');
+.idea-action-btn {
     width:60px;
     height:60px;
     background-size: 100%;
     background-color: transparent;
     background-size: 100%;
+    border:none;
+    padding: 0;
 }
+
+.trackbtn {
+    background-image: url('/img/tracked.png');
+}
+
+.untrackbtn {
+    background-image: url('/img/untracked.png');
+}
+
+
