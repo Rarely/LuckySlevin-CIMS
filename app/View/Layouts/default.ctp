@@ -57,7 +57,7 @@ body {
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
               <a href="#" class="dropdown-toggle notifications-btn" data-toggle="dropdown">
-                Notifications <span class="badge badge-important badge-notifications"><?= $notificationsCount ?></span>
+                Notifications <span class="badge badge-important badge-notifications"><?php echo $notificationsCount ?></span>
               </a>
               <ul class="dropdown-menu notifications-menu">
                 <li><a>Loading Notifications</a></li>
