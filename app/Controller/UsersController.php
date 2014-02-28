@@ -1,4 +1,4 @@
-<?php
+<?php 
 class UsersController extends AppController {
     var $uses =array('User','Ticket', 'CakeEmail', 'Network/Email');
     var $helpers = array('Html', 'Form');
@@ -6,7 +6,7 @@ class UsersController extends AppController {
     
     public function index() {
         $this->set('title_for_layout', 'Users');
-        $this->set('users', $this->User->find('all'));
+        $this->set('users', $this->User->find('all'), array( 'conditions' => 'User.isdeleted != 1'));
     }
 
     public function view($id = null) {
@@ -173,6 +173,36 @@ class UsersController extends AppController {
             $this->set('response', $answer);
             $this->render('/Elements/jsonraw');
         }
+    }
+
+
+    function delete($id = null){
+        $this->layout = false; 
+        if (!$id) {
+            throw new NotFoundException(__('Invalid user'));
+        }
+
+        $user = $this->User->findById($id);
+        
+        if (!$user) {
+            throw new NotFoundException(__('Invalid user'));
+        }
+        $this->set('user', $user);
+
+        if ($this->request->is('post')) {
+                $this->User->id = $id; 
+             if ($this->User->saveField('isdeleted', true)) {
+                 $this->set('response', 'success');
+                 $this->set('data', array('userid' => $id));
+                 $this->render('/Elements/jsonreturn');
+             }
+             else {
+            //non-ajax
+            $this->set('response', 'failed');
+            $this->set('data', array('userid' => $id));
+            $this->render('/Elements/jsonreturn');
+        }
+        } 
     }
 
 }

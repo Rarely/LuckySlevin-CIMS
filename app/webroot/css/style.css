@@ -78,4 +78,8 @@
     background-image: url('/img/untracked.png');
 }
 
+.confirmWidth {
+    width: 385px;
+    margin: 0 auto;
+}
 
