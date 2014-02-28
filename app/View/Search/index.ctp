@@ -21,5 +21,26 @@
         )); ?>
     </fieldset>
 <?php echo $this->Form->button('Export an Idea') ?>
+
+
 <?php echo $this->Form->end(); ?>
-<?php echo $this->element('idealist', array("ideas" => $ideas)); ?>
+
+<div class="inline-block">
+<button class="filter" data-filter="Open InProgress Matched">All</button>
+<button class="filter" data-filter="Open">Open</button>
+<button class="filter" data-filter="InProgress">In Progress</button>
+<button class="filter" data-filter="Matched">Matched</button>
+</div>
+
+<div class="inline-block">
+<button class="sort" data-sort="data-name" data-order="desc">name desc</button>
+<button class="sort" data-sort="data-name" data-order="asc">name asc</button>
+<button class="sort" data-sort="data-id" data-order="desc">id desc</button>
+<button class="sort" data-sort="data-id" data-order="asc">id asc</button>
+<button class="sort" data-sort="default" data-order="asc">default</button>
+<button class="sort" data-sort="random">random</button>
+</div>
+
+<br>
+
+<?php echo $this->element('ideapage', array("ideas" => $ideas)); ?>

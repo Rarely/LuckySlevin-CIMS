@@ -1,4 +1,7 @@
-<div class="ideablock btn btn-primary btn-lg" 
+<div 
+        <?php echo "class=\"mix ideablock btn btn-primary btn-lg " . $idea['Idea']['status'] . "\""?>
+        <?php echo "data-name=\"" . $idea['Idea']['name'] . "\""?>
+        <?php echo "data-status=\"" . $idea['Idea']['status'] . "\""?>
         <?php echo "data-id=\"" . $idea['Idea']['id'] . "\"" ?>
         onclick="Ajax.Idea.showIdea(<?php echo $idea['Idea']['id']?>);return false;">     
   Name:  <?php echo $idea['Idea']['name']; ?> <br>

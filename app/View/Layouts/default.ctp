@@ -15,6 +15,11 @@ echo $this->Html->script('ajax.js');
 echo $this->Html->script('autocomplete.js');
 echo $this->Html->script('notifications.js');
 echo $this->Html->script('custom-jquery.js');
+
+echo $this->Html->script('http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js');
+echo $this->Html->script('jquery.mixitup.min.js');
+echo $this->Html->script('filter.js');
+
 echo $this->Html->css('style.css');
 
 echo $this->Js->writeBuffer();
