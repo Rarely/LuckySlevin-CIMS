@@ -5,7 +5,19 @@ class IdeasController extends AppController {
     public $uses = array('Idea','Comment');
     public function index() {
         $this->set('title_for_layout', 'Ideas');
-        $this->set('ideas', $this->Idea->find('all'));
+
+        $this->set('ideas_active', $this->Idea->find('all', array(
+            'order' => array('Idea.updated DESC'),
+            'limit' => 15
+        )));
+        $this->set('ideas_inactive', $this->Idea->find('all', array(
+            'order' => array('Idea.updated ASC'),
+            'limit' => 15
+        )));
+        $this->set('ideas_recent', $this->Idea->find('all', array(
+            'order' => array('Idea.created ASC'),
+            'limit' => 15
+        )));
     }
 
     public function view($id = null) {
@@ -48,6 +60,7 @@ class IdeasController extends AppController {
             $this->Idea->set('name', $this->request->data['Idea']['name']);
             $this->Idea->set('description', $this->request->data['Idea']['description']);
             $this->Idea->set('status', $this->request->data['Idea']['status']);
+            $this->Idea->set('updated', null);
              if ($this->Idea->save()) {
                  $this->Session->setFlash(__('Idea has been saved.'));
                  return $this->redirect(array('action' => 'index'));
