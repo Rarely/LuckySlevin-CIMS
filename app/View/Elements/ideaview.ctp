@@ -25,7 +25,7 @@
             </div>
           <div class="row">  
             <div class="col-md-6">
-              <div class="owner-heading">              
+              <div class="owner-heading">
                 <?php echo $idea['Users']['name']; ?>
               </div>
             </div>              
