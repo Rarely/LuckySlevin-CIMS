@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	$("#Grid").mixitup({
-		showOnLoad: 'none',
+		showOnLoad: 'all',
 		effects: ['fade','scale'],
 		multiFilter: true
 	});

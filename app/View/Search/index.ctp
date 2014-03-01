@@ -1,4 +1,9 @@
 
+<?php
+    echo $this->Html->script('search.js');
+    echo $this->Html->css('jquery-selectable.css');
+?>
+
 <?php echo $this->Form->create('Search', array(
     'url' => array('controller' => 'search', 'action' => 'index'),
     'inputDefaults' => array(
@@ -20,7 +25,10 @@
             'class' => 'btn btn-primary'
         )); ?>
     </fieldset>
-<?php echo $this->Form->button('Export an Idea') ?>
+    <div id="btn-export" class="btn btn-success">Export</div>
+    <div id="btn-cancel-csv" class="btn btn-default">Cancel</div>
+    <span id="export-help">Please click the title of the ideas you would like to export below</span>
+    <div id="btn-save-csv" class="btn btn-success">Save to File</div>
 
 
 <?php echo $this->Form->end(); ?>
