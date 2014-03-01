@@ -103,6 +103,9 @@
 .confirmWidth {
     width: 385px;
     margin: 0 auto;
+    margin-bottom: 0;
+    margin-left: 143px;
+
 }
 
 #export-help {

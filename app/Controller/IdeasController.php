@@ -2,27 +2,30 @@
 class IdeasController extends AppController {
     public $helpers = array('Html', 'Form');
     var $components = array('RequestHandler');
-    public $uses = array('Idea','Comment');
+    public $uses = array('Idea','Comment', 'Category', 'IdeaValue');
     public function index() {
         $this->set('title_for_layout', 'Ideas');
-        $this->set('ideas', $this->Idea->find('all'));
-    }
 
-    public function view($id = null) {
-        if (!$id) {
-            throw new NotFoundException(__('Invalid idea'));
-        }
-
-        $idea = $this->Idea->findById($id);
-        if (!$idea) {
-            throw new NotFoundException(__('Invalid idea'));
-        }
-        $this->set('idea', $idea);
+        $this->set('ideas_active', $this->Idea->find('all', array(
+            'order' => array('Idea.updated DESC'),
+            'limit' => 15
+        )));
+        $this->set('ideas_inactive', $this->Idea->find('all', array(
+            'order' => array('Idea.updated ASC'),
+            'limit' => 15
+        )));
+        $this->set('ideas_recent', $this->Idea->find('all', array(
+            'order' => array('Idea.created DESC'),
+            'limit' => 15
+        )));
     }
 
      public function add() {
         if ($this->request->is('post')) {
             $this->Idea->create();
+            $this->request->data['Idea']['created'] = date('Y-m-d H:i:s');
+            $this->request->data['Idea']['updated'] = null;
+            $this->request->data['Idea']['userid'] = $this->Session->read('Auth.User.id');
             if ($this->Idea->save($this->request->data)) {
                 $this->Session->setFlash(__('Idea has been saved.'));
                 return $this->redirect(array('action' => 'index'));
@@ -48,6 +51,7 @@ class IdeasController extends AppController {
             $this->Idea->set('name', $this->request->data['Idea']['name']);
             $this->Idea->set('description', $this->request->data['Idea']['description']);
             $this->Idea->set('status', $this->request->data['Idea']['status']);
+            $this->Idea->set('updated', null);
              if ($this->Idea->save()) {
                  $this->Session->setFlash(__('Idea has been saved.'));
                  return $this->redirect(array('action' => 'index'));
@@ -109,6 +113,16 @@ class IdeasController extends AppController {
         $this->set('comments', $this->Comment->find('all', array(
             'conditions' => array('Comment.ideaid' => $id)
             ,'recursive' => 2
+        )));
+
+        $this->set('categories', $this->Category->find('all', array(
+            // 'conditions' => array('idea_value.ideaid' => $id)
+            'recursive'=>0
+        )));
+
+        $this->set('ideavalues', $this->IdeaValue->find('all', array(
+            'conditions' => array('IdeaValue.ideaid' => $id)
+            ,'recursive'=>2
         )));
         
         if (!$idea) {

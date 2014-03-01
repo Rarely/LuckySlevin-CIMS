@@ -1,10 +1,14 @@
 <?php
 class Idea extends AppModel {
         public $hasMany = array(
-            'Comments' => array('Comments' => 'Comments',
-                                'className' => 'Comments',
-                                'foreignKey' => 'ideaid',
-                                'order' => 'Comments.created ASC'
+            'Comments' => array('Comments' => 'Comments'
+                                ,'className' => 'Comments'
+                                ,'foreignKey' => 'ideaid'
+                                ,'order' => 'Comments.created ASC'
+            ),
+            'Idea_Value' => array('Idea_Value' => 'Idea_Value'
+                                ,'className' => 'IdeaValue'
+                                ,'foreignKey' => 'ideaid'
             )
         );
 
@@ -13,8 +17,7 @@ class Idea extends AppModel {
                              'className' => 'Users',
                              'foreignKey' => 'userid'
             )
-        );
-
+        );        
 
 		public function getAllIdeas() {
 			return $this->Idea->find('all');
