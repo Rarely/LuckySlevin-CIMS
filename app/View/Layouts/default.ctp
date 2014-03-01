@@ -16,13 +16,19 @@ echo $this->Html->script('autocomplete.js');
 echo $this->Html->script('notifications.js');
 echo $this->Html->script('custom-jquery.js');
 
+
 echo $this->Html->script('http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js');
 echo $this->Html->script('jquery.mixitup.min.js');
 echo $this->Html->script('filter.js');
 
+
+echo $this->Html->script('jquery.dotdotdot.min.js');
+echo $this->Html->script('ui.js');
+
 echo $this->Html->css('style.css');
 
 echo $this->Js->writeBuffer();
+echo $this->Html->script('bootbox.min.js');
 //custom css
 echo $this->Html->css('bootstrap.css');
 echo $this->Html->script('bootstrap.min.js');
@@ -30,6 +36,7 @@ echo $this->Html->script('bootstrap.min.js');
 echo $this->Html->script('select2.min.js');
 echo $this->Html->css('select2.css');
 echo $this->Html->css('select2-bootstrap.css');
+echo $this->Html->script('users.js');
 ?>
 <style type="text/css">
 body {
@@ -78,6 +85,5 @@ body {
       <?php // echo $this->element('ajaxmodal'); ?>
       <?php echo $this->fetch('content'); ?>
     </div> <!-- /container -->
-
 </body>
 </html>

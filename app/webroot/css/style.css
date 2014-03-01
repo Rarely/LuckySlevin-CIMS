@@ -6,7 +6,7 @@
 }
 
 .ideacontainer {
-    height: 300px;
+    height: 250px;
 }
 
 .ideacontainer2 {
@@ -14,15 +14,15 @@
 }
 
 #ideacontainer .ideablock {
-    height: 250px;
+    height: 210px;
     overflow-x: hidden;
     text-align: left;
     white-space: inherit;
-    width: 240px;
+    width: 190px;
     word-wrap: break-word;
     margin-right: 5px;
     background-image: url('/img/idea.png');
-    background-size: 240px;
+    background-size: 190px;
     border-style: none;
     margin-bottom: 10px;
 
@@ -50,8 +50,11 @@
     margin: 5px;
     overflow: hidden;
     text-align: left;
-    text-overflow: ellipsis;
-    white-space: initial;
+}
+
+.title-heading {
+    font-size: 18px;
+    width: 130px;
 }
 
 #ideacontainer .idea-list-innerwrap {
@@ -95,6 +98,12 @@
 .inline-block {
     display:inline-block;
     width:49%;
+}
+
+.confirmWidth {
+    width: 385px;
+    margin: 0 auto;
+
 }
 
 .active {

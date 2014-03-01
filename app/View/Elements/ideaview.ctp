@@ -3,14 +3,17 @@
         <?php echo "data-name=\"" . $idea['Idea']['name'] . "\""?>
         <?php echo "data-status=\"" . $idea['Idea']['status'] . "\""?>
         <?php echo "data-id=\"" . $idea['Idea']['id'] . "\"" ?>
-        onclick="Ajax.Idea.showIdea(<?php echo $idea['Idea']['id']?>);return false;">     
-  Name:  <?php echo $idea['Idea']['name']; ?> <br>
-  Status: <?php echo $idea['Idea']['status']; ?> <br>
-  Description: <br>
-
-  <div class="descriptionblock">
-    <?php echo $idea['Idea']['description']; ?>
-  </div>
+        onclick="Ajax.Idea.showIdea(<?php echo $idea['Idea']['id']?>);return false;"> 
+        
+        <h4>
+         <div class="title-heading">
+            <div class="text-wrapper">
+              <?php echo $idea['Idea']['name']; ?>
+            </div>
+          </div>
+        </h4> <br>
+        
+        <?php echo $idea['Idea']['status']; ?> <br>
   <div class="idea-actions">
    <?php $trackclass = (in_array($idea['Idea']['id'], $trackings)) ? "untrackbtn" : "trackbtn"; ?>
    <div class="idea-action-btn <?php echo $trackclass ?>" 
@@ -22,3 +25,4 @@
    </div>
   </div>
 </div>
+

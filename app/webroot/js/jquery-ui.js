@@ -240,7 +240,7 @@ if ( $( "<a>" ).data( "a-b", "a" ).removeData( "a-b" ).data( "a-b" ) ) {
 	})( $.fn.removeData );
 }
 
-
+$(".ellipsis").dotdotdot();
 
 
 
