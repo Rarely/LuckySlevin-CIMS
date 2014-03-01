@@ -7,14 +7,17 @@ class IdeasController extends AppController {
         $this->set('title_for_layout', 'Ideas');
 
         $this->set('ideas_active', $this->Idea->find('all', array(
+            'conditions' => array('Idea.isdeleted' => 0)
             'order' => array('Idea.updated DESC'),
             'limit' => 15
         )));
         $this->set('ideas_inactive', $this->Idea->find('all', array(
+            'conditions' => array('Idea.isdeleted' => 0)
             'order' => array('Idea.updated ASC'),
             'limit' => 15
         )));
         $this->set('ideas_recent', $this->Idea->find('all', array(
+            'conditions' => array('Idea.isdeleted' => 0)
             'order' => array('Idea.created DESC'),
             'limit' => 15
         )));
@@ -130,5 +133,47 @@ class IdeasController extends AppController {
         }
         $this->set('idea', $idea);
         $this->render('/Elements/ajaxmodal');
+    }
+
+    public function delete($idlist = array()) {
+        $idlist = explode(',', $this->request->query('ids'));
+        
+        $this->layout = null;
+        if ($this->RequestHandler->isAjax()) {
+            if ($this->request->is('post')) {
+                $deletedlist = array();
+                $errors = array();
+                foreach($idlist as $id) {
+                    $this->Idea->read(null, $id);
+                    $this->Idea->set('isdeleted', 1);
+                    $this->Idea->set('updated', null);
+
+                    if ($this->Idea->save()) {
+                        array_push($deletedlist, $id);
+                    } else {
+                        array_push($errors, $id);
+                    }
+                }
+
+                if (count($errors) == 0) {
+                    $this->set('response','success');
+                    $this->set('data', $deletedlist);
+                    $this->render('/Elements/jsonreturn');
+                } else {
+                    $this->set('response','failed');
+                    $this->set('data', $errors);
+                    $this->render('/Elements/jsonreturn');
+                } 
+            } else {
+                $this->set('response','failed');
+                $this->set('data', $errors);
+                $this->render('/Elements/jsonreturn');
+            } 
+        } else { 
+            $this->set('response','failed');
+            $this->set('data', $errors);
+            $this->render('/Elements/jsonreturn');
+        }
+
     }
 }

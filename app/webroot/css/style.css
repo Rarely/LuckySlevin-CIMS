@@ -85,8 +85,6 @@
     width: 385px;
     margin: 0 auto;
     margin-bottom: 0;
-    margin-left: 143px;
-
 }
 
 #export-help {
@@ -100,3 +98,12 @@
 #btn-cancel-csv {
     display:none;
 }
+
+#btn-delete-confirm {
+    display:none;
+    margin-top:10px;
+}
+#btn-cancel-delete {
+    display:none;
+}
+
