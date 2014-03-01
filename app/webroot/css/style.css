@@ -35,17 +35,36 @@
     z-index:1;
 }
 
-#ideacontainer .descriptionblock {
-    font-size: 12px;
-    height: 65px;
-    margin: 5px;
-    overflow: hidden;
-    text-align: left;
-}
-
 .title-heading {
     font-size: 18px;
     width: 130px;
+    line-height: 1.1;
+    margin-left: 10px;
+    margin-bottom: 5px;
+}
+
+.description-heading {
+    font-size: 14px;
+    width: 160px;
+    line-height: 1.1;
+    margin-left: 10px;
+    margin-bottom: 5px;
+}
+
+.status-heading {
+    font-size: 18px;
+    width: 160px;
+    line-height: 1.1;
+    margin-left: 10px;
+    margin-bottom: 5px;
+}
+
+.owner-heading {
+    font-size: 18px;
+    width: 160px;
+    line-height: 1.1;
+    margin-left: 10px;
+    margin-top: 20px;
 }
 
 #ideacontainer .idea-list-innerwrap {
