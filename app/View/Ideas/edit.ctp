@@ -25,6 +25,15 @@
        'default' => $idea['Idea']['status']
     )); ?>
 
+    <?php foreach ($categories as $category) { ?>
+      <label for="categoryDescription"><?php echo $category['Category']['name'] ?></label>
+      <select class="form-control">
+        <?php foreach($category['Values'] as $value) { ?>
+          <option value="<?php echo $value['name'] ?>"><?php echo $value['name'] ?></option>
+        <?php } ?>
+      </select><br />
+    <?php } ?>
+    
     <?php echo $this->Form->submit('Save', array(
       'div' => 'form-group',
       'class' => 'btn btn-primary'

@@ -43,7 +43,9 @@ class IdeasController extends AppController {
         }
 
         $idea = $this->Idea->findById($id);
-        
+        $this->set('categories', $this->Category->find('all', array(
+            'recursive'=>2
+        )));
         if (!$idea) {
             throw new NotFoundException(__('Invalid idea'));
         }
