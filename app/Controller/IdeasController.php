@@ -2,7 +2,7 @@
 class IdeasController extends AppController {
     public $helpers = array('Html', 'Form');
     var $components = array('RequestHandler');
-    public $uses = array('Idea','Comment');
+    public $uses = array('Idea','Comment', 'Category', 'IdeaValue');
     public function index() {
         $this->set('title_for_layout', 'Ideas');
 
@@ -18,18 +18,6 @@ class IdeasController extends AppController {
             'order' => array('Idea.created DESC'),
             'limit' => 15
         )));
-    }
-
-    public function view($id = null) {
-        if (!$id) {
-            throw new NotFoundException(__('Invalid idea'));
-        }
-
-        $idea = $this->Idea->findById($id);
-        if (!$idea) {
-            throw new NotFoundException(__('Invalid idea'));
-        }
-        $this->set('idea', $idea);
     }
 
      public function add() {
@@ -125,6 +113,16 @@ class IdeasController extends AppController {
         $this->set('comments', $this->Comment->find('all', array(
             'conditions' => array('Comment.ideaid' => $id)
             ,'recursive' => 2
+        )));
+
+        $this->set('categories', $this->Category->find('all', array(
+            // 'conditions' => array('idea_value.ideaid' => $id)
+            'recursive'=>0
+        )));
+
+        $this->set('ideavalues', $this->IdeaValue->find('all', array(
+            'conditions' => array('IdeaValue.ideaid' => $id)
+            ,'recursive'=>2
         )));
         
         if (!$idea) {
