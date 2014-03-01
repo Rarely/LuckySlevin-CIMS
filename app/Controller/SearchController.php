@@ -21,7 +21,6 @@ class SearchController extends AppController {
 
     public function export($idlist = array()) {
         $idlist = explode(',', $this->request->query('ids'));
-        var_dump($idlist);
         $data = $this->Idea->find('all', array(
             'conditions' => array(
                 "Idea.id" => $idlist
