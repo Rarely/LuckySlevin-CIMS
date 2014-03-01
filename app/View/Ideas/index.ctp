@@ -1,4 +1,7 @@
 <h1>Ideas</h1>
+<div class="bg-success">
+<?php echo $this->Session->flash(); ?>
+</div>
 <?php echo $this->element('newideaform'); ?>
 <h2>Active Ideas</h2>
 <?php echo $this->element('idealist', array("ideas" => $ideas_active)) ?>
@@ -6,6 +9,5 @@
 <?php echo $this->element('idealist', array("ideas" => $ideas_inactive)) ?>
 <h2>Recently Created Ideas</h2>
 <?php echo $this->element('idealist', array("ideas" => $ideas_recent)) ?>
-<?php //echo $this->element('idealist', array("ideas" => $ideas)); ?>
 
 

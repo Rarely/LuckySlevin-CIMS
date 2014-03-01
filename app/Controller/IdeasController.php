@@ -15,7 +15,7 @@ class IdeasController extends AppController {
             'limit' => 15
         )));
         $this->set('ideas_recent', $this->Idea->find('all', array(
-            'order' => array('Idea.created ASC'),
+            'order' => array('Idea.created DESC'),
             'limit' => 15
         )));
     }
@@ -35,6 +35,9 @@ class IdeasController extends AppController {
      public function add() {
         if ($this->request->is('post')) {
             $this->Idea->create();
+            $this->request->data['Idea']['created'] = date('Y-m-d H:i:s');
+            $this->request->data['Idea']['updated'] = null;
+            $this->request->data['Idea']['userid'] = $this->Session->read('Auth.User.id');
             if ($this->Idea->save($this->request->data)) {
                 $this->Session->setFlash(__('Idea has been saved.'));
                 return $this->redirect(array('action' => 'index'));
