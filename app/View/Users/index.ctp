@@ -14,7 +14,7 @@
         <th>Email</th>
         <th>Notifications</th>
         <th>Trackings</th>
-        <th>Delete User</th>
+        <th>Actions</th>
     </tr>
 
     <!-- Here is where we loop through our $posts array, printing out post info -->
