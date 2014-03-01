@@ -15,7 +15,9 @@ class SearchController extends AppController {
             )));
         } else {
             $this->set('query', '');
-            $this->set('ideas', $this->Idea->find('all'));
+            $this->set('ideas', $this->Idea->find('all', array(
+                'conditions' => array('Idea.isdeleted' => 0)
+            )));
         }
     }
 
