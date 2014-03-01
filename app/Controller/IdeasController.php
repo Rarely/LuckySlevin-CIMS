@@ -48,6 +48,7 @@ class IdeasController extends AppController {
             $this->Idea->set('name', $this->request->data['Idea']['name']);
             $this->Idea->set('description', $this->request->data['Idea']['description']);
             $this->Idea->set('status', $this->request->data['Idea']['status']);
+            $this->Idea->set('updated',null);
              if ($this->Idea->save()) {
                  $this->Session->setFlash(__('Idea has been saved.'));
                  return $this->redirect(array('action' => 'index'));
