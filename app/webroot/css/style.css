@@ -101,20 +101,20 @@
 }
 
 .add-btn {
-    background-image: url('/img/addidea.png');
-    background-color: transparent;
+    background-image: url('/img/addidea.png')  !important;
+    background-color: transparent !important;
     background-size: 100%;  
-    border: none;
+    border: none !important;
     width:30px;
     height:30px;
     margin-top: 8px;
 }
 
 .add-btn:hover {
-    background-image: url('/img/addidea.png');
-    background-color: grey;
+    background-image: url('/img/addideainverse.png') !important;
+    background-color: transparent !important;
     background-size: 100%;  
-    border: none;
+    border: none !important;
     width:30px;
     height:30px;
     margin-top: 8px;
