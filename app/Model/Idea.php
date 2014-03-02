@@ -5,8 +5,19 @@ class Idea extends AppModel {
                                 ,'className' => 'Comments'
                                 ,'foreignKey' => 'ideaid'
                                 ,'order' => 'Comments.created ASC'
+            ),
+            'Idea_Value' => array('Idea_Value' => 'Idea_Value'
+                                ,'className' => 'IdeaValue'
+                                ,'foreignKey' => 'ideaid'
             )
         );
+
+        public $belongsTo = array(
+            'Users' => array('Users' => 'Users',
+                             'className' => 'Users',
+                             'foreignKey' => 'userid'
+            )
+        );        
 
 		public function getAllIdeas() {
 			return $this->Idea->find('all');

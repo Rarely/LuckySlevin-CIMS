@@ -5,6 +5,8 @@
     'Create User',
     array('controller' => 'users', 'action' => 'add')
 ); ?>
+
+
 <table class="table">
     <tr>
         <th>ID</th>
@@ -12,7 +14,7 @@
         <th>Email</th>
         <th>Notifications</th>
         <th>Trackings</th>
-        <th>Delete User</th>
+        <th>Actions</th>
     </tr>
 
     <!-- Here is where we loop through our $posts array, printing out post info -->
@@ -27,7 +29,12 @@ array('controller' => 'users', 'action' => 'view', $user['User']['id'])); ?>
         <td><?php echo $user['User']['username']; ?></td>
         <td><?php echo count($user['Notifications']);?></td>
         <td><?php echo count($user['Trackings']); ?></td>
-         <td> <div class="btn btn-danger btn-delete-user">Delete</div>  </td>
+        <td> <div class="btn btn-danger btn-delete-user">Delete</div> 
+        <?php echo $this->Html->link('Edit', array('controller' => 'users', 
+            'action' => 'edit', 
+            $user['User']['id'])
+            , array('class' =>'btn btn-default')
+          ); ?> </td>
     </tr>
     <?php endforeach; ?>
     <?php unset($user); ?>

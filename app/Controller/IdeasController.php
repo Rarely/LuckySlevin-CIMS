@@ -2,27 +2,33 @@
 class IdeasController extends AppController {
     public $helpers = array('Html', 'Form');
     var $components = array('RequestHandler');
-    public $uses = array('Idea','Comment');
+    public $uses = array('Idea','Comment', 'Category', 'IdeaValue');
     public function index() {
         $this->set('title_for_layout', 'Ideas');
-        $this->set('ideas', $this->Idea->find('all'));
-    }
 
-    public function view($id = null) {
-        if (!$id) {
-            throw new NotFoundException(__('Invalid idea'));
-        }
-
-        $idea = $this->Idea->findById($id);
-        if (!$idea) {
-            throw new NotFoundException(__('Invalid idea'));
-        }
-        $this->set('idea', $idea);
+        $this->set('ideas_active', $this->Idea->find('all', array(
+            'conditions' => array('Idea.isdeleted' => 0),
+            'order' => array('Idea.updated DESC'),
+            'limit' => 15
+        )));
+        $this->set('ideas_inactive', $this->Idea->find('all', array(
+            'conditions' => array('Idea.isdeleted' => 0),
+            'order' => array('Idea.updated ASC'),
+            'limit' => 15
+        )));
+        $this->set('ideas_recent', $this->Idea->find('all', array(
+            'conditions' => array('Idea.isdeleted' => 0),
+            'order' => array('Idea.created DESC'),
+            'limit' => 15
+        )));
     }
 
      public function add() {
         if ($this->request->is('post')) {
             $this->Idea->create();
+            $this->request->data['Idea']['created'] = date('Y-m-d H:i:s');
+            $this->request->data['Idea']['updated'] = null;
+            $this->request->data['Idea']['userid'] = $this->Session->read('Auth.User.id');
             if ($this->Idea->save($this->request->data)) {
                 $this->Session->setFlash(__('Idea has been saved.'));
                 return $this->redirect(array('action' => 'index'));
@@ -49,6 +55,7 @@ class IdeasController extends AppController {
             $this->Idea->set('description', $this->request->data['Idea']['description']);
             $this->Idea->set('status', $this->request->data['Idea']['status']);
             $this->Idea->set('updated',null);
+
              if ($this->Idea->save()) {
                  $this->Session->setFlash(__('Idea has been saved.'));
                  return $this->redirect(array('action' => 'index'));
@@ -111,11 +118,63 @@ class IdeasController extends AppController {
             'conditions' => array('Comment.ideaid' => $id)
             ,'recursive' => 2
         )));
+
+        $this->set('categories', $this->Category->find('all', array(
+            // 'conditions' => array('idea_value.ideaid' => $id)
+            'recursive'=>0
+        )));
+
+        $this->set('ideavalues', $this->IdeaValue->find('all', array(
+            'conditions' => array('IdeaValue.ideaid' => $id)
+            ,'recursive'=>2
+        )));
         
         if (!$idea) {
             throw new NotFoundException(__('Invalid idea'));
         }
         $this->set('idea', $idea);
         $this->render('/Elements/ajaxmodal');
+    }
+
+    public function delete($idlist = array()) {
+        $idlist = explode(',', $this->request->query('ids'));
+        
+        $this->layout = null;
+        if ($this->RequestHandler->isAjax()) {
+            if ($this->request->is('post')) {
+                $deletedlist = array();
+                $errors = array();
+                foreach($idlist as $id) {
+                    $this->Idea->read(null, $id);
+                    $this->Idea->set('isdeleted', 1);
+                    $this->Idea->set('updated', null);
+
+                    if ($this->Idea->save()) {
+                        array_push($deletedlist, $id);
+                    } else {
+                        array_push($errors, $id);
+                    }
+                }
+
+                if (count($errors) == 0) {
+                    $this->set('response','success');
+                    $this->set('data', $deletedlist);
+                    $this->render('/Elements/jsonreturn');
+                } else {
+                    $this->set('response','failed');
+                    $this->set('data', $errors);
+                    $this->render('/Elements/jsonreturn');
+                } 
+            } else {
+                $this->set('response','failed');
+                $this->set('data', $errors);
+                $this->render('/Elements/jsonreturn');
+            } 
+        } else { 
+            $this->set('response','failed');
+            $this->set('data', $errors);
+            $this->render('/Elements/jsonreturn');
+        }
+
     }
 }

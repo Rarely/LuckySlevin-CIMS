@@ -35,6 +35,17 @@
             Need this field<br>
             <strong>Status</strong><br>
             <?php echo $idea['Idea']['status']; ?><br>
+            <strong>Categories</strong><br>
+            <?php foreach($categories as $cat) { ?>
+              <?php echo $cat['Category']['name'] ?>:
+              <ul>
+              <?php foreach($ideavalues as $value) { ?>
+                <?php if ($value['Value']['categoryid'] == $cat['Category']['id']) { ?>
+                  <li><?php echo $value['Value']['name']; ?></li>
+                <?php } ?>
+              <?php } ?>
+              </ul>
+            <?php } ?>
           </div>
           <!--The Description details of an Idea -->                      
           <div class="col-md-6">
