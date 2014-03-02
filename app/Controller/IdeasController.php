@@ -25,11 +25,36 @@ class IdeasController extends AppController {
 
      public function add() {
         if ($this->request->is('post')) {
+
             $this->Idea->create();
             $this->request->data['Idea']['created'] = date('Y-m-d H:i:s');
             $this->request->data['Idea']['updated'] = null;
             $this->request->data['Idea']['userid'] = $this->Session->read('Auth.User.id');
             if ($this->Idea->save($this->request->data)) {
+                $id = $this->Idea->getLastInsertID();
+                foreach($this->request->data['Category'] as $key=>$value) {
+                    $this->IdeaValue->create();
+                    $this->IdeaValue->set('ideaid', $id);
+                    //TODO: CHECK FOR SPECIFIED STRING OR INTEGER
+                    if (!is_numeric($value)) {
+                        //create value and return id
+                        $this->Value->create();
+                        $this->Value->set('name', $value); //Value
+                        $this->Value->set('categoryid', $key); //CatID
+                        $this->Value->set('specified', true); //specified manually
+                        if ($this->Value->save()) {
+                            $value = $this->Value->getLastInsertID();
+                        } else {
+                            //ERROR creating specific value
+                        }
+                    }
+                    $this->IdeaValue->set('valueid', $value);
+                    if ($this->IdeaValue->save()) {
+                            //We're good
+                    } else {
+                        //ERROR CREATING RELATIONSHIP
+                    }
+                }
                 $this->Session->setFlash(__('Idea has been saved.'));
                 return $this->redirect(array('action' => 'index'));
             }
@@ -43,9 +68,6 @@ class IdeasController extends AppController {
         }
 
         $idea = $this->Idea->findById($id);
-        $this->set('categories', $this->Category->find('all', array(
-            'recursive'=>2
-        )));
         if (!$idea) {
             throw new NotFoundException(__('Invalid idea'));
         }

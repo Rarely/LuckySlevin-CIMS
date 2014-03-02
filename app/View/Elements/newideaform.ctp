@@ -63,7 +63,7 @@
 
             <?php foreach ($categories as $category) { ?>
               <label for="categoryDescription"><?php echo $category['Category']['name'] ?></label>
-              <input type='hidden' class="cat" id='tags'
+              <input type='hidden' class="cat" id='tags' name="data[Category][<?php echo $category['Category']['id']; ?>]"
               <?php if ($category['Category']['multiselect'] == true) { echo 'multiple="true"'; } ?>
               <?php if ($category['Category']['specifiable'] == true) { echo 'specifiable="true"'; } ?>
               <?php echo 'data-id="' . $category['Category']['id'] .'"'; ?>
