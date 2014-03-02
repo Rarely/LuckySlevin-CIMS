@@ -64,6 +64,7 @@ class AppController extends Controller {
 
     public function beforeFilter() {
         $this->set('userData', $this->Auth->user());
+
         $trackings =  $this->Tracking->find('all', array(
             'conditions' => array('Tracking.userid' => $this->Session->read('Auth.User.id'))
         ));
@@ -77,5 +78,8 @@ class AppController extends Controller {
             'conditions' => array('Notification.userid' => $this->Session->read('Auth.User.id'))
         ));
         $this->set('notificationsCount', count($notifications));
+
+        $categories =  $this->Category->find('all');
+        $this->set('categories', $categories);
     }
 }

@@ -1,3 +1,4 @@
+<?php echo $this->Html->script('categories.js'); ?>
 <!-- Button trigger modal -->
 <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
   Add a New Idea
@@ -60,6 +61,15 @@
               array('options' => $status, 'default' => 'Open'
             )); ?>
 
+            <?php foreach ($categories as $category) { ?>
+              <label for="categoryDescription"><?php echo $category['Category']['name'] ?></label>
+              <input type='hidden' class="cat" id='tags'
+              <?php if ($category['Category']['multiselect'] == true) { echo 'multiple="true"'; } ?>
+              <?php if ($category['Category']['specifiable'] == true) { echo 'specifiable="true"'; } ?>
+              <?php echo 'data-id="' . $category['Category']['id'] .'"'; ?>
+               style='width:100%' />
+              <br />
+            <?php } ?>
            </fieldset>
 
       </div>

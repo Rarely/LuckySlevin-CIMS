@@ -190,7 +190,6 @@ class IdeasController extends AppController {
                 'fields' => 'Value.id, Value.name',
                 'recursive'=>2
             ));
-            // var_dump($values);
             foreach ($values as $result) {
                 $answer[] = array(
                     "id"=>$result['Value']['id'],
