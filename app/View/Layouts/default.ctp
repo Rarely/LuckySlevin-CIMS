@@ -38,7 +38,7 @@ body {
 </head>
 <body>
 
-    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -59,6 +59,7 @@ body {
             <?php } ?>
           </ul>
           <ul class="nav navbar-nav navbar-right">
+          <li><button class="add-btn btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" imn></button></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle notifications-btn" data-toggle="dropdown">
                 Notifications <span class="badge badge-important badge-notifications"><?php echo $notificationsCount ?></span>
@@ -76,6 +77,7 @@ body {
     <div class="container">
       <?php // echo $this->element('ajaxmodal'); ?>
       <?php echo $this->fetch('content'); ?>
+      <?php echo $this->element('newideaform'); ?>
     </div> <!-- /container -->
 </body>
 </html>

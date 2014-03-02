@@ -100,6 +100,26 @@
     background-image: url('/img/untracked.png');
 }
 
+.add-btn {
+    background-image: url('/img/addidea.png');
+    background-color: transparent;
+    background-size: 100%;  
+    border: none;
+    width:30px;
+    height:30px;
+    margin-top: 8px;
+}
+
+.add-btn:hover {
+    background-image: url('/img/addidea.png');
+    background-color: grey;
+    background-size: 100%;  
+    border: none;
+    width:30px;
+    height:30px;
+    margin-top: 8px;
+}
+
 .confirmWidth {
     width: 385px;
     margin: 0 auto;
