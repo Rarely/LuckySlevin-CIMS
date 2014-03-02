@@ -2,8 +2,9 @@
 
 <h1>Users</h1>
 <?php echo $this->Html->link(
-    'Create User',
-    array('controller' => 'users', 'action' => 'add')
+    "<img src=\"img/adduser.png\" height=\"35px\" width=\"35px\"/>",
+    array('controller' => 'users', 'action' => 'add'),
+    array('class' =>'admin-btn btn btn-default', 'escape' => FALSE)
 ); ?>
 
 
@@ -33,9 +34,9 @@ array('controller' => 'users', 'action' => 'view', $user['User']['id'])); ?>
             <div class="admin-btn btn btn-danger btn-delete-user">
                 <img src="img/delete.png" height="20px"/>
             </div>
-            <?php echo $this->Html->link("<img src=\"img/edit.png\" height=\"20px\" width=\"20px\"/>",array('controller' => 'users', 
-                'action' => 'edit', 
-                $user['User']['id'])
+            <?php echo $this->Html->link(
+                "<img src=\"img/edit.png\" height=\"20px\" width=\"20px\"/>",
+                array('controller' => 'users','action' => 'edit', $user['User']['id'])
             , array('class' =>'admin-btn btn btn-default', 'escape' => FALSE)
             );?>
             </td>
