@@ -20,7 +20,7 @@
 
             <div class="row">
               <div class="status-heading">
-                <?php echo $idea['Idea']['status']; ?>
+                Status needed! Fix Me Jon
               </div>
             </div>
           <div class="row">  

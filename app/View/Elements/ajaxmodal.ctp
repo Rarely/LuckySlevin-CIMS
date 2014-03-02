@@ -34,7 +34,7 @@
             <Strong>Timeframe</Strong><br>
             Need this field<br>
             <strong>Status</strong><br>
-            <?php echo $idea['Idea']['status']; ?><br>
+            Need this field<br>
             <strong>Categories</strong><br>
             <?php foreach($categories as $cat) { ?>
               <?php echo $cat['Category']['name'] ?>:
