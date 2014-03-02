@@ -2,7 +2,7 @@
 class IdeasController extends AppController {
     public $helpers = array('Html', 'Form');
     var $components = array('RequestHandler');
-    public $uses = array('Idea','Comment', 'Category', 'IdeaValue');
+    public $uses = array('Idea','Comment', 'Category', 'IdeaValue', 'Value');
     public function index() {
         $this->set('title_for_layout', 'Ideas');
 
@@ -177,5 +177,29 @@ class IdeasController extends AppController {
             $this->render('/Elements/jsonreturn');
         }
 
+    }
+
+    function valueslist($id = null) {
+        if (!$id) {
+            throw new NotFoundException(__('Invalid idea'));
+        }
+
+        if ($this->RequestHandler->isAjax()) {
+            $values = $this->Value->find('all', array(
+                'conditions' => array('categoryid' => $id),
+                'fields' => 'Value.id, Value.name',
+                'recursive'=>2
+            ));
+            // var_dump($values);
+            foreach ($values as $result) {
+                $answer[] = array(
+                    "id"=>$result['Value']['id'],
+                    "text" => $result['Value']['name'],
+                );
+            }
+
+            $this->set('response', $answer);
+            $this->render('/Elements/jsonraw');
+        }
     }
 }
