@@ -49,11 +49,10 @@ body {
             <span class="icon-bar">&nbsp;</span>
             <span class="icon-bar">&nbsp;</span>
           </button>
-          <a class="navbar-brand" href="#">CIMS</a>
         </div>
         <div class="navbar-collapse collapse">
+          <a class="navbar-brand" <?php echo $this->Html->link('CIMS', array('controller'=>'ideas', 'action'=>'index'));?>></a>
           <ul class="nav navbar-nav">
-            <li><?php echo $this->Html->link('Home', array('controller'=>'ideas', 'action'=>'index'));?></li>
             <li><?php echo $this->Html->link('Search', array('controller'=>'search', 'action'=>'index'));?></li>
             <li><?php echo $this->Html->link('Trackings', array('controller'=>'trackings', 'action'=>'index'));?></li>
             <?php if ($userData['role'] == 'admin') { ?>
