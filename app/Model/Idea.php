@@ -11,6 +11,14 @@ class Idea extends AppModel {
                                 ,'foreignKey' => 'ideaid'
             )
         );
+
+        public $belongsTo = array(
+            'Users' => array('Users' => 'Users',
+                             'className' => 'Users',
+                             'foreignKey' => 'userid'
+            )
+        );        
+
 		public function getAllIdeas() {
 			return $this->Idea->find('all');
 		}

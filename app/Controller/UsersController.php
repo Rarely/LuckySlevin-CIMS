@@ -6,7 +6,9 @@ class UsersController extends AppController {
     
     public function index() {
         $this->set('title_for_layout', 'Users');
-        $this->set('users', $this->User->find('all'), array( 'conditions' => 'User.isdeleted != 1'));
+        $this->set('users', $this->User->find('all', array( 
+            'conditions' => array('User.isdeleted' => 0)
+        )));
     }
 
     public function view($id = null) {

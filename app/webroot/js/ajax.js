@@ -41,6 +41,25 @@ var Ajax = {
             $('#ajax-modal').bindIdeaModal();
           }
         });
+      },
+      
+      deleteIdea: function(ideaids) {
+        $.ajax({
+          type: "POST",
+          dataType: "json",
+          url: '/ideas/delete?ids=' + ideaids,
+          async: true,
+          success: function(data) {
+            if (data.response === "success") {
+              $("#btn-cancel-delete").click();
+              $.each(data.data, function(key, value) {
+                $(".ideablock[data-id=" + value + "]").remove();
+              });
+            } else {
+              alert("PROBLEM");
+            }
+          }
+        });
       }
     },
 
