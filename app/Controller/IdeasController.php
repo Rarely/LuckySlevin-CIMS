@@ -72,6 +72,11 @@ class IdeasController extends AppController {
             throw new NotFoundException(__('Invalid idea'));
         }
         $this->set('idea', $idea);
+        $this->set('values', $this->IdeaValue->find('all', array(
+            'conditions' => array('ideaid' => $id),
+            'fields' => 'Value.id, Value.name, Value.categoryid',
+            'recursive'=>2
+        )));
 
         if ($this->request->is('post')) {
             $this->Idea->read(null, $id);

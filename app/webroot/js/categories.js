@@ -1,5 +1,6 @@
 $(function() {
     jQuery('.cat').each(function() {
-        $(this).categorySelect();
+        var defaultvars = $(this).attr('value');
+        $(this).categorySelect(defaultvars);
     });
 });

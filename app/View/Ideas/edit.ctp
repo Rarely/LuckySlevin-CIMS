@@ -33,6 +33,24 @@
       <?php if ($category['Category']['multiselect'] == true) { echo 'multiple="true"'; } ?>
       <?php if ($category['Category']['specifiable'] == true) { echo 'specifiable="true"'; } ?>
       <?php echo 'data-id="' . $category['Category']['id'] .'"'; ?>
+      <?php 
+        echo 'value=\'';
+        $json_values = array();
+        foreach ($values as $value) {
+          if (isset($value) && $value != '' && ($value ['Value']['categoryid'] == $category['Category']['id'])) {
+            if (isset($value['Value']['id']) && $value['Value']['id'] != '' && isset($value['Value']['name']) && $value['Value']['name'] != '') {
+              array_push($json_values, array('id'=> $value['Value']['id'], 'text' => $value['Value']['name']));
+            }
+          }
+        }
+        // var_dump($json_values);
+        if (count($json_values) == 1) {
+          $json_values = $json_values[0];
+        } else if (count($json_values) == 0) {
+          $json_values = null;
+        }
+        echo json_encode($json_values);
+        echo '\''; ?>
        style='width:100%' />
       <br />
     <?php } ?>
