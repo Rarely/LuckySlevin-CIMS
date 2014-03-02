@@ -17,7 +17,9 @@ echo $this->Html->script('notifications.js');
 echo $this->Html->script('custom-jquery.js');
 echo $this->Html->script('jquery.dotdotdot.min.js');
 echo $this->Html->script('ui.js');
+
 echo $this->Html->css('style.css');
+echo $this->Html->css('comment.css');
 
 echo $this->Js->writeBuffer();
 echo $this->Html->script('bootbox.min.js');
