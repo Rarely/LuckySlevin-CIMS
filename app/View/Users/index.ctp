@@ -30,13 +30,13 @@ array('controller' => 'users', 'action' => 'view', $user['User']['id'])); ?>
         <td><?php echo count($user['Notifications']);?></td>
         <td><?php echo count($user['Trackings']); ?></td>
         <td> 
-            <div class="danger-btn btn btn-danger btn-delete-user">
+            <div class="admin-btn btn btn-danger btn-delete-user">
                 <img src="img/delete.png" height="20px"/>
             </div>
             <?php echo $this->Html->link("<img src=\"img/edit.png\" height=\"20px\" width=\"20px\"/>",array('controller' => 'users', 
                 'action' => 'edit', 
                 $user['User']['id'])
-            , array('class' =>'btn btn-default', 'escape' => FALSE)
+            , array('class' =>'admin-btn btn btn-default', 'escape' => FALSE)
             );?>
             </td>
     </tr>
