@@ -1,8 +1,3 @@
-<!-- Button trigger modal -->
-<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  Add a New Idea
-</button>
-
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -34,16 +29,19 @@
             <?php echo $this->Form->input('community_partner', array(
               'label' => 'Community Partner',
               'placeholder' => 'Community Partner',
+              'rows'=>1
             )); ?>
 
             <?php echo $this->Form->input('contact_name', array(
               'label' => 'Contact Name',
               'placeholder' => 'Contact Name',
+              'rows'=>1
             )); ?>
 
             <?php echo $this->Form->input('contact_email', array(
               'label' => 'Contact Email',
               'placeholder' => 'Contact Email',
+              'rows'=>1
             )); ?>
 
             <?php echo $this->Form->input('description', array(
@@ -54,22 +52,15 @@
             <?php             
             $status = array('Open' => 'Open', 'InProgress' => 'In Progress', 'Matched' => 'Matched');
             echo $this->Form->input('status', 
-             array('options' => $status, 'default' => 'Open'
-             )); ?>
-             
-            <?php echo $this->Form->input('userid', array(
-             'label' => 'UserId',
-             'placeholder' => 'THIS IS TEMPORARY UNTIL WE FIX THIS'
-             )); ?>  
+              array('options' => $status, 'default' => 'Open'
+            )); ?>
+
            </fieldset>
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <?php echo $this->Form->submit('Submit', array(
-              'div' => 'form-group',
-              'class' => 'btn btn-primary'
-            )); ?>
+        <input class="btn btn-primary" type="submit" value="Submit" />
+        <div class="btn btn-link" data-dismiss="modal">Cancel</div>
       </div>
     </div>
   </div>

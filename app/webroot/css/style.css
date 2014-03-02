@@ -45,17 +45,36 @@
     z-index:1;
 }
 
-#ideacontainer .descriptionblock {
-    font-size: 12px;
-    height: 65px;
-    margin: 5px;
-    overflow: hidden;
-    text-align: left;
-}
-
 .title-heading {
     font-size: 18px;
     width: 130px;
+    line-height: 1.1;
+    margin-left: 10px;
+    margin-bottom: 5px;
+}
+
+.description-heading {
+    font-size: 14px;
+    width: 160px;
+    line-height: 1.1;
+    margin-left: 10px;
+    margin-bottom: 5px;
+}
+
+.status-heading {
+    font-size: 18px;
+    width: 160px;
+    line-height: 1.1;
+    margin-left: 10px;
+    margin-bottom: 5px;
+}
+
+.owner-heading {
+    font-size: 18px;
+    width: 160px;
+    line-height: 1.1;
+    margin-left: 10px;
+    margin-top: 20px;
 }
 
 #ideacontainer .idea-list-innerwrap {
@@ -91,6 +110,7 @@
     background-image: url('/img/untracked.png');
 }
 
+<<<<<<< HEAD
 #Grid .mix{
     opacity: 0;
     display: none;
@@ -99,16 +119,62 @@
 .inline-block {
     display:inline-block;
     width:49%;
+=======
+.add-btn {
+    background-image: url('/img/addidea.png')  !important;
+    background-color: transparent !important;
+    background-size: 100%;  
+    border: none !important;
+    width:30px;
+    height:30px;
+    margin-top: 8px;
+}
+
+.add-btn:hover {
+    background-image: url('/img/addideainverse.png') !important;
+    background-color: transparent !important;
+    background-size: 100%;  
+    border: none !important;
+    width:30px;
+    height:30px;
+    margin-top: 8px;
+}
+
+.admin-btn {
+    background-color: transparent !important;
+    border: none !important;
+}
+
+.admin-btn:hover {
+    -webkit-transform: scale(1.05) translateZ(0);
+    -moz-transform: scale(1.05) translateZ(0);
+    -o-transform: scale(1.05) translateZ(0);
+    transform: scale(1.05) translateZ(0);
+    z-index:1;
+}
+
+.notify-btn{
+    background-image: url('/img/bell.png') !important;
+    background-color: transparent !important;
+    border: none !important;
+    background-size: 100%;  
+    width:10px !important;
+    height:10px !important;
+    margin-top: 8px;
+}
+
+.notify-count{
+    background-color: red !important;
 }
 
 .confirmWidth {
     width: 385px;
     margin: 0 auto;
-
 }
 
 .active {
     color: green;
+    margin-bottom: 0;
 }
 
 #export-help {
@@ -120,6 +186,14 @@
     margin-top:10px;
 }
 #btn-cancel-csv {
+    display:none;
+}
+
+#btn-delete-confirm {
+    display:none;
+    margin-top:10px;
+}
+#btn-cancel-delete {
     display:none;
 }
 
