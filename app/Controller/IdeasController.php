@@ -39,22 +39,22 @@ class IdeasController extends AppController {
                     }
                     $this->IdeaValue->create();
                     $this->IdeaValue->set('ideaid', $id);
-                    echo '<br />key: ' . $key . '=>' . $catentry . '<br />';
+                    // echo '<br />key: ' . $key . '=>' . $catentry . '<br />';
                     $valuearr = explode(',', $catentry);
                     $entries = array();
                     foreach ($valuearr as $value) {
                         //now we have each individual entry in this category
-                        echo 'val: ' . $value . '<br>';
+                        // echo 'val: ' . $value . '<br>';
                         if (isset($value) && $value != '' && !is_numeric($value)) {
                             //create value and return id
-                            echo 'value is not numeric: ' . $key . "=>". $value . "<br />";
+                            // echo 'value is not numeric: ' . $key . "=>". $value . "<br />";
                             $this->Value->create();
                             $this->Value->set('name', $value); //Value
                             $this->Value->set('categoryid', $key); //CatID
                             $this->Value->set('specified', true); //specified manually
                             if ($this->Value->save()) {
                                 $value = $this->Value->getLastInsertID();
-                                echo 'new value: ' . $value . "<br /><br />";
+                                // echo 'new value: ' . $value . "<br /><br />";
                             } else {
                                 //ERROR creating specific value
                             }
@@ -63,12 +63,12 @@ class IdeasController extends AppController {
                         
                         $entries[] = array('ideaid' => $id,'valueid'=> $value);
                     }
-                    echo 'saving IdeaValue: ' . $value;
+                    // echo 'saving IdeaValue: ' . $value;
                     if ($this->IdeaValue->saveAll($entries)) {
                             //We're good
-                            echo 'saved: ' . $value;
+                            // echo 'saved: ' . $value;
                     } else {
-                        echo 'error saving' . $value;
+                        // echo 'error saving' . $value;
                         //ERROR CREATING RELATIONSHIP
                     }
                 }
