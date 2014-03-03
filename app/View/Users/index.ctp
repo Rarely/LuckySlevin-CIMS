@@ -2,8 +2,9 @@
 
 <h1>Users</h1>
 <?php echo $this->Html->link(
-    'Create User',
-    array('controller' => 'users', 'action' => 'add')
+    "<img src=\"img/adduser.png\" height=\"35px\" width=\"35px\"/>",
+    array('controller' => 'users', 'action' => 'add'),
+    array('class' =>'admin-btn btn btn-default', 'escape' => FALSE)
 ); ?>
 
 
@@ -29,12 +30,16 @@ array('controller' => 'users', 'action' => 'view', $user['User']['id'])); ?>
         <td><?php echo $user['User']['username']; ?></td>
         <td><?php echo count($user['Notifications']);?></td>
         <td><?php echo count($user['Trackings']); ?></td>
-        <td> <div class="btn btn-danger btn-delete-user">Delete</div> 
-        <?php echo $this->Html->link('Edit', array('controller' => 'users', 
-            'action' => 'edit', 
-            $user['User']['id'])
-            , array('class' =>'btn btn-default')
-          ); ?> </td>
+        <td> 
+            <div class="admin-btn btn btn-danger btn-delete-user">
+                <img src="img/delete.png" height="20px"/>
+            </div>
+            <?php echo $this->Html->link(
+                "<img src=\"img/edit.png\" height=\"20px\" width=\"20px\"/>",
+                array('controller' => 'users','action' => 'edit', $user['User']['id'])
+            , array('class' =>'admin-btn btn btn-default', 'escape' => FALSE)
+            );?>
+            </td>
     </tr>
     <?php endforeach; ?>
     <?php unset($user); ?>

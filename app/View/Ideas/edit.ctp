@@ -22,7 +22,7 @@
     )); ?>
 
     <?php echo $this->Form->input('status', array(
-       'options' => array('open'=>'Open', 'referred'=>'In Progress', 'matched'=>'Matched'),
+       'options' => array('open'=>'Open', 'in progress'=>'In Progress', 'matched'=>'Matched'),
        'default' => $idea['Idea']['status']
     )); ?>
 

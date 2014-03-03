@@ -100,6 +100,53 @@
     background-image: url('/img/untracked.png');
 }
 
+.add-btn {
+    background-image: url('/img/addidea.png')  !important;
+    background-color: transparent !important;
+    background-size: 100%;  
+    border: none !important;
+    width:30px;
+    height:30px;
+    margin-top: 8px;
+}
+
+.add-btn:hover {
+    background-image: url('/img/addideainverse.png') !important;
+    background-color: transparent !important;
+    background-size: 100%;  
+    border: none !important;
+    width:30px;
+    height:30px;
+    margin-top: 8px;
+}
+
+.admin-btn {
+    background-color: transparent !important;
+    border: none !important;
+}
+
+.admin-btn:hover {
+    -webkit-transform: scale(1.05) translateZ(0);
+    -moz-transform: scale(1.05) translateZ(0);
+    -o-transform: scale(1.05) translateZ(0);
+    transform: scale(1.05) translateZ(0);
+    z-index:1;
+}
+
+.notify-btn{
+    background-image: url('/img/bell.png') !important;
+    background-color: transparent !important;
+    border: none !important;
+    background-size: 100%;  
+    width:10px !important;
+    height:10px !important;
+    margin-top: 8px;
+}
+
+.notify-count{
+    background-color: red !important;
+}
+
 .confirmWidth {
     width: 385px;
     margin: 0 auto;

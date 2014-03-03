@@ -34,7 +34,7 @@
             <Strong>Timeframe</Strong><br>
             Need this field<br>
             <strong>Status</strong><br>
-            <?php echo $idea['Idea']['status']; ?><br>
+            Need this field<br>
             <strong>Categories</strong><br>
             <?php foreach($categories as $cat) { ?>
               <?php echo $cat['Category']['name'] ?>:
@@ -55,36 +55,46 @@
         </div>
         <div class="modal-footer">
 
-          Comments:<br>
-          <ul class="commentList">
-            <?php foreach ($comments as $comment): ?>
-              <?php echo '<li>'. $comment['User']['name'] . ': ' . $comment['Comment']['message'], '</li>'; ?>
-            <?php endforeach; ?>
-          </ul> 
-          <div class="form-group">
-            <label for"commentField">Leave a Comment</label>
-            <input type="text" class="form-control" id="commentField" placeholder="Leave a Comment" />
-            <div class="btn btn-default commentbtn">Comment</div>
-          </div>
+          <div class="comment-heading">Comments:</div>
+            <div class="commentblock">
+              <ul class="commentList">
+                <?php foreach ($comments as $comment): ?>
+                  <div class="comment-bg">
+                    <l>
+                      <p>
+                        <div class="comment-message"><?php echo $comment['Comment']['message']; ?></div>
+                      </p>
+                      <div class="comment-user"><?php echo '- ' . $comment['User']['name']; ?></div>
+                    </l>
+                  </div>
+                <?php endforeach; ?>
+              </ul>  
+            </div>  
 
-          <div class="row">
-            <div class="col-sm-10">
-             <?php echo $this->Form->input('share', array(
-                'class' => 'sharing-autocomplete'
-                ,'id' => 'e18'
-              )); ?>
+            <div class="form-group">
+              <label for"commentField">Leave a Comment</label>
+              <input type="text" class="form-control" id="commentField" placeholder="Leave a Comment" />
+              <div class="btn btn-default commentbtn">Comment</div>
             </div>
-            <div class="col-sm-2">
-              <div class="btn btn-info btn-share">Share</div>
+
+            <div class="row">
+              <div class="col-sm-10">
+               <?php echo $this->Form->input('share', array(
+                  'class' => 'sharing-autocomplete'
+                  ,'id' => 'e18'
+                )); ?>
+              </div>
+              <div class="col-sm-2">
+                <div class="btn btn-info btn-share">Share</div>
+              </div>
             </div>
-          </div>
           <?php echo $this->Html->link('Edit', array('controller' => 'ideas', 
             'action' => 'edit', 
             $idea['Idea']['id'])
             , array('class' =>'btn btn-default')
           ); ?>
 
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>

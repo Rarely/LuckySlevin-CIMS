@@ -17,7 +17,9 @@ echo $this->Html->script('notifications.js');
 echo $this->Html->script('custom-jquery.js');
 echo $this->Html->script('jquery.dotdotdot.min.js');
 echo $this->Html->script('ui.js');
+
 echo $this->Html->css('style.css');
+echo $this->Html->css('comment.css');
 
 echo $this->Js->writeBuffer();
 echo $this->Html->script('bootbox.min.js');
@@ -38,7 +40,7 @@ body {
 </head>
 <body>
 
-    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -47,11 +49,10 @@ body {
             <span class="icon-bar">&nbsp;</span>
             <span class="icon-bar">&nbsp;</span>
           </button>
-          <a class="navbar-brand" href="#">CIMS</a>
         </div>
         <div class="navbar-collapse collapse">
+          <a class="navbar-brand" <?php echo $this->Html->link('CIMS', array('controller'=>'ideas', 'action'=>'index'));?>></a>
           <ul class="nav navbar-nav">
-            <li><?php echo $this->Html->link('Home', array('controller'=>'ideas', 'action'=>'index'));?></li>
             <li><?php echo $this->Html->link('Search', array('controller'=>'search', 'action'=>'index'));?></li>
             <li><?php echo $this->Html->link('Trackings', array('controller'=>'trackings', 'action'=>'index'));?></li>
             <?php if ($userData['role'] == 'admin') { ?>
@@ -59,9 +60,10 @@ body {
             <?php } ?>
           </ul>
           <ul class="nav navbar-nav navbar-right">
+          <li><button class="add-btn btn btn-primary btn-lg" id="btn-add-idea" data-toggle="modal" data-target="#myModal" imn></button></li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle notifications-btn" data-toggle="dropdown">
-                Notifications <span class="badge badge-important badge-notifications"><?php echo $notificationsCount ?></span>
+              <a href="#" class="notify-btn dropdown-toggle notifications-btn" data-toggle="dropdown">
+                <span class="notify-count badge badge-important badge-notifications"><?php echo $notificationsCount ?></span>
               </a>
               <ul class="dropdown-menu notifications-menu">
                 <li><a>Loading Notifications</a></li>
@@ -76,6 +78,7 @@ body {
     <div class="container">
       <?php // echo $this->element('ajaxmodal'); ?>
       <?php echo $this->fetch('content'); ?>
+      <?php echo $this->element('newideaform'); ?>
     </div> <!-- /container -->
 </body>
 </html>
