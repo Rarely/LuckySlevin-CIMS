@@ -32,26 +32,43 @@ class IdeasController extends AppController {
             $this->request->data['Idea']['userid'] = $this->Session->read('Auth.User.id');
             if ($this->Idea->save($this->request->data)) {
                 $id = $this->Idea->getLastInsertID();
-                foreach($this->request->data['Category'] as $key=>$value) {
+
+                foreach($this->request->data['Category'] as $key=>$catentry) {
+                    if (isset($catentry) && $catentry == '') {
+                        continue;
+                    }
                     $this->IdeaValue->create();
                     $this->IdeaValue->set('ideaid', $id);
-                    //TODO: CHECK FOR SPECIFIED STRING OR INTEGER
-                    if (!is_numeric($value)) {
-                        //create value and return id
-                        $this->Value->create();
-                        $this->Value->set('name', $value); //Value
-                        $this->Value->set('categoryid', $key); //CatID
-                        $this->Value->set('specified', true); //specified manually
-                        if ($this->Value->save()) {
-                            $value = $this->Value->getLastInsertID();
-                        } else {
-                            //ERROR creating specific value
+                    echo '<br />key: ' . $key . '=>' . $catentry . '<br />';
+                    $valuearr = explode(',', $catentry);
+                    $entries = array();
+                    foreach ($valuearr as $value) {
+                        //now we have each individual entry in this category
+                        echo 'val: ' . $value . '<br>';
+                        if (isset($value) && $value != '' && !is_numeric($value)) {
+                            //create value and return id
+                            echo 'value is not numeric: ' . $key . "=>". $value . "<br />";
+                            $this->Value->create();
+                            $this->Value->set('name', $value); //Value
+                            $this->Value->set('categoryid', $key); //CatID
+                            $this->Value->set('specified', true); //specified manually
+                            if ($this->Value->save()) {
+                                $value = $this->Value->getLastInsertID();
+                                echo 'new value: ' . $value . "<br /><br />";
+                            } else {
+                                //ERROR creating specific value
+                            }
+
                         }
+                        
+                        $entries[] = array('ideaid' => $id,'valueid'=> $value);
                     }
-                    $this->IdeaValue->set('valueid', $value);
-                    if ($this->IdeaValue->save()) {
+                    echo 'saving IdeaValue: ' . $value;
+                    if ($this->IdeaValue->saveAll($entries)) {
                             //We're good
+                            echo 'saved: ' . $value;
                     } else {
+                        echo 'error saving' . $value;
                         //ERROR CREATING RELATIONSHIP
                     }
                 }

@@ -27,47 +27,32 @@ jQuery.fn.userSelect = function() {
 */
 jQuery.fn.categorySelect = function(defaultvals) {
   var el = $(this[0]); // It's your element
-  // debugger;
-  if (typeof el.attr('specifiable') != 'undefined') {
-    el.select2({
-      createSearchChoice:function(term, data) { if ($(data).filter(function() { return this.text.localeCompare(term)===0; }).length===0) {return {id:term, text:term};} },
-      allowClear: true,
-      multiple: (typeof el.attr('multiple') != 'undefined'),
+  var is_multiple = (typeof el.attr('multiple') != 'undefined');
+  var options = {
+    allowClear: true,
+    multiple: is_multiple,
+    tokenSeparators: [",", ";"],
+    ajax: {
+      url: "/ideas/valueslist/" + el.attr('data-id'),
+      dataType: 'json',
+      data: function (term, page) {
+        return {
+          q: term
+        };
+      },
+      results: function (data, page) {
+        return { results: data };
+      }
+    },
+  };
+  if (defaultvals) {
+    $.extend(options, {
       initSelection: function (element, callback) {
           callback(jQuery.parseJSON( defaultvals ));
-      },
-      ajax: {
-        url: "/ideas/valueslist/" + el.attr('data-id'),
-        dataType: 'json',
-        data: function (term, page) {
-          return {
-            q: term
-          };
-        },
-        results: function (data, page) {
-          return { results: data };
-        }
-      },
-    });
-  } else {
-    el.select2({
-      allowClear: true,
-      multiple: (typeof el.attr('multiple') != 'undefined'),
-      initSelection: function (element, callback) {
-          callback(jQuery.parseJSON( defaultvals ));
-      },
-      ajax: {
-        url: "/ideas/valueslist/" + el.attr('data-id'),
-        dataType: 'json',
-        data: function (term, page) {
-          return {
-            q: term
-          };
-        },
-        results: function (data, page) {
-          return { results: data };
-        }
-      },
-    });
+      }});
   }
+  if (typeof el.attr('specifiable') != 'undefined') {
+    $.extend(options, {createSearchChoice:function(term, data) { if ($(data).filter(function() { return this.text.localeCompare(term)===0; }).length===0) {return {id:term, text:term};} }});
+  }
+  el.select2(options);
 };

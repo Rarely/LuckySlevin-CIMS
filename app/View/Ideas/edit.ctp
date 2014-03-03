@@ -1,5 +1,4 @@
-<?php echo $this->Html->script('categories.js'); ?>
-
+<?php echo $this->Html->script('editidea.js'); ?>
 <h1> Edit an Idea </h1>
 
 <?php echo $this->Form->create('Idea', array(
@@ -30,6 +29,7 @@
     <?php foreach ($categories as $category) { ?>
       <label for="categoryDescription"><?php echo $category['Category']['name'] ?></label>
       <input type='hidden' class="cat" id='tags'
+      name="data[Category][<?php echo $category['Category']['id']; ?>]"
       <?php if ($category['Category']['multiselect'] == true) { echo 'multiple="true"'; } ?>
       <?php if ($category['Category']['specifiable'] == true) { echo 'specifiable="true"'; } ?>
       <?php echo 'data-id="' . $category['Category']['id'] .'"'; ?>

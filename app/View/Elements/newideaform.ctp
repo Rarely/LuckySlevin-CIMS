@@ -1,6 +1,6 @@
 <?php echo $this->Html->script('categories.js'); ?>
 <!-- Button trigger modal -->
-<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+<button class="btn btn-primary btn-lg" id="btn-add-idea" data-toggle="modal" data-target="#myModal">
   Add a New Idea
 </button>
 
