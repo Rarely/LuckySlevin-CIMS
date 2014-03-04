@@ -165,11 +165,6 @@ class IdeasController extends AppController {
             ,'recursive' => 2
         )));
 
-        $this->set('categories', $this->Category->find('all', array(
-            // 'conditions' => array('idea_value.ideaid' => $id)
-            'recursive'=>0
-        )));
-
         $this->set('ideavalues', $this->IdeaValue->find('all', array(
             'conditions' => array('IdeaValue.ideaid' => $id)
             ,'recursive'=>2
