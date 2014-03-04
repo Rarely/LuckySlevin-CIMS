@@ -55,6 +55,6 @@
       'div' => 'form-group',
       'class' => 'btn btn-primary'
     )); ?>
-
+    <?php echo $this->Form->end(); ?>
 </fieldset>
 

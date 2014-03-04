@@ -31,47 +31,9 @@ class IdeasController extends AppController {
             $this->request->data['Idea']['updated'] = null;
             $this->request->data['Idea']['userid'] = $this->Session->read('Auth.User.id');
             if ($this->Idea->save($this->request->data)) {
-                $id = $this->Idea->getLastInsertID();
+                
+                $this->saveCategoryInfo($this->request->data['Category'], $this->Idea->getLastInsertID());
 
-                foreach($this->request->data['Category'] as $key=>$catentry) {
-                    if (isset($catentry) && $catentry == '') {
-                        continue;
-                    }
-                    $this->IdeaValue->create();
-                    $this->IdeaValue->set('ideaid', $id);
-                    // echo '<br />key: ' . $key . '=>' . $catentry . '<br />';
-                    $valuearr = explode(',', $catentry);
-                    $entries = array();
-                    foreach ($valuearr as $value) {
-                        //now we have each individual entry in this category
-                        // echo 'val: ' . $value . '<br>';
-                        if (isset($value) && $value != '' && !is_numeric($value)) {
-                            //create value and return id
-                            // echo 'value is not numeric: ' . $key . "=>". $value . "<br />";
-                            $this->Value->create();
-                            $this->Value->set('name', $value); //Value
-                            $this->Value->set('categoryid', $key); //CatID
-                            $this->Value->set('specified', true); //specified manually
-                            if ($this->Value->save()) {
-                                $value = $this->Value->getLastInsertID();
-                                // echo 'new value: ' . $value . "<br /><br />";
-                            } else {
-                                //ERROR creating specific value
-                            }
-
-                        }
-                        
-                        $entries[] = array('ideaid' => $id,'valueid'=> $value);
-                    }
-                    // echo 'saving IdeaValue: ' . $value;
-                    if ($this->IdeaValue->saveAll($entries)) {
-                            //We're good
-                            // echo 'saved: ' . $value;
-                    } else {
-                        // echo 'error saving' . $value;
-                        //ERROR CREATING RELATIONSHIP
-                    }
-                }
                 $this->Session->setFlash(__('Idea has been saved.'));
                 return $this->redirect(array('action' => 'index'));
             }
@@ -99,16 +61,74 @@ class IdeasController extends AppController {
             $this->Idea->read(null, $id);
             $this->Idea->set('name', $this->request->data['Idea']['name']);
             $this->Idea->set('description', $this->request->data['Idea']['description']);
-            $this->Idea->set('status', $this->request->data['Idea']['status']);
             $this->Idea->set('updated',null);
 
-             if ($this->Idea->save()) {
-                 $this->Session->setFlash(__('Idea has been saved.'));
-                 return $this->redirect(array('action' => 'index'));
-             }
-             $this->Session->setFlash(__('Unable to add idea.'));
+            if ($this->Idea->save()) {
+                $this->saveCategoryInfo($this->request->data['Category'], $id, true);
+                $this->Session->setFlash(__('Idea has been saved.'));
+                return $this->redirect(array('action' => 'index'));
+            }
+            $this->Session->setFlash(__('Unable to add idea.'));
         } 
 
+    }
+
+    /*
+        TODO: check for duplicate entries
+    */
+    public function saveCategoryInfo($formdata, $id, $replace = false) {
+        foreach($formdata as $key=>$catentry) {
+            if (isset($catentry) && $catentry == '') {
+                continue;
+            }
+            $this->IdeaValue->create();
+            $this->IdeaValue->set('ideaid', $id);
+            // echo '<br />key: ' . $key . '=>' . $catentry . '<br />';
+            $valuearr = explode(',', $catentry);
+            $entries = array();
+            foreach ($valuearr as $value) {
+                //now we have each individual entry in this category
+                // echo 'val: ' . $value . '<br>';
+                if (isset($value) && $value != '' && !is_numeric($value)) {
+                    //create value and return id
+                    // echo 'value is not numeric: ' . $key . "=>". $value . "<br />";
+                    $this->Value->create();
+                    $this->Value->set('name', $value); //Value
+                    $this->Value->set('categoryid', $key); //CatID
+                    $this->Value->set('specified', true); //specified manually
+                    if ($this->Value->save()) {
+                        $value = $this->Value->getLastInsertID();
+                        // echo 'new value: ' . $value . "<br /><br />";
+                    } else {
+                        //ERROR creating specific value
+                    }
+
+                }
+                if (isset($id) && isset($value)){
+                    //if replace = true, check for only new keys (EDIT MODE)
+                    if ($replace == true) {
+                        if (!$this->IdeaValue->hasAny(array(
+                            'IdeaValue.ideaid' => $id,
+                            'IdeaValue.valueid' => $value
+                        ))){
+                            $entries[] = array('ideaid' => $id,'valueid'=> $value);
+                        }
+                    } else {
+                        $entries[] = array('ideaid' => $id,'valueid'=> $value);
+                    }
+                }
+            }
+            var_dump($entries);
+             echo 'saving IdeaValue: ' . $value;
+            if ($this->IdeaValue->saveAll($entries)) {
+                    //We're good
+                     echo 'saved: ' . $value;
+            } else {
+                echo 'test';
+                // echo 'error saving' . $value;
+                //ERROR CREATING RELATIONSHIP
+            }
+        }
     }
 
     public function comment($id = null){

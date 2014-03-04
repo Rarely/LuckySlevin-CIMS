@@ -1,31 +1,31 @@
 jQuery.fn.userSelect = function() {
     var el = $(this[0]) // It's your element
     el.select2({
-        placeholder: "Share with Others",
-        multiple: true,
-        allowClear: true,
-        minimumInputLength: 0,
-        ajax: {
-          url: "/users/memberslist",
-          dataType: 'json',
-          data: function (term, page) {
-            return {
-              q: term
-            };
-          },
-          results: function (data, page) {
-            return { results: data };
-          }
+      placeholder: "Share with Others",
+      multiple: true,
+      allowClear: true,
+      minimumInputLength: 0,
+      ajax: {
+        url: "/users/memberslist",
+        dataType: 'json',
+        data: function (term, page) {
+          return {
+            q: term
+          };
         },
+        results: function (data, page) {
+          return { results: data };
+        }
+      },
         dropdownCssClass: "bigdrop", // apply css that makes the dropdown taller
         escapeMarkup: function (m) { return m; }
-    });
-};
+      });
+  };
 
 /*
  * Makes a select box a category value chooser by passing it a categoryid
-*/
-jQuery.fn.categorySelect = function(defaultvals) {
+ */
+ jQuery.fn.categorySelect = function(defaultvals) {
   var el = $(this[0]); // It's your element
   var is_multiple = (typeof el.attr('multiple') != 'undefined');
   var options = {
@@ -50,7 +50,12 @@ jQuery.fn.categorySelect = function(defaultvals) {
       initSelection: function (element, callback) {
         if (is_multiple === true) { 
           el.attr("value", "");
-        } else {
+        }
+        if (defaultvals === "null") {
+          callback("");
+          return;
+        }
+        if (is_multiple === false) {
           el.attr("value", jQuery.parseJSON( defaultvals ).id);
         }
         callback(jQuery.parseJSON( defaultvals ));
