@@ -73,59 +73,47 @@ class IdeasController extends AppController {
 
     }
 
-    /*
-        TODO: check for duplicate entries
-    */
-    public function saveCategoryInfo($formdata, $id, $replace = false) {
+    public function saveCategoryInfo($formdata, $ideaid, $replace = false) {
         foreach($formdata as $key=>$catentry) {
             if (isset($catentry) && $catentry == '') {
                 continue;
             }
             $this->IdeaValue->create();
-            $this->IdeaValue->set('ideaid', $id);
-            // echo '<br />key: ' . $key . '=>' . $catentry . '<br />';
+            $this->IdeaValue->set('ideaid', $ideaid);
             $valuearr = explode(',', $catentry);
             $entries = array();
             foreach ($valuearr as $value) {
                 //now we have each individual entry in this category
-                // echo 'val: ' . $value . '<br>';
                 if (isset($value) && $value != '' && !is_numeric($value)) {
                     //create value and return id
-                    // echo 'value is not numeric: ' . $key . "=>". $value . "<br />";
                     $this->Value->create();
                     $this->Value->set('name', $value); //Value
                     $this->Value->set('categoryid', $key); //CatID
                     $this->Value->set('specified', true); //specified manually
                     if ($this->Value->save()) {
                         $value = $this->Value->getLastInsertID();
-                        // echo 'new value: ' . $value . "<br /><br />";
                     } else {
                         //ERROR creating specific value
                     }
 
                 }
-                if (isset($id) && isset($value)){
+                if (isset($ideaid) && isset($value)){
                     //if replace = true, check for only new keys (EDIT MODE)
                     if ($replace == true) {
                         if (!$this->IdeaValue->hasAny(array(
-                            'IdeaValue.ideaid' => $id,
+                            'IdeaValue.ideaid' => $ideaid,
                             'IdeaValue.valueid' => $value
                         ))){
-                            $entries[] = array('ideaid' => $id,'valueid'=> $value);
+                            $entries[] = array('ideaid' => $ideaid,'valueid'=> $value);
                         }
                     } else {
-                        $entries[] = array('ideaid' => $id,'valueid'=> $value);
+                        $entries[] = array('ideaid' => $ideaid,'valueid'=> $value);
                     }
                 }
             }
-            var_dump($entries);
-             echo 'saving IdeaValue: ' . $value;
-            if ($this->IdeaValue->saveAll($entries)) {
-                    //We're good
-                     echo 'saved: ' . $value;
+            if (count($entries) > 0 && $this->IdeaValue->saveAll($entries)) {
+                //We're good
             } else {
-                echo 'test';
-                // echo 'error saving' . $value;
                 //ERROR CREATING RELATIONSHIP
             }
         }
