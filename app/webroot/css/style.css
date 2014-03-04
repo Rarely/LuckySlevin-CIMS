@@ -5,6 +5,7 @@
     margin: 0 auto;
     overflow: auto;
 }
+
 #ideacontainer .ideablock {
     height: 210px;
     overflow-x: hidden;
@@ -13,7 +14,7 @@
     width: 190px;
     word-wrap: break-word;
     margin-right: 5px;
-    background-image: url('/img/idea.png');
+    background: #AAAAAA url('/img/idea.png');
     background-size: 190px;
     border: none;
 

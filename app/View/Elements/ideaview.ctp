@@ -1,14 +1,14 @@
 <div class="ideablock btn btn-primary btn-lg" 
         <?php echo "data-id=\"" . $idea['Idea']['id'] . "\"" ?>
-        onclick="Ajax.Idea.showIdea(<?php echo $idea['Idea']['id']?>);return false;"> 
-          <div class="row">
-             <div class="title-heading">
-                <div class="title-text-wrapper">
-                  <?php echo $idea['Idea']['name']; ?>
+        onclick="Ajax.Idea.showIdea(<?php echo $idea['Idea']['id']?>);return false;" 
+            <?php echo "data-updated=\"" . $idea['Idea']['updated'] . "\"" ?> >
+              <div class="row">
+                <div class="title-heading">
+                  <div class="title-text-wrapper">
+                    <?php echo $idea['Idea']['name']; ?>
+                  </div>
                 </div>
-             </div>
-          </div>    
-          
+              </div>
 
           <div class="row">
               <div class="description-text-wrapper">
