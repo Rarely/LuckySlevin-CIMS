@@ -50,12 +50,6 @@
               'placeholder' => 'Insert a description here',
               )); ?>
 
-            <?php             
-            $status = array('Open' => 'Open', 'InProgress' => 'In Progress', 'Matched' => 'Matched');
-            echo $this->Form->input('status', 
-              array('options' => $status, 'default' => 'Open'
-            )); ?>
-
             <?php foreach ($categories as $category) { ?>
               <label for="categoryDescription"><?php echo $category['Category']['name'] ?></label>
               <input type='hidden' class="cat" id='tags' name="data[Category][<?php echo $category['Category']['id']; ?>]"

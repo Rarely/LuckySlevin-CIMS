@@ -21,11 +21,6 @@
       'value' => $idea['Idea']['description'],
     )); ?>
 
-    <?php echo $this->Form->input('status', array(
-       'options' => array('open'=>'Open', 'in progress'=>'In Progress', 'matched'=>'Matched'),
-       'default' => $idea['Idea']['status']
-    )); ?>
-
     <?php foreach ($categories as $category) { ?>
       <label for="categoryDescription"><?php echo $category['Category']['name'] ?></label>
       <input type='hidden' class="cat" id='tags'
@@ -34,7 +29,8 @@
       <?php if ($category['Category']['specifiable'] == true) { echo 'specifiable="true"'; } ?>
       <?php echo 'data-id="' . $category['Category']['id'] .'"'; ?>
       <?php 
-        echo 'value=\'';
+        echo 'value=" "'; //IMPORTANT BUG FIX
+        echo 'init-value=\'';
         $json_values = array();
         foreach ($values as $value) {
           if (isset($value) && $value != '' && ($value ['Value']['categoryid'] == $category['Category']['id'])) {
@@ -43,14 +39,14 @@
             }
           }
         }
-        // var_dump($json_values);
         if (count($json_values) == 1) {
           $json_values = $json_values[0];
         } else if (count($json_values) == 0) {
           $json_values = null;
         }
         echo json_encode($json_values);
-        echo '\''; ?>
+        echo '\''; 
+      ?>
        style='width:100%' />
       <br />
     <?php } ?>

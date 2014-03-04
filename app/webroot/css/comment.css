@@ -6,7 +6,7 @@
 }
 
 .commentblock {
-    height: 250px;
+    max-height: 250px;
     text-align: left;
     white-space: inherit;
     width: 100%;

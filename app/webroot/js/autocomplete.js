@@ -48,11 +48,18 @@ jQuery.fn.categorySelect = function(defaultvals) {
   if (defaultvals) {
     $.extend(options, {
       initSelection: function (element, callback) {
-          callback(jQuery.parseJSON( defaultvals ));
-      }});
+        if (is_multiple === true) { 
+          el.attr("value", "");
+        } else {
+          el.attr("value", jQuery.parseJSON( defaultvals ).id);
+        }
+        callback(jQuery.parseJSON( defaultvals ));
+      }
+    });
   }
   if (typeof el.attr('specifiable') != 'undefined') {
     $.extend(options, {createSearchChoice:function(term, data) { if ($(data).filter(function() { return this.text.localeCompare(term)===0; }).length===0) {return {id:term, text:term};} }});
   }
+
   el.select2(options);
 };
