@@ -1,4 +1,7 @@
-<div class="ideablock btn btn-primary btn-lg" 
+<div
+
+        <?php echo "class=\"ideablock btn btn-primary btn-lg mix " . $idea['Idea']['userid'] . "\"" ?>
+
         <?php echo "data-id=\"" . $idea['Idea']['id'] . "\"" ?>
         onclick="Ajax.Idea.showIdea(<?php echo $idea['Idea']['id']?>);return false;"> 
           <div class="row">

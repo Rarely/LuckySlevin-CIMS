@@ -1,9 +1,15 @@
 #ideacontainer {
     width: 100%;
-    height: 250px;
     padding: 10px 0;
     margin: 0 auto;
     overflow: auto;
+}
+.ideacontainer {
+    height: 250px;
+}
+
+.ideacontainer2 {
+    height: 700px;
 }
 #ideacontainer .ideablock {
     height: 210px;
@@ -173,3 +179,20 @@
     display:none;
 }
 
+#Grid .mix{
+    opacity: 0;
+    display: none;
+}
+
+.active {
+    color: green;
+}
+
+.inline-block {
+    display:inline-block;
+
+
+
+
+    width:49%;
+}

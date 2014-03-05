@@ -38,4 +38,30 @@
 
 
 <?php echo $this->Form->end(); ?>
-<?php echo $this->element('idealist', array("ideas" => $ideas)); ?>
+<div class="inline-block">
+<button class="filter" data-filter="1">1</button>
+<button class="filter" data-filter="2">2</button>
+<button class="filter" data-filter="3">3</button>
+</div>
+
+<div class="inline-block">
+<button class="sort" data-sort="data-name" data-order="desc">name desc</button>
+<button class="sort" data-sort="data-name" data-order="asc">name asc</button>
+<button class="sort" data-sort="data-id" data-order="desc">id desc</button>
+<button class="sort" data-sort="data-id" data-order="asc">id asc</button>
+<button class="sort" data-sort="default" data-order="asc">default</button>
+<button class="sort" data-sort="random">random</button>
+</div>
+
+
+<div id="filters">
+<?php echo $this->Form->input('share', array(
+               'class' => 'user_filter'
+               ,'id' => 'e18'
+             )); ?>
+</div>
+<br>
+
+
+
+<?php echo $this->element('ideapage', array("ideas" => $ideas)); ?>
