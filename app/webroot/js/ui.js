@@ -56,7 +56,7 @@ $(document).ready(function() {
 	jQuery('.ideablock').each(function() {
 		var updated = new Date($(this).attr("data-updated"));
 		var rgb = getRGB(updated);
-        $(this).css({"background-color" : "#" + rgb});
+        // $(this).css({"background-color" : "#" + rgb});
     });
 
 	function getRGB(lastUpdated) {
