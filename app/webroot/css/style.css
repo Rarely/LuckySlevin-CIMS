@@ -17,17 +17,6 @@
     background: #3d9ad1 url('/img/idea.png');
     background-size: 190px;
 
-
-
-background: -moz-linear-gradient(top,  rgba(61,154,209,1) 0%, rgba(61,154,209,0.74) 74%, rgba(18,132,31,0.65) 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(61,154,209,1)), color-stop(74%,rgba(61,154,209,0.74)), color-stop(100%,rgba(18,132,31,0.65))); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(top,  rgba(61,154,209,1) 0%,rgba(61,154,209,0.74) 74%,rgba(18,132,31,0.65) 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(top,  rgba(61,154,209,1) 0%,rgba(61,154,209,0.74) 74%,rgba(18,132,31,0.65) 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(top,  rgba(61,154,209,1) 0%,rgba(61,154,209,0.74) 74%,rgba(18,132,31,0.65) 100%); /* IE10+ */
-background: linear-gradient(to bottom,  rgba(61,154,209,1) 0%,rgba(61,154,209,0.74) 74%,rgba(18,132,31,0.65) 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3d9ad1', endColorstr='#a612841f',GradientType=0 ); /* IE6-9 */
-
-
     -webkit-transition: all 200ms linear;
     -moz-transition: all 200ms linear;
     -o-transition: all 200ms linear;
@@ -38,6 +27,16 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3d9ad1', end
     transform: translateZ(0);
 }
 
+.test {
+background: -moz-linear-gradient(top,  rgba(61,154,209,1) 0%, rgba(61,154,209,0.74) 74%, rgba(18,132,31,0.65) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(61,154,209,1)), color-stop(74%,rgba(61,154,209,0.74)), color-stop(100%,rgba(18,132,31,0.65))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(61,154,209,1) 0%,rgba(61,154,209,0.74) 74%,rgba(18,132,31,0.65) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(61,154,209,1) 0%,rgba(61,154,209,0.74) 74%,rgba(18,132,31,0.65) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(61,154,209,1) 0%,rgba(61,154,209,0.74) 74%,rgba(18,132,31,0.65) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(61,154,209,1) 0%,rgba(61,154,209,0.74) 74%,rgba(18,132,31,0.65) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3d9ad1', endColorstr='#a612841f',GradientType=0 ); /* IE6-9 */
+
+}
 #ideacontainer .ideablock:hover {
     -webkit-transform: scale(1.05) translateZ(0);
     -moz-transform: scale(1.05) translateZ(0);
