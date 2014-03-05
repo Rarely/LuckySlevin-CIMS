@@ -10,7 +10,7 @@ echo $this->fetch('css');
 echo $this->fetch('script');
 
 echo $this->Html->script('jquery-1.11.0.min.js');
-
+echo $this->Html->script('date.js');
 echo $this->Html->script('ajax.js');
 echo $this->Html->script('autocomplete.js');
 echo $this->Html->script('notifications.js');
