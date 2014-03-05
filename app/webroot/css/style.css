@@ -69,6 +69,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3d9ad1', end
     line-height: 1.1;
     margin-left: 10px;
     margin-bottom: 5px;
+    max-height:20px;
 }
 
 .owner-heading {

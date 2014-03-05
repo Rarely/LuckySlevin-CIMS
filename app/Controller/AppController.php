@@ -81,5 +81,10 @@ class AppController extends Controller {
 
         $categories =  $this->Category->find('all');
         $this->set('categories', $categories);
+        foreach($categories as $category) {
+            if ($category['Category']['name'] == "Current Status") {
+                $this->set('StatusCategoryID', $category['Category']['id']);
+            }
+        }
     }
 }

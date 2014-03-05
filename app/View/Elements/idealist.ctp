@@ -1,4 +1,3 @@
-<?php echo $this->Html->css('style.css');?>
 <div id="ideacontainer">
 	<div class="idea-list-innerwrap">
 		<?php foreach ($ideas as &$idea): ?>

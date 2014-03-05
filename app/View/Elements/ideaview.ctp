@@ -20,7 +20,14 @@
 
             <div class="row">
               <div class="status-heading">
-                Status needed! Fix Me Jon
+                <?php 
+                  foreach($idea['Idea_Value'] as $value) {
+                    if ($value['Value']['categoryid'] == $StatusCategoryID){
+                      echo $value['Value']['name'];
+                      break;
+                    }
+                  }
+                ?>
               </div>
             </div>
           <div class="row">  

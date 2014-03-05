@@ -9,17 +9,20 @@ class IdeasController extends AppController {
         $this->set('ideas_active', $this->Idea->find('all', array(
             'conditions' => array('Idea.isdeleted' => 0),
             'order' => array('Idea.updated DESC'),
-            'limit' => 15
+            'limit' => 15,
+            'recursive' => 2
         )));
         $this->set('ideas_inactive', $this->Idea->find('all', array(
             'conditions' => array('Idea.isdeleted' => 0),
             'order' => array('Idea.updated ASC'),
-            'limit' => 15
+            'limit' => 15,
+            'recursive' => 2
         )));
         $this->set('ideas_recent', $this->Idea->find('all', array(
             'conditions' => array('Idea.isdeleted' => 0),
             'order' => array('Idea.created DESC'),
-            'limit' => 15
+            'limit' => 15,
+            'recursive' => 2
         )));
     }
 
