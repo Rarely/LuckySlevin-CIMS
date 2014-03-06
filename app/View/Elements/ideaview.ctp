@@ -37,16 +37,7 @@
               </div>
             </div>              
             <div class="col-md-6">
-                <div class="idea-actions">
-                  <?php $trackclass = (in_array($idea['Idea']['id'], $trackings)) ? "untrackbtn" : "trackbtn"; ?>
-                  <div class="idea-tracking-btn <?php echo $trackclass ?>"
-                   <?php if (in_array($idea['Idea']['id'], $trackings)) { ?>
-                     title="Track" onclick="event.stopPropagation();Ajax.untrackIdea(this, <?php echo $idea['Idea']['id']?>);">
-                   <?php } else { ?>
-                     title="Untrack" onclick="event.stopPropagation();Ajax.trackIdea(this, <?php echo $idea['Idea']['id']?>);">
-                   <?php } ?>
-                  </div>
-                </div>
+              <?php echo $this->element('ideaactions', array("idea" => $idea)); ?>
             </div>
         </div>
 </div>
