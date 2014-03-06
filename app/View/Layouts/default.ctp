@@ -20,6 +20,10 @@ echo $this->Html->script('ui.js');
 
 echo $this->Html->css('style.css');
 echo $this->Html->css('comment.css');
+echo $this->Html->css('layout.css');
+echo $this->Html->css('idea.css');
+echo $this->Html->css('admin.css');
+echo $this->Html->css('search.css');
 
 echo $this->Js->writeBuffer();
 echo $this->Html->script('bootbox.min.js');
@@ -34,15 +38,16 @@ echo $this->Html->script('users.js');
 ?>
 <style type="text/css">
 body {
-  padding-top: 60px;
+  padding-top: 52px;
 }
 </style>
 </head>
 <body>
-
+  <div class="layout-background">  
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
+        <a class="navbar-brand" <?php echo $this->Html->link('CIMS', array('controller'=>'ideas', 'action'=>'index'));?></a>
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar">&nbsp;</span>
@@ -51,7 +56,7 @@ body {
           </button>
         </div>
         <div class="navbar-collapse collapse">
-          <a class="navbar-brand" <?php echo $this->Html->link('CIMS', array('controller'=>'ideas', 'action'=>'index'));?>></a>
+          
           <ul class="nav navbar-nav">
             <li><?php echo $this->Html->link('Search', array('controller'=>'search', 'action'=>'index'));?></li>
             <li><?php echo $this->Html->link('Trackings', array('controller'=>'trackings', 'action'=>'index'));?></li>
@@ -60,6 +65,8 @@ body {
             <?php } ?>
           </ul>
           <ul class="nav navbar-nav navbar-right">
+          <li><a> Welcome <?php echo $userData['name']?></a>
+          </li>
           <li><button class="add-btn btn btn-primary btn-lg" id="btn-add-idea" data-toggle="modal" data-target="#myModal" imn></button></li>
             <li class="dropdown">
               <a href="#" class="notify-btn dropdown-toggle notifications-btn" data-toggle="dropdown">
@@ -83,5 +90,6 @@ body {
       <?php echo $this->fetch('content'); ?>
       <?php echo $this->element('newideaform'); ?>
     </div> <!-- /container -->
+  </div>
 </body>
 </html>
