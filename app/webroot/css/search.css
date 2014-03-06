@@ -1,3 +1,13 @@
+.search-well {
+	max-height: 200px;
+	margin-top: 20px;
+}
+
+.heading {
+	font-size: 24px;
+	font-style: bold;	
+}
+
 #export-help {
     margin-left:10px;
     display:none;

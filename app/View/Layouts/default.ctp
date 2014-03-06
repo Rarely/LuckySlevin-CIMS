@@ -23,7 +23,6 @@ echo $this->Html->css('comment.css');
 echo $this->Html->css('layout.css');
 echo $this->Html->css('idea.css');
 echo $this->Html->css('admin.css');
-echo $this->Html->css('search.css');
 
 echo $this->Js->writeBuffer();
 echo $this->Html->script('bootbox.min.js');
