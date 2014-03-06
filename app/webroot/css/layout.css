@@ -32,6 +32,12 @@
     margin-top: 8px;
 }
 
+.welcome-name-btn{
+    background-color: transparent !important;
+    border: none !important;
+    background-size: 100%;  
+}
+
 .notify-count{
     background-color: red !important;
 }
