@@ -88,8 +88,8 @@
                 <div class="btn btn-info btn-share">Share</div>
               </div>
             </div>
-          
-           <?php echo $this->element('ideaactions', array("idea" => $idea)); ?>
+
+            <?php echo $this->element('ideaactions', array("idea" => $idea)); ?>
 
             <?php echo $this->Html->link('Edit', array('controller' => 'ideas', 
               'action' => 'edit', 
