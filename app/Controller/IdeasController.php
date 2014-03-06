@@ -68,6 +68,12 @@ class IdeasController extends AppController {
 
             if ($this->Idea->save()) {
                 $this->saveCategoryInfo($this->request->data['Category'], $id);
+
+                //Notify
+                App::import('Controller', 'Notifications'); // mention at top
+                $Notifications = new NotificationsController; // Instantiation // mention within cron function
+                $Notifications->sendNotifications($this->request->data['Idea']['name'] . " has been updated.", $id, null, $this->Session->read('Auth.User.id'));
+
                 $this->Session->setFlash(__('Idea has been saved.'));
                 return $this->redirect(array('action' => 'index'));
             }
@@ -137,6 +143,16 @@ class IdeasController extends AppController {
             $comment['Comment']['message'] = $c;
             $comment['Comment']['created'] = null; //!important
 
+            //update updated datetime for idea
+            $this->Idea->read(null, $id);
+            $this->Idea->set('updated',null);
+            $this->Idea->save();
+
+            //Notify
+            App::import('Controller', 'Notifications'); // mention at top
+            $Notifications = new NotificationsController; // Instantiation // mention within cron function
+            $Notifications->sendNotifications($username . " commented on an idea you're tracking", $id, null, $userid);
+
             if ($this->Comment->save($comment)){
                 $this->set('response','success');
                 $this->set('data', array('userid'=>$id, 'html' => '<li>' . $username . ': ' . $c . '</li>'));
@@ -148,11 +164,10 @@ class IdeasController extends AppController {
             } 
         }
         else { 
-                $this->set('response','failed');
-                $this->set('data', array('Not ajax'));
-                $this->render('/Elements/jsonreturn');
+            $this->set('response','failed');
+            $this->set('data', array('Not ajax'));
+            $this->render('/Elements/jsonreturn');
         }
-        
     }
 
     public function idea($id = null) {
