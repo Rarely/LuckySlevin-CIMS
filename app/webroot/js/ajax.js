@@ -1,27 +1,31 @@
 var Ajax = {
   
-    trackIdea: function(dom, id) {
+    trackIdea: function(id) {
         $.ajax({
           type: "POST",
           url: '/trackings/track/' + id,
           async: true,
           success: function(data) {
             if (data.response === "success") {
-                $(dom).unbind().removeClass("trackbtn").addClass("untrackbtn").attr("onclick", "event.stopPropagation();").click(function() {Ajax.untrackIdea(dom, id)});
+              jQuery(".idea-actions[data-id=" + id + "] .trackbtn").each(function() {
+                $(this).unbind().removeClass("trackbtn").addClass("untrackbtn").attr("onclick", "event.stopPropagation();").click(function() {Ajax.untrackIdea(id)});
+              });
             }
           },
           dataType: 'json'
         });
     },
 
-    untrackIdea: function(dom, id) {
+    untrackIdea: function(id) {
         $.ajax({
           type: "POST",
           url: '/trackings/untrack/' + id,
           async: true,
           success: function(data) {
             if (data.response === "success") {
-                $(dom).unbind().removeClass("untrackbtn").addClass("trackbtn").attr("onclick", "event.stopPropagation();").click(function() {Ajax.trackIdea(dom, id)});
+                jQuery(".idea-actions[data-id=" + id + "] .untrackbtn").each(function() {
+                $(this).unbind().removeClass("untrackbtn").addClass("trackbtn").attr("onclick", "event.stopPropagation();").click(function() {Ajax.trackIdea(id)});
+              });
             }
           },
           dataType: 'json'
