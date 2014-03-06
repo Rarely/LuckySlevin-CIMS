@@ -70,8 +70,13 @@ var Ajax = {
           url: '/notifications',
           async: true,
           success: function(data) {
-            $('.navbar .notifications-menu').html(data);
-            $('.navbar .badge-notifications').text($('.navbar .notifications-menu li').length);
+            if ($('.navbar .notifications-menu li').length > 0 ){
+              $('.navbar .notifications-menu').html(data);
+              $('.navbar .badge-notifications').text($('.navbar .notifications-menu li').length);
+            }
+            else{
+             $('.navbar .badge-notifications').remove(); 
+            }
           }
         });
       },
