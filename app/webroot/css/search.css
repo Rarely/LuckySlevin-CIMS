@@ -1,0 +1,19 @@
+#export-help {
+    margin-left:10px;
+    display:none;
+}
+#btn-save-csv {
+    display:none;
+    margin-top:10px;
+}
+#btn-cancel-csv {
+    display:none;
+}
+
+#btn-delete-confirm {
+    display:none;
+    margin-top:10px;
+}
+#btn-cancel-delete {
+    display:none;
+}
