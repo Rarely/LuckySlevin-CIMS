@@ -10,7 +10,7 @@ echo $this->fetch('css');
 echo $this->fetch('script');
 
 echo $this->Html->script('jquery-1.11.0.min.js');
-
+echo $this->Html->script('date.js');
 echo $this->Html->script('ajax.js');
 echo $this->Html->script('autocomplete.js');
 echo $this->Html->script('notifications.js');
@@ -65,7 +65,7 @@ body {
             <?php } ?>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-          <li><button class="add-btn btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" imn></button></li>
+          <li><button class="add-btn btn btn-primary btn-lg" id="btn-add-idea" data-toggle="modal" data-target="#myModal" imn></button></li>
             <li class="dropdown">
               <a href="#" class="notify-btn dropdown-toggle notifications-btn" data-toggle="dropdown">
                 <span class="notify-count badge badge-important badge-notifications"><?php echo $notificationsCount ?></span>

@@ -7,11 +7,12 @@ class TrackingsController extends AppController {
         $this->set('title_for_layout', 'Currently Tracked Ideas');
         $ideas = $this->Tracking->find('all', array(
             'Idea.isdeleted' => 0,
-            'conditions' => array('Tracking.userid' => $this->Session->read('Auth.User.id'))
-            ,'recursive' => 2
+            'conditions' => array('Tracking.userid' => $this->Session->read('Auth.User.id')),
+            'recursive' => 3
         ));
         foreach ($ideas as &$idea) {
             $idea['Users'] = $idea['Idea']['Users'];
+            $idea['Idea_Value'] = $idea['Idea']['Idea_Value'];
         }
         $this->set('ideas', $ideas);
     }

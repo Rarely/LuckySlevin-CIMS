@@ -2,34 +2,41 @@
 class IdeasController extends AppController {
     public $helpers = array('Html', 'Form');
     var $components = array('RequestHandler');
-    public $uses = array('Idea','Comment', 'Category', 'IdeaValue');
+    public $uses = array('Idea','Comment', 'Category', 'IdeaValue', 'Value');
     public function index() {
         $this->set('title_for_layout', 'Ideas');
 
         $this->set('ideas_active', $this->Idea->find('all', array(
             'conditions' => array('Idea.isdeleted' => 0),
             'order' => array('Idea.updated DESC'),
-            'limit' => 15
+            'limit' => 15,
+            'recursive' => 2
         )));
         $this->set('ideas_inactive', $this->Idea->find('all', array(
             'conditions' => array('Idea.isdeleted' => 0),
             'order' => array('Idea.updated ASC'),
-            'limit' => 15
+            'limit' => 15,
+            'recursive' => 2
         )));
         $this->set('ideas_recent', $this->Idea->find('all', array(
             'conditions' => array('Idea.isdeleted' => 0),
             'order' => array('Idea.created DESC'),
-            'limit' => 15
+            'limit' => 15,
+            'recursive' => 2
         )));
     }
 
      public function add() {
         if ($this->request->is('post')) {
+
             $this->Idea->create();
             $this->request->data['Idea']['created'] = date('Y-m-d H:i:s');
             $this->request->data['Idea']['updated'] = null;
             $this->request->data['Idea']['userid'] = $this->Session->read('Auth.User.id');
             if ($this->Idea->save($this->request->data)) {
+                
+                $this->saveCategoryInfo($this->request->data['Category'], $this->Idea->getLastInsertID());
+
                 $this->Session->setFlash(__('Idea has been saved.'));
                 return $this->redirect(array('action' => 'index'));
             }
@@ -43,26 +50,76 @@ class IdeasController extends AppController {
         }
 
         $idea = $this->Idea->findById($id);
-        
         if (!$idea) {
             throw new NotFoundException(__('Invalid idea'));
         }
         $this->set('idea', $idea);
+        $this->set('values', $this->IdeaValue->find('all', array(
+            'conditions' => array('ideaid' => $id),
+            'fields' => 'Value.id, Value.name, Value.categoryid',
+            'recursive'=>2
+        )));
 
         if ($this->request->is('post')) {
             $this->Idea->read(null, $id);
             $this->Idea->set('name', $this->request->data['Idea']['name']);
             $this->Idea->set('description', $this->request->data['Idea']['description']);
-            $this->Idea->set('status', $this->request->data['Idea']['status']);
             $this->Idea->set('updated',null);
 
-             if ($this->Idea->save()) {
-                 $this->Session->setFlash(__('Idea has been saved.'));
-                 return $this->redirect(array('action' => 'index'));
-             }
-             $this->Session->setFlash(__('Unable to add idea.'));
+            if ($this->Idea->save()) {
+                $this->saveCategoryInfo($this->request->data['Category'], $id, true);
+                $this->Session->setFlash(__('Idea has been saved.'));
+                return $this->redirect(array('action' => 'index'));
+            }
+            $this->Session->setFlash(__('Unable to add idea.'));
         } 
 
+    }
+
+    public function saveCategoryInfo($formdata, $ideaid, $replace = false) {
+        foreach($formdata as $key=>$catentry) {
+            if (isset($catentry) && $catentry == '') {
+                continue;
+            }
+            $this->IdeaValue->create();
+            $this->IdeaValue->set('ideaid', $ideaid);
+            $valuearr = explode(',', $catentry);
+            $entries = array();
+            foreach ($valuearr as $value) {
+                //now we have each individual entry in this category
+                if (isset($value) && $value != '' && !is_numeric($value)) {
+                    //create value and return id
+                    $this->Value->create();
+                    $this->Value->set('name', $value); //Value
+                    $this->Value->set('categoryid', $key); //CatID
+                    $this->Value->set('specified', true); //specified manually
+                    if ($this->Value->save()) {
+                        $value = $this->Value->getLastInsertID();
+                    } else {
+                        //ERROR creating specific value
+                    }
+
+                }
+                if (isset($ideaid) && isset($value)){
+                    //if replace = true, check for only new keys (EDIT MODE)
+                    if ($replace == true) {
+                        if (!$this->IdeaValue->hasAny(array(
+                            'IdeaValue.ideaid' => $ideaid,
+                            'IdeaValue.valueid' => $value
+                        ))){
+                            $entries[] = array('ideaid' => $ideaid,'valueid'=> $value);
+                        }
+                    } else {
+                        $entries[] = array('ideaid' => $ideaid,'valueid'=> $value);
+                    }
+                }
+            }
+            if (count($entries) > 0 && $this->IdeaValue->saveAll($entries)) {
+                //We're good
+            } else {
+                //ERROR CREATING RELATIONSHIP
+            }
+        }
     }
 
     public function comment($id = null){
@@ -119,11 +176,6 @@ class IdeasController extends AppController {
             ,'recursive' => 2
         )));
 
-        $this->set('categories', $this->Category->find('all', array(
-            // 'conditions' => array('idea_value.ideaid' => $id)
-            'recursive'=>0
-        )));
-
         $this->set('ideavalues', $this->IdeaValue->find('all', array(
             'conditions' => array('IdeaValue.ideaid' => $id)
             ,'recursive'=>2
@@ -176,5 +228,28 @@ class IdeasController extends AppController {
             $this->render('/Elements/jsonreturn');
         }
 
+    }
+
+    function valueslist($id = null) {
+        if (!$id) {
+            throw new NotFoundException(__('Invalid idea'));
+        }
+
+        if ($this->RequestHandler->isAjax()) {
+            $values = $this->Value->find('all', array(
+                'conditions' => array('categoryid' => $id),
+                'fields' => 'Value.id, Value.name',
+                'recursive'=>2
+            ));
+            foreach ($values as $result) {
+                $answer[] = array(
+                    "id"=>$result['Value']['id'],
+                    "text" => $result['Value']['name'],
+                );
+            }
+
+            $this->set('response', $answer);
+            $this->render('/Elements/jsonraw');
+        }
     }
 }

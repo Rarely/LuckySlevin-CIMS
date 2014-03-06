@@ -31,7 +31,7 @@ App::uses('Controller', 'Controller');
  * @link        http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
-    public $uses = array('Tracking', 'Notification');
+    public $uses = array('Tracking', 'Notification', 'Category');
     public $helpers = array(
         'Session',
         'Html' => array('className' => 'BoostCake.BoostCakeHtml'),
@@ -64,6 +64,7 @@ class AppController extends Controller {
 
     public function beforeFilter() {
         $this->set('userData', $this->Auth->user());
+
         $trackings =  $this->Tracking->find('all', array(
             'conditions' => array('Tracking.userid' => $this->Session->read('Auth.User.id'))
         ));
@@ -77,5 +78,13 @@ class AppController extends Controller {
             'conditions' => array('Notification.userid' => $this->Session->read('Auth.User.id'))
         ));
         $this->set('notificationsCount', count($notifications));
+
+        $categories =  $this->Category->find('all');
+        $this->set('categories', $categories);
+        foreach($categories as $category) {
+            if ($category['Category']['name'] == "Current Status") {
+                $this->set('StatusCategoryID', $category['Category']['id']);
+            }
+        }
     }
 }

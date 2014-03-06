@@ -4,4 +4,8 @@ class Value extends AppModel {
                            'className' => 'IdeaValue'
                            ,'foreignKey' => 'valueid'
                         ));
+    public $belongsTo = array('Category' => array(
+                           'className' => 'Category'
+                           ,'foreignKey' => 'categoryid'
+                        ));
 }

@@ -38,10 +38,11 @@
 
 
 <?php echo $this->Form->end(); ?>
+
 <div class="inline-block">
-<button class="filter" data-filter="1">1</button>
-<button class="filter" data-filter="2">2</button>
-<button class="filter" data-filter="3">3</button>
+<button class="filtering" data-user="1">1</button>
+<button class="filtering" data-user="2">2</button>
+<button class="filtering" data-user="3">3</button>
 </div>
 
 <div class="inline-block">
@@ -62,6 +63,19 @@
 </div>
 <br>
 
+<!--
+<?php foreach ($categories as $category) { ?>
+  <label for="categoryDescription"><?php echo $category['Category']['name'] ?></label>
+  <input type='' class="cat" id='tags' name="data[Category][<?php echo $category['Category']['id']; ?>]"
+  <?php if ($category['Category']['multiselect'] == true) { echo 'multiple="true"'; } ?>
+  <?php if ($category['Category']['specifiable'] == true) { echo 'specifiable="true"'; } ?>
+  <?php echo 'data-id="' . $category['Category']['id'] .'"'; ?>
+   style='width:100%' />
+  <br />
+<?php } ?>
+-->
+
+<br>
 
 
 <?php echo $this->element('ideapage', array("ideas" => $ideas)); ?>

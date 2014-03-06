@@ -4,13 +4,20 @@
     margin: 0 auto;
     overflow: auto;
 }
+
 .ideacontainer {
     height: 250px;
 }
 
-.ideacontainer2 {
+.ideacontainer-search {
     height: 700px;
 }
+
+
+.ideacontainer-search .ideablock {
+    margin-bottom: 10px;
+}
+
 #ideacontainer .ideablock {
     height: 210px;
     overflow-x: hidden;
@@ -19,9 +26,7 @@
     width: 190px;
     word-wrap: break-word;
     margin-right: 5px;
-    background-image: url('/img/idea.png');
-    background-size: 190px;
-    border: none;
+    border:none;
 
     -webkit-transition: all 200ms linear;
     -moz-transition: all 200ms linear;
@@ -31,8 +36,21 @@
     -moz-transform: translateZ(0);
     -o-transform: translateZ(0);
     transform: translateZ(0);
+
+    background: #3d9ad1;
+    background-size:190px;
 }
 
+.test {
+background-image: url("/img/idea.png"), -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(61,154,209,1)), color-stop(85%,rgba(61,154,209,0.85)), color-stop(100%,rgba(18,132,31,0.65))); /* Chrome,Safari4+ */
+background-image: url("/img/idea.png"), -webkit-linear-gradient(top,  rgba(61,154,209,1) 0%,rgba(61,154,209,0.85) 85%,rgba(18,132,31,0.65) 100%); /* Chrome10+,Safari5.1+ */
+background-image: url("/img/idea.png"),    -moz-linear-gradient(top,  rgba(61,154,209,1) 0%, rgba(61,154,209,0.85) 85%, rgba(18,132,31,0.65) 100%); /* FF3.6+ */
+background-image: url("/img/idea.png"),     -ms-linear-gradient(top,  rgba(61,154,209,1) 0%,rgba(61,154,209,0.85) 85%,rgba(18,132,31,0.65) 100%); /* IE10+ */
+background-image: url("/img/idea.png"),      -o-linear-gradient(top,  rgba(61,154,209,1) 0%,rgba(61,154,209,0.85) 74%,rgba(18,132,31,0.65) 100%); /* Opera 11.10+ */
+background-image: url("/img/idea.png"),         linear-gradient(bottom,  rgba(61,154,209,1) 0%,rgba(61,154,209,0.85) 85%,rgba(18,132,31,0.65) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3d9ad1', endColorstr='#a612841f',GradientType=0 ); /* IE6-9 */
+
+}
 #ideacontainer .ideablock:hover {
     -webkit-transform: scale(1.05) translateZ(0);
     -moz-transform: scale(1.05) translateZ(0);
@@ -63,6 +81,7 @@
     line-height: 1.1;
     margin-left: 10px;
     margin-bottom: 5px;
+    max-height:20px;
 }
 
 .owner-heading {
