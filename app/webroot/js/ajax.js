@@ -74,13 +74,20 @@ var Ajax = {
           url: '/notifications',
           async: true,
           success: function(data) {
-            if ($('.navbar .notifications-menu li').length > 0 ){
-              $('.navbar .notifications-menu').html(data);
-              $('.navbar .badge-notifications').text($('.navbar .notifications-menu li').length);
-            }
-            else{
-             $('.navbar .badge-notifications').remove(); 
-            }
+            $('.navbar .notifications-menu').html(data);
+            $('.navbar .badge-notifications').text($('.navbar .notifications-menu a.active').length);
+          }
+        });
+      },
+
+      setNotified: function(dom, id) {
+        $.ajax({
+          type: "GET",
+          url: '/notifications/notified/' + id,
+          async: true,
+          success: function(data) {
+            $(dom).removeClass('active');
+            $('.navbar .badge-notifications').text($('.navbar .notifications-menu a.active').length);
           }
         });
       },

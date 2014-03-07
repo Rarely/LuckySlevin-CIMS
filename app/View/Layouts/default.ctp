@@ -60,7 +60,8 @@ body {
             <li><?php echo $this->Html->link('Search', array('controller'=>'search', 'action'=>'index'));?></li>
             <li><?php echo $this->Html->link('Trackings', array('controller'=>'trackings', 'action'=>'index'));?></li>
             <?php if ($userData['role'] == 'admin') { ?>
-            <li><?php echo $this->Html->link('Users', array('controller'=>'users', 'action'=>'index'));?></li>
+              <li><?php echo $this->Html->link('Users', array('controller'=>'users', 'action'=>'index'));?></li>
+              <li><?php echo $this->Html->link('Categories', array('controller'=>'values', 'action'=>'index'));?></li>
             <?php } ?>
           </ul>
           <ul class="nav navbar-nav navbar-right">
@@ -74,9 +75,7 @@ body {
                   }
                 ?>
               </a>
-              <ul class="dropdown-menu notifications-menu">
-                <li><a>Loading Notifications</a></li>
-              </ul>
+              <div class="dropdown-menu list-group notifications-menu"></div>
             </li>
             <li><?php echo $this->Html->link('Logout', array('controller'=>'users', 'action'=>'logout'));?></li>
           </ul>
@@ -85,7 +84,6 @@ body {
     </div>
 
     <div class="container">
-      <?php // echo $this->element('ajaxmodal'); ?>
       <?php echo $this->fetch('content'); ?>
       <?php echo $this->element('newideaform'); ?>
     </div> <!-- /container -->

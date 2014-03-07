@@ -35,3 +35,9 @@
 .notify-count{
     background-color: red !important;
 }
+
+.notifications-menu {
+    height: 300px;
+    overflow: auto;
+    width: 450px;
+}
