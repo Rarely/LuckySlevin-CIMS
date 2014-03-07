@@ -1,5 +1,6 @@
 $(document).ready(function() {
-	$("#filters .user_filter").userSelect();
+	$(".user_filter").userSelect(false);
+
 	$("#Grid").mixitup({
 		showOnLoad: 'all',
 		effects: ['fade','scale'],

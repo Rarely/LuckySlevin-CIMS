@@ -1,4 +1,4 @@
-jQuery.fn.userSelect = function() {
+jQuery.fn.userSelect = function(excludeSelf) {
     var el = $(this[0]) // It's your element
     el.select2({
       placeholder: "Share with Others",
@@ -6,7 +6,7 @@ jQuery.fn.userSelect = function() {
       allowClear: true,
       minimumInputLength: 0,
       ajax: {
-        url: "/users/memberslist",
+        url: "/users/memberslist/"+excludeSelf,
         dataType: 'json',
         data: function (term, page) {
           return {

@@ -24,6 +24,39 @@ class NotificationsController extends AppController {
     }
 
     /*
+     * Send a notification to a user or the group of users tracking an idea
+     * for use within controllers
+    */
+    public function sendNotifications($message, $ideaid = null, $userid = null, $senderid = null) {
+        if ($userid != null) {
+            //send to individual user
+
+        }
+        if ($ideaid != null) {
+            //send to all tracking users
+            $trackingids = $this->Tracking->find('all', array(
+                'Idea.isdeleted' => 0
+                ,'conditions' => array('Tracking.ideaid' => $ideaid)
+            ));
+            foreach ($trackingids as $user) {
+                //check if self
+                if ($user['Tracking']['userid'] != $senderid) {
+                    $notification = $this->Notification->create();
+                    $notification['Notification']['userid'] = $user['Tracking']['userid'];
+                    $notification['Notification']['ideaid'] = $ideaid;
+                    $notification['Notification']['message'] = $message;
+                    $notification['Notification']['created'] = null; //!important
+                    if ($this->Notification->save($notification)) {
+                        //Good input
+                    } else {
+
+                    }
+                }
+            }
+        }
+    }
+
+    /*
      * Notifies the designated idea's users
      * url example: http://www.cims.com/notifications/notify/<<IDEA ID>>?userid=USER ID&m=<<TEXT FOR NOTIFICATION>>
     */

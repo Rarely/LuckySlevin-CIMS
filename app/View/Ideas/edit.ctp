@@ -17,7 +17,8 @@
       )); ?>
       
       <?php echo $this->Form->input('description', array(
-        'label' => 'description',
+        'label' => 'description (max 1000)',
+        'maxlength'   => '1000',
         'value' => $idea['Idea']['description'],
       )); ?>
 

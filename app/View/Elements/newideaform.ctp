@@ -46,8 +46,9 @@
             )); ?>
 
             <?php echo $this->Form->input('description', array(
-              'label' => 'Description',
+              'label' => 'Description (max 1000)',
               'placeholder' => 'Insert a description here',
+              'maxlength'   => '1000',
               )); ?>
 
             <?php foreach ($categories as $category) { ?>

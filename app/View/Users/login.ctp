@@ -1,8 +1,8 @@
 <!-- File: /app/View/Users/login.ctp -->
 <?php
+  echo $this->Html->script('jquery-1.11.0.min.js');
   echo $this->Html->css('bootstrap.css');
   echo $this->Html->script('bootstrap.min.js');
-  echo $this->Html->script('jquery-1.11.0.min.js');
 ?>
 
 
