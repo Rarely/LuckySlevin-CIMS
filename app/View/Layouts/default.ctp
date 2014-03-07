@@ -41,8 +41,7 @@ body {
 }
 </style>
 </head>
-<body>
-  <div class="layout-background">  
+<body class="layout-background">
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -101,6 +100,5 @@ body {
       <?php echo $this->fetch('content'); ?>
       <?php echo $this->element('newideaform'); ?>
     </div> <!-- /container -->
-  </div>
 </body>
 </html>
