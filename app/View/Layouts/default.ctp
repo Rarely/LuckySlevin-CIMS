@@ -41,8 +41,7 @@ body {
 }
 </style>
 </head>
-<body>
-  <div class="layout-background">  
+<body class="layout-background">
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -65,8 +64,20 @@ body {
             <?php } ?>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-          <li><a> Welcome <?php echo $userData['name']?></a>
+
+          <li class="dropdown">
+            <a href="#" class="welcome-name-btn dropdown-toggle" data-toggle="dropdown"> 
+              Welcome <?php echo $userData['name']?>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a>
+                  <?php echo $this->Html->link('Logout', array('controller'=>'users', 'action'=>'logout'));?>
+                </a>
+              </li>
+            </ul>
           </li>
+
           <li><button class="add-btn btn btn-primary btn-lg" id="btn-add-idea" data-toggle="modal" data-target="#myModal" imn></button></li>
             <li class="dropdown">
               <a href="#" class="notify-btn dropdown-toggle notifications-btn" data-toggle="dropdown">
@@ -77,7 +88,7 @@ body {
               </a>
               <div id="notifications-menu" class="notifications-menu dropdown-menu list-group"></div>
             </li>
-            <li><?php echo $this->Html->link('Logout', array('controller'=>'users', 'action'=>'logout'));?></li>
+
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -87,6 +98,5 @@ body {
       <?php echo $this->fetch('content'); ?>
       <?php echo $this->element('newideaform'); ?>
     </div> <!-- /container -->
-  </div>
 </body>
 </html>
