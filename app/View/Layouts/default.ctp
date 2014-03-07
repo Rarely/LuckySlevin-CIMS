@@ -18,17 +18,17 @@ echo $this->Html->script('custom-jquery.js');
 echo $this->Html->script('jquery.dotdotdot.min.js');
 echo $this->Html->script('ui.js');
 
-echo $this->Html->css('style.css');
-echo $this->Html->css('comment.css');
-echo $this->Html->css('layout.css');
-echo $this->Html->css('idea.css');
-echo $this->Html->css('admin.css');
-
 echo $this->Js->writeBuffer();
 echo $this->Html->script('bootbox.min.js');
 //custom css
 echo $this->Html->css('bootstrap.css');
 echo $this->Html->script('bootstrap.min.js');
+
+echo $this->Html->css('style.css');
+echo $this->Html->css('comment.css');
+echo $this->Html->css('layout.css');
+echo $this->Html->css('idea.css');
+echo $this->Html->css('admin.css');
 
 echo $this->Html->script('select2.min.js');
 echo $this->Html->css('select2.css');
@@ -61,7 +61,7 @@ body {
             <li><?php echo $this->Html->link('Trackings', array('controller'=>'trackings', 'action'=>'index'));?></li>
             <?php if ($userData['role'] == 'admin') { ?>
               <li><?php echo $this->Html->link('Users', array('controller'=>'users', 'action'=>'index'));?></li>
-              <li><?php echo $this->Html->link('Categories', array('controller'=>'values', 'action'=>'index'));?></li>
+              <li><?php echo $this->Html->link('Categories', array('controller'=>'categories', 'action'=>'index'));?></li>
             <?php } ?>
           </ul>
           <ul class="nav navbar-nav navbar-right">
@@ -75,7 +75,7 @@ body {
                   }
                 ?>
               </a>
-              <div class="dropdown-menu list-group notifications-menu"></div>
+              <div id="notifications-menu" class="notifications-menu dropdown-menu list-group"></div>
             </li>
             <li><?php echo $this->Html->link('Logout', array('controller'=>'users', 'action'=>'logout'));?></li>
           </ul>

@@ -36,8 +36,10 @@
     background-color: red !important;
 }
 
-.notifications-menu {
+#notifications-menu {
     height: 300px;
     overflow: auto;
     width: 450px;
+    border-radius:10px;
+    padding-top:0;
 }

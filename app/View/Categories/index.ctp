@@ -1,27 +1,43 @@
-<!-- File: /app/View/Categories/index.ctp -->
+<!-- File: /app/View/Values/index.ctp -->
 
-<h1>Categories</h1>
-<?php echo $this->Html->link(
-    'Create Category',
-    array('controller' => 'categories', 'action' => 'add')
-); ?>
+<h1>Values</h1>
 <table class="table">
     <tr>
         <th>Category Name</th>
         <th>Values</th>
+        <th>Actions</th>
     </tr>
     <?php foreach ($categories as $category): ?>
     <tr>
         <td><?php echo $this->Html->link($category['Category']['name'],
 array('controller' => 'categories', 'action' => 'view', $category['Category']['id'])); ?>
         </td>
-        <td> 
-            <ul>
-                <?php foreach ($category['Values'] as $value): ?>
-                    <li><?php echo $value['name']; ?></li>
-                <?php endforeach;?>
-                <?php unset($value); ?>
-            </ul>
+        <td>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Actions</th>
+                </tr>
+                <?php foreach ($category['Value'] as $value): ?>
+                    <tr>
+                        <td><?php echo $value['name']; ?></td>
+                        <td>
+                            <?php echo $this->Html->link(
+                                'Delete',
+                                array('controller' => 'categories', 'action' => 'delete', $value['id']),
+                                array('class'=> 'btn btn-danger')
+                            ); ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
+        </td>
+        <td>
+            <?php echo $this->Html->link(
+                'Create Value',
+                array('controller' => 'categories', 'action' => 'add', $category['Category']['id']),
+                array('class'=> 'btn btn-default')
+            ); ?>
         </td>
     </tr>
     <?php endforeach; ?>
