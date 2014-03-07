@@ -72,7 +72,7 @@ class IdeasController extends AppController {
                 //Notify
                 App::import('Controller', 'Notifications'); // mention at top
                 $Notifications = new NotificationsController; // Instantiation // mention within cron function
-                $Notifications->sendNotifications("An Idea you're tracking has been updated", $this->request->data['Idea']['name'], $id, null, $this->Session->read('Auth.User.id'));
+                $Notifications->sendNotifications("An Idea you're tracking has been updated", $this->request->data['Idea']['name'], $id, $idea['Idea']['userid'], $this->Session->read('Auth.User.id'));
 
                 $this->Session->setFlash(__('Idea has been saved.'));
                 return $this->redirect(array('action' => 'index'));
@@ -151,7 +151,7 @@ class IdeasController extends AppController {
             //Notify
             App::import('Controller', 'Notifications'); // mention at top
             $Notifications = new NotificationsController; // Instantiation // mention within cron function
-            $Notifications->sendNotifications($username . " commented on " . $idea['Idea']['name'], $c, $id, null, $userid);
+            $Notifications->sendNotifications($username . " commented on " . $idea['Idea']['name'], $c, $id, $idea['Idea']['userid'], $userid);
 
             if ($this->Comment->save($comment)){
                 $this->set('response','success');
