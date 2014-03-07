@@ -37,22 +37,51 @@ $(document).ready(function() {
 	});  
 
 
-	$(".filtering").on('click',function(){
-		var $t = $(this),
-		filter = $t.attr('data-user');
-		//alert("Hello World!");
+    $.ajax({
+      type: "GET",
+      url: '/categories/getCategoryIds',
+      dataType: 'json',
+      async: true,
+      success: function(data) {
+            
+            var dimensions = {
+                user: 'all', // Create string for first dimension
+                notUser: 'all' // Create string for second dimension
+            }
 
-		$('#Grid').mixitup('filter',filter)
-	});
+            //data.data[0].Category.id
+            $.each(data.data, function(key, value) {
+                newCat = 'category-' + value.Category.id;
+                $.extend(dimensions, {newCat : 'all'});
+            }); 
 
 
-    $(".user_filter").on('click',function(){
-        var $t = $(this),
-        filter = $t.attr('data-user');
-        alert("Hello World!");
 
-        //$('#Grid').mixitup('filter',filter)
+
+        $(".user_filter").on('change',function(){
+            var $t = $(this),
+            filters = $t.select2('val')
+            mixitupFilters = '';
+
+            if(filters.length < 1){
+                mixitupFilters = 'all';
+            }else{
+                for (var i = 0; i < filters.length; i++) {
+                    mixitupFilters += 'user-' + filters[i];
+                    if(i < filters.length-1){
+                        mixitupFilters += ' ';
+                    }
+                }
+            }
+
+            dimensions.user = mixitupFilters;
+
+            $('#Grid').mixitup('filter',[dimensions.user, dimensions.notUser])
+        });
+
+      }
     });
+
 
 
 });

@@ -29,4 +29,16 @@ class CategoriesController extends AppController {
             $this->Session->setFlash(__('Unable to add category.'));
         }
     }
+
+    public function getCategoryIds(){
+        $this->layout = null;
+
+        $categoryIds = $this->Category->find('all',array('fields' => array('Category.id')));
+        //$this->set('categoryIds', $this->Category->find('all',array('fields' => array('Category.id'))));
+
+        $this->set('response', 'success');
+        $this->set('data', $categoryIds);
+        $this->render('/Elements/jsonreturn');
+
+    }
 }

@@ -1,7 +1,7 @@
 <div 
 
 
-      <?php echo "class= \"ideablock btn btn-primary btn-lg mix " . $idea['Idea']['userid'] . "\"" ?>
+      <?php echo "class= \"ideablock btn btn-primary btn-lg mix user-" . $idea['Idea']['userid'] . "\"" ?>
 
         <?php echo "data-id=\"" . $idea['Idea']['id'] . "\"" ?>
         <?php echo "data-user=\"" . $idea['Idea']['userid'] . "\"" ?>

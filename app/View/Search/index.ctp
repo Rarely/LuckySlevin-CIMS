@@ -17,8 +17,7 @@
         <h2>Search</h2>
         <?php echo $this->Form->input('q', array(
             'label' => '',
-            'placeholder' => 'Search...',
-            'after' => '<span class="help-block">Search by Idea name.</span>'
+            'placeholder' => 'Search by Idea name...',
         )); ?>
         <?php echo $this->Form->submit('Submit', array(
             'div' => 'form-group',
@@ -39,22 +38,6 @@
 
 <?php echo $this->Form->end(); ?>
 
-<div class="inline-block">
-<button class="filtering" data-user="1">1</button>
-<button class="filtering" data-user="2">2</button>
-<button class="filtering" data-user="3">3</button>
-</div>
-
-<div class="inline-block">
-<button class="sort" data-sort="data-name" data-order="desc">name desc</button>
-<button class="sort" data-sort="data-name" data-order="asc">name asc</button>
-<button class="sort" data-sort="data-id" data-order="desc">id desc</button>
-<button class="sort" data-sort="data-id" data-order="asc">id asc</button>
-<button class="sort" data-sort="default" data-order="asc">default</button>
-<button class="sort" data-sort="random">random</button>
-</div>
-
-
 <div id="filters">
 <?php echo $this->Form->input('share', array(
                'class' => 'user_filter'
@@ -63,7 +46,6 @@
 </div>
 <br>
 
-<!--
 <?php foreach ($categories as $category) { ?>
   <label for="categoryDescription"><?php echo $category['Category']['name'] ?></label>
   <input type='' class="cat" id='tags' name="data[Category][<?php echo $category['Category']['id']; ?>]"
@@ -73,9 +55,8 @@
    style='width:100%' />
   <br />
 <?php } ?>
--->
+
 
 <br>
-
 
 <?php echo $this->element('ideapage', array("ideas" => $ideas)); ?>
