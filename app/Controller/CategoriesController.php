@@ -2,6 +2,7 @@
 class CategoriesController extends AppController {
     public $helpers = array('Html', 'Form');
     public $uses = array('Value');
+    var $components = array('RequestHandler');
     
     public function index() {
         $this->set('title_for_layout', 'Categories');
@@ -25,27 +26,49 @@ class CategoriesController extends AppController {
             throw new NotFoundException(__('Invalid value'));
         }
         if ($this->Value->delete($vid)) {
-            $this->Session->setFlash(__('Value has been deleted.'));
-            return $this->redirect(array('action' => 'index'));
+            $this->set('response','success');
+            $this->set('data', array());
+            $this->render('/Elements/jsonreturn');
+        } else {
+            $this->set('response','failed');
+            $this->set('data', array());
+            $this->render('/Elements/jsonreturn');
         }
-        $this->Session->setFlash(__('Unable to delete value.'));
-
     }
-
-    public function add($id = null) {
+    public function edit($id = null) {
         if (!$id) {
             throw new NotFoundException(__('Invalid category'));
         }
-        if ($this->request->is('post')) {
+        $this->Value->read(null, $id);
+        $this->Value->set('name', $this->request->query['name']); //Value
+        if ($this->Value->save()) {
+            $this->set('response','success');
+            $this->set('data', array());
+            $this->render('/Elements/jsonreturn');
+        } else {
+            $this->set('response','failed');
+            $this->set('data', array());
+            $this->render('/Elements/jsonreturn');
+        }
+    }
+    public function create($id = null) {
+        if (!$id) {
+            throw new NotFoundException(__('Invalid category'));
+        }
+        if ($this->RequestHandler->isAjax()) {
             $this->Value->create();
-            $this->Value->set('name', $this->request->data['Value']['name']); //Value
+            $this->Value->set('name', $this->request->query['name']); //Value
             $this->Value->set('categoryid', $id); //CatID
             $this->Value->set('specified', false); //specified manually
             if ($this->Value->save()) {
-                $this->Session->setFlash(__('Category has been saved.'));
-                return $this->redirect(array('action' => 'index'));
+                $this->set('response','success');
+                $this->set('data', array('dataid' => $this->Value->getLastInsertID()));
+                $this->render('/Elements/jsonreturn');
+            } else {
+                $this->set('response','failed');
+                $this->set('data', array());
+                $this->render('/Elements/jsonreturn');
             }
-            $this->Session->setFlash(__('Unable to add category.'));
         }
     }
 }
