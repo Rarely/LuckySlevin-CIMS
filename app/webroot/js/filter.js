@@ -44,45 +44,71 @@ $(document).ready(function() {
       dataType: 'json',
       async: true,
       success: function(data) {
-            
-            var dimensions = {
-                user: 'all', // Create string for first dimension
-                notUser: 'all' // Create string for second dimension
-            }
-
-            //data.data[0].Category.id
-            $.each(data.data, function(key, value) {
-                newCat = 'category-' + value.Category.id;
-                $.extend(dimensions, {newCat : 'all'});
-            }); 
-
-
-
+               
+        var dimensions = {};
+        dimensions["user"] = "all";
+        $.each(data.data, function(key, value) {
+            newCat = 'category-' + value.Category.id;
+            dimensions[newCat] = "all";
+        }); 
 
         $(".user_filter").on('change',function(){
             var $t = $(this),
             filters = $t.select2('val')
-            mixitupFilters = '';
+            filterString = '';
 
             if(filters.length < 1){
-                mixitupFilters = 'all';
+                filterString = 'all';
             }else{
                 for (var i = 0; i < filters.length; i++) {
-                    mixitupFilters += 'user-' + filters[i];
+                    filterString += 'user-' + filters[i];
                     if(i < filters.length-1){
-                        mixitupFilters += ' ';
+                        filterString += ' ';
                     }
                 }
             }
 
-            dimensions.user = mixitupFilters;
+            dimensions["user"] = filterString;
 
-            $('#Grid').mixitup('filter',[dimensions.user, dimensions.notUser])
+            var dataArray = new Array;
+            for(var o in dimensions) {
+                dataArray.push(dimensions[o]);
+            }
+
+            $('#Grid').mixitup('filter',dataArray)
         });
 
+
+        $(".cat").on('change',function(){
+            var $t = $(this),
+            filters = $t.select2('val')
+            filterString = '';
+
+            if($t.attr('multiple') == 'multiple'){
+                if(filters.length < 1){
+                    filterString = 'all';
+                }else{
+                    for (var i = 0; i < filters.length; i++) {
+                        filterString += 'category-' + $t.attr('data-id') + '-' + filters[i];
+                        if(i < filters.length-1){
+                            filterString += ' ';
+                        }
+                    }
+                }
+                dimensions['category-' + $t.attr('data-id')] = filterString;
+            }else{
+                dimensions['category-' + $t.attr('data-id')] = 'category-' + $t.attr('data-id') + '-' + filters;
+            }
+
+            var dataArray = new Array;
+            for(var o in dimensions) {
+                dataArray.push(dimensions[o]);
+            }
+
+            $('#Grid').mixitup('filter',dataArray)
+        });
       }
     });
-
 
 
 });

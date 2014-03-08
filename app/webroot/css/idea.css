@@ -37,6 +37,10 @@
     background-size:190px;
 }
 
+.ideacontainer-search .ideablock {
+    margin-bottom: 10px;
+}
+
 #ideacontainer .ideablock:hover {
     -webkit-transform: scale(1.05) translateZ(0);
     -moz-transform: scale(1.05) translateZ(0);

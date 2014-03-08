@@ -1,7 +1,13 @@
+
 <div 
-
-
-      <?php echo "class= \"ideablock btn btn-primary btn-lg mix user-" . $idea['Idea']['userid'] . "\"" ?>
+      <?php echo "class= \"ideablock btn btn-primary btn-lg " ?>
+      
+      <?php 
+          foreach($idea['Idea_Value'] as $value) {
+                echo 'category-' . $value['Value']['categoryid'] . '-' . $value['Value']['id'] . ' ';
+            }
+          ?>
+      <?php echo "mix user-" . $idea['Idea']['userid'] . "\"" ?>
 
         <?php echo "data-id=\"" . $idea['Idea']['id'] . "\"" ?>
         <?php echo "data-user=\"" . $idea['Idea']['userid'] . "\"" ?>

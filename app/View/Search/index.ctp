@@ -47,21 +47,18 @@
         </div>
     </div>
     <div class="col-md-6">
+    <!-- FILTER -->
         <?php $cat = 1; ?>
-
         <div class="row">
-
         <div class="col-md-6">
             <input type='' class="user_filter" id='e18' placeholder='Owner' style='width:100%' />
         </div>
-
         <?php foreach ($categories as $category) { ?>
             <?php if ($cat % 2 == 0) { ?>
                 <div class="row">
             <?php } ?>
             <?php $cat ++ ?>
               <div class="col-md-6">
-                  <!--<label for="categoryDescription"><?php echo $category['Category']['name'] ?></label>-->
                   <input type='' class="cat" id='tags' name="data[Category][<?php echo $category['Category']['id']; ?>]"
                   <?php if ($category['Category']['multiselect'] == true) { echo 'multiple="true"'; } ?>
                   <?php if ($category['Category']['specifiable'] == true) { echo 'specifiable="true"'; } ?>
