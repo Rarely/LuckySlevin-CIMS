@@ -74,13 +74,20 @@ var Ajax = {
           url: '/notifications',
           async: true,
           success: function(data) {
-            if ($('.navbar .notifications-menu li').length > 0 ){
-              $('.navbar .notifications-menu').html(data);
-              $('.navbar .badge-notifications').text($('.navbar .notifications-menu li').length);
-            }
-            else{
-             $('.navbar .badge-notifications').remove(); 
-            }
+            $('.navbar .notifications-menu').html(data);
+            $('.navbar .badge-notifications').text($('.navbar .notifications-menu a.active').length);
+          }
+        });
+      },
+
+      setNotified: function(dom, id) {
+        $.ajax({
+          type: "GET",
+          url: '/notifications/notified/' + id,
+          async: true,
+          success: function(data) {
+            $(dom).removeClass('active');
+            $('.navbar .badge-notifications').text($('.navbar .notifications-menu a.active').length);
           }
         });
       },
@@ -139,6 +146,70 @@ var Ajax = {
           success: function(data) {
             if (data.response === "success") {
               $("tr[data-id=" + data.data.userid + "]").remove();
+            }
+          }
+        });
+      }
+    },
+
+    Categories: {
+      delete: function(valueID) {
+        $.ajax({
+          type: "POST",
+          dataType: 'json',
+          url: '/categories/delete/' + valueID,
+          async: true,
+          success: function(data) {
+            if (data.response === "success") {
+              $('tr[data-id=' + valueID + ']').remove();
+            }
+          }
+        });
+      },
+
+      create: function(categoryID, name) {
+        $.ajax({
+          type: "POST",
+          dataType: 'json',
+          url: '/categories/create/' + categoryID + "?name=" + name,
+          async: true,
+          success: function(data) {
+            if (data.response === "success") {
+              var html = "<tr data-id=\"" + data.data.dataid + "\"><td  class=\"value-name\">" + name + 
+              "</td><td><div class=\"btn-edit-value btn btn-default\">Edit</div><div class=\"btn-delete-value btn btn-danger\">Delete</div></td></tr>";
+              $('.table-category').append(html);
+              //todo: bind buttons
+              $("tr[data-id=\"" + data.data.dataid + "\"] .btn-edit-value").click(function() {
+                
+                  var id = $(this).parent().parent().attr('data-id');
+                  bootbox.prompt("Please enter a new value:", function(result) {
+                      if (result !== null) {
+                          Ajax.Categories.edit(id, result);
+                      }
+                  });
+              });
+              $("tr[data-id=\"" + data.data.dataid + "\"] .btn-delete-value").click(function() {
+                  var id = $(this).parent().parent().attr('data-id');
+                  bootbox.confirm("Are you sure?", function(result) {
+                    if (result === true) {
+                      Ajax.Categories.delete(id);
+                    }
+                  });
+              });
+            }
+          }
+        });
+      },
+
+      edit: function(valueID, name) {
+        $.ajax({
+          type: "POST",
+          dataType: 'json',
+          url: '/categories/edit/' + valueID + "?name=" + name,
+          async: true,
+          success: function(data) {
+            if (data.response === "success") {
+              $('tr[data-id=' + valueID + '] .value-name').text(name);
             }
           }
         });

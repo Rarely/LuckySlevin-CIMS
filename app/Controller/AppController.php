@@ -75,7 +75,8 @@ class AppController extends Controller {
         $this->set('trackings', $trackingIds);
 
         $notifications = $this->Notification->find('all', array(
-            'conditions' => array('Notification.userid' => $this->Session->read('Auth.User.id'))
+            'conditions' => array('Notification.userid' => $this->Session->read('Auth.User.id'),
+                                    'isread' => 0)
         ));
         $this->set('notificationsCount', count($notifications));
 
