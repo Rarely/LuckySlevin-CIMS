@@ -75,11 +75,17 @@ class AppController extends Controller {
         $this->set('trackings', $trackingIds);
 
         $notifications = $this->Notification->find('all', array(
-            'conditions' => array('Notification.userid' => $this->Session->read('Auth.User.id'))
+            'conditions' => array('Notification.userid' => $this->Session->read('Auth.User.id'),
+                                    'isread' => 0)
         ));
         $this->set('notificationsCount', count($notifications));
 
         $categories =  $this->Category->find('all');
         $this->set('categories', $categories);
+        foreach($categories as $category) {
+            if ($category['Category']['name'] == "Current Status") {
+                $this->set('StatusCategoryID', $category['Category']['id']);
+            }
+        }
     }
 }

@@ -11,12 +11,14 @@ class SearchController extends AppController {
             $this->set('query', $q);
             $this->set('ideas', $results = $this->Idea->find('all',
                                     array('conditions' => array(
-                                            'Idea.name LIKE' => '%' . $q . '%')
+                                            'Idea.name LIKE' => '%' . $q . '%'),
+                                            'recursive' => 2
             )));
         } else {
             $this->set('query', '');
             $this->set('ideas', $this->Idea->find('all', array(
-                'conditions' => array('Idea.isdeleted' => 0)
+                'conditions' => array('Idea.isdeleted' => 0),
+                'recursive' => 2
             )));
         }
     }

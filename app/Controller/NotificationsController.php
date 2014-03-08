@@ -7,20 +7,71 @@ class NotificationsController extends AppController {
         $this->set('title_for_layout', 'Notifications');
         $this->set('notifications', $this->Notification->find('all', array(
             'conditions' => array('Notification.userid' => $this->Session->read('Auth.User.id')),
-            'order' => 'Notification.created DESC'
+            'order' => array('Notification.isread ASC', 'Notification.created DESC'),
+            'limit' => 50,
         )));
     }
 
-    public function view($id = null) {
-        if (!$id) {
-            throw new NotFoundException(__('Invalid Notification'));
+    public function notified($id = null) {
+        $this->layout = null; //disable layout for json return
+        if ($this->RequestHandler->isAjax()) {
+            if(!$id) {
+                $id = @$this->request->query('id');
+            }
+            if (!$id) {
+                throw new NotFoundException(__('No id'));
+            } 
+            $this->Notification->read(null, $id);
+            $this->Notification->set('isread', 1);
+            if ($this->Notification->save()) {
+                $this->set('response', 'success');
+                $this->set('data', $id);
+                $this->render('/Elements/jsonreturn');
+            } else {
+                $this->set('response', 'failed');
+                $this->set('data', $id);
+                $this->render('/Elements/jsonreturn');
+            }
+        } else {
+            //non-ajax
+            $this->set('response', 'failed');
+            $this->set('data', $id);
+            $this->render('/Elements/jsonreturn');
         }
+    }
 
-        $notification = $this->Notifications->findById($id);
-        if (!$notification) {
-            throw new NotFoundException(__('Invalid Notification'));
+    /*
+     * Send a notification to a user or the group of users tracking an idea
+     * for use within controllers
+    */
+    public function sendNotifications($title, $message, $ideaid = null, $userid = null, $senderid = null) {
+        if ($userid != null) {
+            //send to individual user
+
         }
-        $this->set('notifications', $notification);
+        if ($ideaid != null) {
+            //send to all tracking users
+            $trackingids = $this->Tracking->find('all', array(
+                'Idea.isdeleted' => 0
+                ,'conditions' => array('Tracking.ideaid' => $ideaid)
+            ));
+            foreach ($trackingids as $user) {
+                //check if self
+                if ($user['Tracking']['userid'] != $senderid) {
+                    $notification = $this->Notification->create();
+                    $notification['Notification']['userid'] = $user['Tracking']['userid'];
+                    $notification['Notification']['ideaid'] = $ideaid;
+                    $notification['Notification']['title'] = $title;
+                    $notification['Notification']['message'] = $message;
+                    $notification['Notification']['created'] = null; //!important
+                    if ($this->Notification->save($notification)) {
+                        //Good input
+                    } else {
+
+                    }
+                }
+            }
+        }
     }
 
     /*

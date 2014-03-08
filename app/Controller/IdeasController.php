@@ -9,17 +9,20 @@ class IdeasController extends AppController {
         $this->set('ideas_active', $this->Idea->find('all', array(
             'conditions' => array('Idea.isdeleted' => 0),
             'order' => array('Idea.updated DESC'),
-            'limit' => 15
+            'limit' => 15,
+            'recursive' => 2
         )));
         $this->set('ideas_inactive', $this->Idea->find('all', array(
             'conditions' => array('Idea.isdeleted' => 0),
             'order' => array('Idea.updated ASC'),
-            'limit' => 15
+            'limit' => 15,
+            'recursive' => 2
         )));
         $this->set('ideas_recent', $this->Idea->find('all', array(
             'conditions' => array('Idea.isdeleted' => 0),
             'order' => array('Idea.created DESC'),
-            'limit' => 15
+            'limit' => 15,
+            'recursive' => 2
         )));
     }
 
@@ -64,7 +67,13 @@ class IdeasController extends AppController {
             $this->Idea->set('updated',null);
 
             if ($this->Idea->save()) {
-                $this->saveCategoryInfo($this->request->data['Category'], $id, true);
+                $this->saveCategoryInfo($this->request->data['Category'], $id);
+
+                //Notify
+                App::import('Controller', 'Notifications'); // mention at top
+                $Notifications = new NotificationsController; // Instantiation // mention within cron function
+                $Notifications->sendNotifications("An Idea you're tracking has been updated", $this->request->data['Idea']['name'], $id, $idea['Idea']['userid'], $this->Session->read('Auth.User.id'));
+
                 $this->Session->setFlash(__('Idea has been saved.'));
                 return $this->redirect(array('action' => 'index'));
             }
@@ -73,7 +82,10 @@ class IdeasController extends AppController {
 
     }
 
-    public function saveCategoryInfo($formdata, $ideaid, $replace = false) {
+    public function saveCategoryInfo($formdata, $ideaid) {
+        //delete all values matching ideaid
+        $this->IdeaValue->deleteAll(array('IdeaValue.ideaid' => $ideaid), false);
+        //Now add them back in
         foreach($formdata as $key=>$catentry) {
             if (isset($catentry) && $catentry == '') {
                 continue;
@@ -95,20 +107,9 @@ class IdeasController extends AppController {
                     } else {
                         //ERROR creating specific value
                     }
-
                 }
                 if (isset($ideaid) && isset($value)){
-                    //if replace = true, check for only new keys (EDIT MODE)
-                    if ($replace == true) {
-                        if (!$this->IdeaValue->hasAny(array(
-                            'IdeaValue.ideaid' => $ideaid,
-                            'IdeaValue.valueid' => $value
-                        ))){
-                            $entries[] = array('ideaid' => $ideaid,'valueid'=> $value);
-                        }
-                    } else {
-                        $entries[] = array('ideaid' => $ideaid,'valueid'=> $value);
-                    }
+                    $entries[] = array('ideaid' => $ideaid,'valueid'=> $value);
                 }
             }
             if (count($entries) > 0 && $this->IdeaValue->saveAll($entries)) {
@@ -142,6 +143,16 @@ class IdeasController extends AppController {
             $comment['Comment']['message'] = $c;
             $comment['Comment']['created'] = null; //!important
 
+            //update updated datetime for idea
+            $this->Idea->read(null, $id);
+            $this->Idea->set('updated',null);
+            $this->Idea->save();
+
+            //Notify
+            App::import('Controller', 'Notifications'); // mention at top
+            $Notifications = new NotificationsController; // Instantiation // mention within cron function
+            $Notifications->sendNotifications($username . " commented on " . $idea['Idea']['name'], $c, $id, $idea['Idea']['userid'], $userid);
+
             if ($this->Comment->save($comment)){
                 $this->set('response','success');
                 $this->set('data', array('userid'=>$id, 'html' => '<li>' . $username . ': ' . $c . '</li>'));
@@ -153,11 +164,10 @@ class IdeasController extends AppController {
             } 
         }
         else { 
-                $this->set('response','failed');
-                $this->set('data', array('Not ajax'));
-                $this->render('/Elements/jsonreturn');
+            $this->set('response','failed');
+            $this->set('data', array('Not ajax'));
+            $this->render('/Elements/jsonreturn');
         }
-        
     }
 
     public function idea($id = null) {

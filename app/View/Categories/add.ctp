@@ -1,7 +1,7 @@
-<!-- File: /app/View/Posts/add.ctp -->
+<!-- File: /app/View/Categories/add.ctp -->
 
-<h1>Create Category</h1>
-<?php echo $this->Form->create('Category', array(
+<h1>Create Value</h1>
+<?php echo $this->Form->create('Value', array(
   'inputDefaults' => array(
     'div' => 'form-group',
     'wrapInput' => false,
@@ -13,14 +13,8 @@
   <!-- The category name -->
     <?php echo $this->Form->input('name', array(
       'label' => 'Name',
-      'placeholder' => 'Category Name',
+      'placeholder' => 'Value Name',
     )); ?>
-
-    <!-- This should some (comma-separated?) list input, or multi-input (possibly)-->
-    <?php echo $this->Form->input('values', array(
-      'label' => 'Values',
-      'placeholder' => 'Category Values',
-      )); ?>
 
     <?php echo $this->Form->submit('Submit', array(
       'div' => 'form-group',
@@ -28,3 +22,4 @@
     )); ?>
 
   </fieldset>
+  <?php echo $this->Form->end(); ?>

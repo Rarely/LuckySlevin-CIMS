@@ -10,7 +10,7 @@ echo $this->fetch('css');
 echo $this->fetch('script');
 
 echo $this->Html->script('jquery-1.11.0.min.js');
-
+echo $this->Html->script('date.js');
 echo $this->Html->script('ajax.js');
 echo $this->Html->script('autocomplete.js');
 echo $this->Html->script('notifications.js');
@@ -18,31 +18,39 @@ echo $this->Html->script('custom-jquery.js');
 echo $this->Html->script('jquery.dotdotdot.min.js');
 echo $this->Html->script('ui.js');
 
-echo $this->Html->css('style.css');
-echo $this->Html->css('comment.css');
-
 echo $this->Js->writeBuffer();
 echo $this->Html->script('bootbox.min.js');
 //custom css
 echo $this->Html->css('bootstrap.css');
 echo $this->Html->script('bootstrap.min.js');
 
+echo $this->Html->css('style.css');
+echo $this->Html->css('comment.css');
+echo $this->Html->css('layout.css');
+echo $this->Html->css('idea.css');
+echo $this->Html->css('admin.css');
+
 echo $this->Html->script('select2.min.js');
 echo $this->Html->css('select2.css');
 echo $this->Html->css('select2-bootstrap.css');
 echo $this->Html->script('users.js');
+
+//filtering
+//echo $this->Html->script('http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js');
+echo $this->Html->script('jquery.mixitup.min.js');
+echo $this->Html->script('filter.js');
 ?>
 <style type="text/css">
 body {
-  padding-top: 60px;
+  padding-top: 52px;
 }
 </style>
 </head>
 <body>
-
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
+        <a class="navbar-brand" <?php echo $this->Html->link('CIMS', array('controller'=>'ideas', 'action'=>'index'));?></a>
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar">&nbsp;</span>
@@ -51,32 +59,47 @@ body {
           </button>
         </div>
         <div class="navbar-collapse collapse">
-          <a class="navbar-brand" <?php echo $this->Html->link('CIMS', array('controller'=>'ideas', 'action'=>'index'));?>></a>
+          
           <ul class="nav navbar-nav">
             <li><?php echo $this->Html->link('Search', array('controller'=>'search', 'action'=>'index'));?></li>
             <li><?php echo $this->Html->link('Trackings', array('controller'=>'trackings', 'action'=>'index'));?></li>
             <?php if ($userData['role'] == 'admin') { ?>
-            <li><?php echo $this->Html->link('Users', array('controller'=>'users', 'action'=>'index'));?></li>
+              <li><?php echo $this->Html->link('Users', array('controller'=>'users', 'action'=>'index'));?></li>
+              <li><?php echo $this->Html->link('Categories', array('controller'=>'categories', 'action'=>'index'));?></li>
             <?php } ?>
           </ul>
           <ul class="nav navbar-nav navbar-right">
+
+          <li class="dropdown">
+            <a href="#" class="welcome-name-btn dropdown-toggle" data-toggle="dropdown"> 
+              Welcome <?php echo $userData['name']?>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a>
+                  <?php echo $this->Html->link('Logout', array('controller'=>'users', 'action'=>'logout'));?>
+                </a>
+              </li>
+            </ul>
+          </li>
+
           <li><button class="add-btn btn btn-primary btn-lg" id="btn-add-idea" data-toggle="modal" data-target="#myModal" imn></button></li>
             <li class="dropdown">
               <a href="#" class="notify-btn dropdown-toggle notifications-btn" data-toggle="dropdown">
-                <span class="notify-count badge badge-important badge-notifications"><?php echo $notificationsCount ?></span>
+                <?php if ($notificationsCount > 0){ 
+                  echo "<span class=\"notify-count badge badge-important badge-notifications\">$notificationsCount</span>";
+                  }
+                ?>
               </a>
-              <ul class="dropdown-menu notifications-menu">
-                <li><a>Loading Notifications</a></li>
-              </ul>
+              <div id="notifications-menu" class="notifications-menu dropdown-menu list-group"></div>
             </li>
-            <li><?php echo $this->Html->link('Logout', array('controller'=>'users', 'action'=>'logout'));?></li>
+
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </div>
 
     <div class="container">
-      <?php // echo $this->element('ajaxmodal'); ?>
       <?php echo $this->fetch('content'); ?>
       <?php echo $this->element('newideaform'); ?>
     </div> <!-- /container -->

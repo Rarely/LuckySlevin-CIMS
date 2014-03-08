@@ -1,27 +1,31 @@
 var Ajax = {
   
-    trackIdea: function(dom, id) {
+    trackIdea: function(id) {
         $.ajax({
           type: "POST",
           url: '/trackings/track/' + id,
           async: true,
           success: function(data) {
             if (data.response === "success") {
-                $(dom).unbind().removeClass("trackbtn").addClass("untrackbtn").attr("onclick", "event.stopPropagation();").click(function() {Ajax.untrackIdea(dom, id)});
+              jQuery(".idea-actions[data-id=" + id + "] .trackbtn").each(function() {
+                $(this).unbind().removeClass("trackbtn").addClass("untrackbtn").attr("onclick", "event.stopPropagation();").click(function() {Ajax.untrackIdea(id)});
+              });
             }
           },
           dataType: 'json'
         });
     },
 
-    untrackIdea: function(dom, id) {
+    untrackIdea: function(id) {
         $.ajax({
           type: "POST",
           url: '/trackings/untrack/' + id,
           async: true,
           success: function(data) {
             if (data.response === "success") {
-                $(dom).unbind().removeClass("untrackbtn").addClass("trackbtn").attr("onclick", "event.stopPropagation();").click(function() {Ajax.trackIdea(dom, id)});
+                jQuery(".idea-actions[data-id=" + id + "] .untrackbtn").each(function() {
+                $(this).unbind().removeClass("untrackbtn").addClass("trackbtn").attr("onclick", "event.stopPropagation();").click(function() {Ajax.trackIdea(id)});
+              });
             }
           },
           dataType: 'json'
@@ -71,7 +75,19 @@ var Ajax = {
           async: true,
           success: function(data) {
             $('.navbar .notifications-menu').html(data);
-            $('.navbar .badge-notifications').text($('.navbar .notifications-menu li').length);
+            $('.navbar .badge-notifications').text($('.navbar .notifications-menu a.active').length);
+          }
+        });
+      },
+
+      setNotified: function(dom, id) {
+        $.ajax({
+          type: "GET",
+          url: '/notifications/notified/' + id,
+          async: true,
+          success: function(data) {
+            $(dom).removeClass('active');
+            $('.navbar .badge-notifications').text($('.navbar .notifications-menu a.active').length);
           }
         });
       },
@@ -130,6 +146,70 @@ var Ajax = {
           success: function(data) {
             if (data.response === "success") {
               $("tr[data-id=" + data.data.userid + "]").remove();
+            }
+          }
+        });
+      }
+    },
+
+    Categories: {
+      delete: function(valueID) {
+        $.ajax({
+          type: "POST",
+          dataType: 'json',
+          url: '/categories/delete/' + valueID,
+          async: true,
+          success: function(data) {
+            if (data.response === "success") {
+              $('tr[data-id=' + valueID + ']').remove();
+            }
+          }
+        });
+      },
+
+      create: function(categoryID, name) {
+        $.ajax({
+          type: "POST",
+          dataType: 'json',
+          url: '/categories/create/' + categoryID + "?name=" + name,
+          async: true,
+          success: function(data) {
+            if (data.response === "success") {
+              var html = "<tr data-id=\"" + data.data.dataid + "\"><td  class=\"value-name\">" + name + 
+              "</td><td><div class=\"btn-edit-value btn btn-default\">Edit</div><div class=\"btn-delete-value btn btn-danger\">Delete</div></td></tr>";
+              $('.table-category').append(html);
+              //todo: bind buttons
+              $("tr[data-id=\"" + data.data.dataid + "\"] .btn-edit-value").click(function() {
+                
+                  var id = $(this).parent().parent().attr('data-id');
+                  bootbox.prompt("Please enter a new value:", function(result) {
+                      if (result !== null) {
+                          Ajax.Categories.edit(id, result);
+                      }
+                  });
+              });
+              $("tr[data-id=\"" + data.data.dataid + "\"] .btn-delete-value").click(function() {
+                  var id = $(this).parent().parent().attr('data-id');
+                  bootbox.confirm("Are you sure?", function(result) {
+                    if (result === true) {
+                      Ajax.Categories.delete(id);
+                    }
+                  });
+              });
+            }
+          }
+        });
+      },
+
+      edit: function(valueID, name) {
+        $.ajax({
+          type: "POST",
+          dataType: 'json',
+          url: '/categories/edit/' + valueID + "?name=" + name,
+          async: true,
+          success: function(data) {
+            if (data.response === "success") {
+              $('tr[data-id=' + valueID + '] .value-name').text(name);
             }
           }
         });

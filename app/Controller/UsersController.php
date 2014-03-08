@@ -184,7 +184,7 @@ class UsersController extends AppController {
         }
     }
 
-    function membersList() {
+    function membersList($excludeSelf) {
         $term = $this->request->query('term');
 
         if ($this->RequestHandler->isAjax()) {
@@ -192,7 +192,11 @@ class UsersController extends AppController {
                 $conditions['or'][] = array('User.name LIKE' => "%$term%");
                 $conditions['or'][] = array('User.username LIKE' => "%$term%");
 
-                $results = $this->User->find('all', array('conditions' => 'User.id != '. $this->Session->read('Auth.User.id'), 'fields' => 'User.id, User.name, User.username'));
+                if($excludeSelf == 'true'){
+                    $results = $this->User->find('all', array('conditions' => 'User.id != '. $this->Session->read('Auth.User.id'), 'fields' => 'User.id, User.name, User.username'));
+                }else{
+                    $results = $this->User->find('all', array('fields' => 'User.id, User.name, User.username'));
+                }
                 foreach ($results as $result) {
                     $answer[] = array(
                         "id"=>$result['User']['id'],
