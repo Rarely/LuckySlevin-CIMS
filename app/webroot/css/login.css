@@ -1,0 +1,112 @@
+body{
+  background: #FFFFFF;
+  font-family: 'Montserrat', Arial;
+  font-size: 1em;
+}
+h2{
+  text-align: center;
+  color: #F1F2F4;
+  text-shadow: 0 1px 0 #000;
+  font-size: 1.4em;
+}
+a{
+  text-decoration: none; color: #EC5C93; 
+}
+.login{
+  background: #F1F2F4 !important;
+  border-bottom: 2px solid #C5C5C8 !important;
+  border-radius: 5px !important;
+  text-align: center !important;
+  color: #36383C !important;
+  text-shadow: 0 1px 0 #FFF !important;
+  max-width: 370px !important;
+  height: 550px !important;
+  margin: 0 auto !important;
+  padding: 15px 40px 20px 40px !important;
+  box-shadow: 0 0 3px #000 !important;
+}
+
+h1{
+  font-size: 1.4em;
+  margin-top: 40px;
+  margin-bottom: 45px;
+}
+p{
+  font-family:'Helvetica Neue';
+  font-weight: 300;
+  color: #7B808A;
+  margin-top: 0;
+  margin-bottom: 30px;
+}
+.input{
+  text-align: left;
+  background: #E5E7E9;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: inset 0 0 3px #65686E;
+  border-bottom: 1px solid #FFF;
+}
+input{
+  width: 260px;
+  background: transparent;
+  border: 0;
+  line-height: 3.2em;
+  box-sizing: border-box;
+  color: #71747A;
+  font-family:'Helvetica Neue';
+  font-size: 18px; 
+  text-shadow: 0 1px 0 #FFF;
+}
+input:focus{
+  outline: none;
+}
+.blockinput{
+  border-bottom: 1px solid #BDBFC2;
+  border-top: 1px solid #FFFFFF;
+}
+.blockinput:first-child{
+  border-top: 0;
+}
+.blockinput:last-child{
+  border-bottom: 0;
+}
+.blockinput i{
+  padding-right: 10px;
+  color: #B1B3B7;
+  text-shadow: 0 1px 0 #FFF;
+  padding-left: 10px;
+}
+::-webkit-input-placeholder {
+  color: #71747A;
+  font-family:'Helvetica Neue';
+  text-shadow: 0 1px 0 #FFF;
+}
+.btn-login{
+  margin-top: 50px;
+  display: block;
+  width: 100%;
+  line-height: 2em;
+  background: rgba(66, 139, 202, 1);
+  border-radius: 5px;
+  border:0;
+  border-top: 1px solid #46A294;
+  box-shadow: 0 0 0 1px #46A294, 0 2px 2px #808389;
+  color: #FFFFFF;
+  font-size: 1.5em;
+  text-shadow: 0 1px 2px #21756A;
+}
+.btn-login:hover{
+ background: linear-gradient(to bottom, rgba(66, 139, 202, 1) 0%,rgba(57,175,154,1) 100%);  
+}
+.btn-login:active{
+  box-shadow: inset 0 0 5px #000;
+  background: linear-gradient(to bottom, rgba(66, 139, 202, 1) 0%,rgba(107,198,186,1) 100%); 
+}
+
+.reset-buffer{
+  margin-top: 15px;
+  color: #FF0000;
+}
+.top-buffer{
+  margin-top: 50px;
+}
