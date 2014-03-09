@@ -1,6 +1,7 @@
 $(function() {
     $("#btn-export").click(function(e) {
         $("#btn-export").attr("disabled", "disabled");
+        canceldelete();
         jQuery('.ideablock').each(function() {
             $(this).attr("onclick", "");
             $(this).selectable();
@@ -27,20 +28,16 @@ $(function() {
             $("#btn-export").removeAttr("disabled");
         });
     });
-    $("#btn-cancel-csv").click(function(e) {
-            jQuery('.ideablock').each(function() {
-                $(this).unbind("click");
-                $(this).attr("onclick", "Ajax.Idea.showIdea($(this).attr(\"data-id\"));");
-                $(this).selectable();
-            });
-            $("#btn-cancel-csv").hide();
-            $("#export-help").hide();
-            $("#btn-save-csv").hide();
-            $("#btn-export").removeAttr("disabled");
-    });
+    $("#btn-cancel-csv").click(cancelcsv);
+
+
+
+
+
 
     $("#btn-delete").click(function(e) {
         $("#btn-delete").attr("disabled", "disabled");
+        cancelcsv();
         jQuery('.ideablock').each(function() {
             $(this).attr("onclick", "");
             $(this).selectable();
@@ -66,7 +63,23 @@ $(function() {
 }).find("div.modal-content").addClass("confirmWidth"); 
         });
     });
-    $("#btn-cancel-delete").click(function(e) {
+    $("#btn-cancel-delete").click(canceldelete);
+
+
+
+    function cancelcsv(e) {
+        jQuery('.ideablock').each(function() {
+            $(this).unbind("click");
+            $(this).attr("onclick", "Ajax.Idea.showIdea($(this).attr(\"data-id\"));");
+            $(this).selectable();
+        });
+        $("#btn-cancel-csv").hide();
+        $("#export-help").hide();
+        $("#btn-save-csv").hide();
+        $("#btn-export").removeAttr("disabled");
+    }
+
+    function canceldelete(e) {
             jQuery('.ideablock').each(function() {
                 $(this).unbind("click");
                 $(this).attr("onclick", "Ajax.Idea.showIdea($(this).attr(\"data-id\"));");
@@ -75,5 +88,10 @@ $(function() {
             $("#btn-cancel-delete").hide();
             $("#btn-delete-confirm").hide();
             $("#btn-delete").removeAttr("disabled");
-    });
+    }
+
+
 });
+
+
+

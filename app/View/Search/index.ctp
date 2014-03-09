@@ -31,19 +31,22 @@
                     )); ?>
             </div>
             <?php echo $this->Form->end(); ?>
-            <div class="col-md-2">  
+
                 <!-- EXPORT -->
                 <div id="btn-export" class="btn btn-success">Export</div>
+
+                <!-- DELETE -->
+                <div id="btn-delete" class="btn btn-danger">Delete</div>
+
+        </div>
+            <div class="row">
+
                 <div id="btn-cancel-csv" class="btn btn-default">Cancel</div>
                 <span id="export-help">Please click the title of the ideas you would like to export below</span>
                 <div id="btn-save-csv" class="btn btn-success">Save to File</div>
-            </div>
-            <div class="col-md-2">    
-                <!-- DELETE -->
-                <div id="btn-delete" class="btn btn-danger">Delete</div>
+
                 <div id="btn-cancel-delete" class="btn btn-default">Cancel</div>
                 <div id="btn-delete-confirm" class="btn btn-primary">Confirm</div>
-            </div>
         </div>
     </div>
     <div class="col-md-6">

@@ -1,4 +1,6 @@
 <!-- File: /app/View/Tracking/index.ctp -->
 
-<h1>Currently Tracked Ideas</h1>
-<?php echo $this->element('idealist', array("ideas" => $ideas)); ?>
+<?php echo $this->element('idealist', array("ideas" => $ideas, "title" => "Ideas you are tracking")); ?>
+
+<?php echo $this->element('idealist', array("ideas" => $ownedideas, "title" => "Ideas you own")); ?>
+

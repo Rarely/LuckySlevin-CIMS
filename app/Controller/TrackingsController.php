@@ -1,20 +1,27 @@
 <?php
 class TrackingsController extends AppController {
 	public $helpers = array('Html', 'Form', 'Js');
+    public $uses = array('Idea');
     var $components= array('Session', 'RequestHandler');
 
     public function index() {
         $this->set('title_for_layout', 'Currently Tracked Ideas');
-        $ideas = $this->Tracking->find('all', array(
+        $trackedIdeas = $this->Tracking->find('all', array(
             'Idea.isdeleted' => 0,
             'conditions' => array('Tracking.userid' => $this->Session->read('Auth.User.id')),
             'recursive' => 3
         ));
-        foreach ($ideas as &$idea) {
+        foreach ($trackedIdeas as &$idea) {
             $idea['Users'] = $idea['Idea']['Users'];
             $idea['Idea_Value'] = $idea['Idea']['Idea_Value'];
         }
-        $this->set('ideas', $ideas);
+        $this->set('ideas', $trackedIdeas);
+        
+        $this->set('ownedideas', $this->Idea->find('all', array(
+            'Idea.isdeleted' => 0,
+            'conditions' => array('Idea.userid' => $this->Session->read('Auth.User.id')),
+            'recursive' => 3
+        )));
     }
 
     public function track($id = null) {
