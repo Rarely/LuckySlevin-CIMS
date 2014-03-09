@@ -1,5 +1,6 @@
 $(document).ready(function() {
 	$(".user_filter").userSelect(false);
+    $("#sort_order").select2();
 
 	$("#Grid").mixitup({
 		showOnLoad: 'all',
@@ -80,8 +81,8 @@ $(document).ready(function() {
 
             $('#Grid').mixitup('filter',dataArray)
         });
-      }
-    });
+      
+    }});
 
     //TODO: this is duplicated code from ui.js that doesnt load here for some reason
     $(".title-text-wrapper").dotdotdot({
@@ -136,7 +137,7 @@ $(document).ready(function() {
         }
     }); 
 
-
+    
 
 
 

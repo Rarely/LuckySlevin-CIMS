@@ -47,3 +47,17 @@
     margin-bottom: 0px;
     margin-top: 0px;
 }
+
+.float-right {
+    float: right;
+    margin-right: 10px;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.form-group {
+    margin-left: 10px;
+    margin-right: 10px;
+}
