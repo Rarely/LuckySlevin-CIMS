@@ -1,3 +1,5 @@
+
+
 jQuery.fn.userSelect = function(excludeSelf) {
     var el = $(this[0]) // It's your element
     el.select2({

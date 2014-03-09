@@ -1,5 +1,6 @@
 <!-- File: /app/View/Users/index.ctp -->
 
+<div class="well users-well row">
 <h1>Users</h1>
 <?php echo $this->Html->link(
     "<img src=\"img/adduser.png\" height=\"35px\" width=\"35px\"/>",
@@ -44,3 +45,4 @@ array('controller' => 'users', 'action' => 'view', $user['User']['id'])); ?>
     <?php endforeach; ?>
     <?php unset($user); ?>
 </table>
+</div>

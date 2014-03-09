@@ -1,6 +1,6 @@
 #ideacontainer {
     width: 100%;
-    padding: 10px 0;
+    padding: 10px 0px 0px 0px;
     margin: 0 auto;
     overflow: auto;
 }
@@ -116,19 +116,15 @@
     width:100%;
 }
 
-h1 {
-    font-family:"Verdana", Times, serif;
-    color: #343C75;
-    font-size: 25px;
-    font-weight:bold;
-}
-
 .ideapage-container {
     padding:0px 5px;
+    margin-bottom: 0px;
 }
 
 .idealist-container {
     padding:0px 5px;
+    margin-bottom: 0px;
+    margin-top: 15px;
 }
 
 .idealist-title {

@@ -1,6 +1,7 @@
 <!-- File: /app/View/Categories/index.ctp -->
 <?php echo $this->Html->script('categories.js'); ?>
 <?php echo $this->Html->css('categories.css'); ?>
+<div class="row well categories-well">
 <h1>Values</h1>
 <table class="table">
     <thead>
@@ -19,3 +20,4 @@ array('controller' => 'categories', 'action' => 'view', $category['Category']['i
     </tbody>
     <?php unset($category); ?>
 </table>
+</div>

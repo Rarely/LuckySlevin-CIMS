@@ -5,4 +5,10 @@
 }
 
 
-
+h1 {
+    font-family:"Verdana", Times, serif;
+    color: #343C75;
+    font-size: 25px;
+    font-weight:bold;
+    margin: 5px;
+}

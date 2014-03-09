@@ -1,10 +1,9 @@
 .search-well {
-	margin-top: 20px;
+    margin-top: 20px;
 }
 
-.heading {
-	font-size: 24px;
-	font-style: bold;	
+.filter-well {
+    margin-top: 20px;
 }
 
 #export-help {
@@ -30,4 +29,21 @@
 #Grid .mix{
     opacity: 0;
     display: none;
+}
+
+.filter-controls{
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 10px;
+}
+
+.sort-controls{
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 10px;
+}
+
+.category-row{
+    margin-bottom: 0px;
+    margin-top: 0px;
 }
