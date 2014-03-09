@@ -18,9 +18,9 @@ jQuery.fn.bindIdeaModal = function() {
     });
 };
 
-jQuery.fn.selectable = function() {
+jQuery.fn.selectable = function(toggle) {
   var el = $(this[0]);
-  if (el.hasClass("selectable") || el.hasClass("selected")) {
+  if ((el.hasClass("selectable") || el.hasClass("selected")) && toggle == false) {
     el.removeClass("selectable").removeClass("selected");
   } else {
     el.addClass("selectable");
