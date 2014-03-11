@@ -3,6 +3,8 @@
 
 <div class="row well users-well">
   <h1>Edit User</h1>
+    <?php echo $this->Html->link("<span class=\"glyphicon glyphicon-arrow-left\"></span> Back to Users",
+         array('controller' => 'users', 'action' => 'index'), array('class'=> 'btn btn-default','escape'=> false)); ?>
   <?php echo $this->Form->create('User', array(
     'inputDefaults' => array(
       'div' => 'form-group',
@@ -12,16 +14,17 @@
     <fieldset>
       <?php echo $this->Form->input('name', array(
         'label' => 'Name',
-        'placeholder' => 'Name',
+        'value' => $user['User']['name'],
       )); ?>
 
       <?php echo $this->Form->input('username', array(
         'label' => 'Email',
-        'placeholder' => 'Email',
+        'value' => $user['User']['username'],
       )); ?>
       
       <?php echo $this->Form->input('password', array(
         'label' => 'Password',
+        'value' => $user['User']['password']
       )); ?>
 
       <?php echo $this->Form->input('role', array(
