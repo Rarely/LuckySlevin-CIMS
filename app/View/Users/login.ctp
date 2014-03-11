@@ -6,7 +6,7 @@
   echo $this->Html->css('login.css');
 ?>
 
-<div class="row">
+
   <div class="col-md-4 col-md-offset-4">
     <?php echo $this->Form->create('User', array(
       'url' => array('controller' => 'users', 'action' => 'login'),
@@ -51,7 +51,7 @@
         <div class="row">
           <?php echo $this->Form->submit('Login', array(
             'div' => false,
-            'class' => 'btn-login'
+            'class' => 'btn btn-primary btn-login'
           )); ?>
         </div>
         <div class="row">
@@ -66,4 +66,4 @@
     </fieldset>
     <?php echo $this->Form->end(); ?>
   </div>
-</div>
+

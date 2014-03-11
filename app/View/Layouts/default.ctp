@@ -63,7 +63,7 @@ body {
           
           <ul class="nav navbar-nav">
             <li><?php echo $this->Html->link('Search', array('controller'=>'search', 'action'=>'index'));?></li>
-            <li><?php echo $this->Html->link('Trackings', array('controller'=>'trackings', 'action'=>'index'));?></li>
+            <li><?php echo $this->Html->link('My Page', array('controller'=>'trackings', 'action'=>'index'));?></li>
             <?php if ($userData['role'] == 'admin') { ?>
               <li><?php echo $this->Html->link('Users', array('controller'=>'users', 'action'=>'index'));?></li>
               <li><?php echo $this->Html->link('Categories', array('controller'=>'categories', 'action'=>'index'));?></li>
