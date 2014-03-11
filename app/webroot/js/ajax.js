@@ -176,9 +176,11 @@ var Ajax = {
           success: function(data) {
             if (data.response === "success") {
               var html = "<tr data-id=\"" + data.data.dataid + "\"><td  class=\"value-name\">" + name + 
-              "</td><td><div class=\"btn-edit-value btn btn-default\">Edit</div><div class=\"btn-delete-value btn btn-danger\">Delete</div></td></tr>";
+              "</td><td>" +
+              "<div class=\"btn-delete-value admin-btn admin-btn-sm admin-btn-delete\"></div>" +
+              "<div class=\"btn-edit-value admin-btn admin-btn-sm admin-btn-edit\"></div>" +
+              "</td></tr>";
               $('.table-category').append(html);
-              //todo: bind buttons
               $("tr[data-id=\"" + data.data.dataid + "\"] .btn-edit-value").click(function() {
                 
                   var id = $(this).parent().parent().attr('data-id');

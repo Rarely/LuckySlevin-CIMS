@@ -1,13 +1,12 @@
 <!-- app/View/Users/add.ctp -->
-<h1>Create User</h1>
-<?php echo $this->Form->create('User', array(
-  'inputDefaults' => array(
-    'div' => 'form-group',
-    'wrapInput' => false,
-    'class' => 'form-control'
-  ),
-  'class' => 'well'
-)); ?>
+<div class="row well users-well">
+  <h1>Create User</h1>
+  <?php echo $this->Form->create('User', array(
+    'inputDefaults' => array(
+      'div' => 'form-group',
+      'wrapInput' => false,
+      'class' => 'form-control'
+  ))); ?>
     <fieldset>
       <?php echo $this->Form->input('name', array(
         'label' => 'Name',
@@ -32,5 +31,6 @@
         'div' => 'form-group',
         'class' => 'btn btn-primary'
       )); ?>
-  </fieldset>
-<?php echo $this->Form->end(); ?>
+    </fieldset>
+  <?php echo $this->Form->end(); ?>
+</div>
