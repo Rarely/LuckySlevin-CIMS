@@ -3,9 +3,9 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h2 class="modal-title" id="myModalLabel">
+        <h1 class="modal-title" id="myModalLabel">
           <?php echo $idea['Idea']['name']; ?>
-        </h2>
+        </h1>
       </div>
       <div class="modal-body">
         <?php echo $this->Form->create('Idea', array(
@@ -16,45 +16,26 @@
             ),
           'class' => 'well'
         )); ?>
-        <div class="row">
+        <div class="col-md-8">
           <!--The leftside details of an Idea -->
-          <div class="col-md-6">
+          <div class="col-md-4">
             <strong>Community Partner</strong><br>
             <?php echo $idea['Idea']['name']; ?><br>
             <strong>Contact Name</strong><br>
-            Need this Field<br>
+            <?php echo $idea['Idea']['contact_name']; ?><br>
             <strong>Contact Details</strong><br>
-            Need this Frield<br>
-            <strong>Project Type</strong><br>
-            Need this Field<br>
-            <strong>Theme</strong><br>
-            Need this Field<br>
+            <?php echo $idea['Idea']['contact_email']; ?><br>
+            <?php echo $idea['Idea']['contact_phone']; ?><br>
             <strong>Referral Source</strong><br>
             Need this Field<br>
             <Strong>Timeframe</Strong><br>
             Need this field<br>
-            <strong>Status</strong><br>
-            Need this field<br>
-            <strong>Categories</strong><br>
-            <?php foreach($categories as $cat) { ?>
-              <?php echo $cat['Category']['name'] ?>:
-              <ul>
-              <?php foreach($ideavalues as $value) { ?>
-                <?php if ($value['Value']['categoryid'] == $cat['Category']['id']) { ?>
-                  <li><?php echo $value['Value']['name']; ?></li>
-                <?php } ?>
-              <?php } ?>
-              </ul>
-            <?php } ?>
           </div>
           <!--The Description details of an Idea -->                      
           <div class="col-md-6">
             Description:<br>
             <?php echo $idea['Idea']['description']; ?>
           </div>
-        </div>
-        <div class="modal-footer">
-
           <div class="comment-heading">Comments:</div>
             <div class="commentblock">
               <ul class="commentList">
@@ -88,7 +69,20 @@
                 <div class="btn btn-info btn-share">Share</div>
               </div>
             </div>
-
+        </div>
+        <div class="col-md-4">
+          <?php foreach($categories as $cat) { ?>
+          <?php echo $cat['Category']['name'] ?>:
+            <ul>
+              <?php foreach($ideavalues as $value) { ?>
+                <?php if ($value['Value']['categoryid'] == $cat['Category']['id']) { ?>
+                  <li><?php echo $value['Value']['name']; ?></li>
+                  <?php } ?>
+              <?php } ?>
+            </ul>
+            <?php } ?>
+        </div>
+        <div class="modal-footer">
             <?php echo $this->element('ideaactions', array("idea" => $idea)); ?>
 
             <?php echo $this->Html->link('Edit', array('controller' => 'ideas', 
