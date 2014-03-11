@@ -1,4 +1,6 @@
 <!-- app/View/Users/add.ctp -->
+<?php echo $this->Html->css('users.css'); ?>
+
 <div class="row well users-well">
   <h1>Create User</h1>
   <?php echo $this->Form->create('User', array(

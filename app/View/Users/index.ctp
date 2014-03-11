@@ -1,4 +1,5 @@
 <!-- File: /app/View/Users/index.ctp -->
+<?php echo $this->Html->css('users.css'); ?>
 
 <div class="well users-well row">
 <h1>Users</h1>

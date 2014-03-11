@@ -3,6 +3,8 @@
     echo $this->Html->script('search.js');
     echo $this->Html->css('jquery-selectable.css');
     echo $this->Html->css('search.css');
+    echo $this->Html->script('jquery.mixitup.min.js');
+    echo $this->Html->script('filter.js');
 ?>
 
 <div class="row">
@@ -67,7 +69,6 @@
                       <?php echo 'data-id="' . $category['Category']['id'] .'"'; ?>
                       <?php echo 'placeholder="' . $category['Category']['name'] .'"' ?>
                        style='width:100%' />
-                      <br />
                     </div>
                 <?php } ?>
             </div>
