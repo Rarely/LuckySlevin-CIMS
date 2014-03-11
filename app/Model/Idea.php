@@ -9,7 +9,11 @@ class Idea extends AppModel {
             'Idea_Value' => array('Idea_Value' => 'Idea_Value'
                                 ,'className' => 'IdeaValue'
                                 ,'foreignKey' => 'ideaid'
-            )
+            ),
+            'Idea_Reference' => array('Idea_Reference' => 'Idea_Reference'
+                                ,'className' => 'IdeaReference'
+                                ,'foreignKey' => 'refers_to'
+            ),
         );
 
         public $belongsTo = array(
