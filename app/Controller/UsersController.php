@@ -10,19 +10,7 @@ class UsersController extends AppController {
             'conditions' => array('User.isdeleted' => 0)
         )));
     }
-
-    public function view($id = null) {
-        if (!$id) {
-            throw new NotFoundException(__('Invalid user'));
-        }
-
-        $user = $this->User->findById($id);
-        if (!$user) {
-            throw new NotFoundException(__('Invalid user'));
-        }
-        $this->set('user', $user);
-    }
-
+    
     public function edit($id = null) { 
         if (!$id) {
             throw new NotFoundException(__('Invalid User'));

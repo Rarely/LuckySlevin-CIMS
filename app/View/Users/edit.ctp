@@ -1,4 +1,4 @@
-<!-- app/View/Users/add.ctp -->
+<!-- app/View/Users/edit.ctp -->
 <?php echo $this->Html->css('users.css'); ?>
 
 <div class="row well users-well">
@@ -8,8 +8,7 @@
       'div' => 'form-group',
       'wrapInput' => false,
       'class' => 'form-control'
-    ),
-  )); ?>
+  ))); ?>
     <fieldset>
       <?php echo $this->Form->input('name', array(
         'label' => 'Name',
@@ -34,5 +33,5 @@
         'div' => 'form-group',
         'class' => 'btn btn-primary'
       )); ?>
-  </fieldset>
+    </fieldset>
 </div>
