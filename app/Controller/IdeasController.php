@@ -82,6 +82,24 @@ class IdeasController extends AppController {
 
     }
 
+    public function email($id=null) { 
+        if (!$id) {
+            throw new NotFoundException(__('Invalid idea'));
+        }
+
+        $idea = $this->Idea->findById($id);
+        if (!$idea) {
+            throw new NotFoundException(__('Invalid idea'));
+        }
+
+        $this->set('idea', $idea);
+        $this->set('values', $this->IdeaValue->find('all', array(
+            'conditions' => array('ideaid' => $id),
+            'fields' => 'Value.name, Value.categoryid',
+            'recursive'=>2
+        )));
+    }
+
     public function saveCategoryInfo($formdata, $ideaid) {
         //delete all values matching ideaid
         $this->IdeaValue->deleteAll(array('IdeaValue.ideaid' => $ideaid), false);

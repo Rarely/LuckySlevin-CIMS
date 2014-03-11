@@ -89,7 +89,13 @@
               'action' => 'edit', 
               $idea['Idea']['id'])
               , array('class' =>'btn btn-default')
-              ); ?>
+            ); ?>
+
+            <?php echo $this->Html->link('Email', array('controller' => 'ideas', 
+              'action' => 'email', 
+              $idea['Idea']['id'])
+              , array('class' =>'btn btn-default', 'target' => '_blank')
+            ); ?>
             
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
