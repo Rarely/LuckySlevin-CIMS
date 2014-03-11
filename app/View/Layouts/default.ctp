@@ -29,17 +29,12 @@ echo $this->Html->css('comment.css');
 echo $this->Html->css('layout.css');
 echo $this->Html->css('idea.css');
 echo $this->Html->css('admin.css');
-echo $this->Html->css('users.css');
 
 echo $this->Html->script('select2.min.js');
 echo $this->Html->css('select2.css');
 echo $this->Html->css('select2-bootstrap.css');
 echo $this->Html->script('users.js');
 
-//filtering
-//echo $this->Html->script('http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js');
-echo $this->Html->script('jquery.mixitup.min.js');
-echo $this->Html->script('filter.js');
 ?>
 <style type="text/css">
 body {
@@ -71,20 +66,19 @@ body {
           </ul>
           <ul class="nav navbar-nav navbar-right">
 
-          <li class="dropdown">
-            <a href="#" class="welcome-name-btn dropdown-toggle" data-toggle="dropdown"> 
-              Welcome <?php echo $userData['name']?>
-            </a>
-            <ul class="dropdown-menu">
-              <li>
-                <a>
-                  <?php echo $this->Html->link('Logout', array('controller'=>'users', 'action'=>'logout'));?>
-                </a>
-              </li>
-            </ul>
-          </li>
-
-          <li><button class="add-btn btn btn-primary btn-lg" id="btn-add-idea" data-toggle="modal" data-target="#myModal" imn></button></li>
+            <li><button class="add-btn btn btn-primary btn-lg" id="btn-add-idea" data-toggle="modal" data-target="#myModal" imn></button></li>
+            <li class="dropdown">
+              <a href="#" class="welcome-name-btn dropdown-toggle" data-toggle="dropdown"> 
+                Welcome <?php echo $userData['name']?>
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a>
+                    <?php echo $this->Html->link('Logout', array('controller'=>'users', 'action'=>'logout'));?>
+                  </a>
+                </li>
+              </ul>
+            </li>
             <li class="dropdown">
               <a href="#" class="notify-btn dropdown-toggle notifications-btn" data-toggle="dropdown">
                 <?php if ($notificationsCount > 0){ 
