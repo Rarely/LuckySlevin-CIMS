@@ -28,18 +28,12 @@ echo $this->Html->css('style.css');
 echo $this->Html->css('comment.css');
 echo $this->Html->css('layout.css');
 echo $this->Html->css('idea.css');
-echo $this->Html->css('admin.css');
-echo $this->Html->css('users.css');
 
 echo $this->Html->script('select2.min.js');
 echo $this->Html->css('select2.css');
 echo $this->Html->css('select2-bootstrap.css');
 echo $this->Html->script('users.js');
 
-//filtering
-//echo $this->Html->script('http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js');
-echo $this->Html->script('jquery.mixitup.min.js');
-echo $this->Html->script('filter.js');
 ?>
 <style type="text/css">
 body {
