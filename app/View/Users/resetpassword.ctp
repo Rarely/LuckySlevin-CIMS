@@ -1,4 +1,4 @@
-<div id="view_page">
+<div class="row well well-top-margin">
 <h2>Reset Lost Password</h2>
 <?php echo $this->Form->create('User', array(
   'url' => array('controller' => 'users', 'action' => 'resetpassword'),
@@ -6,8 +6,7 @@
     'div' => 'form-group',
     'wrapInput' => false,
     'class' => 'form-control'
-  ),
-  'class' => 'well'
+  )
 )); ?>
 
 <fieldset>
@@ -20,5 +19,5 @@
       'class' => 'btn btn-primary'
     )); ?>
 </fieldset>
-
+<?php echo $this->Form->end(); ?>
 </div>

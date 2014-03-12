@@ -10,12 +10,16 @@ class Idea extends AppModel {
                                 ,'className' => 'IdeaValue'
                                 ,'foreignKey' => 'ideaid'
             ),
-            'Idea_Reference' => array('Idea_Reference' => 'Idea_Reference'
-                                ,'className' => 'IdeaReference'
-                                ,'foreignKey' => 'refers_to'
-            ),
         );
-
+        public $hasAndBelongsToMany = array(
+          'References' => array(
+            'className' => 'Idea',
+            'joinTable' => 'idea_references',
+            'foreignKey' => 'idea_id',
+            'associationForeignKey' => 'refers_to',
+            'unique' => true,
+          )
+        );
         public $belongsTo = array(
             'Users' => array('Users' => 'Users',
                              'className' => 'Users',

@@ -35,6 +35,15 @@
             Need this field<br>
             <strong>Status</strong><br>
             Need this field<br>
+            <strong>Referred Ideas</strong><br>
+            <ul>
+              <?php
+                foreach($idea['References'] as $ref) {
+                  echo '<li>' . $ref['name'] . '</li>';
+                }
+              ?>
+            </ul>
+            <br />
             <strong>Categories</strong><br>
             <?php foreach($categories as $cat) { ?>
               <?php echo $cat['Category']['name'] ?>:

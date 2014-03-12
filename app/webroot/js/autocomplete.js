@@ -22,11 +22,14 @@ jQuery.fn.sortBy = function() {
       });
   };
 
-jQuery.fn.userSelect = function(excludeSelf) {
+jQuery.fn.userSelect = function(excludeSelf, initvalue, multiple, placeholder) {
+    multiple = multiple !== false;
+    initvalue = initvalue || null;
+    placeholder = placeholder || "Share with Others";
     var el = $(this[0]) // It's your element
-    el.select2({
-      placeholder: "Share with Others",
-      multiple: true,
+    var options = {
+      placeholder: placeholder,
+      multiple: multiple,
       allowClear: true,
       minimumInputLength: 0,
       ajax: {
@@ -43,7 +46,18 @@ jQuery.fn.userSelect = function(excludeSelf) {
       },
         dropdownCssClass: "bigdrop", // apply css that makes the dropdown taller
         escapeMarkup: function (m) { return m; }
+    };
+    if (initvalue !== null) {
+      $.extend(options, {
+        initSelection: function (element, callback) {
+          if (multiple === false) {
+            el.attr("value", jQuery.parseJSON( initvalue ).id);
+          }
+          callback(jQuery.parseJSON( initvalue ));
+        }
       });
+    }
+    el.select2(options);
   };
 
 /*
