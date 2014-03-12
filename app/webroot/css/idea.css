@@ -13,7 +13,6 @@
     max-height: 625px;
 }
 
-
 #ideacontainer .ideablock {
     height: 210px;
     overflow-x: hidden;
@@ -23,6 +22,8 @@
     word-wrap: break-word;
     margin-right: 5px;
     border:none;
+    background: #3d9ad1;
+    background-size:190px;
 
     -webkit-transition: all 200ms linear;
     -moz-transition: all 200ms linear;
@@ -32,9 +33,6 @@
     -moz-transform: translateZ(0);
     -o-transform: translateZ(0);
     transform: translateZ(0);
-
-    background: #3d9ad1;
-    background-size:190px;
 }
 
 .ideacontainer-search .ideablock {
@@ -88,12 +86,6 @@
     padding-left: 20px;
 }
 
-
-.btn-share {
-    width:100%;
-    margin-top:20px;
-}
-
 .idea-tracking-btn {
     width:60px;
     height:60px;
@@ -110,6 +102,10 @@
 
 .untrackbtn {
     background-image: url('/img/untracked.png');
+}
+
+.email-btn {
+    background-image: url('/img/email.png');
 }
 
 #ajax-modal .sharing-autocomplete {
@@ -131,6 +127,18 @@
     padding-left: 15px;
 }
 
-textarea.form-control {
+#comment-field textarea.form-control {
   height: 90px;
+  width:90%;
+}
+
+#modal-edit-email-btn{
+    float:right;
+    padding-right:50px;
+    padding-top: 10px;
+}
+
+.no-margin{
+    margin:0px;
+
 }
