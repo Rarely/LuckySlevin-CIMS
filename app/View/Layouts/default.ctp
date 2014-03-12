@@ -43,7 +43,7 @@ body {
 </style>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div id="heading-colour" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
         <a class="navbar-brand" <?php echo $this->Html->link('CIMS', array('controller'=>'ideas', 'action'=>'index'));?></a>
@@ -58,7 +58,7 @@ body {
           
           <ul class="nav navbar-nav">
             <li><?php echo $this->Html->link('Search', array('controller'=>'search', 'action'=>'index'));?></li>
-            <li><?php echo $this->Html->link('Trackings', array('controller'=>'trackings', 'action'=>'index'));?></li>
+            <li><?php echo $this->Html->link('My Page', array('controller'=>'trackings', 'action'=>'index'));?></li>
             <?php if ($userData['role'] == 'admin') { ?>
               <li><?php echo $this->Html->link('Users', array('controller'=>'users', 'action'=>'index'));?></li>
               <li><?php echo $this->Html->link('Categories', array('controller'=>'categories', 'action'=>'index'));?></li>
