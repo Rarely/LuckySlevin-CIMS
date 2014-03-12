@@ -15,7 +15,7 @@ class Idea extends AppModel {
           'References' => array(
             'className' => 'Idea',
             'joinTable' => 'idea_references',
-            'foreignKey' => 'idea_id',
+            'foreignKey' => 'ideaid',
             'associationForeignKey' => 'refers_to',
             'unique' => true,
           )
