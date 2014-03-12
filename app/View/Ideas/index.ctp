@@ -5,9 +5,12 @@
 <?php echo $this->element('idealist', array("ideas" => $ideas_active, "title" => "Active ideas")) ?>
 </div>
 <div class="row">
-<?php echo $this->element('idealist', array("ideas" => $ideas_inactive, "title" => "Inactive ideas")) ?>
+<?php echo $this->element('idealist', array("ideas" => $ideas_recent, "title" => "Recently created ideas")) ?>
 </div>
 <div class="row">
-<?php echo $this->element('idealist', array("ideas" => $ideas_recent, "title" => "Recently created ideas")) ?>
+<?php echo $this->element('idealist', array("ideas" => $ideas_unassigned, "title" => "Community partner ideas")) ?>
+</div>
+<div class="row">
+<?php echo $this->element('idealist', array("ideas" => $ideas_inactive, "title" => "Inactive ideas")) ?>
 </div>
 
