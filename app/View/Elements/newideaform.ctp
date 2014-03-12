@@ -19,7 +19,8 @@
             'wrapInput' => false,
             'class' => 'form-control'
           ),
-          'class' => 'well'
+          'class' => 'well',
+          'id' => 'new-idea-form'
         )); ?>
           <fieldset>
             <?php echo $this->Form->input('name', array(
@@ -36,13 +37,15 @@
             <?php echo $this->Form->input('contact_name', array(
               'label' => 'Contact Name',
               'placeholder' => 'Contact Name',
-              'rows'=>1
+              'rows'=>1,
+              'maxlength' => '100'
             )); ?>
 
             <?php echo $this->Form->input('contact_email', array(
               'label' => 'Contact Email',
               'placeholder' => 'Contact Email',
-              'rows'=>1
+              'rows'=>1,
+              'maxlength' => '100'
             )); ?>
 
             <?php echo $this->Form->input('description', array(
@@ -60,6 +63,10 @@
                style='width:100%' />
               <br />
             <?php } ?>
+
+            <label for="owner">Owner</label>
+            <input type="hidden" name="data[Idea][userid]" value=" " initvalue='<?php echo json_encode(array('id' => $userData['id'], 'text' => $userData['name'] . '(' . $userData['username'] . ')')); ?>' class="owner-select" />
+
            </fieldset>
 
       </div>

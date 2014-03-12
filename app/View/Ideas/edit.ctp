@@ -1,4 +1,5 @@
 <?php echo $this->Html->script('editidea.js'); ?>
+<div class="row well well-top-margin">
 <h1> Edit an Idea </h1>
 
 <?php echo $this->Form->create('Idea', array(
@@ -7,7 +8,7 @@
     'wrapInput' => false,
     'class' => 'form-control'
   ),
-  'class' => 'well'
+  'id' => 'edit-idea-form'
 )); ?>
 
     <fieldset>
@@ -52,10 +53,14 @@
         <br />
       <?php } ?>
 
+      <label for="owner">Owner</label>
+      <input type="hidden" name="data[Idea][userid]" value=" " initvalue='<?php echo json_encode(array('id' => $idea['Users']['id'], 'text' => $idea['Users']['name'] . '(' . $idea['Users']['username'] . ')')); ?>' class="owner-select" />
+      <br />
+
       <?php echo $this->Form->submit('Save', array(
         'div' => 'form-group',
         'class' => 'btn btn-primary'
       )); ?>
   </fieldset>
 <?php echo $this->Form->end(); ?>
-
+</div>

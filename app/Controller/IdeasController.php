@@ -32,7 +32,6 @@ class IdeasController extends AppController {
             $this->Idea->create();
             $this->request->data['Idea']['created'] = date('Y-m-d H:i:s');
             $this->request->data['Idea']['updated'] = null;
-            $this->request->data['Idea']['userid'] = $this->Session->read('Auth.User.id');
             if ($this->Idea->save($this->request->data)) {
                 
                 $this->saveCategoryInfo($this->request->data['Category'], $this->Idea->getLastInsertID());
@@ -64,6 +63,7 @@ class IdeasController extends AppController {
             $this->Idea->read(null, $id);
             $this->Idea->set('name', $this->request->data['Idea']['name']);
             $this->Idea->set('description', $this->request->data['Idea']['description']);
+            $this->Idea->set('userid', $this->request->data['Idea']['userid']);
             $this->Idea->set('updated',null);
 
             if ($this->Idea->save()) {

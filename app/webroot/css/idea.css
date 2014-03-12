@@ -140,5 +140,8 @@
 
 .no-margin{
     margin:0px;
+}
 
+.owner-select {
+    width:100%;
 }
