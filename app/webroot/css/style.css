@@ -4,7 +4,6 @@
     margin-bottom: 0;
 }
 
-
 h1 {
     font-family:"Verdana", Times, serif;
     color: #343C75;
@@ -14,6 +13,10 @@ h1 {
 }
 
 .empty-list{
-margin-top:15px;
-padding-top:80px;
+    margin-top:15px;
+    padding-top:80px;
+}
+
+.well-top-margin {
+    margin-top: 15px;
 }

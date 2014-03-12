@@ -9,9 +9,17 @@ class Idea extends AppModel {
             'Idea_Value' => array('Idea_Value' => 'Idea_Value'
                                 ,'className' => 'IdeaValue'
                                 ,'foreignKey' => 'ideaid'
-            )
+            ),
         );
-
+        public $hasAndBelongsToMany = array(
+          'References' => array(
+            'className' => 'Idea',
+            'joinTable' => 'idea_references',
+            'foreignKey' => 'idea_id',
+            'associationForeignKey' => 'refers_to',
+            'unique' => true,
+          )
+        );
         public $belongsTo = array(
             'Users' => array('Users' => 'Users',
                              'className' => 'Users',
