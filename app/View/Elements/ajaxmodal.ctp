@@ -66,6 +66,7 @@
             <?php echo $idea['Idea']['description']; ?>
           </div>
         </div>
+        </div>
         <div class="modal-footer">
 
           <div class="comment-heading">Comments:</div>

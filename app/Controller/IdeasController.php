@@ -24,6 +24,12 @@ class IdeasController extends AppController {
             'limit' => 15,
             'recursive' => 2
         )));
+        $this->set('ideas_unassigned', $this->Idea->find('all', array(
+            'Idea.isdeleted' => 0,
+            'conditions' => array('Idea.userid' => null),
+            'recursive' => 3
+        )));
+
     }
 
      public function add() {
