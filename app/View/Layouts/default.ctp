@@ -43,7 +43,7 @@ body {
 </style>
 </head>
 <body>
-    <div id="heading-colour" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div id="heading-colour" class="navbar navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
         <a class="navbar-brand" <?php echo $this->Html->link('CIMS', array('controller'=>'ideas', 'action'=>'index'));?></a>
