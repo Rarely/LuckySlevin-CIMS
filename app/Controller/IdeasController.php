@@ -48,6 +48,30 @@ class IdeasController extends AppController {
             $this->Session->setFlash(__('Unable to add idea.'));
         }
     }
+ 
+    public function add_community($id = null) {
+        $this->layout= false;
+        if ($this->request->is('post')) {
+
+            $this->Idea->create();
+            $this->request->data['Idea']['created'] = date('Y-m-d H:i:s');
+            $this->request->data['Idea']['updated'] = null;
+            $this->request->data['Idea']['userid'] = $this->Session->read('Auth.User.id');
+            if ($this->Idea->save($this->request->data)) {
+             
+                $this->Session->setFlash(__('Idea has been saved.'));
+                return $this->redirect(array('action' => 'index'));
+            }
+            $this->Session->setFlash(__('Unable to add idea.'));
+        }
+    }
+
+    public function beforeFilter() {
+        parent::beforeFilter();
+    // Allow us`ers to register and logout.
+        $this->Auth->allow('add_community');
+        $this->Auth->authorize = array('Controller');
+    } 
 
     public function edit($id = null) { 
         if (!$id) {
