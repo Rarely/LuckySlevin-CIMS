@@ -1,4 +1,6 @@
 <?php 
+// app/Controller/UsersController.php
+
 class UsersController extends AppController {
     var $uses =array('User','Ticket', 'CakeEmail', 'Network/Email');
     var $helpers = array('Html', 'Form');
@@ -52,12 +54,11 @@ class UsersController extends AppController {
             $this->Session->setFlash(__('Unable to add user.'));
         }
     }
-    // app/Controller/UsersController.php
 
     public function beforeFilter() {
         parent::beforeFilter();
-    // Allow us`ers to register and logout.
-        $this->Auth->allow('logout','resetpassword','useticket', 'newpassword');
+        // Allow users to register and logout.
+        $this->Auth->allow('logout','resetpassword','useticket', 'newpassword', 'memberslist');
         $this->Auth->authorize = array('Controller');
     }   
 
@@ -175,35 +176,38 @@ class UsersController extends AppController {
         }
     }
 
-    function membersList($excludeSelf) {
+    function memberslist($excludeSelf = false) {
+        $this->layout = false;
         $term = $this->request->query('term');
 
         if ($this->RequestHandler->isAjax()) {
-            $this->set('response', 'success');
-                $conditions['or'][] = array('User.name LIKE' => "%$term%");
-                $conditions['or'][] = array('User.username LIKE' => "%$term%");
+            $conditions['or'][] = array('User.name LIKE' => "%$term%");
+            $conditions['or'][] = array('User.username LIKE' => "%$term%");
 
-                if($excludeSelf == 'true'){
-                    $results = $this->User->find('all', array('conditions' => 'User.id != '. $this->Session->read('Auth.User.id'), 'fields' => 'User.id, User.name, User.username'));
-                }else{
-                    $results = $this->User->find('all', array('fields' => 'User.id, User.name, User.username'));
-                }
-                foreach ($results as $result) {
-                    $answer[] = array(
-                        "id"=>$result['User']['id'],
-                        "text" => $result['User']['name'] . "(" . $result['User']['username'] . ")", 
-                        "name"=>$result['User']['name'], 
-                        "email" => $result['User']['username']
-                    );
-                }
+            if ($excludeSelf == 'true') {
+                $results = $this->User->find('all', array('conditions' => 'User.id != '. $this->Session->read('Auth.User.id'), 'fields' => 'User.id, User.name, User.username'));
+            } else {
+                $results = $this->User->find('all', array('fields' => 'User.id, User.name, User.username'));
+            }
+            foreach ($results as $result) {
+                $answer[] = array(
+                    "id"=>$result['User']['id'],
+                    "text" => $result['User']['name'] . "(" . $result['User']['username'] . ")",
+                    "name"=>$result['User']['name'],
+                    "email" => $result['User']['username']
+                );
+            }
 
             $this->set('response', $answer);
+            $this->render('/Elements/jsonraw');
+        } else {
+            $this->set('response', array());
             $this->render('/Elements/jsonraw');
         }
     }
 
 
-    function delete($id = null){
+    function delete($id = null) {
         $this->layout = false; 
         if (!$id) {
             throw new NotFoundException(__('Invalid user'));
@@ -217,19 +221,17 @@ class UsersController extends AppController {
         $this->set('user', $user);
 
         if ($this->request->is('post')) {
-                $this->User->id = $id; 
-             if ($this->User->saveField('isdeleted', true)) {
-                 $this->set('response', 'success');
-                 $this->set('data', array('userid' => $id));
-                 $this->render('/Elements/jsonreturn');
-             }
-             else {
-            //non-ajax
-            $this->set('response', 'failed');
-            $this->set('data', array('userid' => $id));
-            $this->render('/Elements/jsonreturn');
-        }
+            $this->User->id = $id;
+            if ($this->User->saveField('isdeleted', true)) {
+                $this->set('response', 'success');
+                $this->set('data', array('userid' => $id));
+                $this->render('/Elements/jsonreturn');
+            } else {
+                //non-ajax
+                $this->set('response', 'failed');
+                $this->set('data', array('userid' => $id));
+                $this->render('/Elements/jsonreturn');
+            }
         } 
     }
-
 }
