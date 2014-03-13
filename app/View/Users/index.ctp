@@ -2,10 +2,10 @@
 <?php echo $this->Html->css('users.css'); ?>
 
 <div class="well users-well row">
-<h1>Users</h1>
+<div class="inline-block"><h1>Users</h1></div>
 <?php echo $this->Html->link("",
     array('controller' => 'users', 'action' => 'add'),
-    array('class' =>'admin-btn admin-btn-md admin-btn-add', 'escape' => FALSE)
+    array('class' =>'admin-btn admin-btn-md admin-btn-add pull-right inline-block', 'escape' => FALSE, 'style' => 'margin-right: 110px;')
 ); ?>
 
 

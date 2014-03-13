@@ -8,6 +8,7 @@
     <thead>
         <tr>
             <th>Category Name</th>
+            <th>Description</th>
         </tr>
     </thead>
     <tbody>
@@ -15,6 +16,8 @@
     <tr>
         <td><?php echo $this->Html->link($category['Category']['name'],
 array('controller' => 'categories', 'action' => 'view', $category['Category']['id'])); ?>
+        </td>
+        <td><?php echo $category['Category']['description'] ?>
         </td>
     </tr>
     <?php endforeach; ?>
