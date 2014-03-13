@@ -106,3 +106,52 @@ jQuery.fn.userSelect = function(excludeSelf, initvalue, multiple, placeholder) {
 
   el.select2(options);
 };
+
+
+jQuery.fn.ideaSelect = function(ideaid) {
+  ideaid = ideaid || "";
+  if (ideaid === "") {
+    var url = "/ideas/idealist";
+  } else {
+    var url = "/ideas/idealist/" + ideaid;
+  }
+  var el = $(this[0]);
+  var is_multiple = (typeof el.attr('multiple') != 'undefined');
+  var defaultvals = el.attr('initvalue');
+  var options = {
+    allowClear: true,
+    multiple: is_multiple,
+    tokenSeparators: [",", ";"],
+    ajax: {
+      url: url,
+      dataType: 'json',
+      data: function (term, page) {
+        return {
+          q: term
+        };
+      },
+      results: function (data, page) {
+        return { results: data };
+      }
+    }
+  };
+
+  if (defaultvals) {
+    $.extend(options, {
+      initSelection: function (element, callback) {
+        if (is_multiple === true) {
+          el.attr("value", "");
+        }
+        if (defaultvals === "null") {
+          callback("");
+          return;
+        }
+        if (is_multiple === false) {
+          el.attr("value", jQuery.parseJSON( defaultvals ).id);
+        }
+        callback(jQuery.parseJSON( defaultvals ));
+      }
+    });
+  }
+  el.select2(options);
+};

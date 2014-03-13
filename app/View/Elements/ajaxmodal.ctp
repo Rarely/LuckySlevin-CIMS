@@ -36,11 +36,15 @@
             <strong>Status</strong><br>
             Need this field<br>
             <strong>Referred Ideas</strong><br>
-            <ul>
+            <ul class="references-list">
               <?php
+              if (count($idea['References'])) {
                 foreach($idea['References'] as $ref) {
-                  echo '<li>' . $ref['name'] . '</li>';
+                  echo '<li><a onclick="Ajax.Idea.showIdea(' . $ref['id'] . ');">' . $ref['name'] . '</a></li>';
                 }
+              } else {
+                echo "<li>No Ideas Referred</li>";
+              }
               ?>
             </ul>
             <br />

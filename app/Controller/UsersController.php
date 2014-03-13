@@ -42,7 +42,10 @@ class UsersController extends AppController {
     public function add() {
         if ($this->request->is('post')) {
             $this->User->create();
+            $this->User->set('password', 'temporary');
             if ($this->User->save($this->request->data)) {
+                //issue reset password
+                $this->resetpassword($this->request->data['User']['username']);
                 $this->Session->setFlash(__('User has been saved.'));
                 return $this->redirect(array('action' => 'index'));
             }
@@ -73,6 +76,7 @@ class UsersController extends AppController {
     }
 
     function resetpassword($email=null){
+        $this->layout = false;
         if(empty($this->request->data)){
             $this->request->data['User']['email']=$email;
             //show form
@@ -138,7 +142,7 @@ class UsersController extends AppController {
  
  
     function newpassword($id = null) {
- 
+        $this->layout = false;
         if($this->Session->check('tokenreset')){
             //user is not logged in, BUT has TOKEN in hand
         }else{
@@ -159,7 +163,6 @@ class UsersController extends AppController {
             $this->request->data = $this->User->read(null, $id);
         } else {                
             // $this->request->data['User']['password']=AuthComponent::password($this->request->data['User']['password']);
-            
             $data = array('id' => $this->request->params['pass'][0], 'password' => $this->request->data['User']['password']);
             if ($this->User->save($data)) {
                 //delkete session token and dlete used ticket from table

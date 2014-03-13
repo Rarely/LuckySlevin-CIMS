@@ -1,3 +1,8 @@
+<?php
+  echo $this->Html->script('jquery-1.11.0.min.js');
+  echo $this->Html->css('bootstrap.css');
+  echo $this->Html->script('bootstrap.min.js');
+?>
 <div class="row well well-top-margin">
 <h2>Reset Lost Password</h2>
 <?php echo $this->Form->create('User', array(
