@@ -40,6 +40,7 @@ var Ajax = {
           async: true,
           success: function(data) {
             $('#ajax-modal').remove();
+            $('.modal-backdrop').remove();
             $('body').append(data);
             $('#ajax-modal').modal();
             $('#ajax-modal').bindIdeaModal();

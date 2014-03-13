@@ -55,6 +55,21 @@
 
       <label for="owner">Owner</label>
       <input type="hidden" name="data[Idea][userid]" value=" " initvalue='<?php echo json_encode(array('id' => $idea['Users']['id'], 'text' => $idea['Users']['name'] . '(' . $idea['Users']['username'] . ')')); ?>' class="owner-select" />
+
+      <label for="data[Idea][references]">Referenced Ideas</label>
+      <?php
+        $references = array();
+        foreach($idea['References'] as $ref) {
+          array_push($references, array('id' => $ref['id'], 'text'=> $ref['name']));
+        }
+
+        if (count($references) == 1) {
+          $references = $references[0];
+        } else if (count($references) == 0) {
+          $references = null;
+        }
+        ?>
+      <input type="hidden" class="idea-references" name="data[Idea][references]" value=" " initvalue='<?php echo json_encode($references); ?>' multiple="true" />
       <br />
 
       <?php echo $this->Form->submit('Save', array(

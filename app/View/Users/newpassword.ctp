@@ -1,4 +1,9 @@
-<div id="view_page">
+<?php
+  echo $this->Html->script('jquery-1.11.0.min.js');
+  echo $this->Html->css('bootstrap.css');
+  echo $this->Html->script('bootstrap.min.js');
+?>
+<div class="row well well-top-margin">
     <h2>New Password</h2>
     
 <?php echo $this->Form->create('User', array(
@@ -8,17 +13,18 @@
     'wrapInput' => false,
     'class' => 'form-control'
   ),
-  'class' => 'well'
 )); ?>
 
 <fieldset>
     <?php echo $this->Form->input('password', array(
       'label' => 'Password',
-      'placeholder' => ''
+      'placeholder' => '',
+      'value' => ''
     )); ?>
     <?php echo $this->Form->submit('Set New Password', array(
       'div' => false,
       'class' => 'btn btn-primary'
     )); ?>
 </fieldset>
+<?php echo $this->Form->end(); ?>
 </div>

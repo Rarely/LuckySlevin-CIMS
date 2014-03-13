@@ -67,7 +67,9 @@
             <label for="owner">Owner</label>
             <input type="hidden" name="data[Idea][userid]" value=" " initvalue='<?php echo json_encode(array('id' => $userData['id'], 'text' => $userData['name'] . '(' . $userData['username'] . ')')); ?>' class="owner-select" />
 
-           </fieldset>
+            <label for="data[Idea][references]">Referenced Ideas</label>
+            <input type="hidden" class="idea-references" name="data[Idea][references]" value=" " multiple="true" />
+          </fieldset>
 
       </div>
       <div class="modal-footer">

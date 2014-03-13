@@ -30,7 +30,7 @@
                     <div class="inline-block">
                         <?php echo $this->Form->submit('Submit', array(
                             'div' => 'form-group',
-                            'class' => 'btn btn-primary inline-block'
+                            'class' => 'btn btn-primary'
                         )); ?>
                         <?php echo $this->Form->end(); ?>
                     </div>

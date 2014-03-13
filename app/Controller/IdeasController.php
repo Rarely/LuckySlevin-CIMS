@@ -2,7 +2,7 @@
 class IdeasController extends AppController {
     public $helpers = array('Html', 'Form');
     var $components = array('RequestHandler');
-    public $uses = array('Idea','Comment', 'Category', 'IdeaValue', 'Value');
+    public $uses = array('Idea','Comment', 'Category', 'IdeaValue', 'Value', 'IdeaReference');
     public function index() {
         $this->set('title_for_layout', 'Ideas');
 
@@ -24,6 +24,12 @@ class IdeasController extends AppController {
             'limit' => 15,
             'recursive' => 2
         )));
+        $this->set('ideas_unassigned', $this->Idea->find('all', array(
+            'Idea.isdeleted' => 0,
+            'conditions' => array('Idea.userid' => null),
+            'recursive' => 3
+        )));
+
     }
 
      public function add() {
@@ -33,8 +39,8 @@ class IdeasController extends AppController {
             $this->request->data['Idea']['created'] = date('Y-m-d H:i:s');
             $this->request->data['Idea']['updated'] = null;
             if ($this->Idea->save($this->request->data)) {
-                
                 $this->saveCategoryInfo($this->request->data['Category'], $this->Idea->getLastInsertID());
+                $this->saveIdeaReferences($this->request->data['Idea']['references'], $this->Idea->getLastInsertID());
 
                 $this->Session->setFlash(__('Idea has been saved.'));
                 return $this->redirect(array('action' => 'index'));
@@ -43,6 +49,30 @@ class IdeasController extends AppController {
         }
     }
  
+    public function add_community($id = null) {
+        $this->layout= false;
+        if ($this->request->is('post')) {
+
+            $this->Idea->create();
+            $this->request->data['Idea']['created'] = date('Y-m-d H:i:s');
+            $this->request->data['Idea']['updated'] = null;
+            $this->request->data['Idea']['userid'] = $this->Session->read('Auth.User.id');
+            if ($this->Idea->save($this->request->data)) {
+             
+                $this->Session->setFlash(__('Idea has been saved.'));
+                return $this->redirect(array('action' => 'index'));
+            }
+            $this->Session->setFlash(__('Unable to add idea.'));
+        }
+    }
+
+    public function beforeFilter() {
+        parent::beforeFilter();
+    // Allow us`ers to register and logout.
+        $this->Auth->allow('add_community');
+        $this->Auth->authorize = array('Controller');
+    } 
+
     public function edit($id = null) { 
         if (!$id) {
             throw new NotFoundException(__('Invalid idea'));
@@ -68,7 +98,7 @@ class IdeasController extends AppController {
 
             if ($this->Idea->save()) {
                 $this->saveCategoryInfo($this->request->data['Category'], $id);
-
+                $this->saveIdeaReferences($this->request->data['Idea']['references'], $id);
                 //Notify
                 App::import('Controller', 'Notifications'); // mention at top
                 $Notifications = new NotificationsController; // Instantiation // mention within cron function
@@ -98,6 +128,21 @@ class IdeasController extends AppController {
             'fields' => 'Value.name, Value.categoryid',
             'recursive'=>2
         )));
+    }
+    public function saveIdeaReferences($formdata, $ideaid) {
+        $this->IdeaReference->deleteAll(array('IdeaReference.ideaid' => $ideaid), false);
+        $references = array();
+        foreach(explode(',', $formdata) as $idea) {
+            if (isset($idea) && $idea == '') {
+                continue;
+            }
+            $references[] = array('ideaid' => $ideaid,'refers_to'=> $idea);
+        }
+        if (count($references) > 0 && $this->IdeaReference->saveAll($references)) {
+            //TODO: Return true
+        } else {
+            //TODO: Throw Error Can't csave
+        }
     }
 
     public function saveCategoryInfo($formdata, $ideaid) {
@@ -273,6 +318,28 @@ class IdeasController extends AppController {
                 );
             }
 
+            $this->set('response', $answer);
+            $this->render('/Elements/jsonraw');
+        }
+    }
+
+    function idealist($ideaid = null) {
+        $term = $this->request->query('q');
+        if ($this->RequestHandler->isAjax()) {
+            if ($term != null) {
+                $conditions['or'][] = array('Idea.name LIKE' => "%$term%");
+            }
+            if ($ideaid) {
+                $results = $this->Idea->find('all', array('conditions' => 'Idea.id != ' . $ideaid, 'fields' => 'Idea.id, Idea.name'));
+            } else {
+                $results = $this->Idea->find('all', array('fields' => 'Idea.id, Idea.name', 'recursive' => 0));
+            }
+            foreach ($results as $result) {
+                $answer[] = array(
+                    "id"=>utf8_encode($result['Idea']['id']),
+                    "text" => utf8_encode($result['Idea']['name'])
+                );
+            }
             $this->set('response', $answer);
             $this->render('/Elements/jsonraw');
         }

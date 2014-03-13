@@ -19,10 +19,6 @@
         'label' => 'Email',
         'placeholder' => 'Email',
       )); ?>
-      
-      <?php echo $this->Form->input('password', array(
-        'label' => 'Password',
-      )); ?>
 
       <?php echo $this->Form->input('role', array(
         'options' => array('admin' => 'Admin', 'author' => 'Author'),

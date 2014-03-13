@@ -57,6 +57,7 @@ h2 {
 }
 
 .btn-login{
+  padding: 0px;
   margin-top: 25px;
   height: 35px;
   display: block;

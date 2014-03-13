@@ -1,31 +1,7 @@
-jQuery.fn.sortBy = function() {
-    var el = $(this[0]) // It's your element
-    el.select2({
-      placeholder: "Share with Others",
-      multiple: true,
-      allowClear: true,
-      minimumInputLength: 0,
-      ajax: {
-        url: "/users/memberslist/"+true,
-        dataType: 'json',
-        data: function (term, page) {
-          return {
-            q: term
-          };
-        },
-        results: function (data, page) {
-          return { results: data };
-        }
-      },
-        dropdownCssClass: "bigdrop", // apply css that makes the dropdown taller
-        escapeMarkup: function (m) { return m; }
-      });
-  };
-
 jQuery.fn.userSelect = function(excludeSelf, initvalue, multiple, placeholder) {
     multiple = multiple !== false;
     initvalue = initvalue || null;
-    placeholder = placeholder || "Share with Others";
+    placeholder = placeholder || "";
     var el = $(this[0]) // It's your element
     var options = {
       placeholder: placeholder,
@@ -44,8 +20,8 @@ jQuery.fn.userSelect = function(excludeSelf, initvalue, multiple, placeholder) {
           return { results: data };
         }
       },
-        dropdownCssClass: "bigdrop", // apply css that makes the dropdown taller
-        escapeMarkup: function (m) { return m; }
+      dropdownCssClass: "bigdrop", // apply css that makes the dropdown taller
+      escapeMarkup: function (m) { return m; }
     };
     if (initvalue !== null) {
       $.extend(options, {
@@ -104,5 +80,54 @@ jQuery.fn.userSelect = function(excludeSelf, initvalue, multiple, placeholder) {
     $.extend(options, {createSearchChoice:function(term, data) { if ($(data).filter(function() { return this.text.localeCompare(term)===0; }).length===0) {return {id:term, text:term};} }});
   }
 
+  el.select2(options);
+};
+
+
+jQuery.fn.ideaSelect = function(ideaid) {
+  ideaid = ideaid || "";
+  if (ideaid === "") {
+    var url = "/ideas/idealist";
+  } else {
+    var url = "/ideas/idealist/" + ideaid;
+  }
+  var el = $(this[0]);
+  var is_multiple = (typeof el.attr('multiple') != 'undefined');
+  var defaultvals = el.attr('initvalue');
+  var options = {
+    allowClear: true,
+    multiple: is_multiple,
+    tokenSeparators: [",", ";"],
+    ajax: {
+      url: url,
+      dataType: 'json',
+      data: function (term, page) {
+        return {
+          q: term
+        };
+      },
+      results: function (data, page) {
+        return { results: data };
+      }
+    }
+  };
+
+  if (defaultvals) {
+    $.extend(options, {
+      initSelection: function (element, callback) {
+        if (is_multiple === true) {
+          el.attr("value", "");
+        }
+        if (defaultvals === "null") {
+          callback("");
+          return;
+        }
+        if (is_multiple === false) {
+          el.attr("value", jQuery.parseJSON( defaultvals ).id);
+        }
+        callback(jQuery.parseJSON( defaultvals ));
+      }
+    });
+  }
   el.select2(options);
 };
