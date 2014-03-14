@@ -3,110 +3,111 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h2 class="modal-title" id="myModalLabel">
-          <?php echo $idea['Idea']['name']; ?>
-        </h2>
+        <div class = "row">  
+          <h1 class="modal-title" id="myModalLabel" style="display: inline-block">
+            <div style="padding-left:10px">
+              <?php echo $idea['Idea']['name']; ?>
+            </div>
+          </h1>
+          <div class="admin-btn-md" style="display: inline-block; margin-bottom:5px;">
+              <?php echo $this->element('ideaactions', array("idea" => $idea)); ?>
+          </div>
+          <div id="modal-edit-email-btn">
+            <?php echo $this->Html->link("", 
+              array('controller' => 'ideas', 'action' => 'edit', $idea['Idea']['id'])
+              ,array('class' =>'icon-btn admin-btn-md admin-btn-edit', )
+             ); ?>
+            <?php echo $this->Html->link("",
+              array('controller' => 'ideas', 'action' => 'email', $idea['Idea']['id'])
+              ,array('class' =>'icon-btn admin-btn-md email-btn', 'target' => '_blank')
+            ); ?>
+          </div>
+        </div>
       </div>
-      <div class="modal-body">
+      <div class="no-margin row well modal-body" style="background-color:lightcyan;">
         <?php echo $this->Form->create('Idea', array(
           'inputDefaults' => array(
             'div' => 'form-group',
             'wrapInput' => false,
             'class' => 'form-control'
             ),
-          'class' => 'well'
         )); ?>
-        <div class="row">
+      <!--The Leftside of an Idea -->
+        <div class="col-md-8">
           <!--The leftside details of an Idea -->
-          <div class="col-md-6">
-            <strong>Community Partner</strong><br>
-            <?php echo $idea['Idea']['name']; ?><br>
-            <strong>Contact Name</strong><br>
-            Need this Field<br>
-            <strong>Contact Details</strong><br>
-            Need this Frield<br>
-            <strong>Project Type</strong><br>
-            Need this Field<br>
-            <strong>Theme</strong><br>
-            Need this Field<br>
-            <strong>Referral Source</strong><br>
-            Need this Field<br>
-            <Strong>Timeframe</Strong><br>
-            Need this field<br>
-            <strong>Status</strong><br>
-            Need this field<br>
-            <strong>Referred Ideas</strong><br>
-            <ul class="references-list">
-              <?php
-              if (count($idea['References'])) {
-                foreach($idea['References'] as $ref) {
-                  echo '<li><a onclick="Ajax.Idea.showIdea(' . $ref['id'] . ');">' . $ref['name'] . '</a></li>';
-                }
-              } else {
-                echo "<li>No Ideas Referred</li>";
-              }
-              ?>
-            </ul>
-            <br />
-            <strong>Categories</strong><br>
-            <?php foreach($categories as $cat) { ?>
-              <?php echo $cat['Category']['name'] ?>:
-              <ul>
+          <div class = "row">
+            <div class="col-md-4">
+              <strong>Community Partner</strong><br>
+              <?php echo $idea['Idea']['name']; ?><br>
+              <strong>Contact Name</strong><br>
+              <?php echo $idea['Idea']['contact_name']; ?><br>
+              <strong>Contact Details</strong><br>
+              <?php echo $idea['Idea']['contact_email']; ?><br>
+              <?php echo $idea['Idea']['contact_phone']; ?><br>
+              <strong>Referral Source</strong><br>
+              Need this Field<br>
+              <Strong>Timeframe</Strong><br>
+              Need this field<br>
+            </div>
+            <!--The Description details of an Idea -->                      
+            <div class="col-md-8">
+              <strong>Description</strong><br>
+              <?php echo $idea['Idea']['description']; ?>
+            </div>
+          </div>
+          <div class = "row" style="padding-left: 30px; padding-top: 10px;">
+          <!-- The Comments details of an Idea --> 
+            <div class = "row"> 
+              <strong>Comments</strong>
+              <div class="commentblock">
+                <ul>
+                  <?php foreach ($comments as $comment): ?>
+                  <li class="row">
+                    <div class= "col-xs-1 comment-avatar">
+                      <img src="img/person.png">
+                    </div>
+                    <div class="col-xs-11">
+                      <div class="comment-message"><?php echo $comment['Comment']['message']; ?></div>
+                      <div class="comment-user"><?php echo '- ' . $comment['User']['name']; ?></div>
+                    </div>
+                  </li>
+                  <?php endforeach; ?>
+                </ul>
+              </div>
+            </div>
+            <div class = "row" id="comment-field" style="padding-top: 10px;">
+              <label for"commentField">Leave a comment</label>
+              <textarea type="text" class="form-control" id="commentField" cols="30" rows"12" placeholder="Leave a comment"> </textarea>
+            </div>
+            <div class="row" style="padding-top: 10px;">
+              <div class="btn btn-primary commentbtn">Comment</div>
+            </div>
+            <!-- The Sharing details of an Idea -->
+            <div class="row" style="padding-top: 10px;  width: 94%; ">
+              <?php echo $this->Form->textarea('share', 
+                array('class' => 'sharing-autocomplete','id' => 'e18'
+                )); ?>
+            </div>
+            <div class="row"style="padding-top: 10px;">                          
+              <div class="btn btn-info btn-primary btn-share">Share</div>
+            </div>
+          </div>
+        </div>
+        <!--The Rightside of an Idea -->
+        <div class="col-md-4">
+          <?php foreach($categories as $cat) { ?>
+          <strong><?php echo $cat['Category']['name'] ?>:</strong>
+            <ul>
               <?php foreach($ideavalues as $value) { ?>
                 <?php if ($value['Value']['categoryid'] == $cat['Category']['id']) { ?>
                   <li><?php echo $value['Value']['name']; ?></li>
-                <?php } ?>
+                  <?php } ?>
               <?php } ?>
-              </ul>
-            <?php } ?>
-          </div>
-          <!--The Description details of an Idea -->                      
-          <div class="col-md-6">
-            Description:<br>
-            <?php echo $idea['Idea']['description']; ?>
-          </div>
-        </div>
-        </div>
-        <div class="modal-footer">
-
-          <div class="comment-heading">Comments:</div>
-          <div class="commentblock">
-            <ul>
-              <?php foreach ($comments as $comment): ?>
-                <li class="well">
-                <?php echo $comment['User']['name']; ?>: <?php echo $comment['Comment']['message']; ?>
-                </li>
-              <?php endforeach; ?>
             </ul>
-          </div>
-
-            <div class="form-group">
-              <input type="text" class="form-control" id="commentField" placeholder="Leave a Comment" />
-              <div class="btn btn-default commentbtn">Comment</div>
-            </div>
-
-            <div class="row">
-              <div class="col-sm-10">
-               <?php echo $this->Form->input('share', array(
-                  'class' => 'sharing-autocomplete'
-                  ,'id' => 'e18'
-                )); ?>
-              </div>
-              <div class="col-sm-2">
-                <div class="btn btn-info btn-share">Share</div>
-              </div>
-            </div>
-
-            <?php echo $this->element('ideaactions', array("idea" => $idea)); ?>
-
-            <?php echo $this->Html->link('Edit', array('controller' => 'ideas', 
-              'action' => 'edit', 
-              $idea['Idea']['id'])
-              , array('class' =>'btn btn-default')
-              ); ?>
-            
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <?php } ?>
         </div>
+      </div>  
+      <div class="modal-footer">
       </div>
     </div>
   </div>

@@ -112,6 +112,23 @@ class IdeasController extends AppController {
 
     }
 
+    public function email($id=null) { 
+        if (!$id) {
+            throw new NotFoundException(__('Invalid idea'));
+        }
+
+        $idea = $this->Idea->findById($id);
+        if (!$idea) {
+            throw new NotFoundException(__('Invalid idea'));
+        }
+
+        $this->set('idea', $idea);
+        $this->set('values', $this->IdeaValue->find('all', array(
+            'conditions' => array('ideaid' => $id),
+            'fields' => 'Value.name, Value.categoryid',
+            'recursive'=>2
+        )));
+    }
     public function saveIdeaReferences($formdata, $ideaid) {
         $this->IdeaReference->deleteAll(array('IdeaReference.ideaid' => $ideaid), false);
         $references = array();
@@ -201,7 +218,17 @@ class IdeasController extends AppController {
 
             if ($this->Comment->save($comment)){
                 $this->set('response','success');
-                $this->set('data', array('userid'=>$id, 'html' => '<li class="well">' . $username . ': ' . $c . '</li>'));
+                $this->set('data', array('userid'=>$id, 
+                    'html' => '<li class="row">
+                            <div class= "col-xs-1 comment-avatar">
+                              <img src="img/person.png">
+                            </div>
+                            <div class="col-xs-11">
+                              <div class="comment-message">' . $c . '</div>
+                              <div class="comment-user">- ' . $username . '</div>
+                            </div>
+                        </li>'
+                    ));
                 $this->render('/Elements/jsonreturn');
             } else {
                 $this->set('response','failed');
