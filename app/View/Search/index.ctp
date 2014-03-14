@@ -82,16 +82,82 @@
                 <h1>Sort</h1>
             </div>
              <div class="row sort-controls">
-                <!-- SORTING -->
+                <!-- SORTING 
                 <div class="row">
-                    <input type='' class="sort_by" id='tags' placeholder='Sort by' style='width:100%' />
-                </div>
-                <div class="row">
-                     <select id="sort_order" id='tags' placeholder='Order by' style='width:100%'>
-                        <option value="ASC">Ascending</option>
-                        <option value="DESC">Descending</option>
+                     <select id="sort_by" id='tags' placeholder='Sort by' style='width:100%' class="sort">
+                        <option value="name">Name</option>
+                        <option value="description">Description</option>
+                        <option value="community">Community Partner</option>
+                        <option value="created">Created</option>
+                        <option value="updated">Last Updated</option>
                     </select>
                 </div>
+                <div class="row">
+                     <select id="sort_order" id='tags' placeholder='Order by' style='width:100%' class="sort">
+                        <option value="asc">Ascending</option>
+                        <option value="desc">Descending</option>
+                    </select>
+                </div>-->
+
+
+                <div class="row sort-controls">
+                    <div class="row">
+                        <h2>Name</h2>
+                    </div>
+                    <div class="col-md-6">
+                        <button class="sort btn btn-primary btn-sort" data-sort="data-name" data-order="asc">A-Z</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button class="sort btn btn-primary btn-sort" data-sort="data-name" data-order="desc">Z-A</button>
+                    </div>
+                </div>
+                <div class="row sort-controls">
+                    <div class="row">
+                        <h2>Created date</h2>
+                    </div>
+                    <div class="col-md-6">
+                        <button class="sort btn btn-primary btn-sort" data-sort="data-updated" data-order="asc">Oldest first</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button class="sort btn btn-primary btn-sort" data-sort="data-updated" data-order="desc">Newest first</button>
+                    </div>
+                </div>
+                <div class="row sort-controls">
+                    <div class="row">
+                        <h2>Last updated</h2>
+                    </div>
+                    <div class="col-md-6">
+                    </div>
+                    <div class="col-md-6">
+                    </div>
+                </div>
+                <div class="row sort-controls">
+                    <div class="row">
+                        <h2>Start by</h2>
+                    </div>
+                    <div class="col-md-6">
+                    </div>
+                    <div class="col-md-6">
+                    </div>
+                </div>
+                <div class="row sort-controls">
+                    <div class="row">
+                        <h2>End by</h2>
+                    </div>
+                    <div class="col-md-6">
+                    </div>
+                    <div class="col-md-6">
+                    </div>
+                </div>
+
+
+<!--
+                <button class="sort btn btn-primary" data-sort="data-name" data-order="asc">name asc</button>
+                <button class="sort btn btn-primary" data-sort="data-name" data-order="desc">name desc</button>
+                <button class="sort btn btn-primary" data-sort="data-updated" data-order="desc">updated desc</button>
+                <button class="sort btn btn-primary" data-sort="data-updated" data-order="asc">updated asc</button>
+-->
+
             </div>
         </div>
     </div>

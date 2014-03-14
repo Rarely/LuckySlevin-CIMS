@@ -45,7 +45,7 @@ body {
 <body>
     <div id="heading-colour" class="navbar navbar-fixed-top" role="navigation">
       <div class="container">
-        <div class="navbar-header">
+        <div class="navbar-header nav-font">
           <a class="navbar-brand" <?php echo $this->Html->link('Home', array('controller'=>'ideas', 'action'=>'index'));?></a>
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>

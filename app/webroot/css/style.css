@@ -12,6 +12,12 @@ h1 {
     margin: 5px;
 }
 
+h2 {
+    color: #6F6F6F;
+    font-size: 18px;
+    font-style:italic;
+}
+
 .empty-list{
     margin-top:15px;
     padding-top:80px;

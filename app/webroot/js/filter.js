@@ -1,12 +1,14 @@
 $(document).ready(function() {
 	$(".user_filter").userSelect(false);
     $("#sort_order").select2();
+    $("#sort_by").select2();
 
-	$("#Grid").mixitup({
+	$("#Grid").mixItUp({
 		showOnLoad: 'all',
 		effects: ['fade','scale'],
 		//multiFilter: true
 	});
+
 
     jQuery('.cat').each(function() {
             $(this).categorySelect();
@@ -49,7 +51,7 @@ $(document).ready(function() {
                 dataArray.push(dimensions[o]);
             }
 
-            $('#Grid').mixitup('filter',dataArray)
+            $('#Grid').mixItUp('filter',dataArray)
         });
 
 
@@ -63,24 +65,56 @@ $(document).ready(function() {
                     filterString = 'all';
                 }else{
                     for (var i = 0; i < filters.length; i++) {
-                        filterString += 'category-' + $t.attr('data-id') + '-' + filters[i];
+                        filterString += '.category-' + $t.attr('data-id') + '-' + filters[i];
                         if(i < filters.length-1){
-                            filterString += ' ';
+                            filterString += ', ';
                         }
                     }
                 }
                 dimensions['category-' + $t.attr('data-id')] = filterString;
             }else{
-                dimensions['category-' + $t.attr('data-id')] = 'category-' + $t.attr('data-id') + '-' + filters;
+                dimensions['category-' + $t.attr('data-id')] = '.category-' + $t.attr('data-id') + '-' + filters;
             }
 
+            var dataArray = "";//new Array;
+            for(var o in dimensions) {
+                if(dimensions[o] != 'all'){
+                    dataArray += dimensions[o];
+                }
+            }
+            if(dataArray == ''){
+                dataArray = 'all';
+            }
+
+            $('#Grid').mixItUp('filter',dataArray)
+        });
+
+
+/*
+        $(".sort").on('change',function(){
+
+            var sortBy = $('#sort_by').select2('val');
+            var sortOrder = $('#sort_order').select2('val');
+
+            var sortString = sortBy + ':' + sortOrder;
             var dataArray = new Array;
             for(var o in dimensions) {
                 dataArray.push(dimensions[o]);
             }
-
-            $('#Grid').mixitup('filter',dataArray)
+            $('#Grid').mixItUp('filter',dataArray)
+            $('#Grid').mixItUp('sort',sortString)
         });
+
+
+
+
+        var dataArray = new Array;
+        for(var o in dimensions) {
+            dataArray.push(dimensions[o]);
+        }
+
+        $('#Grid').mixItUp('filter',dataArray)
+*/
       
     }});
 

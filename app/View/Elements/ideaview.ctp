@@ -11,6 +11,13 @@
 
         <?php echo "data-id=\"" . $idea['Idea']['id'] . "\"" ?>
         <?php echo "data-user=\"" . $idea['Idea']['userid'] . "\"" ?>
+
+<?php echo "data-name=\"" . $idea['Idea']['name'] . "\"" ?>
+<?php echo "data-description=\"" . $idea['Idea']['description'] . "\"" ?>
+<?php echo "data-created=\"" . $idea['Idea']['created'] . "\"" ?>
+<?php echo "data-updated=\"" . $idea['Idea']['updated'] . "\"" ?>
+
+
         onclick="Ajax.Idea.showIdea(<?php echo $idea['Idea']['id']?>);return false;" 
             <?php echo "data-updated=\"" . $idea['Idea']['updated'] . "\"" ?> >
               <div class="row">

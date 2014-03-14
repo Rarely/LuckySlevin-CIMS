@@ -27,7 +27,6 @@
 }
 
 #Grid .mix{
-    opacity: 0;
     display: none;
 }
 
@@ -56,4 +55,9 @@
 .form-group {
     margin-left: 10px;
     margin-right: 10px;
+}
+
+.btn-sort {
+    width: 100%;
+
 }
