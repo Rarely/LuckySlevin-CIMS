@@ -98,7 +98,7 @@ $(document).ready(function() {
 	function applyGradientToIdea(element, endColor) {
 		// debugger;
 		var rgbcolor = hexToRgb(endColor);
-        var backgroundRGB= hexToRgb("7CB6C9");
+        var backgroundRGB= hexToRgb("98B2C3");
 
 		element.css({
 			"background-size": "190px",
@@ -108,7 +108,7 @@ $(document).ready(function() {
 			"background": "url(\"/img/idea.png\") no-repeat left top / 190px auto, -o-linear-gradient(top,  rgba("+ backgroundRGB.r + "," + backgroundRGB.g + "," + backgroundRGB.b + ",1) 0%,rgba("+ backgroundRGB.r + "," + backgroundRGB.g + "," + backgroundRGB.b + ",0.85) 85%,rgba(" + rgbcolor.r + "," + rgbcolor.g + "," + rgbcolor.b + ",0.65) 100%)", /* Opera 11.10+ */
 			"background": "url(\"/img/idea.png\") no-repeat left top / 190px auto, -ms-linear-gradient(top,  rgba("+ backgroundRGB.r + "," + backgroundRGB.g + "," + backgroundRGB.b + ",1) 0%,rgba("+ backgroundRGB.r + "," + backgroundRGB.g + "," + backgroundRGB.b + ",0.85) 85%,rgba(" + rgbcolor.r + "," + rgbcolor.g + "," + rgbcolor.b + ",0.65) 100%)", /* IE10+ */
 			"background": "url(\"/img/idea.png\") no-repeat right top / 190px auto, linear-gradient(to bottom,  rgba(" + backgroundRGB.r + "," + backgroundRGB.g + "," + backgroundRGB.b + ",1) 0%,rgba(" + backgroundRGB.r + "," + backgroundRGB.g + "," + backgroundRGB.b + ",1) 85%,rgba(" + rgbcolor.r + "," + rgbcolor.g + "," + rgbcolor.b + ",0.65) 100%)", /* W3C */
-			"filter": "progid:DXImageTransform.Microsoft.gradient( startColorstr='#" + endColor + "', endColorstr='#7CB6C9   ',GradientType=0 )", /* IE6-9 */
+			"filter": "progid:DXImageTransform.Microsoft.gradient( startColorstr='#" + endColor + "', endColorstr='#98B2C3   ',GradientType=0 )", /* IE6-9 */
 		});
 }
 

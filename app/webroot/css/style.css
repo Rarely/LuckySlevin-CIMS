@@ -6,7 +6,7 @@
 
 h1 {
     font-family:"Verdana", Times, serif;
-    color: #343C75;
+    color: #002145;
     font-size: 25px;
     font-weight:bold;
     margin: 5px;
@@ -24,6 +24,7 @@ h1 {
 .nav-font{
     font-size: 16px;
     font-weight:bold;
+    color:white !important;
 }
 
 .inline-block {

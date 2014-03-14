@@ -1,9 +1,13 @@
 body {
-	background-color: #0E4B5F;
+	background-color: #B7C9D3;
 }
 
 #heading-colour{
-    background-color: white;
+    background-color: #002145;
+}
+
+.heading-text-color{
+	color:#ffffff;
 }
 
 .add-btn {
@@ -52,4 +56,10 @@ body {
     width: 450px;
     border-radius:10px;
     padding-top:0;
+}
+
+.border-line{
+	border-left-width: 1px; 
+	border-bottom-color: white; 
+	border-left-style: solid; 
 }

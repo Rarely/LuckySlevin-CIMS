@@ -53,6 +53,7 @@
     line-height: 1.1;
     margin-left: 10px;
     margin-bottom: 5px;
+    color:#002145;
 }
 
 .description-heading {
@@ -70,6 +71,7 @@
     margin-left: 10px;
     margin-bottom: 5px;
     max-height:20px;
+    color:#2F5D7C;
 }
 
 .owner-heading {
@@ -97,10 +99,15 @@
 }
 
 .trackbtn {
+	width: 35px;
+	height:35px;
     background-image: url('/img/tracked.png');
+
 }
 
 .untrackbtn {
+	width: 35px;
+	height:35px;
     background-image: url('/img/untracked.png');
 }
 
@@ -113,7 +120,7 @@
 }
 
 .ideapage-container {
-    padding:0px 5px;
+    padding:0px 0px 0px 40px;
     margin-bottom: 0px;
 }
 
@@ -121,6 +128,7 @@
     padding:0px 5px;
     margin-bottom: 0px;
     margin-top: 15px;
+    background-color: #ffffff;
 }
 
 .idealist-title {
@@ -145,3 +153,13 @@
 .owner-select, .idea-references{
     width:100%;
 }
+
+.modal-header-color{
+	background-color:#002145;
+}
+
+
+.desc-width{
+	width:440px;
+}
+

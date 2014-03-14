@@ -15,7 +15,7 @@
     -moz-border-radius: 0px 15px 15px 15px;
     -webkit-border-radius: 0px 15px 15px 15px;
     border: 0px solid #595959;
-    background-color: azure;
+    background-color: #B7C9D3;
 }
 
 .comment-heading{
@@ -30,7 +30,7 @@
 	width: 100%;
 	word-wrap: break-word;
 	text-align: left;
-    color: grey;
+    color: #ffffff;
     font-style:italic;
     font-weight:bold;
 }

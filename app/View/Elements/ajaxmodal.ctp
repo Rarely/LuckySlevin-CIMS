@@ -1,21 +1,21 @@
 <div class="modal fade" id="ajax-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-id=<?php echo $idea['Idea']['id']; ?>>
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header modal-header-color">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <div class = "row">  
-          <h1 class="modal-title" id="myModalLabel" style="display: inline-block">
+          <h1 class="modal-title" id="myModalLabel" style="display:inline-block; color:white;">
             <div style="padding-left:10px">
               <?php echo $idea['Idea']['name']; ?>
             </div>
           </h1>
-          <div class="admin-btn-md" style="display: inline-block; margin-bottom:5px;">
+          <div class="admin-btn-md" style="display: inline-block; padding-left: 10px;">
               <?php echo $this->element('ideaactions', array("idea" => $idea)); ?>
           </div>
           <div id="modal-edit-email-btn">
             <?php echo $this->Html->link("", 
               array('controller' => 'ideas', 'action' => 'edit', $idea['Idea']['id'])
-              ,array('class' =>'icon-btn admin-btn-md admin-btn-edit', )
+              ,array('class' =>'icon-btn admin-btn-md admin-btn-edit-white', )
              ); ?>
             <?php echo $this->Html->link("",
               array('controller' => 'ideas', 'action' => 'email', $idea['Idea']['id'])
@@ -24,7 +24,7 @@
           </div>
         </div>
       </div>
-      <div class="no-margin row well modal-body" style="background-color:lightcyan;">
+      <div class="no-margin row well modal-body" style="background-color:white;">
         <?php echo $this->Form->create('Idea', array(
           'inputDefaults' => array(
             'div' => 'form-group',
@@ -51,8 +51,10 @@
             </div>
             <!--The Description details of an Idea -->                      
             <div class="col-md-8">
-              <strong>Description</strong><br>
-              <?php echo $idea['Idea']['description']; ?>
+            	<div class="desc-width">
+	              <strong>Description</strong><br>
+	              <?php echo $idea['Idea']['description']; ?>
+              	</div>
             </div>
           </div>
           <div class = "row" style="padding-left: 30px; padding-top: 10px;">
@@ -111,7 +113,7 @@
             <?php } ?>
         </div>
       </div>  
-      <div class="modal-footer">
+      <div class="modal-footer modal-header-color no-margin">
       </div>
     </div>
   </div>
