@@ -29,7 +29,6 @@ class IdeasController extends AppController {
             'conditions' => array('Idea.userid' => null),
             'recursive' => 3
         )));
-
     }
 
      public function add() {
@@ -68,9 +67,8 @@ class IdeasController extends AppController {
 
     public function beforeFilter() {
         parent::beforeFilter();
-    // Allow us`ers to register and logout.
         $this->Auth->allow('add_community');
-        $this->Auth->authorize = array('Controller');
+        //$this->Auth->authorize = array('Controller');
     } 
 
     public function edit($id = null) { 
