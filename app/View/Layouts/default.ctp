@@ -92,8 +92,13 @@ body {
           </ul>
           <ul class="nav navbar-nav navbar-right">
 
-            <li><button class="add-btn btn btn-primary btn-lg" id="btn-add-idea" data-toggle="modal" data-target="#myModal" imn></button></li>
-            <li class="dropdown">
+            <li><button class="management-btn" id="btn-add-idea" data-toggle="modal" data-target="#myModal">
+                <ul class ="nav navbar-nav nav-font">
+                    <li class="add-btn"></li>
+                    <li style="padding-top:5px">Add Idea</li>
+                </ul>
+            </button></li>
+            <li class="dropdown border-line">
               <a href="#" class="welcome-name-btn dropdown-toggle heading-text-color" data-toggle="dropdown"> 
                 Welcome <?php echo $userData['name']?>
               </a>

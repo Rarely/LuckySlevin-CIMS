@@ -23,7 +23,6 @@ body {
     border: none !important;
     width:30px;
     height:30px;
-    margin-top: 8px;
 }
 
 .add-btn:hover {
@@ -33,7 +32,6 @@ body {
     border: none !important;
     width:30px;
     height:30px;
-    margin-top: 8px;
 }
 
 .notify-btn{
@@ -66,6 +64,6 @@ body {
 
 .border-line{
 	border-left-width: 1px; 
-	border-bottom-color: white; 
+	border-left-color: white; 
 	border-left-style: solid; 
 }
