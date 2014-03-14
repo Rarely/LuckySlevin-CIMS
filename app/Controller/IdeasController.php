@@ -201,7 +201,7 @@ class IdeasController extends AppController {
 
             if ($this->Comment->save($comment)){
                 $this->set('response','success');
-                $this->set('data', array('userid'=>$id, 'html' => '<li>' . $username . ': ' . $c . '</li>'));
+                $this->set('data', array('userid'=>$id, 'html' => '<li class="well">' . $username . ': ' . $c . '</li>'));
                 $this->render('/Elements/jsonreturn');
             } else {
                 $this->set('response','failed');
@@ -281,6 +281,39 @@ class IdeasController extends AppController {
             $this->render('/Elements/jsonreturn');
         }
 
+    }
+
+    function share($id = null) {
+        $this->layout = null;
+        if ($this->RequestHandler->isAjax()) {
+            if (!$id) {
+                throw new NotFoundException(__('Invalid idea'));
+            }
+
+            $idea = $this->Idea->findById($id);
+
+            if (!$idea) {
+                throw new NotFoundException(__('Invalid idea'));
+            }
+
+            $userids = @$this->request->query('userids');
+            $senderid = $this->Session->read('Auth.User.id');
+            $sendername = $this->Session->read('Auth.User.name');
+
+            foreach (explode(',', $userids) as $user) {
+                //Notify
+                App::import('Controller', 'Notifications'); // mention at top
+                $Notifications = new NotificationsController; // Instantiation // mention within cron function
+                $Notifications->sendNotifications($sendername . " shared an idea with you.", $idea['Idea']['name'], $id, $user, $senderid);
+            }
+            $this->set('response', 'success');
+            $this->set('data', array());
+            $this->render('/Elements/jsonreturn');
+        } else {
+            $this->set('response', 'failed');
+            $this->set('data', array());
+            $this->render('/Elements/jsonreturn');
+        }
     }
 
     function valueslist($id = null) {

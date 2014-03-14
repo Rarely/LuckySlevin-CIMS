@@ -5,11 +5,8 @@ jQuery.fn.bindIdeaModal = function() {
     //Hook up Sharing
     $('#ajax-modal .sharing-autocomplete').userSelect(true, null, true, "Share with Others");
     $('#ajax-modal .btn-share').bind("click", function(e) {
-      $.each($('#ajax-modal .sharing-autocomplete').select2("val"), function( index, value ) {
-        Ajax.Notifications.notify("Please look at this idea", id, value);
-      });
+      Ajax.Idea.shareIdea(id, $('#ajax-modal .sharing-autocomplete').select2("val").join(","));
       $('#ajax-modal .sharing-autocomplete').select2('data', null);
-      alert("Shared");
     });
 
     //bind comment button
@@ -24,7 +21,7 @@ jQuery.fn.selectable = function(toggle) {
     el.removeClass("selectable").removeClass("selected");
   } else {
     el.addClass("selectable");
-    el.bind("click", function() {
+    el.unbind("click").bind("click", function() {
       if (el.hasClass("selected")) {
         el.removeClass("selected").addClass("selectable");
       } else {

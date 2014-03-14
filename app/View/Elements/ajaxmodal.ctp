@@ -70,23 +70,17 @@
         <div class="modal-footer">
 
           <div class="comment-heading">Comments:</div>
-            <div class="commentblock">
-              <ul class="commentList">
-                <?php foreach ($comments as $comment): ?>
-                  <div class="comment-bg">
-                    <l>
-                      <p>
-                        <div class="comment-message"><?php echo $comment['Comment']['message']; ?></div>
-                      </p>
-                      <div class="comment-user"><?php echo '- ' . $comment['User']['name']; ?></div>
-                    </l>
-                  </div>
-                <?php endforeach; ?>
-              </ul>  
-            </div>  
+          <div class="commentblock">
+            <ul>
+              <?php foreach ($comments as $comment): ?>
+                <li class="well">
+                <?php echo $comment['User']['name']; ?>: <?php echo $comment['Comment']['message']; ?>
+                </li>
+              <?php endforeach; ?>
+            </ul>
+          </div>
 
             <div class="form-group">
-              <label for"commentField">Leave a Comment</label>
               <input type="text" class="form-control" id="commentField" placeholder="Leave a Comment" />
               <div class="btn btn-default commentbtn">Comment</div>
             </div>

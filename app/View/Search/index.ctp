@@ -34,10 +34,12 @@
                         )); ?>
                         <?php echo $this->Form->end(); ?>
                     </div>
+                    <?php if (isset($userData['role']) && $userData['role'] === 'admin') { ?>
                     <!-- EXPORT -->
                     <div id="btn-export" class="btn btn-success float-right inline-block">Export</div>
                     <!-- DELETE -->
                     <div id="btn-delete" class="btn btn-danger float-right inline-block">Delete</div>
+                    <?php } ?>
 
                 </div>
                     <div class="row">

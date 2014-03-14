@@ -26,6 +26,16 @@
     transform: translateZ(0);*/
 }
 
+.commentblock ul {
+    list-style: none;
+    padding:0;
+}
+
+.commentblock ul li {
+    padding:5px;
+    margin-bottom:1px;
+}
+
 .comment-heading{
 	font-size: 20px;
 }
