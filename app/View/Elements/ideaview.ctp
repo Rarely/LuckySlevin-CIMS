@@ -12,23 +12,19 @@
       <?php echo "data-updated=\"" . $idea['Idea']['updated'] . "\"" ?> 
 >
     <div class="row">
-        <div class="title-heading">
-            <div class="title-text-wrapper">
-                <?php echo $idea['Idea']['name']; ?>
-            </div>
+        <div class="title-text-wrapper title-heading">
+            <?php echo $idea['Idea']['name']; ?>
         </div>
     </div>
 
     <div class="row">
-        <div class="description-text-wrapper">
-            <div class="description-heading">
-                <?php echo $idea['Idea']['description']; ?>
-            </div>
+        <div class="description-text-wrapper description-heading">
+            <?php echo $idea['Idea']['description']; ?>
         </div>
     </div>  
 
     <div class="row">
-        <div class="status-heading">
+        <div class="status-text-wrapper status-heading">
             <?php foreach($idea['Idea_Value'] as $value) {
                 if ($value['Value']['categoryid'] == $StatusCategoryID){
                     echo $value['Value']['name'];
@@ -39,7 +35,7 @@
     </div>
     <div class="row">  
         <div class="col-md-6">
-            <div class="owner-heading">
+            <div class="owner-text-wrapper owner-heading">
                 <?php echo $idea['Users']['name']; ?>
              </div>
         </div>              
