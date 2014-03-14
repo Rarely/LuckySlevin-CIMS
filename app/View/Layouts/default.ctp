@@ -47,36 +47,47 @@ body {
       <div class="container">
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav nav-font">
-          	<li>
-          		<?php echo $this->Html->link('Home', 
-          									  array('controller'=>'ideas', 'action'=>'index'),
-          									  array('class' =>'heading-text-color'));?>
-          	</li>
-            <li class = "border-line">
-            	<?php echo $this->Html->link('Search', 
-            								  array('controller'=>'search', 'action'=>'index'),
-            								  array('class' =>'heading-text-color'));?></li>
             <li>
-            	<?php echo $this->Html->link('My Page', 
-				  							  array('controller'=>'trackings', 'action'=>'index'),
-											  array('class' =>'heading-text-color'));?>
-			</li>
+                <?php echo $this->Html->link('Home', 
+                                              array('controller'=>'ideas', 'action'=>'index'),
+                                              array('class' =>'heading-text-color'));?>
+            </li>
+            <li class = "border-line">
+                <?php echo $this->Html->link('Search', 
+                                              array('controller'=>'search', 'action'=>'index'),
+                                              array('class' =>'heading-text-color'));?></li>
+            <li>
+                <?php echo $this->Html->link('My Page', 
+                                              array('controller'=>'trackings', 'action'=>'index'),
+                                              array('class' =>'heading-text-color'));?>
+            </li>
             <?php if ($userData['role'] == 'admin') { ?>
-              	<li class = "border-line">
-              		<?php echo $this->Html->link('Users', 
-              									  array('controller'=>'users', 'action'=>'index'),
-              									  array('class' =>'heading-text-color'));?>
-              	</li>
-              	<li>
-              		<?php echo $this->Html->link('Categories', 
-              									  array('controller'=>'categories', 'action'=>'index'),
-              									  array('class' =>'heading-text-color'));?>
-              	</li>
-              	<li>
-              		<?php echo $this->Html->link('Idea Management',
-              									  array('controller'=>'search', 'action'=>'index'),
-              									  array('class' =>'heading-text-color'));?>
-              	</li>
+                <li>
+                    <div class ="btn-group">
+                      <button type="button" class = "management-btn btn nav-font dropdown-toggle" data-toggle="dropdown">
+                        Management
+                        <span class ="caret"></span>
+                        <span class ="sr-only">Management</span>
+                      </button>
+                      <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <?php echo $this->Html->link('User Management',
+                                                             array('controller'=>'users', 'action'=>'index'),
+                                                             array('class' =>'heading-text-color'));?>
+                            </li>   
+                            <li>
+                                <?php echo $this->Html->link('Category Management', 
+                                                              array('controller'=>'categories', 'action'=>'index'),
+                                                              array('class' =>'heading-text-color'));?>
+                            </li>
+                            <li>
+                                <?php echo $this->Html->link('Idea Management',
+                                                              array('controller'=>'search', 'action'=>'index'),
+                                                              array('class' =>'heading-text-color'));?>
+                            </li>
+                        </ul>
+                    </div>
+                </li>       
             <?php } ?>
           </ul>
           <ul class="nav navbar-nav navbar-right">
@@ -87,10 +98,10 @@ body {
                 Welcome <?php echo $userData['name']?>
               </a>
               <ul class="dropdown-menu">
-                	<li>
+                    <li>
                         <?php echo $this->Html->link('Logout', 
                                                        array('controller'=>'users', 'action'=>'logout'));?>
-                	</li>
+                    </li>
               </ul>
             </li>
             <li class="dropdown">

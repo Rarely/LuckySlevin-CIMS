@@ -10,8 +10,14 @@ body {
 	color:#ffffff;
 }
 
+.management-btn{
+    margin-top: 8px;
+    border:none;
+    background-color: #002145;
+}
+
 .add-btn {
-    background-image: url('/img/addidea.png')  !important;
+    background-image: url('/img/addideainverse.png')  !important;
     background-color: transparent !important;
     background-size: 100%;  
     border: none !important;
@@ -21,7 +27,7 @@ body {
 }
 
 .add-btn:hover {
-    background-image: url('/img/addideainverse.png') !important;
+    background-image: url('/img/addidea.png') !important;
     background-color: transparent !important;
     background-size: 100%;  
     border: none !important;
