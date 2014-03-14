@@ -45,11 +45,21 @@ class NotificationsController extends AppController {
      * for use within controllers
     */
     public function sendNotifications($title, $message, $ideaid = null, $userid = null, $senderid = null) {
-        if ($userid != null) {
+        if ($ideaid != null && $userid != null) {
             //send to individual user
+            $notification = $this->Notification->create();
+            $notification['Notification']['userid'] = $userid;
+            $notification['Notification']['ideaid'] = $ideaid;
+            $notification['Notification']['title'] = $title;
+            $notification['Notification']['message'] = $message;
+            $notification['Notification']['created'] = null; //!important
+            if ($this->Notification->save($notification)) {
+                //Good input
+            } else {
 
+            }
         }
-        if ($ideaid != null) {
+        if ($ideaid != null && $userid == null) {
             //send to all tracking users
             $trackingids = $this->Tracking->find('all', array(
                 'Idea.isdeleted' => 0

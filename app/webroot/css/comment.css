@@ -18,6 +18,19 @@
     background-color: #B7C9D3;
 }
 
+.commentblock ul {
+    list-style: none;
+    padding-left: 5px;
+}
+
+.commentblock ul li {
+    border-left: 6px solid #356895;
+    margin: 0 0 1px 0;
+    padding:5px;
+}
+.commentblock .comment-avatar {
+    margin-top:4px;
+}
 .comment-heading{
 	font-size: 20px;
 }

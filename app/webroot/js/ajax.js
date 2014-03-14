@@ -61,7 +61,23 @@ var Ajax = {
                 $(".ideablock[data-id=" + value + "]").remove();
               });
             } else {
-              alert("PROBLEM");
+              alert("Error Deleting Idea: " + ideaids);
+            }
+          }
+        });
+      },
+
+      shareIdea: function(ideaid, userids) {
+        $.ajax({
+          type: "POST",
+          dataType: "json",
+          url: '/ideas/share/' + ideaid + '?userids=' + userids,
+          async: true,
+          success: function(data) {
+            if (data.response === "success") {
+              bootbox.alert("Shared");
+            } else {
+              bootbox.alert("Failed to share idea");
             }
           }
         });
@@ -128,8 +144,9 @@ var Ajax = {
            async: true,
            success: function(data) {
              if (data.response === "success") {
-                 alert("Comment has been posted!");
-                 $("#ajax-modal .commentList").append(data.data.html);
+                 $("#ajax-modal .commentblock ul").append(data.data.html);
+                 $("#ajax-modal .commentblock").animate({ scrollTop: $("#ajax-modal .commentblock ul").height() }, "slow");
+                 $("#ajax-modal #commentField").val("");
              }
           },
           dataType: 'json'

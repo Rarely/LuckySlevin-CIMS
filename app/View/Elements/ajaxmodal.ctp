@@ -62,21 +62,17 @@
             <div class = "row"> 
               <strong>Comments</strong>
               <div class="commentblock">
-                <ul class="commentList" style="padding-left:5px;">
+                <ul>
                   <?php foreach ($comments as $comment): ?>
-                    <div class="comment-bg">
-                    <div class= "col-md-1" style="margin-top: 15px;">
+                  <li class="row">
+                    <div class= "col-xs-1 comment-avatar">
                       <img src="img/person.png">
                     </div>
-                    <div class="col-md-11">
-                      <l>
-                        <p>
-                          <div class="comment-message"><?php echo $comment['Comment']['message']; ?><br></div>
-                          <div class="comment-user"><?php echo '- ' . $comment['User']['name']; ?></div>
-                        </p>
-                      </l>
-                     </div> 
+                    <div class="col-xs-11">
+                      <div class="comment-message"><?php echo $comment['Comment']['message']; ?></div>
+                      <div class="comment-user"><?php echo '- ' . $comment['User']['name']; ?></div>
                     </div>
+                  </li>
                   <?php endforeach; ?>
                 </ul>
               </div>

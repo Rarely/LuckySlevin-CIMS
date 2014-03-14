@@ -34,10 +34,12 @@
                         )); ?>
                         <?php echo $this->Form->end(); ?>
                     </div>
+                    <?php if (isset($userData['role']) && $userData['role'] === 'admin') { ?>
                     <!-- EXPORT -->
                     <div id="btn-export" class="btn btn-success float-right inline-block">Export</div>
                     <!-- DELETE -->
                     <div id="btn-delete" class="btn btn-danger float-right inline-block">Delete</div>
+                    <?php } ?>
 
                 </div>
                     <div class="row">
@@ -50,7 +52,11 @@
                 </div>
         </div>
         <div class="row">
-        <?php echo $this->element('ideapage', array("ideas" => $ideas)); ?>
+        <?php if(count($ideas) < 1) { ?>
+                 <div class="ideacontainer well empty-list"><h1 class="text-center">There are no ideas matching your current search criteria</h1></div>
+            <?php } else {
+                 echo $this->element('ideapage', array("ideas" => $ideas)); 
+                } ?>
         </div>
     </div>
     <div class="col-md-3">

@@ -16,7 +16,7 @@ $(function() {
     });
     $(".btn-delete-value").click(function() {
         var id = $(this).parent().parent().attr('data-id');
-        bootbox.confirm("Are you sure?", function(result) {
+        bootbox.confirm("Are you sure you want to remove this value?", function(result) {
           if (result === true) {
             Ajax.Categories.delete(id);
           }
