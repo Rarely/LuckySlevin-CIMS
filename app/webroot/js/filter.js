@@ -138,7 +138,20 @@ $(document).ready(function() {
     }); 
 
     
-
+    $(".status-text-wrapper").dotdotdot({
+        ellipsis    : '',
+        wrap        : 'letter',
+        fallbackToLetter: true,
+        after       : null,
+        watch       : false,
+        height      : 30,
+        tolerance   : 0,
+        callback    : function( isTruncated, orgContent ) {},
+        lastCharacter   : {
+            remove      : [ ' ', ',', ';', '.', '!', '?' ],
+            noEllipsis  : []
+        }
+    });
 
 
 });
