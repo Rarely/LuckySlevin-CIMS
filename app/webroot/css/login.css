@@ -58,16 +58,21 @@ h2 {
 
 .btn-login{
   padding: 0px;
-  margin-top: 25px;
+  margin-top: 10px;
   height: 35px;
   display: block;
   width: 100%;
-  background: rgba(66, 139, 202, 1);
-  border-radius: 5px;
-  border:0;
-  border-top: 1px solid #46A294;
   box-shadow: 0 0 0 1px #46A294, 0 2px 2px #808389;
   color: #FFFFFF;
   font-size: 1.5em;
-  text-shadow: 0 1px 2px #21756A;
+  background-color: #5E869F;
 }
+
+.btn-login:hover{
+    color: #98B2C3;
+}
+
+body {
+  background-color: #B7C9D3;
+}
+
