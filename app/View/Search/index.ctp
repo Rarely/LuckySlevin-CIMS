@@ -85,11 +85,11 @@
                 <!-- SORTING -->
  <div class="row">
                      <select id="sort_by" id='tags' placeholder='Sort by' style='width:100%' class="sort">
+                        <option value="default">Default</option>
                         <option value="data-name">Name</option>
-                        <option value="data-description">Description</option>
                         <option value="data-community">Community Partner</option>
-                        <option value="data-created">Created</option>
-                        <option value="data-updated">Last Updated</option>
+                        <option value="data-created">Idea created</option>
+                        <option value="data-updated">Idea last Updated</option>
                         <option value="data-start">Project start date</option>
                         <option value="data-end">Project end date</option>
                     </select>

@@ -13,7 +13,6 @@
         <?php echo "data-user=\"" . $idea['Idea']['userid'] . "\"" ?>
 
         <?php echo "data-name=\"" . $idea['Idea']['name'] . "\"" ?>
-        <?php echo "data-description=\"" . $idea['Idea']['description'] . "\"" ?>
         <?php echo "data-community=\"" . $idea['Idea']['community_partner'] . "\"" ?>
         <?php echo "data-created=\"" . $idea['Idea']['created'] . "\"" ?>
         <?php echo "data-updated=\"" . $idea['Idea']['updated'] . "\"" ?>

@@ -91,13 +91,10 @@ $(document).ready(function() {
 
             var sortArray = new Array;
             sortArray.push(sortBy);
-            sortArray.push(sortOrder);
-            //var sortString = sortBy + ':' + sortOrder;
-            //var dataArray = new Array;
-            //for(var o in dimensions) {
-            //    dataArray.push(dimensions[o]);
-            //}
-            //$('#Grid').mixItUp('filter',dataArray)
+            if(sortBy != 'default' && sortBy != 'random'){
+                sortArray.push(sortOrder);
+            }
+
             $('#Grid').mixitup('sort',sortArray)
         });
 
