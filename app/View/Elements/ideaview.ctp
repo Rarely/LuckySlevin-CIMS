@@ -1,5 +1,7 @@
 
-<div class="ideablock btn btn-primary btn-lg" 
+<div 
+      <?php echo "class= \"ideablock btn btn-primary btn-lg " ?>
+
       <?php 
           foreach($idea['Idea_Value'] as $value) {
                 echo 'category-' . $value['Value']['categoryid'] . '-' . $value['Value']['id'] . ' ';
