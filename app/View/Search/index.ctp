@@ -83,13 +83,21 @@
             </div>
              <div class="row sort-controls">
                 <!-- SORTING -->
-                <div class="row">
-                    <input type='' class="sort_by" id='tags' placeholder='Sort by' style='width:100%' />
+ <div class="row">
+                     <select id="sort_by" id='tags' placeholder='Sort by' style='width:100%' class="sort">
+                        <option value="data-name">Name</option>
+                        <option value="data-description">Description</option>
+                        <option value="data-community">Community Partner</option>
+                        <option value="data-created">Created</option>
+                        <option value="data-updated">Last Updated</option>
+                        <option value="data-start">Project start date</option>
+                        <option value="data-end">Project end date</option>
+                    </select>
                 </div>
                 <div class="row">
-                     <select id="sort_order" id='tags' placeholder='Order by' style='width:100%'>
-                        <option value="ASC">Ascending</option>
-                        <option value="DESC">Descending</option>
+                     <select id="sort_order" id='tags' placeholder='Order by' style='width:100%' class="sort">
+                        <option value="asc">Ascending</option>
+                        <option value="desc">Descending</option>
                     </select>
                 </div>
             </div>

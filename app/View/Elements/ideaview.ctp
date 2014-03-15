@@ -11,6 +11,15 @@
 
         <?php echo "data-id=\"" . $idea['Idea']['id'] . "\"" ?>
         <?php echo "data-user=\"" . $idea['Idea']['userid'] . "\"" ?>
+
+        <?php echo "data-name=\"" . $idea['Idea']['name'] . "\"" ?>
+        <?php echo "data-description=\"" . $idea['Idea']['description'] . "\"" ?>
+        <?php echo "data-community=\"" . $idea['Idea']['community_partner'] . "\"" ?>
+        <?php echo "data-created=\"" . $idea['Idea']['created'] . "\"" ?>
+        <?php echo "data-updated=\"" . $idea['Idea']['updated'] . "\"" ?>
+        <?php echo "data-start=\"" . $idea['Idea']['start_date'] . "\"" ?>
+        <?php echo "data-end=\"" . $idea['Idea']['end_date'] . "\"" ?>
+
         onclick="Ajax.Idea.showIdea(<?php echo $idea['Idea']['id']?>);return false;" 
             <?php echo "data-updated=\"" . $idea['Idea']['updated'] . "\"" ?> >
               <div class="row">

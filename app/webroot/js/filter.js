@@ -1,6 +1,7 @@
 $(document).ready(function() {
 	$(".user_filter").userSelect(false);
     $("#sort_order").select2();
+    $("#sort_by").select2();
 
 	$("#Grid").mixitup({
 		showOnLoad: 'all',
@@ -81,6 +82,26 @@ $(document).ready(function() {
 
             $('#Grid').mixitup('filter',dataArray)
         });
+
+
+        $(".sort").on('change',function(){
+
+            var sortBy = $('#sort_by').select2('val');
+            var sortOrder = $('#sort_order').select2('val');
+
+            var sortArray = new Array;
+            sortArray.push(sortBy);
+            sortArray.push(sortOrder);
+            //var sortString = sortBy + ':' + sortOrder;
+            //var dataArray = new Array;
+            //for(var o in dimensions) {
+            //    dataArray.push(dimensions[o]);
+            //}
+            //$('#Grid').mixItUp('filter',dataArray)
+            $('#Grid').mixitup('sort',sortArray)
+        });
+
+
       
     }});
 
