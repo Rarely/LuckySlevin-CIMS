@@ -1,5 +1,5 @@
 <div class="ideapage-container well">
-    <?php echo $this->Html->css('style.css');?>
+   
     <div  id="ideacontainer" class="ideacontainer-search">
     	<div id="Grid">
     		<?php foreach ($ideas as &$idea): ?>

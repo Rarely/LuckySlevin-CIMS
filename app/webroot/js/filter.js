@@ -1,15 +1,51 @@
 $(document).ready(function() {
-	$(".user_filter").userSelect(false);
+	
+    var dimensions = {};
+    var sortArray = new Array;
+    sortArray.push('default');
+
+    initialize();
+
+
+    $('#search-form').submit( function() {
+
+        $.ajax({
+            url     : '/search/result/' + $('#search-query').val(),
+            type    : "GET",
+            dataType: 'json',
+            async: true,
+            success : function( data ) {
+                $('#search-results').html(data.data);
+            },
+            error : function( data ) {
+                //TODO: error message
+                $('#search-results').html(data.responseText);
+                initialize();
+
+
+            },
+        });
+
+                                    var dataArray = new Array;
+            for(var o in dimensions) {
+                dataArray.push(dimensions[o]);
+            }
+                $('#Grid').mixitup('filter',dataArray);
+
+        return false;
+    });
+
+
+
+
+
+    $(".user_filter").userSelect(false);
     $("#sort_order").select2();
     $("#sort_by").select2();
 
-	$("#Grid").mixitup({
-		showOnLoad: 'all',
-		effects: ['fade','scale'],
-		//multiFilter: true
-	});
 
-    jQuery('.cat').each(function() {
+
+    $('.cat').each(function() {
             $(this).categorySelect();
     });
 
@@ -20,7 +56,7 @@ $(document).ready(function() {
       async: true,
       success: function(data) {
                
-        var dimensions = {};
+        
         dimensions["user"] = "all";
         $.each(data.data, function(key, value) {
             newCat = 'category-' + value.Category.id;
@@ -89,71 +125,19 @@ $(document).ready(function() {
             var sortBy = $('#sort_by').select2('val');
             var sortOrder = $('#sort_order').select2('val');
 
-            var sortArray = new Array;
+            sortArray = new Array;
             sortArray.push(sortBy);
             if(sortBy != 'default' && sortBy != 'random'){
                 sortArray.push(sortOrder);
             }
 
-            $('#Grid').mixitup('sort',sortArray)
+            $('#Grid').mixitup('sort',sortArray);
         });
 
 
       
     }});
 
-    //TODO: this is duplicated code from ui.js that doesnt load here for some reason
-    $(".title-text-wrapper").dotdotdot({
-        ellipsis    : '... ',
-        /*  How to cut off the text/html: 'word'/'letter'/'children' */
-        wrap        : 'word',
-        /*  Wrap-option fallback to 'letter' for long words */
-        fallbackToLetter: true,
-        /*  jQuery-selector for the element to keep and put after the ellipsis. */
-        after       : null,
-        /*  Whether to update the ellipsis: true/'window' */
-        watch       : false,
-        /*  Optionally set a max-height, if null, the height will be measured. */
-        height      : 40,
-        /*  Deviation for the height-option. */
-        tolerance   : 0,
-        /*  Callback function that is fired after the ellipsis is added,
-        receives two parameters: isTruncated(boolean), orgContent(string). */
-        callback    : function( isTruncated, orgContent ) {},
-        lastCharacter   : {
-            /*  Remove these characters from the end of the truncated text. */
-            remove      : [ ' ', ',', ';', '.', '!', '?' ],
-            /*  Don't add an ellipsis if this array contains 
-            the last character of the truncated text. */
-            noEllipsis  : []
-        }
-    });
-
-    $(".description-text-wrapper").dotdotdot({
-        ellipsis    : '... ',
-        /*  How to cut off the text/html: 'word'/'letter'/'children' */
-        wrap        : 'word',
-        /*  Wrap-option fallback to 'letter' for long words */
-        fallbackToLetter: true,
-        /*  jQuery-selector for the element to keep and put after the ellipsis. */
-        after       : null,
-        /*  Whether to update the ellipsis: true/'window' */
-        watch       : false,
-        /*  Optionally set a max-height, if null, the height will be measured. */
-        height      : 50,
-        /*  Deviation for the height-option. */
-        tolerance   : 0,
-        /*  Callback function that is fired after the ellipsis is added,
-        receives two parameters: isTruncated(boolean), orgContent(string). */
-        callback    : function( isTruncated, orgContent ) {},
-        lastCharacter   : {
-            /*  Remove these characters from the end of the truncated text. */
-            remove      : [ ' ', ',', ';', '.', '!', '?' ],
-            /*  Don't add an ellipsis if this array contains 
-            the last character of the truncated text. */
-            noEllipsis  : []
-        }
-    }); 
 
     
 
@@ -162,6 +146,73 @@ $(document).ready(function() {
 });
 
 
+
+    function initialize() {
+        var that = this;
+        $("#Grid").mixitup({
+            showOnLoad: 'all',
+            effects: ['fade','scale'],
+            //multiFilter: true
+        }); 
+        
+        $('#Grid').mixitup('sort',that.sortArray);
+
+                //TODO: this is duplicated code from ui.js that doesnt load here for some reason
+        $(".title-text-wrapper").dotdotdot({
+            ellipsis    : '... ',
+            /*  How to cut off the text/html: 'word'/'letter'/'children' */
+            wrap        : 'word',
+            /*  Wrap-option fallback to 'letter' for long words */
+            fallbackToLetter: true,
+            /*  jQuery-selector for the element to keep and put after the ellipsis. */
+            after       : null,
+            /*  Whether to update the ellipsis: true/'window' */
+            watch       : false,
+            /*  Optionally set a max-height, if null, the height will be measured. */
+            height      : 40,
+            /*  Deviation for the height-option. */
+            tolerance   : 0,
+            /*  Callback function that is fired after the ellipsis is added,
+            receives two parameters: isTruncated(boolean), orgContent(string). */
+            callback    : function( isTruncated, orgContent ) {},
+            lastCharacter   : {
+                /*  Remove these characters from the end of the truncated text. */
+                remove      : [ ' ', ',', ';', '.', '!', '?' ],
+                /*  Don't add an ellipsis if this array contains 
+                the last character of the truncated text. */
+                noEllipsis  : []
+            }
+        });
+
+        $(".description-text-wrapper").dotdotdot({
+            ellipsis    : '... ',
+            /*  How to cut off the text/html: 'word'/'letter'/'children' */
+            wrap        : 'word',
+            /*  Wrap-option fallback to 'letter' for long words */
+            fallbackToLetter: true,
+            /*  jQuery-selector for the element to keep and put after the ellipsis. */
+            after       : null,
+            /*  Whether to update the ellipsis: true/'window' */
+            watch       : false,
+            /*  Optionally set a max-height, if null, the height will be measured. */
+            height      : 50,
+            /*  Deviation for the height-option. */
+            tolerance   : 0,
+            /*  Callback function that is fired after the ellipsis is added,
+            receives two parameters: isTruncated(boolean), orgContent(string). */
+            callback    : function( isTruncated, orgContent ) {},
+            lastCharacter   : {
+                /*  Remove these characters from the end of the truncated text. */
+                remove      : [ ' ', ',', ';', '.', '!', '?' ],
+                /*  Don't add an ellipsis if this array contains 
+                the last character of the truncated text. */
+                noEllipsis  : []
+            }
+        });
+
+
+
+    }
 
 
 

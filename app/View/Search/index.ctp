@@ -12,34 +12,29 @@
         <div class="row search-well well">
 
                 <div class="row">
-                    <?php echo $this->Form->create('Search', array(
-                        'url' => array('controller' => 'search', 'action'    => 'index'),
-                        'inputDefaults' => array(
-                            'div' => 'form-group',
-                            'wrapInput' => false,
-                            'class' => 'form-control'
-                        )
-                    )); ?>
-                        <h1>Search</h1>
-                            <?php echo $this->Form->input('q', array(
-                                'label' => '',
-                                'placeholder' => 'Search by Idea name...',
-                            )); ?>
-                </div>
-                <div class="row">
-                    <div class="inline-block">
-                        <?php echo $this->Form->submit('Submit', array(
-                            'div' => 'form-group',
-                            'class' => 'btn btn-primary'
-                        )); ?>
-                        <?php echo $this->Form->end(); ?>
-                    </div>
-                    <?php if (isset($userData['role']) && $userData['role'] === 'admin') { ?>
-                    <!-- EXPORT -->
-                    <div id="btn-export" class="btn btn-success float-right inline-block">Export</div>
-                    <!-- DELETE -->
-                    <div id="btn-delete" class="btn btn-danger float-right inline-block">Delete</div>
-                    <?php } ?>
+
+                    <h1>Search</h1>
+                <form id="search-form">
+
+                <input id="search-query" type="text" class="form-control" placeholder="Search by name or description" name="q" />
+
+                
+                    <div class="row form-group" style="margin-top:15px;">
+
+
+                        <input type="submit" value="Search" class="btn btn-primary inline-block" id="submit-search">
+
+
+                            <?php if (isset($userData['role']) && $userData['role'] === 'admin') { ?>
+                            <!-- EXPORT -->
+                            <div id="btn-export" class="btn btn-success float-right inline-block">Export</div>
+                            <!-- DELETE -->
+                            <div id="btn-delete" class="btn btn-danger float-right inline-block">Delete</div>
+                            <?php } ?>
+
+                        </div>
+
+                    </form>
 
                 </div>
                     <div class="row">
@@ -49,14 +44,14 @@
 
                         <div id="btn-cancel-delete" class="btn btn-default">Cancel</div>
                         <div id="btn-delete-confirm" class="btn btn-primary">Confirm</div>
-                </div>
+                    </div>
         </div>
-        <div class="row">
-        <?php if(count($ideas) < 1) { ?>
-                 <div class="ideacontainer well empty-list"><h1 class="text-center">There are no ideas matching your current search criteria</h1></div>
+        <div class="row" id="search-results">
+            <?php if(count($ideas) < 1) { ?>
+                <div class="ideacontainer well empty-list"><h1 class="text-center">There are no ideas matching your current search criteria</h1></div>
             <?php } else {
-                 echo $this->element('ideapage', array("ideas" => $ideas)); 
-                } ?>
+                echo $this->element('ideapage', array("ideas" => $ideas)); 
+            } ?>
         </div>
     </div>
     <div class="col-md-3">
@@ -83,7 +78,7 @@
             </div>
              <div class="row sort-controls">
                 <!-- SORTING -->
- <div class="row">
+                <div class="row">
                      <select id="sort_by" id='tags' placeholder='Sort by' style='width:100%' class="sort">
                         <option value="default">Default</option>
                         <option value="data-name">Name</option>
