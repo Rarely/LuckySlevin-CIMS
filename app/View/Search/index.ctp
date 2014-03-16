@@ -14,6 +14,25 @@
                 <form id="search-form">
                 <input id="search-query" type="text" class="form-control" placeholder="Search by name or description" name="q" />
                     <div class="row form-group" style="margin-top:15px;">
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <input type="checkbox" name="name" checked>Name<br>
+                            <input type="checkbox" name="description" checked>Description<br>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="checkbox" name="community_partner">Community Partner<br>
+                            <input type="checkbox" name="contact_name">Conact Name<br>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="checkbox" name="contact_phone">Contact Phone<br>
+                            <input type="checkbox" name="contact_email">Contact Email<br>
+                        </div>
+                    </div>
+
+ 
+
+
                         <input type="submit" value="Search" class="btn btn-primary inline-block" id="submit-search">
                             <?php if (isset($userData['role']) && $userData['role'] === 'admin') { ?>
                             <!-- EXPORT -->

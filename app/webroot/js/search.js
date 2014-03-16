@@ -12,11 +12,12 @@ $(document).ready(function() {
 
     $('#search-form').submit( function() {
         $.ajax({
-            url     : '/search/result/' + $('#search-query').val(),
+            url     : '/search/result/',// + $('#search-query').val(),
             type    : "GET",
             dataType: 'json',
+            data    : $('#search-form').serialize(),
             async: true,
-            complete : function(){
+            complete : function(data){
                 $('#search-results').html(data.responseText);
                 initializeMixItUp()
                 initializeIdeaStyle();

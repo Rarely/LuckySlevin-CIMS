@@ -26,21 +26,66 @@ class SearchController extends AppController {
 
 
 
-    public function result($q = null){
-        if($q == null){
+    public function result(){
+        $q = $this->request->query['q'];
+
+        if($q == null || $q == ''){
             $searchResult = $this->Idea->find('all', array(
                 'conditions' => array('Idea.isdeleted' => 0),
                 'recursive' => 2
             ));
         }else{
-            $searchResult = $this->Idea->find('all',array('conditions' => array(
-                'Idea.name LIKE' => '%' . $q . '%',
-                'Idea.isdeleted' => 0),
+
+            $orCond = array();
+
+            if(isset($this->request->query['name'])){
+                $orCond['Idea.name LIKE'] = '%' . $q . '%';
+            }
+            if(isset($this->request->query['description'])){
+                $orCond['Idea.description LIKE'] = '%' . $q . '%';
+            }
+            if(isset($this->request->query['community_partner'])){
+                $orCond['Idea.community_partner LIKE'] = '%' . $q . '%';
+            }
+            if(isset($this->request->query['contact_name'])){
+                $orCond['Idea.contact_name LIKE'] = '%' . $q . '%';
+            }
+            if(isset($this->request->query['contact_phone'])){
+                $orCond['Idea.contact_phone LIKE'] = '%' . $q . '%';
+            }
+            if(isset($this->request->query['contact_email'])){
+                $orCond['Idea.contact_email LIKE'] = '%' . $q . '%';
+            }
+
+
+
+            $cond = array(
+                'Idea.isdeleted' => 0,
+                'OR' => $orCond
+                );
+                
+            $searchResult = $this->Idea->find('all',array('conditions' => $cond,
                 'recursive' => 2));
+
+          //  $searchResult = $this->Idea->find('all',array('conditions' => array(
+           //     'Idea.description LIKE' => '%' . $q . '%',
+            //    'Idea.isdeleted' => 0),
+             //   'recursive' => 2));
+    
+            //$searchResult = $nameSearchResult + $descSearchResult;
+
+
+
         }
+    
+
+
+
         $this->set('ideas', $searchResult);
         $this->render('/Elements/ideapage', 'ajax');
     }
+
+
 
     public function export($idlist = array()) {
         $idlist = explode(',', $this->request->query('ids'));
