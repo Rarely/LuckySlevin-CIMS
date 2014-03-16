@@ -1,3 +1,117 @@
+$(document).ready(function() {
+    $(".user_filter").userSelect(false);
+    $("#sort_order").select2();
+    $("#sort_by").select2();
+    var dimensions = {};
+    var sortArray = new Array;
+    sortArray.push('default');
+
+    initializeMixItUp();
+    $('#Grid').mixitup('sort',sortArray);
+    initializeIdeaStyle();
+
+    $('#search-form').submit( function() {
+        $.ajax({
+            url     : '/search/result/' + $('#search-query').val(),
+            type    : "GET",
+            dataType: 'json',
+            async: true,
+            complete : function(){
+                $('#search-results').html(data.responseText);
+                initializeMixItUp()
+                initializeIdeaStyle();
+                setTimeout(applyFilters, 1000);
+                $('#Grid').mixitup('sort',sortArray);
+            }
+        });
+        return false;
+    });
+
+
+    $('.cat').each(function() {
+            $(this).categorySelect();
+    });
+
+    $.ajax({
+      type: "GET",
+      url: '/categories/getCategoryIds',
+      dataType: 'json',
+      async: true,
+      success: function(data) {
+               
+        
+        dimensions["user"] = "all";
+        $.each(data.data, function(key, value) {
+            newCat = 'category-' + value.Category.id;
+            dimensions[newCat] = "all";
+        }); 
+
+        $(".user_filter").on('change',function(){
+            applyFilters($(this));
+        });
+
+        $(".cat").on('change',function(){
+            applyFilters($(this));
+        });
+
+
+        $(".sort").on('change',function(){
+            var sortBy = $('#sort_by').select2('val');
+            var sortOrder = $('#sort_order').select2('val');
+            sortArray = new Array;
+            sortArray.push(sortBy);
+            if(sortBy != 'default' && sortBy != 'random'){
+                sortArray.push(sortOrder);
+            }
+            $('#Grid').mixitup('sort',sortArray);
+        });
+    }});
+
+
+    function initializeMixItUp(){
+        $("#Grid").mixitup({
+            effects: ['fade','scale'],
+        });
+    }
+
+    function applyFilters($t){
+        if($t != null){
+            var filters = $t.select2('val'),
+            filterString = '';
+
+            if(filters.length < 1){
+                filterString = 'all';
+            }else{
+                for (var i = 0; i < filters.length; i++) {
+                    if($t.attr('data-id') == 'user'){
+                        filterString += 'user-' + filters[i];
+                    }else{
+                        filterString += 'category-' + $t.attr('data-id') + '-' + filters[i];
+                    }
+                    if(i < filters.length-1){
+                        filterString += ' ';
+                    }
+                }
+            }
+            if($t.attr('data-id') == 'user'){
+                dimensions['user'] = filterString;
+            }else{
+                dimensions['category-' + $t.attr('data-id')] = filterString;
+            }
+        }
+
+        var dataArray = new Array;
+        for(var o in dimensions) {
+            dataArray.push(dimensions[o]);
+        }
+        $('#Grid').mixitup('filter',dataArray);
+    }
+
+
+});
+
+
+
 $(function() {
     $("#btn-export").click(function(e) {
         $("#btn-export").attr("disabled", "disabled");

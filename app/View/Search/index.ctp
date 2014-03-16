@@ -4,38 +4,25 @@
     echo $this->Html->css('jquery-selectable.css');
     echo $this->Html->css('search.css');
     echo $this->Html->script('jquery.mixitup.min.js');
-    echo $this->Html->script('filter.js');
 ?>
 
 <div class="row">
     <div class="col-md-9">
         <div class="row search-well well">
-
                 <div class="row">
-
                     <h1>Search</h1>
                 <form id="search-form">
-
                 <input id="search-query" type="text" class="form-control" placeholder="Search by name or description" name="q" />
-
-                
                     <div class="row form-group" style="margin-top:15px;">
-
-
                         <input type="submit" value="Search" class="btn btn-primary inline-block" id="submit-search">
-
-
                             <?php if (isset($userData['role']) && $userData['role'] === 'admin') { ?>
                             <!-- EXPORT -->
                             <div id="btn-export" class="btn btn-success float-right inline-block">Export</div>
                             <!-- DELETE -->
                             <div id="btn-delete" class="btn btn-danger float-right inline-block">Delete</div>
                             <?php } ?>
-
                         </div>
-
                     </form>
-
                 </div>
                     <div class="row">
                         <div id="btn-cancel-csv" class="btn btn-default">Cancel</div>
@@ -62,7 +49,7 @@
             <div class="row filter-controls">
             <!-- FILTER -->
                 <div class="row category-row">
-                    <input type='' class="user_filter" id='e18' placeholder='Owner' style='width:100%' />
+                    <input type='' class="user_filter" id='e18' placeholder='Owner' style='width:100%' data-id="user" />
                 </div>
                 <?php foreach ($categories as $category) { ?>
                     <div class="row category-row">
