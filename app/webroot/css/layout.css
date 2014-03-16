@@ -1,29 +1,37 @@
 body {
-	background-color: #0E4B5F;
+	background-color: #B7C9D3;
 }
 
 #heading-colour{
-    background-color: white;
+    background-color: #002145;
+}
+
+.heading-text-color{
+	color:#ffffff;
+}
+
+.management-btn{
+    margin-top: 8px;
+    border:none;
+    background-color: #002145;
 }
 
 .add-btn {
-    background-image: url('/img/addidea.png')  !important;
+    background-image: url('/img/addideainverse.png')  !important;
     background-color: transparent !important;
     background-size: 100%;  
     border: none !important;
     width:30px;
     height:30px;
-    margin-top: 8px;
 }
 
 .add-btn:hover {
-    background-image: url('/img/addideainverse.png') !important;
+    background-image: url('/img/addidea.png') !important;
     background-color: transparent !important;
     background-size: 100%;  
     border: none !important;
     width:30px;
     height:30px;
-    margin-top: 8px;
 }
 
 .notify-btn{
@@ -52,4 +60,10 @@ body {
     width: 450px;
     border-radius:10px;
     padding-top:0;
+}
+
+.border-line{
+	border-left-width: 3px; 
+	border-left-color: white; 
+	border-left-style: solid; 
 }

@@ -6,7 +6,7 @@
 
 h1 {
     font-family:"Verdana", Times, serif;
-    color: #343C75;
+    color: #002145;
     font-size: 25px;
     font-weight:bold;
     margin: 5px;
@@ -24,8 +24,25 @@ h1 {
 .nav-font{
     font-size: 16px;
     font-weight:bold;
+    color:white !important;
 }
 
-.inline-block {
+.inline-block{
     display: inline-block;
+}
+
+.padding-top-5{
+    padding-top:5px;
+}
+
+.padding-top-10{
+    padding-top:10px;
+}
+
+.padding-left-10{
+    padding-left: 10px;
+}
+
+.padding-left-30{
+    padding-left: 30px;
 }

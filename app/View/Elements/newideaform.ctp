@@ -3,15 +3,11 @@
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header modal-header-color">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h2 class="modal-title" id="myModalLabel">Add a New Idea</h2>
+        <h2 class="modal-title" style="color:white;" id="myModalLabel">Add a New Idea</h2>
       </div>
       <div class="modal-body">
-        
-
-<!-- File: /app/View/Posts/add.ctp -->
-
         <?php echo $this->Form->create('Idea', array(
           'url' => array('controller' => 'ideas', 'action' => 'add'),
           'inputDefaults' => array(
@@ -72,9 +68,9 @@
           </fieldset>
 
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer modal-header-color">
         <input class="btn btn-primary" type="submit" value="Submit" />
-        <div class="btn btn-link" data-dismiss="modal">Cancel</div>
+        <div class="btn btn-default" data-dismiss="modal">Cancel</div>
       </div>
     </div>
   </div>

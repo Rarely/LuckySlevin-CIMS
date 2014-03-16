@@ -45,38 +45,68 @@ body {
 <body>
     <div id="heading-colour" class="navbar navbar-fixed-top" role="navigation">
       <div class="container">
-        <div class="navbar-header">
-          <a class="navbar-brand" <?php echo $this->Html->link('Home', array('controller'=>'ideas', 'action'=>'index'));?></a>
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar">&nbsp;</span>
-            <span class="icon-bar">&nbsp;</span>
-            <span class="icon-bar">&nbsp;</span>
-          </button>
-        </div>
-
         <div class="navbar-collapse collapse">
-          
           <ul class="nav navbar-nav nav-font">
-            <li><?php echo $this->Html->link('Search', array('controller'=>'search', 'action'=>'index'));?></li>
-            <li><?php echo $this->Html->link('My Page', array('controller'=>'trackings', 'action'=>'index'));?></li>
+            <li>
+                <?php echo $this->Html->link('Home', 
+                                              array('controller'=>'ideas', 'action'=>'index'),
+                                              array('class' =>'heading-text-color'));?>
+            </li>
+            <li class = "border-line">
+                <?php echo $this->Html->link('Search', 
+                                              array('controller'=>'search', 'action'=>'index'),
+                                              array('class' =>'heading-text-color'));?></li>
+            <li>
+                <?php echo $this->Html->link('My Page', 
+                                              array('controller'=>'trackings', 'action'=>'index'),
+                                              array('class' =>'heading-text-color'));?>
+            </li>
             <?php if ($userData['role'] == 'admin') { ?>
-              <li><?php echo $this->Html->link('Users', array('controller'=>'users', 'action'=>'index'));?></li>
-              <li><?php echo $this->Html->link('Categories', array('controller'=>'categories', 'action'=>'index'));?></li>
-              <li><?php echo $this->Html->link('Idea Management', array('controller'=>'search', 'action'=>'index'));?></li>
+                <li>
+                    <div class ="btn-group">
+                      <button type="button" class = "management-btn btn nav-font dropdown-toggle" data-toggle="dropdown">
+                        Management
+                        <span class ="caret"></span>
+                        <span class ="sr-only">Management</span>
+                      </button>
+                      <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <?php echo $this->Html->link('User Management',
+                                                             array('controller'=>'users', 'action'=>'index'),
+                                                             array('class' =>'heading-text-color'));?>
+                            </li>   
+                            <li>
+                                <?php echo $this->Html->link('Category Management', 
+                                                              array('controller'=>'categories', 'action'=>'index'),
+                                                              array('class' =>'heading-text-color'));?>
+                            </li>
+                            <li>
+                                <?php echo $this->Html->link('Idea Management',
+                                                              array('controller'=>'search', 'action'=>'index'),
+                                                              array('class' =>'heading-text-color'));?>
+                            </li>
+                        </ul>
+                    </div>
+                </li>       
             <?php } ?>
           </ul>
           <ul class="nav navbar-nav navbar-right">
 
-            <li><button class="add-btn btn btn-primary btn-lg" id="btn-add-idea" data-toggle="modal" data-target="#myModal" imn></button></li>
-            <li class="dropdown">
-              <a href="#" class="welcome-name-btn dropdown-toggle" data-toggle="dropdown"> 
+            <li><button class="management-btn" id="btn-add-idea" data-toggle="modal" data-target="#myModal">
+                <ul class ="nav navbar-nav nav-font">
+                    <li class="add-btn"></li>
+                    <li class="padding-top-5">Add Idea</li>
+                </ul>
+            </button></li>
+            <li class="dropdown border-line">
+              <a href="#" class="welcome-name-btn dropdown-toggle heading-text-color" data-toggle="dropdown"> 
                 Welcome <?php echo $userData['name']?>
               </a>
               <ul class="dropdown-menu">
-                <li>
-                    <?php echo $this->Html->link('Logout', array('controller'=>'users', 'action'=>'logout'));?>
-                </li>
+                    <li>
+                        <?php echo $this->Html->link('Logout', 
+                                                       array('controller'=>'users', 'action'=>'logout'));?>
+                    </li>
               </ul>
             </li>
             <li class="dropdown">

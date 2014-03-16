@@ -9,13 +9,12 @@
     max-height: 250px;
     text-align: left;
     white-space: inherit;
-    width: 90%%;
     overflow: auto;
     border-radius: 0px 15px 15px 15px;
     -moz-border-radius: 0px 15px 15px 15px;
     -webkit-border-radius: 0px 15px 15px 15px;
     border: 0px solid #595959;
-    background-color: azure;
+    background-color: #B7C9D3;
 }
 
 .commentblock ul {
@@ -43,7 +42,7 @@
 	width: 100%;
 	word-wrap: break-word;
 	text-align: left;
-    color: grey;
+    color: #ffffff;
     font-style:italic;
     font-weight:bold;
 }

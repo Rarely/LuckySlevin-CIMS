@@ -2,7 +2,7 @@ $(document).ready(function() {
 	$(".title-text-wrapper").dotdotdot({
 		ellipsis	: '... ',
 		/*	How to cut off the text/html: 'word'/'letter'/'children' */
-		wrap		: 'word',
+		wrap		: 'letter',
 		/*	Wrap-option fallback to 'letter' for long words */
 		fallbackToLetter: true,
 		/*	jQuery-selector for the element to keep and put after the ellipsis. */
@@ -27,29 +27,48 @@ $(document).ready(function() {
 
 	$(".description-text-wrapper").dotdotdot({
 		ellipsis	: '... ',
-		/*	How to cut off the text/html: 'word'/'letter'/'children' */
 		wrap		: 'word',
-		/*	Wrap-option fallback to 'letter' for long words */
 		fallbackToLetter: true,
-		/*	jQuery-selector for the element to keep and put after the ellipsis. */
 		after		: null,
-		/*	Whether to update the ellipsis: true/'window' */
 		watch		: false,
-		/*	Optionally set a max-height, if null, the height will be measured. */
 		height		: 50,
-		/*	Deviation for the height-option. */
 		tolerance	: 0,
-		/*	Callback function that is fired after the ellipsis is added,
-		receives two parameters: isTruncated(boolean), orgContent(string). */
 		callback	: function( isTruncated, orgContent ) {},
 		lastCharacter	: {
-			/*	Remove these characters from the end of the truncated text. */
 			remove		: [ ' ', ',', ';', '.', '!', '?' ],
-			/*	Don't add an ellipsis if this array contains 
-			the last character of the truncated text. */
 			noEllipsis	: []
 		}
-	});     
+	});
+
+	$(".status-text-wrapper").dotdotdot({
+		ellipsis	: '',
+		wrap		: 'letter',
+		fallbackToLetter: true,
+		after		: null,
+		watch		: false,
+		height		: 30,
+		tolerance	: 0,
+		callback	: function( isTruncated, orgContent ) {},
+		lastCharacter	: {
+			remove		: [ ' ', ',', ';', '.', '!', '?' ],
+			noEllipsis	: []
+		}
+	});
+
+	$(".owner-text-wrapper").dotdotdot({
+		ellipsis	: '... ',
+		wrap		: 'word',
+		fallbackToLetter: true,
+		after		: null,
+		watch		: false,
+		height		: 50,
+		tolerance	: 0,
+		callback	: function( isTruncated, orgContent ) {},
+		lastCharacter	: {
+			remove		: [ ' ', ',', ';', '.', '!', '?' ],
+			noEllipsis	: []
+		}
+	});  
 
 
 
@@ -98,7 +117,7 @@ $(document).ready(function() {
 	function applyGradientToIdea(element, endColor) {
 		// debugger;
 		var rgbcolor = hexToRgb(endColor);
-        var backgroundRGB= hexToRgb("7CB6C9");
+        var backgroundRGB= hexToRgb("98B2C3");
 
 		element.css({
 			"background-size": "190px",
@@ -108,7 +127,7 @@ $(document).ready(function() {
 			"background": "url(\"/img/idea.png\") no-repeat left top / 190px auto, -o-linear-gradient(top,  rgba("+ backgroundRGB.r + "," + backgroundRGB.g + "," + backgroundRGB.b + ",1) 0%,rgba("+ backgroundRGB.r + "," + backgroundRGB.g + "," + backgroundRGB.b + ",0.85) 85%,rgba(" + rgbcolor.r + "," + rgbcolor.g + "," + rgbcolor.b + ",0.65) 100%)", /* Opera 11.10+ */
 			"background": "url(\"/img/idea.png\") no-repeat left top / 190px auto, -ms-linear-gradient(top,  rgba("+ backgroundRGB.r + "," + backgroundRGB.g + "," + backgroundRGB.b + ",1) 0%,rgba("+ backgroundRGB.r + "," + backgroundRGB.g + "," + backgroundRGB.b + ",0.85) 85%,rgba(" + rgbcolor.r + "," + rgbcolor.g + "," + rgbcolor.b + ",0.65) 100%)", /* IE10+ */
 			"background": "url(\"/img/idea.png\") no-repeat right top / 190px auto, linear-gradient(to bottom,  rgba(" + backgroundRGB.r + "," + backgroundRGB.g + "," + backgroundRGB.b + ",1) 0%,rgba(" + backgroundRGB.r + "," + backgroundRGB.g + "," + backgroundRGB.b + ",1) 85%,rgba(" + rgbcolor.r + "," + rgbcolor.g + "," + rgbcolor.b + ",0.65) 100%)", /* W3C */
-			"filter": "progid:DXImageTransform.Microsoft.gradient( startColorstr='#" + endColor + "', endColorstr='#7CB6C9   ',GradientType=0 )", /* IE6-9 */
+			"filter": "progid:DXImageTransform.Microsoft.gradient( startColorstr='#" + endColor + "', endColorstr='#98B2C3   ',GradientType=0 )", /* IE6-9 */
 		});
 }
 
