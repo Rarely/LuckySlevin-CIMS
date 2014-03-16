@@ -4,12 +4,10 @@
       <div class="modal-header modal-header-color">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <div class = "row">  
-          <h1 class="modal-title" id="myModalLabel" style="display:inline-block; color:white;">
-            <div style="padding-left:10px">
-              <?php echo $idea['Idea']['name']; ?>
-            </div>
+          <h1 class="modal-title inline-block padding-left-10" id="myModalLabel" style="color:white;">
+            <?php echo $idea['Idea']['name']; ?>
           </h1>
-          <div class="admin-btn-md" style="display: inline-block; padding-left: 10px;">
+          <div class="admin-btn-md inline-block padding-left-10">
               <?php echo $this->element('ideaactions', array("idea" => $idea)); ?>
           </div>
           <div id="modal-edit-email-btn">
@@ -57,7 +55,7 @@
               	</div>
             </div>
           </div>
-          <div class = "row" style="padding-left: 30px; padding-top: 10px;">
+          <div class = "row padding-top-10 padding-left-30">
           <!-- The Comments details of an Idea --> 
             <div class = "row"> 
               <strong>Comments</strong>
@@ -77,20 +75,20 @@
                 </ul>
               </div>
             </div>
-            <div class = "row" id="comment-field" style="padding-top: 10px;">
+            <div class = "row padding-top-10" id="comment-field">
               <label for"commentField">Leave a comment</label>
               <textarea type="text" class="form-control" id="commentField" cols="30" rows"12" placeholder="Leave a comment"> </textarea>
             </div>
-            <div class="row" style="padding-top: 10px;">
+            <div class="row padding-top-10">
               <div class="btn btn-primary commentbtn">Comment</div>
             </div>
             <!-- The Sharing details of an Idea -->
-            <div class="row" style="padding-top: 10px;  width: 94%; ">
+            <div class="row padding-top-10">
               <?php echo $this->Form->textarea('share', 
                 array('class' => 'sharing-autocomplete','id' => 'e18'
                 )); ?>
             </div>
-            <div class="row"style="padding-top: 10px;">                          
+            <div class="row padding-top-10">                          
               <div class="btn btn-info btn-primary btn-share">Share</div>
             </div>
           </div>

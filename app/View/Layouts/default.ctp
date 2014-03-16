@@ -95,7 +95,7 @@ body {
             <li><button class="management-btn" id="btn-add-idea" data-toggle="modal" data-target="#myModal">
                 <ul class ="nav navbar-nav nav-font">
                     <li class="add-btn"></li>
-                    <li style="padding-top:5px">Add Idea</li>
+                    <li class="padding-top-5">Add Idea</li>
                 </ul>
             </button></li>
             <li class="dropdown border-line">

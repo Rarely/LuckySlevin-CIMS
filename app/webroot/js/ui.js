@@ -2,7 +2,7 @@ $(document).ready(function() {
 	$(".title-text-wrapper").dotdotdot({
 		ellipsis	: '... ',
 		/*	How to cut off the text/html: 'word'/'letter'/'children' */
-		wrap		: 'leter',
+		wrap		: 'letter',
 		/*	Wrap-option fallback to 'letter' for long words */
 		fallbackToLetter: true,
 		/*	jQuery-selector for the element to keep and put after the ellipsis. */
