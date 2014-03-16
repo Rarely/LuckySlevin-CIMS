@@ -6,34 +6,52 @@
     echo $this->Html->script('jquery.mixitup.min.js');
 ?>
 
+
 <div class="row">
     <div class="col-md-9">
         <div class="row search-well well">
                 <div class="row">
-                    <h1>Search</h1>
-                <form id="search-form">
-                <input id="search-query" type="text" class="form-control" placeholder="Search by name or description" name="q" />
-                    <div class="row form-group" style="margin-top:15px;">
-
                     <div class="row">
-                        <div class="col-md-4">
-                            <input type="checkbox" name="name" checked>Name<br>
-                            <input type="checkbox" name="description" checked>Description<br>
-                        </div>
-                        <div class="col-md-4">
-                            <input type="checkbox" name="community_partner">Community Partner<br>
-                            <input type="checkbox" name="contact_name">Conact Name<br>
-                        </div>
-                        <div class="col-md-4">
-                            <input type="checkbox" name="contact_phone">Contact Phone<br>
-                            <input type="checkbox" name="contact_email">Contact Email<br>
-                        </div>
+                        <h1>Search</h1>
                     </div>
-
- 
-
-
-                        <input type="submit" value="Search" class="btn btn-primary inline-block" id="submit-search">
+                    <form id="search-form">
+                        <div class="row">
+                            <input id="search-query" type="text" class="form-control" placeholder="Search..." name="q" />
+                            <div id='loading'>
+                            </div>
+                        </div>
+                            <!--<div class="row form-group" >-->
+                        <div class="row">
+                            <div class="panel-group" id="accordion">
+                              <div class="panel panel-default">
+                                <div class="panel-heading">
+                                  <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                      Advanced search options
+                                    </a>
+                                  </h4>
+                                </div>
+                                <div id="collapseOne" class="panel-collapse collapse">
+                                  <div class="panel-body">
+                                    <div class="col-md-4">
+                                        <input type="checkbox" name="name" checked> Name<br>
+                                        <input type="checkbox" name="description" checked> Description<br>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="checkbox" name="community_partner"> Community Partner<br>
+                                        <input type="checkbox" name="contact_name"> Conact Name<br>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="checkbox" name="contact_phone"> Contact Phone<br>
+                                        <input type="checkbox" name="contact_email"> Contact Email<br>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <input type="submit" value="Search" class="btn btn-primary inline-block" id="submit-search" />
                             <?php if (isset($userData['role']) && $userData['role'] === 'admin') { ?>
                             <!-- EXPORT -->
                             <div id="btn-export" class="btn btn-success float-right inline-block">Export</div>
@@ -41,16 +59,17 @@
                             <div id="btn-delete" class="btn btn-danger float-right inline-block">Delete</div>
                             <?php } ?>
                         </div>
+                       <!-- </div>-->
                     </form>
                 </div>
-                    <div class="row">
-                        <div id="btn-cancel-csv" class="btn btn-default">Cancel</div>
-                        <span id="export-help">Please click the title of the ideas you would like to export below</span>
-                        <div id="btn-save-csv" class="btn btn-success">Save to File</div>
+                <div class="row">
+                    <div id="btn-cancel-csv" class="btn btn-default">Cancel</div>
+                    <span id="export-help">Please click the title of the ideas you would like to export below</span>
+                    <div id="btn-save-csv" class="btn btn-success">Save to File</div>
 
-                        <div id="btn-cancel-delete" class="btn btn-default">Cancel</div>
-                        <div id="btn-delete-confirm" class="btn btn-primary">Confirm</div>
-                    </div>
+                    <div id="btn-cancel-delete" class="btn btn-default">Cancel</div>
+                    <div id="btn-delete-confirm" class="btn btn-primary">Confirm</div>
+                </div>
         </div>
         <div class="row" id="search-results">
             <?php if(count($ideas) < 1) { ?>

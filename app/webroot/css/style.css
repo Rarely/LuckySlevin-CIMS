@@ -46,3 +46,12 @@ h1 {
 .padding-left-30{
     padding-left: 30px;
 }
+
+.loading-img {
+    background-image: url('/img/ajax-loader.gif')  !important;
+    background-color: transparent !important;
+    background-size: 100%;  
+    border: none !important;
+    width:30px;
+    height:30px;
+}

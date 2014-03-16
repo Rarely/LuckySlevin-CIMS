@@ -1,9 +1,11 @@
 .search-well {
-    margin-top: 20px;
+    margin-top: 10px;
+    padding: 10px 45px 10px 45px;
 }
 
 .filter-well {
-    margin-top: 20px;
+    margin-top: 10px;
+    padding-top: 10px;
 }
 
 #export-help {

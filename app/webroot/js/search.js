@@ -11,6 +11,7 @@ $(document).ready(function() {
     initializeIdeaStyle();
 
     $('#search-form').submit( function() {
+        $('#search-results').html("<div class='inline-block'><h2>Searching...</h2></div><div class='loading-img inline-block'></div>");
         $.ajax({
             url     : '/search/result/',// + $('#search-query').val(),
             type    : "GET",
@@ -23,6 +24,7 @@ $(document).ready(function() {
                 initializeIdeaStyle();
                 setTimeout(applyFilters, 1000);
                 $('#Grid').mixitup('sort',sortArray);
+                //$('#loading').html("");
             }
         });
         return false;
