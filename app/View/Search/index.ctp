@@ -109,15 +109,15 @@
                         <option value="data-name">Name</option>
                         <option value="data-community">Community Partner</option>
                         <option value="data-created">Idea created</option>
-                        <option value="data-updated">Idea last Updated</option>
+                        <option value="data-updated">Idea last updated</option>
                         <option value="data-start">Project start date</option>
                         <option value="data-end">Project end date</option>
                     </select>
                 </div>
                 <div class="row">
                      <select id="sort_order" id='tags' placeholder='Order by' style='width:100%' class="sort">
-                        <option value="asc">Ascending</option>
-                        <option value="desc">Descending</option>
+                        <option value="desc">Ascending</option>
+                        <option value="asc">Descending</option>
                     </select>
                 </div>
             </div>

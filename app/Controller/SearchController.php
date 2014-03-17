@@ -27,6 +27,7 @@ class SearchController extends AppController {
 
 
     public function result(){
+        $this->layout = null;
         $q = $this->request->query['q'];
 
         if($q == null || $q == ''){
@@ -57,8 +58,6 @@ class SearchController extends AppController {
                 $orCond['Idea.contact_email LIKE'] = '%' . $q . '%';
             }
 
-
-
             $cond = array(
                 'Idea.isdeleted' => 0,
                 'OR' => $orCond
@@ -67,20 +66,8 @@ class SearchController extends AppController {
             $searchResult = $this->Idea->find('all',array('conditions' => $cond,
                 'recursive' => 2));
 
-          //  $searchResult = $this->Idea->find('all',array('conditions' => array(
-           //     'Idea.description LIKE' => '%' . $q . '%',
-            //    'Idea.isdeleted' => 0),
-             //   'recursive' => 2));
-    
-            //$searchResult = $nameSearchResult + $descSearchResult;
-
-
-
         }
     
-
-
-
         $this->set('ideas', $searchResult);
         $this->render('/Elements/ideapage', 'ajax');
     }

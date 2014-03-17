@@ -11,20 +11,24 @@ $(document).ready(function() {
     initializeIdeaStyle();
 
     $('#search-form').submit( function() {
-        $('#search-results').html("<div class='inline-block'><h2>Searching...</h2></div><div class='loading-img inline-block'></div>");
         $.ajax({
-            url     : '/search/result/',// + $('#search-query').val(),
+            url     : '/search/result/',
             type    : "GET",
-            dataType: 'json',
+            dataType: 'html',
             data    : $('#search-form').serialize(),
             async: true,
+            beforeSend: function() {
+                $('#search-results').html("<div class='inline-block'><h2>Searching...</h2></div><div class='loading-img inline-block'></div>");
+            },
             complete : function(data){
                 $('#search-results').html(data.responseText);
-                initializeMixItUp()
+                initializeMixItUp();
                 initializeIdeaStyle();
-                setTimeout(applyFilters, 1000);
+                applyFilters();
                 $('#Grid').mixitup('sort',sortArray);
-                //$('#loading').html("");
+            },
+            error : function(){
+                bootbox.alert("Failed to retrieve search results.");
             }
         });
         return false;
@@ -77,7 +81,7 @@ $(document).ready(function() {
         });
     }
 
-    function applyFilters($t){
+    function applyFilters($t = null){
         if($t != null){
             var filters = $t.select2('val'),
             filterString = '';
