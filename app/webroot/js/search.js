@@ -81,29 +81,29 @@ $(document).ready(function() {
         });
     }
 
-    function applyFilters($t = null){
-        if($t != null){
-            var filters = $t.select2('val'),
+    function applyFilters(t){
+        if(t != null){
+            var filters = t.select2('val'),
             filterString = '';
 
             if(filters.length < 1){
                 filterString = 'all';
             }else{
                 for (var i = 0; i < filters.length; i++) {
-                    if($t.attr('data-id') == 'user'){
+                    if(t.attr('data-id') == 'user'){
                         filterString += 'user-' + filters[i];
                     }else{
-                        filterString += 'category-' + $t.attr('data-id') + '-' + filters[i];
+                        filterString += 'category-' + t.attr('data-id') + '-' + filters[i];
                     }
                     if(i < filters.length-1){
                         filterString += ' ';
                     }
                 }
             }
-            if($t.attr('data-id') == 'user'){
+            if(t.attr('data-id') == 'user'){
                 dimensions['user'] = filterString;
             }else{
-                dimensions['category-' + $t.attr('data-id')] = filterString;
+                dimensions['category-' + t.attr('data-id')] = filterString;
             }
         }
 
