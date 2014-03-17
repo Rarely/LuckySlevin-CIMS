@@ -45,7 +45,7 @@ class NotificationsController extends AppController {
      * for use within controllers
     */
     public function sendNotifications($title, $message, $ideaid = null, $userid = null, $senderid = null) {
-        if ($ideaid != null && $userid != null) {
+        if ($ideaid != null && $userid != null && $userid != $senderid) {
             //send to individual user
             $notification = $this->Notification->create();
             $notification['Notification']['userid'] = $userid;
@@ -67,7 +67,7 @@ class NotificationsController extends AppController {
             ));
             foreach ($trackingids as $user) {
                 //check if self
-                if ($user['Tracking']['userid'] != $senderid) {
+                if ($user['Tracking']['userid'] != $senderid && $userid != $senderid) {
                     $notification = $this->Notification->create();
                     $notification['Notification']['userid'] = $user['Tracking']['userid'];
                     $notification['Notification']['ideaid'] = $ideaid;
