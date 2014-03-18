@@ -59,15 +59,15 @@ class NotificationsController extends AppController {
 
             }
         }
-        if ($ideaid != null && $userid == null) {
+        if ($ideaid != null) {
             //send to all tracking users
             $trackingids = $this->Tracking->find('all', array(
                 'Idea.isdeleted' => 0
                 ,'conditions' => array('Tracking.ideaid' => $ideaid)
             ));
             foreach ($trackingids as $user) {
-                //check if self
-                if ($user['Tracking']['userid'] != $senderid && $userid != $senderid) {
+                //check if self or owner (owner already has been notified)
+                if ($user['Tracking']['userid'] != $senderid && $userid != $senderid && $user['Tracking']['userid'] != $userid) {
                     $notification = $this->Notification->create();
                     $notification['Notification']['userid'] = $user['Tracking']['userid'];
                     $notification['Notification']['ideaid'] = $ideaid;
