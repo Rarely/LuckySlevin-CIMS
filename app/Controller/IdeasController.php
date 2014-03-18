@@ -308,6 +308,16 @@ class IdeasController extends AppController {
 
     }
 
+    /*
+     * Shares an idea with a list of users
+     * input:
+        REST parameters: ideaid
+        Query Parameters: userids - a comma separated list of user ids to share the idea with
+     * preconditions: The user ids are valid and existing user ids
+     * postconditions: The users in the list will be sent notifications to look at the idea
+     * returns: Ajax Response {“response”: “success”, “data”: “”}
+     * url example: /ideas/1/share?userids=1,2,3,5
+    */
     function share($id = null) {
         $this->layout = null;
         if ($this->RequestHandler->isAjax()) {
