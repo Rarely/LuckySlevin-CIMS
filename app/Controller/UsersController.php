@@ -92,7 +92,7 @@ class UsersController extends AppController {
                 $account=$this->User->findByUsername($email);
 
                 if(!isset($account['User']['username'])){
-                    $this->Session->setFlash('<h3>We Don\'t have such and email on record.</h3>');
+                    $this->Session->setFlash('<h3>If you have provided a valid email address, you will receive further password reset instructions shortly</h3>');
                     $this->redirect('/');
                 }
                 $hashyToken=md5(date('mdY').rand(4000000,4999999));
