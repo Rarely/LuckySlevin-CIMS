@@ -89,6 +89,36 @@ body {
                     </div>
                 </li>       
             <?php } ?>
+            <?php if ($userData['role'] == 'admin') { ?>
+            <li>
+                <div class ="btn-group">
+                  <button type="button" class = "management-btn btn nav-font dropdown-toggle" data-toggle="dropdown">
+                    Help
+                    <span class ="caret"></span>
+                    <span class ="sr-only">Help</span>
+                  </button>
+                  <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <?php echo $this->Html->link('Standard Help', 
+                                          array('controller'=>'help', 'action'=>'view', 1),
+                                          array('class' =>'heading-text-color'));?>
+                        </li>   
+                        <li>
+                            <?php echo $this->Html->link('Admin Help', 
+                                          array('controller'=>'help', 'action'=>'view', 2),
+                                          array('class' =>'heading-text-color'));?>
+                                          </li>
+
+                    </ul>
+                </div>
+            </li> 
+            <?php }else{ ?>
+            <li>
+                <?php echo $this->Html->link('Help', 
+                                              array('controller'=>'help', 'action'=>'view', 1),
+                                              array('class' =>'heading-text-color'));?>
+            </li>
+            <?php } ?>
           </ul>
           <ul class="nav navbar-nav navbar-right">
 

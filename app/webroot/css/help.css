@@ -1,0 +1,74 @@
+.help-well {
+   
+}
+
+.content {
+    margin: 10px 0px 0px 0px;
+}
+
+.help_edit {
+    width: 100%;
+}
+
+.help-addidea-img {
+    background-image: url('/img/addidea.png')  !important;
+    background-color: transparent !important;
+    background-size: 100%;  
+    border: none !important;
+    width:30px;
+    height:30px;
+}
+
+.help-adduser-img {
+    background-image: url('/img/adduser.png')  !important;
+    background-color: transparent !important;
+    background-size: 100%;  
+    border: none !important;
+    width:30px;
+    height:30px;
+}
+
+.help-bell-img {
+    background-image: url('/img/bell.png')  !important;
+    background-color: #002145 !important;
+    background-size: 100%;  
+    border: none !important;
+    width:30px;
+    height:30px;
+}
+
+.help-delete-img {
+    background-image: url('/img/delete.png')  !important;
+    background-color: transparent !important;
+    background-size: 100%;  
+    border: none !important;
+    width:30px;
+    height:30px;
+}
+
+.help-edit-img {
+    background-image: url('/img/edit.png')  !important;
+    background-color: transparent !important;
+    background-size: 100%;  
+    border: none !important;
+    width:30px;
+    height:30px;
+}
+
+.help-tracked-img {
+    background-image: url('/img/tracked.png')  !important;
+    background-color: transparent !important;
+    background-size: 100%;  
+    border: none !important;
+    width:30px;
+    height:30px;
+}
+
+.help-untracked-img {
+    background-image: url('/img/untracked.png')  !important;
+    background-color: #002145 !important;
+    background-size: 100%;  
+    border: none !important;
+    width:30px;
+    height:30px;
+}

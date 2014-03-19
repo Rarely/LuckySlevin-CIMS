@@ -12,6 +12,22 @@ h1 {
     margin: 5px;
 }
 
+h2 {
+    color: #606060;
+    font-size: 18px;
+}
+
+h3 {
+    color: #606060;
+    font-size: 16px;
+}
+
+hr {
+    color: #002145;
+    background-color: #002145;
+    height: 2px;
+}
+
 .empty-list{
     margin-top:15px;
     padding-top:80px;
