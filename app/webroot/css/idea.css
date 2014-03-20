@@ -80,10 +80,9 @@
 
 .owner-heading {
     font-size: 18px;
-    width: 160px;
+    width: 90px;
     height:20px;
     line-height: 1.1;
-    margin-left: 10px;
     margin-top: 20px;
 }
 
@@ -162,13 +161,6 @@
 	background-color:#002145;
 }
 
-
 .desc-width{
 	width:440px;
-}
-
-.subtitle-idealist {
-    color: #6F6F6F;
-    font-size: 14px;
-    padding-top: 5px;
 }
