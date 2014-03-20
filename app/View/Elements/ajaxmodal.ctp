@@ -11,6 +11,11 @@
               <?php echo $this->element('ideaactions', array("idea" => $idea)); ?>
           </div>
           <div id="modal-edit-email-btn">
+            <?php echo $this->Html->link("Split",
+              array('controller' => 'ideas', 'action' => 'split', $idea['Idea']['id'])
+              ,array('class' =>'btn btn-default', 'target' => '_blank')
+            ); ?>
+
             <?php echo $this->Html->link("", 
               array('controller' => 'ideas', 'action' => 'edit', $idea['Idea']['id'])
               ,array('class' =>'icon-btn admin-btn-md admin-btn-edit-white', )
@@ -61,7 +66,19 @@
             	<div class="desc-width">
 	              <strong>Description</strong><br>
 	              <?php echo $idea['Idea']['description']; ?>
-              	</div>
+              </div>
+              <strong>Referred Ideas</strong><br>
+               <ul class="references-list">
+                <?php
+                 if (count($idea['References'])) {
+                    foreach($idea['References'] as $ref) {
+                     echo '<li><a onclick="Ajax.Idea.showIdea(' . $ref['id'] . ');">' . $ref['name'] . '</a></li>';
+                    }
+                 } else {
+                   echo "<li>No Ideas Referred</li>";
+                 }
+                ?>
+              </ul>
             </div>
           </div>
           <div class = "row padding-top-10 padding-left-30">

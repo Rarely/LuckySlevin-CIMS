@@ -22,11 +22,17 @@
     <!-- Here is where we loop through our $posts array, printing out post info -->
 
     <?php foreach ($users as $user): ?>
+    <?php $userNotificationsCount = 0; ?>
+    <?php foreach ($user['Notifications'] as $notification) {
+        if ($notification['isread'] == false) {
+            $userNotificationsCount++;
+        }
+    } ?>
     <tr data-id=<?php echo $user['User']['id'];?>>
         <td><?php echo $user['User']['id']; ?></td>
         <td><?php echo $user['User']['name'] ?></td>
         <td><?php echo $user['User']['username']; ?></td>
-        <td><?php echo count($user['Notifications']);?></td>
+        <td><?php echo $userNotificationsCount; ?></td>
         <td><?php echo count($user['Trackings']); ?></td>
         <td> 
             <div class="btn-delete-user admin-btn admin-btn-sm admin-btn-delete"></div>

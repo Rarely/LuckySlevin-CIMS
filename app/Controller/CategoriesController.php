@@ -1,7 +1,7 @@
 <?php
 class CategoriesController extends AppController {
     public $helpers = array('Html', 'Form');
-    public $uses = array('Value');
+    public $uses = array('Value', 'IdeaValue');
     var $components = array('RequestHandler');
     
     public function index() {
@@ -25,14 +25,32 @@ class CategoriesController extends AppController {
         if (!$vid) {
             throw new NotFoundException(__('Invalid value'));
         }
-        if ($this->Value->delete($vid)) {
-            $this->set('response','success');
-            $this->set('data', array());
-            $this->render('/Elements/jsonreturn');
+        //check if references to this value, if so, set to specified
+        //if not, just delete
+        if (count($this->IdeaValue->find('all', array('conditions' => array('valueid' => $vid)))) > 0) {
+            //set to specified
+            //value is in use, instead, we set to specified
+            $this->Value->read(null, $vid);
+            $this->Value->set('specified', 1); //Value
+            if ($this->Value->save()) {
+                $this->set('response','success');
+                $this->set('data', array());
+                $this->render('/Elements/jsonreturn');
+            } else {
+                $this->set('response','failed');
+                $this->set('data', array());
+                $this->render('/Elements/jsonreturn');
+            }
         } else {
-            $this->set('response','failed');
-            $this->set('data', array());
-            $this->render('/Elements/jsonreturn');
+            if ($this->Value->delete($vid)) {
+                $this->set('response','success');
+                $this->set('data', array());
+                $this->render('/Elements/jsonreturn');
+            } else {
+                $this->set('response','failed');
+                $this->set('data', array());
+                $this->render('/Elements/jsonreturn');
+            }
         }
     }
     public function edit($id = null) {

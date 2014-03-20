@@ -86,6 +86,10 @@ class IdeasController extends AppController {
             'fields' => 'Value.id, Value.name, Value.categoryid',
             'recursive'=>2
         )));
+        if ($this->Session->check('page_title') != true) {
+            $this->Session->write('page_title', 'Edit an Idea');
+            $this->Session->write('page_description', 'Edit an idea');
+        }
 
         if ($this->request->is('post')) {
             $this->Idea->read(null, $id);
@@ -114,6 +118,43 @@ class IdeasController extends AppController {
 
     }
 
+    /*
+     * Creates a child of an idea
+     * input:
+        REST parameters: ideaid
+        Query Parameters: None
+     * preconditions: The idea id is valid and existing
+     * postconditions:  A new idea will be created with the data from the given idea id,
+                        it will then add the reference to the original idea and the user
+                        will be redirected to the edit page to continue modifying the idea.
+     * returns: the edit page with the new idea loaded.
+     * url example: /ideas/1/split
+    */
+    public function split($id=null) {
+        $this->layout= false;
+        $this->autoRender = false;
+        if (!$id) { throw new NotFoundException(__('Invalid idea')); }
+        $idea = $this->Idea->findById($id);
+        $this->Idea->create();
+        $this->Idea->set('community_partner', $idea['Idea']['community_partner']);
+        $this->Idea->set('contact_name', $idea['Idea']['contact_name']);
+        $this->Idea->set('contact_email', $idea['Idea']['contact_email']);
+        $this->Idea->set('contact_phone', $idea['Idea']['contact_phone']);
+        $this->Idea->set('userid', $idea['Idea']['userid']);
+        if ($this->Idea->save()) {
+            $newId = $this->Idea->getLastInsertID();
+            if ($this->IdeaReference->save(array('ideaid' => $id,'refers_to'=> $newId))) {
+                $this->Session->write('page_title', 'Create an Idea');
+                $this->Session->write('page_description', 'Create a new idea');
+                return $this->redirect(array('controller' => 'ideas', 'action' => 'edit', $newId));
+            } else {
+                throw new CakeException('Error saving child reference: ' . $id . ', ' . $this->Idea->getLastInsertID());
+            }
+        } else {
+            throw new CakeException('Error saving new idea');
+        }
+    }
+
     public function email($id=null) { 
         if (!$id) {
             throw new NotFoundException(__('Invalid idea'));
@@ -131,6 +172,13 @@ class IdeasController extends AppController {
             'recursive'=>2
         )));
     }
+
+    public function afterFilter() {
+        $this->Session->delete('page_title');
+        $this->Session->delete('page_description');
+
+    }
+
     public function saveIdeaReferences($formdata, $ideaid) {
         $this->IdeaReference->deleteAll(array('IdeaReference.ideaid' => $ideaid), false);
         $references = array();
@@ -312,6 +360,16 @@ class IdeasController extends AppController {
 
     }
 
+    /*
+     * Shares an idea with a list of users
+     * input:
+        REST parameters: ideaid
+        Query Parameters: userids - a comma separated list of user ids to share the idea with
+     * preconditions: The user ids are valid and existing user ids
+     * postconditions: The users in the list will be sent notifications to look at the idea
+     * returns: Ajax Response {“response”: “success”, “data”: “”}
+     * url example: /ideas/1/share?userids=1,2,3,5
+    */
     function share($id = null) {
         $this->layout = null;
         if ($this->RequestHandler->isAjax()) {

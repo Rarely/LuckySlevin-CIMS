@@ -1,6 +1,7 @@
 <?php echo $this->Html->script('editidea.js'); ?>
 <div class="row well well-top-margin">
-<h1> Edit an Idea </h1>
+<h1> <?php echo $this->Session->read('page_title'); ?> </h1>
+<h1> <?php echo $this->Session->read('page_description'); ?> </h1>
 
 <?php echo $this->Form->create('Idea', array(
   'inputDefaults' => array(
