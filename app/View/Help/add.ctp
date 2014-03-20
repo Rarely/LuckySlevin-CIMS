@@ -5,12 +5,11 @@
 ?>
 
 <div class="row">
-<h1>Edit</h1>
+<h1>New page</h1>
 <?php
 echo $this->Form->create('Help');
 echo $this->Form->input('name');
 echo $this->Form->input('help_content', array('rows' => '3', 'class' => 'help_edit'));
-echo $this->Form->input('id', array('type' => 'hidden'));
 echo $this->Form->end('Save');
 ?>
 </div>

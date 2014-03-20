@@ -13,4 +13,15 @@ $(document).ready(function() {
         ]
     });
 
+    $('.help-link').click(function() {
+        var id = $(this).attr("data-id");
+        displayHelp(id);
+    });
+
 });
+
+function displayHelp (id) {
+    $('.help-content').hide();
+    $('#help-' + id).show();
+}
+
