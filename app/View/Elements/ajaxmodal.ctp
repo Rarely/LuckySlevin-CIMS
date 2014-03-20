@@ -11,6 +11,11 @@
               <?php echo $this->element('ideaactions', array("idea" => $idea)); ?>
           </div>
           <div id="modal-edit-email-btn">
+            <?php echo $this->Html->link("Split",
+              array('controller' => 'ideas', 'action' => 'split', $idea['Idea']['id'])
+              ,array('class' =>'btn btn-default', 'target' => '_blank')
+            ); ?>
+
             <?php echo $this->Html->link("", 
               array('controller' => 'ideas', 'action' => 'edit', $idea['Idea']['id'])
               ,array('class' =>'icon-btn admin-btn-md admin-btn-edit-white', )
@@ -31,28 +36,49 @@
             ),
         )); ?>
       <!--The Leftside of an Idea -->
-        <div class="col-md-8">
+        <div class="col-md-7">
           <!--The leftside details of an Idea -->
           <div class = "row">
             <div class="col-md-4">
               <strong>Community Partner</strong><br>
-              <?php echo $idea['Idea']['name']; ?><br>
+              <?php echo $idea['Idea']['community_partner']; ?><br>
               <strong>Contact Name</strong><br>
               <?php echo $idea['Idea']['contact_name']; ?><br>
               <strong>Contact Details</strong><br>
               <?php echo $idea['Idea']['contact_email']; ?><br>
-              <?php echo $idea['Idea']['contact_phone']; ?><br>
-              <strong>Referral Source</strong><br>
-              Need this Field<br>
+              <?php if($idea['Idea']['contact_phone'] != '') {
+                        echo $idea['Idea']['contact_phone']; ?>
+                    <br> <?php } ?>
               <Strong>Timeframe</Strong><br>
-              Need this field<br>
+              <?php if($idea['Idea']['start_date'] == null && $idea['Idea']['end_date'] == null){?>
+                  Flexible<br> <?php } ?>
+              <?php if($idea['Idea']['start_date'] != null) {  
+                         echo "Start Date: ";  
+                         echo $idea['Idea']['start_date'];?>
+                    <br> <?php } ?>
+              <?php if($idea['Idea']['end_date'] != null) {  
+                         echo "End Date: ";   
+                         echo $idea['Idea']['end_date'];?>
+                    <br> <?php } ?>
             </div>
             <!--The Description details of an Idea -->                      
             <div class="col-md-8">
             	<div class="desc-width">
 	              <strong>Description</strong><br>
 	              <?php echo $idea['Idea']['description']; ?>
-              	</div>
+              </div>
+              <strong>Referred Ideas</strong><br>
+               <ul class="references-list">
+                <?php
+                 if (count($idea['References'])) {
+                    foreach($idea['References'] as $ref) {
+                     echo '<li><a onclick="Ajax.Idea.showIdea(' . $ref['id'] . ');">' . $ref['name'] . '</a></li>';
+                    }
+                 } else {
+                   echo "<li>No Ideas Referred</li>";
+                 }
+                ?>
+              </ul>
             </div>
           </div>
           <div class = "row padding-top-10 padding-left-30">
@@ -92,6 +118,9 @@
               <div class="btn btn-info btn-primary btn-share">Share</div>
             </div>
           </div>
+        </div>
+        <div class="col-md-1">
+        <!--This Spacing is here for mobile reasons, remove it causes the large mobile to render incorrectly -->
         </div>
         <!--The Rightside of an Idea -->
         <div class="col-md-4">

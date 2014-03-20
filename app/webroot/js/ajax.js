@@ -92,7 +92,11 @@ var Ajax = {
           async: true,
           success: function(data) {
             $('.navbar .notifications-menu').html(data);
-            $('.navbar .badge-notifications').text($('.navbar .notifications-menu a.active').length);
+            if ($('.navbar .notifications-menu a.active').length > 0) {
+              $('.navbar .badge-notifications').text($('.navbar .notifications-menu a.active').length).show();
+            } else {
+              $('.navbar .badge-notifications').text($('.navbar .notifications-menu a.active').length).hide();
+            }
           }
         });
       },
@@ -104,7 +108,12 @@ var Ajax = {
           async: true,
           success: function(data) {
             $(dom).removeClass('active');
-            $('.navbar .badge-notifications').text($('.navbar .notifications-menu a.active').length);
+            if ($('.navbar .notifications-menu a.active').length > 0) {
+              $('.navbar .badge-notifications').text($('.navbar .notifications-menu a.active').length).show();
+            } else {
+              $('.navbar .badge-notifications').text($('.navbar .notifications-menu a.active').length).hide();
+            }
+
           }
         });
       },

@@ -30,7 +30,7 @@ $(function() {
 
     var add_idea_end_date_picker = $('#add-idea-dp2').datepicker({
         format:'yyyy-mm-dd',
-        autoclose: true
+        autoclose: true,
         onRender: function(date) {
             return ''; //date.valueOf() <= add_idea_start_date_picker.date.valueOf() ? 'disabled' : '' ;
         }
