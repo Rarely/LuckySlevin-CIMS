@@ -22,6 +22,26 @@
         'maxlength'   => '1000',
         'value' => $idea['Idea']['description'],
       )); ?>
+    
+      <label>Timeframe</label>  
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Start date
+              <a href="#" class="btn btn-small" id="dp1" data-date-format="yyyy-mm-dd" data-date="<?php echo $idea['Idea']['start_date'];?>">Change</a>
+            </th>
+            <th>End date
+              <a href="#" class="btn btn-small" id="dp2" data-date-format="yyyy-mm-dd" data-date="<?php echo $idea['Idea']['end_date'];?>">Change</a>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type='hidden' id="start_date" name="data[Idea][start_date]" ><div id="start_date_text"><?php echo $idea['Idea']['start_date'];?></div></td>
+            <td><input type='hidden' id="end_date" name="data[Idea][end_date]" ><div id="end_date_text"><?php echo $idea['Idea']['end_date'];?></div></td>
+          </tr>
+        </tbody>
+      </table>
 
       <?php foreach ($categories as $category) { ?>
         <label for="categoryDescription"><?php echo $category['Category']['name'] ?></label>
@@ -55,6 +75,8 @@
 
       <label for="owner">Owner</label>
       <input type="hidden" name="data[Idea][userid]" value=" " initvalue='<?php echo json_encode(array('id' => $idea['Users']['id'], 'text' => $idea['Users']['name'] . '(' . $idea['Users']['username'] . ')')); ?>' class="owner-select" />
+
+
 
       <label for="data[Idea][references]">Referenced Ideas</label>
       <?php

@@ -4,7 +4,7 @@ class Idea extends AppModel {
             'Comments' => array('Comments' => 'Comments'
                                 ,'className' => 'Comments'
                                 ,'foreignKey' => 'ideaid'
-                                ,'order' => 'Comments.created ASC'
+                                ,'order' => 'Comments.created DESC'
             ),
             'Idea_Value' => array('Idea_Value' => 'Idea_Value'
                                 ,'className' => 'IdeaValue'
