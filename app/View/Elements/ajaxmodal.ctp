@@ -36,21 +36,30 @@
             ),
         )); ?>
       <!--The Leftside of an Idea -->
-        <div class="col-md-8">
+        <div class="col-md-7">
           <!--The leftside details of an Idea -->
           <div class = "row">
             <div class="col-md-4">
               <strong>Community Partner</strong><br>
-              <?php echo $idea['Idea']['name']; ?><br>
+              <?php echo $idea['Idea']['community_partner']; ?><br>
               <strong>Contact Name</strong><br>
               <?php echo $idea['Idea']['contact_name']; ?><br>
               <strong>Contact Details</strong><br>
               <?php echo $idea['Idea']['contact_email']; ?><br>
-              <?php echo $idea['Idea']['contact_phone']; ?><br>
-              <strong>Referral Source</strong><br>
-              Need this Field<br>
+              <?php if($idea['Idea']['contact_phone'] != '') {
+                        echo $idea['Idea']['contact_phone']; ?>
+                    <br> <?php } ?>
               <Strong>Timeframe</Strong><br>
-              Need this field<br>
+              <?php if($idea['Idea']['start_date'] == null && $idea['Idea']['end_date'] == null){?>
+                  Flexible<br> <?php } ?>
+              <?php if($idea['Idea']['start_date'] != null) {  
+                         echo "Start Date: ";  
+                         echo $idea['Idea']['start_date'];?>
+                    <br> <?php } ?>
+              <?php if($idea['Idea']['end_date'] != null) {  
+                         echo "End Date: ";   
+                         echo $idea['Idea']['end_date'];?>
+                    <br> <?php } ?>
             </div>
             <!--The Description details of an Idea -->                      
             <div class="col-md-8">
@@ -109,6 +118,9 @@
               <div class="btn btn-info btn-primary btn-share">Share</div>
             </div>
           </div>
+        </div>
+        <div class="col-md-1">
+        <!--This Spacing is here for mobile reasons, remove it causes the large mobile to render incorrectly -->
         </div>
         <!--The Rightside of an Idea -->
         <div class="col-md-4">
