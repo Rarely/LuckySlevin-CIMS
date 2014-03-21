@@ -81,31 +81,114 @@ class SearchController extends AppController {
                 "Idea.id" => $idlist
             )
         ));
-        $filepath = APP . "webroot/files/cims.csv";
 
-        if(file_exists($filepath)) unlink($filepath);
-        $file = fopen($filepath, "w");
+        //community partner information
+        $csv1path = APP . "webroot/files/cims-cp.csv";
+        $csv2path = APP . "webroot/files/cims-projectinfo.csv";
+        $zippath = APP . "webroot/files/cims-export.zip";
+
+        //Categories
+        if(file_exists($csv1path)) unlink($csv1path);
+        $file = fopen($csv1path, "w");
         $lines = array();
+
+        fputcsv($file, array(
+            'Community Partners'
+            ,'Contact Name'
+            ,'Contact Email'
+        ));
         foreach($data as $i) {
-            //TODO: CBEL ONLINE FORMAT
+            fputcsv($file, array(
+                $i['Idea']['community_partner']
+                ,$i['Idea']['contact_name']
+                ,$i['Idea']['contact_email']
+            ));
+        }
+        fclose($file);
+
+        //Project Info
+        if(file_exists($csv2path)) unlink($csv2path);
+        $file = fopen($csv2path, "w");
+        $lines = array();
+
+        fputcsv($file, array(
+            'id'
+            ,'name'
+            ,'description'
+            ,'created'
+            ,'community partner'
+            ,'contact name'
+            ,'contact email'
+            ,'contact phone'
+        ));
+        foreach($data as $i) {
             fputcsv($file, array( 
                 $i['Idea']['id']
                 ,$i['Idea']['name']
                 ,$i['Idea']['description']
                 ,$i['Idea']['created']
+                ,$i['Idea']['community_partner']
+                ,$i['Idea']['contact_name']
+                ,$i['Idea']['contact_email']
+                ,$i['Idea']['contact_phone']
             ));
         }
         fclose($file);
 
+        //create zip of two files
+        $files_to_zip = array(
+            $csv1path,
+            $csv2path
+        );
+        //if true, good; if false, zip creation failed
+        $result = $this->create_zip($files_to_zip, $zippath, true);
+
         $this->viewClass = 'Media';
         // Download app/webroot/files/cims.csv
         $params = array(
-            'id'        => 'cims.csv',
-            'name'      => 'cims',
+            'id'        => 'cims-export.zip',
+            'name'      => 'cims-export',
             'download'  => true,
-            'extension' => 'csv',
+            'extension' => 'zip',
             'path'      => APP . 'webroot/files' . DS
         );
         $this->set($params);
+    }
+
+    /* creates a compressed zip file */
+    function create_zip($files = array(),$destination = '',$overwrite = false) {
+        //if the zip file already exists and overwrite is false, return false
+        if(file_exists($destination) && !$overwrite) { return false; }
+        //vars
+        $valid_files = array();
+        //if files were passed in...
+        if(is_array($files)) {
+            //cycle through each file
+            foreach($files as $file) {
+                //make sure the file exists
+                if(file_exists($file)) {
+                    $valid_files[] = $file;
+                }
+            }
+        }
+        //if we have good files...
+        if(count($valid_files)) {
+            //create the archive
+            $zip = new ZipArchive();
+            if($zip->open($destination,$overwrite ? ZIPARCHIVE::OVERWRITE : ZIPARCHIVE::CREATE) !== true) {
+                return false;
+            }
+            //add the files
+            foreach($valid_files as $file) {
+                $zip->addFile($file,basename($file));
+            }
+            $zip->close();
+            //check to make sure the file exists
+            return file_exists($destination);
+        }
+        else
+        {
+            return false;
+        }
     }
 }

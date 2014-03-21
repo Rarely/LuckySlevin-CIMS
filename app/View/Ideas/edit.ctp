@@ -12,71 +12,106 @@
   'id' => 'edit-idea-form'
 )); ?>
 
-    <fieldset>
-      <?php echo $this->Form->input('name', array(
-        'label' => 'name',
-        'value' => $idea['Idea']['name'],
-      )); ?>
-      
-      <?php echo $this->Form->input('description', array(
-        'label' => 'description (max 1000)',
-        'maxlength'   => '1000',
-        'value' => $idea['Idea']['description'],
-      )); ?>
+<fieldset>
+  <?php echo $this->Form->input('name', array(
+    'label' => 'Idea Title',
+    'value' => $idea['Idea']['name']
+  )); ?>
+  <?php echo $this->Form->input('community_partner', array(
+    'label' => 'Community Partner',
+    'value' => $idea['Idea']['community_partner']
+  )); ?>      
+  <?php echo $this->Form->input('contact_name',array(
+      'label' => 'Contact Name',
+      'value' => $idea['Idea']['contact_name']
+  )); ?>
+  <?php echo $this->Form->input('contact_email',array(
+      'label' => 'Contact Email',
+      'value' => $idea['Idea']['contact_email']
+  )); ?>
+  <?php echo $this->Form->input('contact_phone',array(
+      'label' => 'Contact Phone',
+      'value' => $idea['Idea']['contact_phone']
+  )); ?>
+  
+  <?php echo $this->Form->input('description', array(
+    'label' => 'description (max 1000)',
+    'maxlength'   => '1000',
+    'value' => $idea['Idea']['description'],
+  )); ?>
 
-      <?php foreach ($categories as $category) { ?>
-        <label for="categoryDescription"><?php echo $category['Category']['name'] ?></label>
-        <input type='hidden' class="cat" id='tags'
-        name="data[Category][<?php echo $category['Category']['id']; ?>]"
-        <?php if ($category['Category']['multiselect'] == true) { echo 'multiple="true"'; } ?>
-        <?php if ($category['Category']['specifiable'] == true) { echo 'specifiable="true"'; } ?>
-        <?php echo 'data-id="' . $category['Category']['id'] .'"'; ?>
-        <?php 
-          echo 'value=" "'; //IMPORTANT BUG FIX
-          echo 'init-value=\'';
-          $json_values = array();
-          foreach ($values as $value) {
-            if (isset($value) && $value != '' && ($value ['Value']['categoryid'] == $category['Category']['id'])) {
-              if (isset($value['Value']['id']) && $value['Value']['id'] != '' && isset($value['Value']['name']) && $value['Value']['name'] != '') {
-                array_push($json_values, array('id'=> $value['Value']['id'], 'text' => $value['Value']['name']));
-              }
-            }
+  <label>Timeframe</label>  
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Start date
+          <a href="#" class="btn btn-small" id="dp1" data-date-format="yyyy-mm-dd" data-date="<?php echo $idea['Idea']['start_date'];?>">Change</a>
+        </th>
+        <th>End date
+          <a href="#" class="btn btn-small" id="dp2" data-date-format="yyyy-mm-dd" data-date="<?php echo $idea['Idea']['end_date'];?>">Change</a>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><input type='hidden' id="start_date" name="data[Idea][start_date]" ><div id="start_date_text"><?php echo $idea['Idea']['start_date'];?></div></td>
+        <td><input type='hidden' id="end_date" name="data[Idea][end_date]" ><div id="end_date_text"><?php echo $idea['Idea']['end_date'];?></div></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <?php foreach ($categories as $category) { ?>
+    <label for="categoryDescription"><?php echo $category['Category']['name'] ?></label>
+    <input type='hidden' class="cat" id='tags'
+    name="data[Category][<?php echo $category['Category']['id']; ?>]"
+    <?php if ($category['Category']['multiselect'] == true) { echo 'multiple="true"'; } ?>
+    <?php if ($category['Category']['specifiable'] == true) { echo 'specifiable="true"'; } ?>
+    <?php echo 'data-id="' . $category['Category']['id'] .'"'; ?>
+    <?php 
+      echo 'value=" "'; //IMPORTANT BUG FIX
+      echo 'init-value=\'';
+      $json_values = array();
+      foreach ($values as $value) {
+        if (isset($value) && $value != '' && ($value ['Value']['categoryid'] == $category['Category']['id'])) {
+          if (isset($value['Value']['id']) && $value['Value']['id'] != '' && isset($value['Value']['name']) && $value['Value']['name'] != '') {
+            array_push($json_values, array('id'=> $value['Value']['id'], 'text' => $value['Value']['name']));
           }
-          if (count($json_values) == 1) {
-            $json_values = $json_values[0];
-          } else if (count($json_values) == 0) {
-            $json_values = null;
-          }
-          echo json_encode($json_values);
-          echo '\''; 
-        ?>
-         style='width:100%' />
-        <br />
-      <?php } ?>
-
-      <label for="owner">Owner</label>
-      <input type="hidden" name="data[Idea][userid]" value=" " initvalue='<?php echo json_encode(array('id' => $idea['Users']['id'], 'text' => $idea['Users']['name'] . '(' . $idea['Users']['username'] . ')')); ?>' class="owner-select" />
-
-      <label for="data[Idea][references]">Referenced Ideas</label>
-      <?php
-        $references = array();
-        foreach($idea['References'] as $ref) {
-          array_push($references, array('id' => $ref['id'], 'text'=> $ref['name']));
         }
+      }
+      if (count($json_values) == 1) {
+        $json_values = $json_values[0];
+      } else if (count($json_values) == 0) {
+        $json_values = null;
+      }
+      echo json_encode($json_values);
+      echo '\''; 
+    ?>
+     style='width:100%' />
+    <br />
+  <?php } ?>
 
-        if (count($references) == 1) {
-          $references = $references[0];
-        } else if (count($references) == 0) {
-          $references = null;
-        }
-        ?>
-      <input type="hidden" class="idea-references" name="data[Idea][references]" value=" " initvalue='<?php echo json_encode($references); ?>' multiple="true" />
-      <br />
+  <label for="owner">Owner</label>
+  <input type="hidden" name="data[Idea][userid]" value=" " initvalue='<?php echo json_encode(array('id' => $idea['Users']['id'], 'text' => $idea['Users']['name'] . '(' . $idea['Users']['username'] . ')')); ?>' class="owner-select" />
+  <label for="data[Idea][references]">Referenced Ideas</label>
+  <?php
+    $references = array();
+    foreach($idea['References'] as $ref) {
+      array_push($references, array('id' => $ref['id'], 'text'=> $ref['name']));
+    }
 
-      <?php echo $this->Form->submit('Save', array(
-        'div' => 'form-group',
-        'class' => 'btn btn-primary'
-      )); ?>
-  </fieldset>
+    if (count($references) == 1) {
+      $references = $references[0];
+    } else if (count($references) == 0) {
+      $references = null;
+    }
+    ?>
+  <input type="hidden" class="idea-references" name="data[Idea][references]" value=" " initvalue='<?php echo json_encode($references); ?>' multiple="true" />
+  <br />
+
+  <?php echo $this->Form->submit('Save', array(
+    'div' => 'form-group',
+    'class' => 'btn btn-primary'
+  )); ?>
+</fieldset>
 <?php echo $this->Form->end(); ?>
 </div>

@@ -94,6 +94,10 @@ class IdeasController extends AppController {
         if ($this->request->is('post')) {
             $this->Idea->read(null, $id);
             $this->Idea->set('name', $this->request->data['Idea']['name']);
+            $this->Idea->set('community_partner', $this->request->data['Idea']['community_partner']);
+            $this->Idea->set('contact_name', $this->request->data['Idea']['contact_name']);
+            $this->Idea->set('contact_email', $this->request->data['Idea']['contact_email']);
+            $this->Idea->set('contact_phone', $this->request->data['Idea']['contact_phone']);
             $this->Idea->set('description', $this->request->data['Idea']['description']);
             $this->Idea->set('userid', $this->request->data['Idea']['userid']);
             $this->Idea->set('updated',null);
@@ -136,6 +140,8 @@ class IdeasController extends AppController {
         $this->Idea->set('contact_name', $idea['Idea']['contact_name']);
         $this->Idea->set('contact_email', $idea['Idea']['contact_email']);
         $this->Idea->set('contact_phone', $idea['Idea']['contact_phone']);
+        $this->Idea->set('created', date('Y-m-d H:i:s'));
+        $this->Idea->set('updated', null);
         $this->Idea->set('userid', $idea['Idea']['userid']);
         if ($this->Idea->save()) {
             $newId = $this->Idea->getLastInsertID();

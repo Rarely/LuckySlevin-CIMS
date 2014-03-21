@@ -18,7 +18,7 @@ $(document).ready(function() {
             data    : $('#search-form').serialize(),
             async: true,
             beforeSend: function() {
-                $('#search-results').html("<div class='inline-block'><h2>Searching...</h2></div><div class='loading-img inline-block'></div>");
+                $('#search-results').html("<div class='inline-block'><h3>Searching...</h3></div><div class='loading-img inline-block'></div>");
             },
             complete : function(data){
                 $('#search-results').html(data.responseText);
