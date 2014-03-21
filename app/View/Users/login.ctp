@@ -22,7 +22,7 @@
     <div class="row">
       <div class="loginheader">
         <h1>Centre for Community Engaged Learning </h1>
-        <h2 style="font-style:italic;">Idea Management System</h2> 
+        <h3>Idea Management System</h3> 
       </div>
     </div>
     <div class="row">

@@ -12,7 +12,8 @@ echo $this->Form->input('name', array('class' => 'form-control'));
 echo $this->Form->input('help_content', array('rows' => '3', 'class' => 'help_edit', 'label' => ''));
 echo $this->Form->input('id', array('type' => 'hidden'));
 echo $this->Form->input('admin');
-echo $this->Form->end('Save', array('class' => 'btn btn-primary'));
+echo $this->Form->submit('Save', array('class' => 'btn btn-primary'));
+echo $this->Form->end();
 ?>
 </div>
 
