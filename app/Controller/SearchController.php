@@ -206,3 +206,4 @@ class SearchController extends AppController {
         }
     }
 }
+?>

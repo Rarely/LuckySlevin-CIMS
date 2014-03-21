@@ -4,20 +4,35 @@
     margin-bottom: 0;
 }
 
-h1 {
+h1, h2, h3, h4, h5 {
     font-family:"Verdana", Times, serif;
-    color: #002145;
-    font-size: 25px;
     font-weight:bold;
     margin: 5px;
 }
+h1 {
+    color: #002145;
+    font-size: 25px;
+}
 
-h5 {
-    font-family:"Verdana", Times, serif;
-    color: #6F6F6F;
+h2{
+    color: #002145;
+    font-size: 20px;
+}
+
+h3 {
+    color: #606060;
+    font-size: 18px;
+}
+
+h4 {
+    color: #606060;
     font-size: 14px;
-    font-weight:bold;
-    margin: 5px;
+}
+
+hr {
+    color: #002145;
+    background-color: #002145;
+    height: 2px;
 }
 
 .empty-list{

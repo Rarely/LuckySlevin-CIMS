@@ -4,7 +4,7 @@
   echo $this->Html->script('bootstrap.min.js');
 ?>
 <div class="row well well-top-margin">
-<h2>Reset Lost Password</h2>
+<h3>Reset Lost Password</h3>
 <?php echo $this->Form->create('User', array(
   'url' => array('controller' => 'users', 'action' => 'resetpassword'),
   'inputDefaults' => array(

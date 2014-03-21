@@ -1,6 +1,6 @@
 <div class="idealist-container well">
     <div class="idealist-title">
-        <?php echo "<h1>" . $title . "<span>" . "<h5>" . $subtitle . "</h5>" . "</span>" . "</h1>"?>
+        <?php echo "<h1>" . $title . "<span>" . "<h4>" . $subtitle . "</h4>" . "</span>" . "</h1>"?>
     </div>
     <div id="ideacontainer" class="ideacontainer">
     	<div class="idea-list-innerwrap">

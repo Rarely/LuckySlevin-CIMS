@@ -54,9 +54,9 @@
                             <input type="submit" value="Search" class="btn btn-primary inline-block" id="submit-search" />
                             <?php if (isset($userData['role']) && $userData['role'] === 'admin') { ?>
                             <!-- EXPORT -->
-                            <div id="btn-export" class="btn btn-success float-right inline-block">Export</div>
+                            <div id="btn-export" class="btn btn-success idea-management inline-block">Export</div>
                             <!-- DELETE -->
-                            <div id="btn-delete" class="btn btn-danger float-right inline-block">Delete</div>
+                            <div id="btn-delete" class="btn btn-danger idea-management inline-block">Delete</div>
                             <?php } ?>
                         </div>
                        <!-- </div>-->
