@@ -1,10 +1,27 @@
 <?php
+// app/Controller/HelpController.php
+
 class HelpController extends AppController {
     public $helpers = array('Html', 'Form');
+    var $components= array('Session', 'RequestHandler');
+
+    public function beforeFilter() {
+        parent::beforeFilter();
+        // Allow users to view help pages
+        $this->Auth->allow('index');
+        $this->Auth->authorize = array('Controller');
+    }
 
     public function index($id = null) {
         $this->set('title_for_layout', 'Help');
-        $this->set('helps', $this->Help->find('all'));
+
+        if ($this->Session->read('Auth.User.role') === 'admin'){
+            $this->set('helps', $this->Help->find('all'));
+        } else {
+            $this->set('helps', $this->Help->find('all',
+                                    array('conditions' => array(
+                                            'Help.admin' => 0))));
+        }
         $this->set('helpToDisplay', $id);
     }
 
@@ -44,7 +61,6 @@ class HelpController extends AppController {
         }
     }
 
-
     public function delete($id) {
         if ($this->request->is('get')) {
             throw new MethodNotAllowedException();
@@ -56,7 +72,4 @@ class HelpController extends AppController {
         }
         $this->Session->setFlash(__('Unable to delete Help page.'));
     }
-
-
-
 }
