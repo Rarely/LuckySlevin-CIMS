@@ -1,7 +1,7 @@
 <?php
 class SearchController extends AppController {
     public $helpers = array('Html', 'Form');
-    public $uses = array('Idea');
+    public $uses = array('Idea', 'IdeaValue');
 
     public function index($q = null) {
         $this->set('title_for_layout', 'Search');
@@ -82,6 +82,12 @@ class SearchController extends AppController {
             )
         ));
 
+        $values = $this->IdeaValue->find('all', array(
+            'conditions' => array('ideaid' => $idlist),
+            'fields' => 'Value.id, Value.name, Value.categoryid, Idea.id',
+            'recursive'=>2
+        ));
+
         //community partner information
         $csv1path = APP . "webroot/files/cims-cp.csv";
         $csv2path = APP . "webroot/files/cims-projectinfo.csv";
@@ -112,20 +118,28 @@ class SearchController extends AppController {
         $lines = array();
 
         fputcsv($file, array(
-            'id'
-            ,'name'
-            ,'description'
-            ,'created'
-            ,'community partner'
-            ,'contact name'
-            ,'contact email'
-            ,'contact phone'
+            'ID'
+            ,'Name'
+            ,'Description'
+            ,'Project Type'
+            ,'Created'
+            ,'Community Partner'
+            ,'Contact Name'
+            ,'Contact Email'
+            ,'Contact Phone'
         ));
         foreach($data as $i) {
+            //get project type
+            foreach ($values as $value) {
+                if ($value['Value']['categoryid'] == "1" && $value['Idea']['id'] == $i['Idea']['id']) {
+                    $projectType = $value['Value']['name'];
+                }
+            }
             fputcsv($file, array( 
                 $i['Idea']['id']
                 ,$i['Idea']['name']
                 ,$i['Idea']['description']
+                ,$projectType
                 ,$i['Idea']['created']
                 ,$i['Idea']['community_partner']
                 ,$i['Idea']['contact_name']
