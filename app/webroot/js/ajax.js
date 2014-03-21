@@ -153,8 +153,8 @@ var Ajax = {
            async: true,
            success: function(data) {
              if (data.response === "success") {
-                 $("#ajax-modal .commentblock ul").append(data.data.html);
-                 $("#ajax-modal .commentblock").animate({ scrollTop: $("#ajax-modal .commentblock ul").height() }, "slow");
+                 $("#ajax-modal .commentblock ul").prepend(data.data.html);
+                 $("#ajax-modal .commentblock").animate({ scrollTop: 0 }, "slow");
                  $("#ajax-modal #commentField").val("");
              }
           },

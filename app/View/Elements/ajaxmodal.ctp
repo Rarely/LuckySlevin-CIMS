@@ -94,7 +94,7 @@
                     </div>
                     <div class="col-xs-11">
                       <div class="comment-message"><?php echo $comment['Comment']['message']; ?></div>
-                      <div class="comment-user"><?php echo '- ' . $comment['User']['name']; ?></div>
+                      <div class="comment-user"><?php echo '- ' . $comment['User']['name'] . ' ' . $comment['Comment']['created']; ?></div>
                     </div>
                   </li>
                   <?php endforeach; ?>

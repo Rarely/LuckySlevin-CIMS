@@ -50,6 +50,32 @@
               'maxlength'   => '1000',
               )); ?>
 
+            <label>Timeframe</label>  
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Start date
+                    <a href="#" class="btn small" id="add-idea-dp1" data-date-format="yyyy-mm-dd" data-date="2014-02-25">Set</a>
+                  </th>
+                  <th>End date
+                    <a href="#" class="btn small" id="add-idea-dp2" data-date-format="yyyy-mm-dd" data-date="">Set</a>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <input type='hidden' id="add-idea-start-date" name="data[Idea][start_date]" >
+                    <div id="add-idea-start-date-text"></div>
+                  </td>
+                  <td>
+                    <input type='hidden' id="add-idea-end-date" name="data[Idea][end_date]" >
+                    <div id="add-idea-end-date-text"></div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
             <?php foreach ($categories as $category) { ?>
               <label for="categoryDescription"><?php echo $category['Category']['name'] ?></label>
               <input type='hidden' class="cat" id='tags' name="data[Category][<?php echo $category['Category']['id']; ?>]"
