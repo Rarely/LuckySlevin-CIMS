@@ -164,3 +164,15 @@
 .desc-width{
 	width:440px;
 }
+
+.subtitle-idealist {
+    color: #6F6F6F;
+    font-size: 14px;
+    padding-top: 5px;
+}
+#ubc-logo {
+    background-color:#002145;
+}
+#ubc-logo img {
+    margin:10px auto;
+    display:block;
