@@ -6,7 +6,7 @@
   echo $this->Html->css('style.css');
 ?>
 
-<div class="col-md-4">
+<div class="row">
     <?php echo $this->Form->create('User', array(
       'url' => array('controller' => 'users', 'action' => 'resetpassword'),
       'inputDefaults' => array(
