@@ -449,4 +449,9 @@ class IdeasController extends AppController {
             $this->render('/Elements/jsonraw');
         }
     }
+
+    function addTwo($x, $y){
+        return $x + $y;
+    }
 }
+
