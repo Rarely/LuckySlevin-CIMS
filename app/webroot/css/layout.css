@@ -14,10 +14,20 @@ body {
     margin-top: 8px;
     border:none;
     background-color: #002145;
+    color:white;
+    font-size: 16px;
+    font-weight:bold;
+}
+
+.management-btn:hover{
+    text-decoration: none;
+    background-color: #eee;
+    color: #2a6496 !important;
+    font
+    outline:0;
 }
 
 .add-btn {
-    background-image: url('/img/addideainverse.png')  !important;
     background-color: transparent !important;
     background-size: 100%;  
     border: none !important;
@@ -25,14 +35,6 @@ body {
     height:30px;
 }
 
-.add-btn:hover {
-    background-image: url('/img/addidea.png') !important;
-    background-color: transparent !important;
-    background-size: 100%;  
-    border: none !important;
-    width:30px;
-    height:30px;
-}
 
 .notify-btn{
     background-image: url('/img/bell.png') !important;
@@ -66,4 +68,16 @@ body {
 	border-left-width: 3px; 
 	border-left-color: white; 
 	border-left-style: solid; 
+}
+
+.nav-collapse-button{
+    background-image: url('/img/arrowdown.png');
+    background-color:transparent;
+    background-size: 100% 100%;
+}
+
+.nav-font{
+    color:white;
+    font-size: 16px;
+    font-weight:bold;
 }

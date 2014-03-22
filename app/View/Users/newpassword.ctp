@@ -2,18 +2,21 @@
   echo $this->Html->script('jquery-1.11.0.min.js');
   echo $this->Html->css('bootstrap.css');
   echo $this->Html->script('bootstrap.min.js');
+  echo $this->Html->css('login.css');
+  echo $this->Html->css('style.css');
 ?>
 <div class="row well well-top-margin">
     <h3>New Password</h3>
     
-<?php echo $this->Form->create('User', array(
-  'url' => array('controller' => 'users', 'action' => 'newpassword'),
-  'inputDefaults' => array(
-    'div' => 'form-group',
-    'wrapInput' => false,
-    'class' => 'form-control'
-  ),
-)); ?>
+  <?php echo $this->Form->create('User', array(
+    'url' => array('controller' => 'users', 'action' => 'newpassword'),
+    'inputDefaults' => array(
+      'div' => 'form-group',
+      'wrapInput' => false,
+      'class' => 'form-control'
+    ),
+    'class' => 'reset-well'
+  )); ?>
 
 <fieldset>
     <?php echo $this->Form->input('password', array(

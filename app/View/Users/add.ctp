@@ -21,8 +21,8 @@
       )); ?>
 
       <?php echo $this->Form->input('role', array(
-        'options' => array('admin' => 'Admin', 'author' => 'Author'),
-        'default' => array('author' => 'Author')
+        'options' => array('standard' => 'Standard','admin' => 'Admin'),
+        'default' => array('standard' => 'Standard')
       )); ?>
 
       <?php echo $this->Form->submit('Submit', array(

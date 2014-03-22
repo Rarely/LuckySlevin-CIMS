@@ -48,6 +48,12 @@ body {
 <body>
     <div id="heading-colour" class="navbar navbar-fixed-top" role="navigation">
       <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed nav-collapse-button" data-toggle="collapse" data-target=".navbar-collapse">
+
+            </button>
+            <a class="navbar-brand" href="#"></a>
+        </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav nav-font">
             <li>
@@ -96,10 +102,12 @@ body {
           <ul class="nav navbar-nav navbar-right">
 
             <li><button class="management-btn" id="btn-add-idea" data-toggle="modal" data-target="#myModal">
-                <ul class ="nav navbar-nav nav-font">
-                    <li class="add-btn"></li>
-                    <li class="padding-top-5">Add Idea</li>
-                </ul>
+              <div class="inline-block">
+                <img src ="/img/addideainverse.png" class ="add-btn"/>
+              </div>
+              <div class="padding-top-5 nav inline-block">
+                Add Idea
+              </div>  
             </button></li>
             <li class="dropdown border-line">
               <a href="#" class="welcome-name-btn dropdown-toggle heading-text-color" data-toggle="dropdown"> 

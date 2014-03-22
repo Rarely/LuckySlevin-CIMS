@@ -11,19 +11,20 @@
               <?php echo $this->element('ideaactions', array("idea" => $idea)); ?>
           </div>
           <div id="modal-edit-email-btn">
-            <?php echo $this->Html->link("Split",
-              array('controller' => 'ideas', 'action' => 'split', $idea['Idea']['id'])
-              ,array('class' =>'btn btn-default', 'target' => '_blank')
-            ); ?>
-
-            <?php echo $this->Html->link("", 
-              array('controller' => 'ideas', 'action' => 'edit', $idea['Idea']['id'])
-              ,array('class' =>'icon-btn admin-btn-md admin-btn-edit-white', )
-             ); ?>
-            <?php echo $this->Html->link("",
-              array('controller' => 'ideas', 'action' => 'email', $idea['Idea']['id'])
-              ,array('class' =>'icon-btn admin-btn-md email-btn', 'target' => '_blank')
-            ); ?>
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+              Options <span class="caret"></span>
+          </button>
+            <ul class="dropdown-menu" role="menu">
+              <li><?php echo $this->Html->link("Split",
+              array('controller' => 'ideas', 'action' => 'split', $idea['Idea']['id'])); ?>
+              </li>
+              <li> <?php echo $this->Html->link("Edit", 
+              array('controller' => 'ideas', 'action' => 'edit', $idea['Idea']['id'])); ?>
+              </li>
+              <li><?php echo $this->Html->link("Email",
+              array('controller' => 'ideas', 'action' => 'email', $idea['Idea']['id'])); ?>
+              </li>
+            </ul>
           </div>
         </div>
       </div>

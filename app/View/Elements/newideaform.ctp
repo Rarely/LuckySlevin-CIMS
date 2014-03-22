@@ -54,11 +54,11 @@
             <table class="table">
               <thead>
                 <tr>
-                  <th>Start date
-                    <a href="#" class="btn small" id="add-idea-dp1" data-date-format="yyyy-mm-dd" data-date="2014-02-25">Set</a>
+                  <th>
+                    <a href="#" class="btn-small" id="add-idea-dp1" data-date-format="yyyy-mm-dd" data-date="2014-02-25">Start date</a>
                   </th>
-                  <th>End date
-                    <a href="#" class="btn small" id="add-idea-dp2" data-date-format="yyyy-mm-dd" data-date="">Set</a>
+                  <th>
+                    <a href="#" class="btn-small" id="add-idea-dp2" data-date-format="yyyy-mm-dd" data-date="">End date</a>
                   </th>
                 </tr>
               </thead>

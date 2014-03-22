@@ -27,7 +27,7 @@
                                 <div class="panel-heading">
                                   <h4 class="panel-title">
                                     <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                                      Advanced search options
+                                      Advanced search options <span class="caret"></span>
                                     </a>
                                   </h4>
                                 </div>
