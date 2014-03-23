@@ -10,10 +10,10 @@
           <div class="admin-btn-md inline-block padding-left-10">
               <?php echo $this->element('ideaactions', array("idea" => $idea)); ?>
           </div>
-          <div id="modal-edit-email-btn">
+          <div id="modal-edit-email-btn" class="dropdown">
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
               Options <span class="caret"></span>
-          </button>
+            </button>
             <ul class="dropdown-menu" role="menu">
               <li><?php echo $this->Html->link("Split",
               array('controller' => 'ideas', 'action' => 'split', $idea['Idea']['id'])); ?>

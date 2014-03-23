@@ -89,7 +89,7 @@ class IdeasController extends AppController {
         )));
         if ($this->Session->check('page_title') != true) {
             $this->Session->write('page_title', 'Edit an Idea');
-            $this->Session->write('page_description', 'Edit an idea');
+            $this->Session->write('page_description', 'Update the contact details, description or categories of this idea');
         }
 
         if ($this->request->is('post')) {
@@ -147,8 +147,8 @@ class IdeasController extends AppController {
         if ($this->Idea->save()) {
             $newId = $this->Idea->getLastInsertID();
             if ($this->IdeaReference->save(array('ideaid' => $id,'refers_to'=> $newId))) {
-                $this->Session->write('page_title', 'Create an Idea');
-                $this->Session->write('page_description', 'Create a new idea');
+                $this->Session->write('page_title', 'Split an Idea');
+                $this->Session->write('page_description', 'Create a new idea based on the idea being split, this idea will be referenced');
                 return $this->redirect(array('controller' => 'ideas', 'action' => 'edit', $newId));
             } else {
                 throw new CakeException('Error saving child reference: ' . $id . ', ' . $this->Idea->getLastInsertID());
