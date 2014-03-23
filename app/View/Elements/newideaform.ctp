@@ -78,7 +78,7 @@
             </table>
 
             <?php foreach ($categories as $category) { ?>
-              <label><?php echo $category['Category']['name'] ?></label>
+              <label><?php echo htmlspecialchars($category['Category']['name']) ?></label>
               <input type='hidden' class="cat" name="data[Category][<?php echo $category['Category']['id']; ?>]"
               <?php if ($category['Category']['multiselect'] == true) { echo 'data-multiple="true"'; } ?>
               <?php if ($category['Category']['specifiable'] == true) { echo 'data-specifiable="true"'; } ?>
@@ -88,7 +88,7 @@
             <?php } ?>
 
             <label>Owner</label>
-            <input type="hidden" name="data[Idea][userid]" value=" " data-initvalue='<?php echo json_encode(array('id' => $userData['id'], 'text' => $userData['name'] . '(' . $userData['username'] . ')')); ?>' class="owner-select" />
+            <input type="hidden" name="data[Idea][userid]" value=" " data-initvalue='<?php echo json_encode(array('id' => $userData['id'], 'text' => htmlspecialchars($userData['name']) . '(' . htmlspecialchars($userData['username']) . ')')); ?>' class="owner-select" />
 
             <label>Referenced Ideas</label>
             <input type="hidden" class="idea-references" name="data[Idea][references]" value=" " data-multiple="true" />
