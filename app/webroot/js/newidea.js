@@ -5,7 +5,7 @@ $(function() {
         });
     });
 
-    $("#new-idea-form .owner-select").userSelect(false, $('#new-idea-form .owner-select').attr('initvalue'), false);
+    $("#new-idea-form .owner-select").userSelect(false, $('#new-idea-form .owner-select').attr('data-initvalue'), false);
 
     $("#new-idea-form .idea-references").ideaSelect();
 

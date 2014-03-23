@@ -62,10 +62,10 @@
 
   <?php foreach ($categories as $category) { ?>
     <label for="categoryDescription"><?php echo $category['Category']['name'] ?></label>
-    <input type='hidden' class="cat" id='tags'
+    <input type='hidden' class="cat"
     name="data[Category][<?php echo $category['Category']['id']; ?>]"
-    <?php if ($category['Category']['multiselect'] == true) { echo 'multiple="true"'; } ?>
-    <?php if ($category['Category']['specifiable'] == true) { echo 'specifiable="true"'; } ?>
+    <?php if ($category['Category']['multiselect'] == true) { echo 'data-multiple="true"'; } ?>
+    <?php if ($category['Category']['specifiable'] == true) { echo 'data-specifiable="true"'; } ?>
     <?php echo 'data-id="' . $category['Category']['id'] .'"'; ?>
     <?php 
       echo 'value=" "'; //IMPORTANT BUG FIX
@@ -91,7 +91,7 @@
   <?php } ?>
 
   <label for="owner">Owner</label>
-  <input type="hidden" name="data[Idea][userid]" value=" " initvalue='<?php echo json_encode(array('id' => $idea['Users']['id'], 'text' => $idea['Users']['name'] . '(' . $idea['Users']['username'] . ')')); ?>' class="owner-select" />
+  <input type="hidden" name="data[Idea][userid]" value=" " data-initvalue='<?php echo json_encode(array('id' => $idea['Users']['id'], 'text' => $idea['Users']['name'] . '(' . $idea['Users']['username'] . ')')); ?>' class="owner-select" />
   <label for="data[Idea][references]">Referenced Ideas</label>
   <?php
     $references = array();
@@ -105,7 +105,7 @@
       $references = null;
     }
     ?>
-  <input type="hidden" class="idea-references" name="data[Idea][references]" value=" " initvalue='<?php echo json_encode($references); ?>' multiple="true" />
+  <input type="hidden" class="idea-references" name="data[Idea][references]" value=" " data-initvalue='<?php echo json_encode($references); ?>' data-multiple="true" />
   <br />
 
   <?php echo $this->Form->submit('Save', array(

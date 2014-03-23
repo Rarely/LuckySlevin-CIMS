@@ -87,11 +87,11 @@
             <div class="row filter-controls">
             <!-- FILTER -->
                 <div class="row category-row">
-                    <input type='' class="user_filter" id='e18' placeholder='Owner' style='width:100%' data-id="user" />
+                    <input class="user_filter" id='e18' placeholder='Owner' style='width:100%' data-id="user" />
                 </div>
                 <?php foreach ($categories as $category) { ?>
                     <div class="row category-row">
-                      <input type='' class="cat" id='tags' name="data[Category][<?php echo $category['Category']['id']; ?>]" multiple="true"
+                      <input class="cat" name="data[Category][<?php echo $category['Category']['id']; ?>]" data-specifiable="true" data-multiple="true"
                       <?php echo 'data-id="' . $category['Category']['id'] .'"'; ?>
                       <?php echo 'placeholder="' . $category['Category']['name'] .'"' ?>
                        style='width:100%' />
@@ -104,7 +104,7 @@
              <div class="row sort-controls">
                 <!-- SORTING -->
                 <div class="row">
-                     <select id="sort_by" id='tags' placeholder='Sort by' style='width:100%' class="sort">
+                     <select id="sort_by" style='width:100%' class="sort">
                         <option value="default">Default</option>
                         <option value="data-name">Name</option>
                         <option value="data-community">Community Partner</option>
@@ -115,7 +115,7 @@
                     </select>
                 </div>
                 <div class="row">
-                     <select id="sort_order" id='tags' placeholder='Order by' style='width:100%' class="sort">
+                     <select id="sort_order" style='width:100%' class="sort">
                         <option value="desc">Ascending</option>
                         <option value="asc">Descending</option>
                     </select>

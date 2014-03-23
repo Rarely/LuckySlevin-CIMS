@@ -73,7 +73,7 @@ body {
             <?php if ($userData['role'] == 'admin') { ?>
                 <li>
                     <div class ="btn-group">
-                      <button type="button" class = "management-btn btn nav-font dropdown-toggle" data-toggle="dropdown">
+                      <button type="button" class = "management-btn btn nav-font dropdown-toggle nav-btn" data-toggle="dropdown">
                         Management
                         <span class ="caret"></span>
                         <span class ="sr-only">Management</span>
@@ -100,15 +100,16 @@ body {
             <?php } ?>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-
-            <li><button class="management-btn" id="btn-add-idea" data-toggle="modal" data-target="#myModal">
-              <div class="inline-block">
-                <img src ="/img/addideainverse.png" class ="add-btn"/>
+            <li>
+              <div class="btn idea-add-btn nav-btn" id="btn-add-idea" data-toggle="modal" data-target="#myModal">
+                <div class="inline-block">
+                  <img src ="/img/addideainverse.png" class ="add-btn" alt="" />
+                </div>
+                <div class="padding-top-5 nav inline-block">
+                  Add Idea
+                </div>  
               </div>
-              <div class="padding-top-5 nav inline-block">
-                Add Idea
-              </div>  
-            </button></li>
+            </li>
             <li class="dropdown border-line">
               <a href="#" class="welcome-name-btn dropdown-toggle heading-text-color" data-toggle="dropdown"> 
                 Welcome <?php echo $userData['name']?>

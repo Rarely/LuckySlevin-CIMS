@@ -32,5 +32,5 @@
         'class' => 'btn btn-primary'
       )); ?>
     </fieldset>
-    <?php $this->Form->end(); ?>
+    <?php echo $this->Form->end(); ?>
 </div>

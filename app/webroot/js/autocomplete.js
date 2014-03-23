@@ -41,7 +41,7 @@ jQuery.fn.userSelect = function(excludeSelf, initvalue, multiple, placeholder) {
  */
  jQuery.fn.categorySelect = function(defaultvals) {
   var el = $(this[0]); // It's your element
-  var is_multiple = (typeof el.attr('multiple') != 'undefined');
+  var is_multiple = (typeof el.attr('data-multiple') != 'undefined');
   var options = {
     allowClear: true,
     multiple: is_multiple,
@@ -76,7 +76,7 @@ jQuery.fn.userSelect = function(excludeSelf, initvalue, multiple, placeholder) {
       }
     });
   }
-  if (typeof el.attr('specifiable') != 'undefined') {
+  if (typeof el.attr('data-specifiable') != 'undefined') {
     $.extend(options, {createSearchChoice:function(term, data) { if ($(data).filter(function() { return this.text.localeCompare(term)===0; }).length===0) {return {id:term, text:term};} }});
   }
 
@@ -92,8 +92,8 @@ jQuery.fn.ideaSelect = function(ideaid) {
     var url = "/ideas/idealist/" + ideaid;
   }
   var el = $(this[0]);
-  var is_multiple = (typeof el.attr('multiple') != 'undefined');
-  var defaultvals = el.attr('initvalue');
+  var is_multiple = (typeof el.attr('data-multiple') != 'undefined');
+  var defaultvals = el.attr('data-initvalue');
   var options = {
     allowClear: true,
     multiple: is_multiple,

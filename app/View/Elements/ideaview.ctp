@@ -17,7 +17,6 @@
         <?php echo "data-start=\"" . $idea['Idea']['start_date'] . "\"" ?>
         <?php echo "data-end=\"" . $idea['Idea']['end_date'] . "\"" ?>
       onclick="Ajax.Idea.showIdea(<?php echo $idea['Idea']['id']?>);return false;" 
-      <?php echo "data-updated=\"" . $idea['Idea']['updated'] . "\"" ?> 
 >
     <div class="row">
         <div class="title-text-wrapper title-heading">
