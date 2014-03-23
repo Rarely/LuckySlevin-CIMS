@@ -105,7 +105,7 @@
                 <!-- SORTING -->
                 <div class="row">
                      <select id="sort_by" style='width:100%' class="sort">
-                        <option value="default">Default</option>
+                        <option value="default">Unsorted</option>
                         <option value="data-name">Name</option>
                         <option value="data-community">Community Partner</option>
                         <option value="data-created">Idea created</option>
