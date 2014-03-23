@@ -19,15 +19,16 @@ class IdeasController extends AppController {
             'recursive' => 2
         )));
         $this->set('ideas_recent', $this->Idea->find('all', array(
-            'conditions' => array('Idea.isdeleted' => 0),
+            'conditions' => array('Idea.isdeleted' => 0, 'NOT' => array('Idea.userid' => null)),
             'order' => array('Idea.created DESC'),
             'limit' => 15,
             'recursive' => 2
         )));
         $this->set('ideas_unassigned', $this->Idea->find('all', array(
-            'Idea.isdeleted' => 0,
-            'conditions' => array('Idea.userid' => null),
-            'recursive' => 3
+            'conditions' => array('Idea.isdeleted' => 0, 'Idea.userid' => null),
+            'order' => array('Idea.created DESC'),
+            'limit' => 15,
+            'recursive' => 2
         )));
     }
 
