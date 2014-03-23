@@ -27,7 +27,7 @@
             $userNotificationsCount++;
         }
     } ?>
-    <tr data-id=<?php echo $user['User']['id'];?> name-id=<?php echo $user['User']['name'];?>>
+    <tr data-id="<?php echo $user['User']['id'] ;?>" data-name="<?php echo $user['User']['name'];?>">
         <td><?php echo $user['User']['name'] ?></td>
         <td><?php echo $user['User']['username']; ?></td>
         <td><?php echo $userNotificationsCount; ?></td>

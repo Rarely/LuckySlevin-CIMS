@@ -12,6 +12,13 @@ body {
 
 .management-btn{
     margin-top: 8px;
+}
+
+.idea-add-btn {
+    margin-top: 3px;
+}
+
+.nav-btn{
     border:none;
     background-color: #002145;
     color:white;
@@ -19,7 +26,7 @@ body {
     font-weight:bold;
 }
 
-.management-btn:hover{
+.nav-btn:hover{
     text-decoration: none;
     background-color: #eee;
     color: #2a6496 !important;

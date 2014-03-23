@@ -7,13 +7,13 @@ class IdeasController extends AppController {
         $this->set('title_for_layout', 'Ideas');
 
         $this->set('ideas_active', $this->Idea->find('all', array(
-            'conditions' => array('Idea.isdeleted' => 0),
+            'conditions' => array('Idea.isdeleted' => 0, 'NOT' => array('Idea.userid' => null)),
             'order' => array('Idea.updated DESC'),
             'limit' => 15,
             'recursive' => 2
         )));
         $this->set('ideas_inactive', $this->Idea->find('all', array(
-            'conditions' => array('Idea.isdeleted' => 0),
+            'conditions' => array('Idea.isdeleted' => 0, 'NOT' => array('Idea.userid' => null)),
             'order' => array('Idea.updated ASC'),
             'limit' => 15,
             'recursive' => 2

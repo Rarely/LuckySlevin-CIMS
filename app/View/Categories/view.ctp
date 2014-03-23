@@ -1,6 +1,8 @@
 <!-- File: /app/View/Categories/view.ctp -->
-<?php echo $this->Html->script('categories.js'); ?>
-<?php echo $this->Html->css('categories.css'); ?>
+<?php
+    echo $this->Html->script('categories.js');
+    echo $this->Html->css('categories.css');
+?>
 
 <div class="row well categories-well">
     <h1><?php echo h($category['Category']['name']); ?></h1>
@@ -17,7 +19,7 @@
         </thead>
         <tbody>
             <?php foreach ($category['Value'] as $value): ?>
-                <tr data-id="<?php echo $value['id']; ?>" name-id="<?php echo $value['name']; ?>">
+                <tr data-id="<?php echo $value['id']; ?>" data-name="<?php echo $value['name']; ?>">
                     <td class="value-name"><?php echo $value['name']; ?></td>
                     <td>
                         <div class="btn-delete-value admin-btn admin-btn-sm admin-btn-delete"></div>

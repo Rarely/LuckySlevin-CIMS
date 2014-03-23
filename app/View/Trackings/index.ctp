@@ -5,7 +5,7 @@
     <h1 class="text-center">You do not own any ideas</h1>
   </div>
   <?php }else{ 
-    echo $this->element('idealist', array("ideas" => $ownedideas, "title" => "Ideas you own", "subtitle" => "Ideas for which you are the owner of"));
+    echo $this->element('idealist', array("ideas" => $ownedideas, "title" => "Ideas you own", "subtitle" => "Ideas which you are the owner of"));
   }?>
 </div>
 

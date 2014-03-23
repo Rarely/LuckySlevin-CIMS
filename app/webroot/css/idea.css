@@ -1,11 +1,11 @@
-#ideacontainer {
+.ideacontainer {
     width: 100%;
     padding: 10px 0px 0px 0px;
     margin: 0 auto;
     overflow: auto;
 }
 
-.ideacontainer {
+.ideacontainer-standard {
     height: 250px;
 }
 
@@ -13,7 +13,7 @@
     max-height: 670px;
 }
 
-#ideacontainer .ideablock {
+.ideacontainer .ideablock {
     height: 210px;
     overflow-x: hidden;
     text-align: left;
@@ -39,7 +39,7 @@
     margin-bottom: 10px;
 }
 
-#ideacontainer .ideablock:hover {
+.ideacontainer .ideablock:hover {
     -webkit-transform: scale(1.05) translateZ(0);
     -moz-transform: scale(1.05) translateZ(0);
     -o-transform: scale(1.05) translateZ(0);
@@ -86,7 +86,7 @@
     margin-top: 20px;
 }
 
-#ideacontainer .idea-list-innerwrap {
+.ideacontainer .idea-list-innerwrap {
     float: left;
     margin-right: -30000px;
     padding-left: 20px;
