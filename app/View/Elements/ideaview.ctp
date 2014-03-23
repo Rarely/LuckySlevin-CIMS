@@ -24,11 +24,7 @@
             <?php echo $idea['Idea']['name']; ?>
         </div>
     </div>
-
-
-
-
-
+    
     <div class="row">
         <div class="description-text-wrapper description-heading">
             <?php echo $idea['Idea']['description']; ?>

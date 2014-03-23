@@ -8,7 +8,8 @@ $(function() {
     });
     $(".btn-edit-value").click(function() {
         var id = $(this).parent().parent().attr('data-id');
-        bootbox.prompt("Please enter a new value:", function(result) {
+        var name = $(this).parent().parent().attr('name-id');
+        bootbox.prompt("Please enter a new value for " + name + ":", function(result) {
             if (result !== null) {
                 Ajax.Categories.edit(id, result);
             }
@@ -16,7 +17,8 @@ $(function() {
     });
     $(".btn-delete-value").click(function() {
         var id = $(this).parent().parent().attr('data-id');
-        bootbox.confirm("Are you sure you want to remove this value?", function(result) {
+        var name = $(this).parent().parent().attr('name-id');
+        bootbox.confirm("Are you sure you want to remove the value " + name + "?", function(result) {
           if (result === true) {
             Ajax.Categories.delete(id);
           }

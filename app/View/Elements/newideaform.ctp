@@ -22,6 +22,7 @@
             <?php echo $this->Form->input('name', array(
               'label' => 'Idea Name',
               'placeholder' => 'Idea Name',
+              'maxlength' => '45'
             )); ?>
 
             <?php echo $this->Form->input('community_partner', array(

@@ -68,6 +68,8 @@
 	              <strong>Description</strong><br>
 	              <?php echo $idea['Idea']['description']; ?>
               </div>
+              <strong>Owner</strong><br>
+              <?php echo $idea['Users']['name']; ?><br>
               <strong>Referred Ideas</strong><br>
                <ul class="references-list">
                 <?php

@@ -17,7 +17,7 @@
         </thead>
         <tbody>
             <?php foreach ($category['Value'] as $value): ?>
-                <tr data-id="<?php echo $value['id']; ?>">
+                <tr data-id="<?php echo $value['id']; ?>" name-id="<?php echo $value['name']; ?>">
                     <td class="value-name"><?php echo $value['name']; ?></td>
                     <td>
                         <div class="btn-delete-value admin-btn admin-btn-sm admin-btn-delete"></div>

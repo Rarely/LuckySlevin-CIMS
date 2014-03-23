@@ -11,10 +11,9 @@
 
 <table class="table">
     <tr>
-        <th>ID</th>
         <th>Name</th>
         <th>Email</th>
-        <th>Notifications</th>
+        <th>Unread Notifications</th>
         <th>Trackings</th>
         <th>Actions</th>
     </tr>
@@ -28,8 +27,7 @@
             $userNotificationsCount++;
         }
     } ?>
-    <tr data-id=<?php echo $user['User']['id'];?>>
-        <td><?php echo $user['User']['id']; ?></td>
+    <tr data-id=<?php echo $user['User']['id'];?> name-id=<?php echo $user['User']['name'];?>>
         <td><?php echo $user['User']['name'] ?></td>
         <td><?php echo $user['User']['username']; ?></td>
         <td><?php echo $userNotificationsCount; ?></td>
