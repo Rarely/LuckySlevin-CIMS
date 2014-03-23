@@ -21,11 +21,6 @@
         'label' => 'Email',
         'value' => $user['User']['username'],
       )); ?>
-      
-      <?php echo $this->Form->input('password', array(
-        'label' => 'Password',
-        'value' => $user['User']['password']
-      )); ?>
 
       <?php echo $this->Form->input('role', array(
         'options' => array('standard' => 'Standard','admin' => 'Admin'),
@@ -37,4 +32,5 @@
         'class' => 'btn btn-primary'
       )); ?>
     </fieldset>
+    <?php $this->Form->end(); ?>
 </div>

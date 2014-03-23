@@ -29,7 +29,6 @@ class UsersController extends AppController {
             $this->User->read(null, $id);
             $this->User->set('name', $this->request->data['User']['name']);
             $this->User->set('email', $this->request->data['User']['username']);
-            $this->User->set('password', $this->request->data['User']['password']);
             $this->User->set('role', $this->request->data['User']['role']);
             $this->User->set('updated', null);
              if ($this->User->save()) {
@@ -43,15 +42,43 @@ class UsersController extends AppController {
 
     public function add() {
         if ($this->request->is('post')) {
-            $this->User->create();
-            $this->User->set('password', 'temporary');
-            if ($this->User->save($this->request->data)) {
-                //issue reset password
+            $user = $this->User->findByUsername($this->request->data['User']['username']);
+              if($user) {
+                //activate the deleted user 
+                $this->activateDeletedUser($this->request->data['User']['username']);
+                return $this->redirect(array('action' => 'index'));
+              } 
+                $this->User->create();
+                $this->User->set('password', 'temporary');
+
+                if ($this->User->save($this->request->data)) {
+                //issue reset password for new user
                 $this->resetpassword($this->request->data['User']['username']);
                 $this->Session->setFlash(__('User has been saved.'));
                 return $this->redirect(array('action' => 'index'));
             }
             $this->Session->setFlash(__('Unable to add user.'));
+        }
+    }
+
+    public function activateDeletedUser($username = null) {
+        if (!$username) {
+            throw new NotFoundException(__('Invalid User'));
+        }
+        $user = $this->User->findByUsername($username);
+        if (!$user) {
+            throw new NotFoundException(__('Invalid User'));
+        }
+        if($user['User']['isdeleted'] == true){
+            $this->User->read(null, $user['User']['id']);
+            $this->User->set('password', 'temporary');
+            $this->User->set('isdeleted', '0'); 
+             if ($this->User->save()) {
+                 $this->Session->setFlash(__('User has been saved.'));
+                 //issue reset password even if they are a previous user to show account reactivation
+                 $this->resetpassword($user['User']['username']);
+                 return $this->redirect(array('action' => 'index'));
+             }
         }
     }
 
@@ -65,12 +92,17 @@ class UsersController extends AppController {
     public function login() {
         $this->layout= false;
         if ($this->request->is('post')) {
-            if ($this->Auth->login()) {
-                return $this->redirect($this->Auth->redirectUrl());
-            }
-            $this->Session->setFlash(__('Invalid username or password, try again'));
-        }
-    }
+            $user = $this->User->findByUsername($this->request->data['User']['username']);
+
+            if (isset($user) && !is_null($user) && !empty($user) && $user['User']['isdeleted'] == false && $this->Auth->login()) {
+                 return $this->redirect($this->Auth->redirectUrl());
+           } 
+            if(!$user || !$this->Auth->login() || $user['User']['isdeleted'] == true){
+                 $this->Session->setFlash(__('Invalid username or password, try again'));
+           } 
+       }
+   }
+
 
     public function logout() {
         return $this->redirect($this->Auth->logout());
