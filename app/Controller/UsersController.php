@@ -98,7 +98,7 @@ class UsersController extends AppController {
                  return $this->redirect($this->Auth->redirectUrl());
            } 
             if(!$user || !$this->Auth->login() || $user['User']['isdeleted'] == true){
-                 $this->Session->setFlash(__('Invalid username or password, try again'));
+                 $this->Session->setFlash(__('Invalid username or password, try again'), 'default', array(), 'badlogin');
            } 
        }
    }
@@ -124,7 +124,7 @@ class UsersController extends AppController {
                 $account=$this->User->findByUsername($email);
 
                 if(!isset($account['User']['username'])){
-                    $this->Session->setFlash('If you have provided a valid email address, you will receive further password reset instructions shortly');
+                    $this->Session->setFlash('If you have provided a valid email address, you will receive further password reset instructions shortly', 'default', array(), 'goodlogin');
                     $this->redirect('/');
                 }
                 $hashyToken=md5(date('mdY').rand(4000000,4999999));
@@ -142,10 +142,10 @@ class UsersController extends AppController {
                 $data['Ticket']['expires']=$this->Ticketmaster->getExpirationDate();
 
                 if ($this->Ticket->save($data)){
-                    $this->Session->setFlash('An email has been sent with instructions to reset your password');
+                    $this->Session->setFlash('An email has been sent with instructions to reset your password', 'default', array(), 'goodlogin');
                     $this->redirect('/');
                 }else{
-                    $this->Session->setFlash('Ticket could not be issued');
+                    $this->Session->setFlash('Ticket could not be issued', 'default', array(), 'badlogin');
                     $this->redirect('/');
 
                 }
@@ -167,7 +167,7 @@ class UsersController extends AppController {
             $this->Session->setFlash('Enter your new password below');
             $this->redirect('/users/newpassword/'.$passTicket['User']['id']);
         }else{
-            $this->Session->setFlash('Your ticket is lost or expired.');
+            $this->Session->setFlash('Your ticket is lost or expired.', 'default', array(), 'badlogin');
             $this->redirect('/');
         }
  
@@ -200,7 +200,7 @@ class UsersController extends AppController {
             if ($this->User->save($data)) {
                 //delkete session token and dlete used ticket from table
                 $this->Session->delete('tokenreset');
-                $this->Session->setFlash('The User\'s Password has been updated');
+                $this->Session->setFlash('The User\'s Password has been updated', 'default', array(), 'goodlogin');
                 $this->redirect('/');
             } else {
                 $this->Session->setFlash('Please correct errors below.');

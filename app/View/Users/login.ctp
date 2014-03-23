@@ -26,13 +26,11 @@
       </div>
     </div>
     <div class="row">
-      <?php if ($this->Session->flash('auth') != false) { ?>
-          <div class="bg-danger" style="">
-            <?php echo $this->Session->flash('auth'); ?>
-          </div>
-      <?php } ?>
-          <div class="bg-success">
-      <?php echo $this->Session->flash(); ?>
+      <div class="bg-success">
+        <?php echo $this->Session->flash('goodlogin'); ?>
+      </div>
+      <div class="bg-danger">
+        <?php echo $this->Session->flash('badlogin'); ?>
       </div>
     </div>
     <fieldset>
