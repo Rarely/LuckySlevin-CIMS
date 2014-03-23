@@ -5,41 +5,45 @@
   echo $this->Html->css('login.css');
   echo $this->Html->css('style.css');
 ?>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+        <?php echo $this->Form->create('User', array(
+          'url' => array('controller' => 'users', 'action' => 'resetpassword'),
+          'inputDefaults' => array(
+            'div' => 'form-group',
+            'wrapInput' => false,
+            'class' => 'form-control'
+          ),
+          'class' => 'well-top-margin well',    
 
-<div class="row">
-    <?php echo $this->Form->create('User', array(
-      'url' => array('controller' => 'users', 'action' => 'resetpassword'),
-      'inputDefaults' => array(
-        'div' => 'form-group',
-        'wrapInput' => false,
-        'class' => 'form-control'
-      ),
-      'class' => 'reset-well well',    
+        )); ?>
 
-    )); ?>
-
-    <div class="row">
-        <div class="resetheader">
-            <h1>Reset Password</h1>
-            <br>
-            <h5>An email will be sent to this address, please follow the process to reset your password</h5>
-            <br>
+        <div class="row">
+            <div class="resetheader">
+                <h1>Reset Password</h1>
+                <br>
+                <h5>An email will be sent to this address, please follow the process to reset your password</h5>
+                <br>
+            </div>
         </div>
+
+        <fieldset>
+            <div class="row">
+                <?php echo $this->Form->input('email', array(
+                  'label' => 'Email',
+                  'placeholder' => 'Email…',
+                  'required' => true
+                )); ?>
+            </div>
+            <div class="row">
+                <?php echo $this->Form->submit('Reset Password', array(
+                  'div' => false,
+                  'class' => 'btn btn-primary'
+                )); ?>
+            </div>
+        </fieldset>
+    <?php echo $this->Form->end(); ?>
     </div>
-
-    <fieldset>
-        <div class="row">
-            <?php echo $this->Form->input('email', array(
-              'label' => 'Email',
-              'placeholder' => 'Email…',
-            )); ?>
-        </div>
-        <div class="row">
-            <?php echo $this->Form->submit('Reset Password', array(
-              'div' => false,
-              'class' => 'btn btn-primary'
-            )); ?>
-        </div>
-    </fieldset>
-<?php echo $this->Form->end(); ?>
+  </div>
 </div>
