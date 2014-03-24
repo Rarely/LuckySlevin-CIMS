@@ -4,7 +4,7 @@ $(function() {
             if (result !== null) {
                 Ajax.Categories.create($('.table-category').attr('data-id'), result);
             }
-        }).find("div.modal-content").addClass("confirmWidth");;
+        }).find("div.modal-content").addClass("confirmWidth");
     });
     $(".btn-edit-value").click(function() {
         var id = $(this).parent().parent().attr('data-id');
@@ -13,7 +13,7 @@ $(function() {
             if (result !== null) {
                 Ajax.Categories.edit(id, result);
             }
-        }).find("div.modal-content").addClass("confirmWidth");;
+        }).find("div.modal-content").addClass("confirmWidth");
     });
     $(".btn-delete-value").click(function() {
         var id = $(this).parent().parent().attr('data-id');
@@ -22,7 +22,7 @@ $(function() {
           if (result === true) {
             Ajax.Categories.delete(id);
           }
-        }).find("div.modal-content").addClass("confirmWidth");;
+        }).find("div.modal-content").addClass("confirmWidth");
     });
 });
 

@@ -202,7 +202,7 @@ var Ajax = {
           async: true,
           success: function(data) {
             if (data.response === "success") {
-              var html = "<tr data-id=\"" + data.data.dataid + "\"><td  class=\"value-name\">" + name + 
+              var html = "<tr data-id=\"" + data.data.dataid + "\" data-name=\"" + data.data.dataname + "\"><td  class=\"value-name\">" + name + 
               "</td><td>" +
               "<div class=\"btn-delete-value admin-btn admin-btn-sm admin-btn-delete\"></div>" +
               "<div class=\"btn-edit-value admin-btn admin-btn-sm admin-btn-edit\"></div>" +
@@ -211,19 +211,21 @@ var Ajax = {
               $("tr[data-id=\"" + data.data.dataid + "\"] .btn-edit-value").click(function() {
                 
                   var id = $(this).parent().parent().attr('data-id');
-                  bootbox.prompt("Please enter a new value:", function(result) {
-                      if (result !== null) {
-                          Ajax.Categories.edit(id, result);
-                      }
-                  });
+                  var name = $(this).parent().parent().attr('data-name');
+                  bootbox.prompt("Please enter a new value for " + name + ":", function(result) {
+                    if (result !== null) {
+                      Ajax.Categories.edit(id, result);
+                    }
+                  }).find("div.modal-content").addClass("confirmWidth");
               });
               $("tr[data-id=\"" + data.data.dataid + "\"] .btn-delete-value").click(function() {
                   var id = $(this).parent().parent().attr('data-id');
-                  bootbox.confirm("Are you sure?", function(result) {
-                    if (result === true) {
-                      Ajax.Categories.delete(id);
-                    }
-                  });
+                  var name = $(this).parent().parent().attr('data-name');
+                  bootbox.confirm("Are you sure you want to remove the value " + name + "?", function(result) {
+                   if (result === true) {
+                    Ajax.Categories.delete(id);
+                   }
+                  }).find("div.modal-content").addClass("confirmWidth");
               });
             }
           }
