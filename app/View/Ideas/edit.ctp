@@ -22,22 +22,26 @@
     'value' => $idea['Idea']['community_partner']
   )); ?>      
   <?php echo $this->Form->input('contact_name',array(
-      'label' => 'Contact Name',
-      'value' => $idea['Idea']['contact_name']
+    'label' => 'Contact Name',
+    'value' => $idea['Idea']['contact_name'],
+    'required' => true
+
   )); ?>
   <?php echo $this->Form->input('contact_email',array(
-      'label' => 'Contact Email',
-      'value' => $idea['Idea']['contact_email']
+    'label' => 'Contact Email',
+    'value' => $idea['Idea']['contact_email'],
+    'required' => true
   )); ?>
   <?php echo $this->Form->input('contact_phone',array(
-      'label' => 'Contact Phone',
-      'value' => $idea['Idea']['contact_phone']
+    'label' => 'Contact Phone',
+    'value' => $idea['Idea']['contact_phone']
   )); ?>
   
   <?php echo $this->Form->input('description', array(
     'label' => 'description (max 1000)',
     'maxlength'   => '1000',
     'value' => $idea['Idea']['description'],
+    'required' => true
   )); ?>
 
   <label>Timeframe</label>  

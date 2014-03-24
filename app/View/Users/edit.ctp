@@ -15,11 +15,13 @@
       <?php echo $this->Form->input('name', array(
         'label' => 'Name',
         'value' => $user['User']['name'],
+        'required' => true
       )); ?>
 
       <?php echo $this->Form->input('username', array(
         'label' => 'Email',
         'value' => $user['User']['username'],
+        'required' => true
       )); ?>
 
       <?php echo $this->Form->input('role', array(

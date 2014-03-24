@@ -13,11 +13,13 @@
       <?php echo $this->Form->input('name', array(
         'label' => 'Name',
         'placeholder' => 'Name',
+        'required' => true
       )); ?>
 
       <?php echo $this->Form->input('username', array(
         'label' => 'Email',
         'placeholder' => 'Email',
+        'required' => true
       )); ?>
 
       <?php echo $this->Form->input('role', array(

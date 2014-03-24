@@ -29,19 +29,22 @@
                 <?php echo $this->Form->input('contact_name', array(
                     'label' => 'Contact Name',
                     'placeholder' => 'Contact Name',
-                    'rows'=>1
+                    'rows'=>1,
+                    'required' => true
                     )); ?>
 
                 <?php echo $this->Form->input('contact_email', array(
                     'label' => 'Contact Email',
                     'placeholder' => 'Contact Email',
-                    'rows'=>1
+                    'rows'=>1,
+                    'required' => true
                     )); ?>
 
                 <?php echo $this->Form->input('description', array(
                     'label' => 'Description (max 1000)',
                     'placeholder' => 'Insert a description here',
                     'maxlength'   => '1000',
+                    'required' => true
                     )); ?>
 
                 <?php echo $this->Form->submit('Save', array(

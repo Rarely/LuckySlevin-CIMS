@@ -33,19 +33,22 @@
             <?php echo $this->Form->input('contact_name', array(
               'label' => 'Contact Name',
               'placeholder' => 'Contact Name',
-              'maxlength' => '100'
+              'maxlength' => '100',
+              'required' => true
             )); ?>
 
             <?php echo $this->Form->input('contact_email', array(
               'label' => 'Contact Email',
               'placeholder' => 'Contact Email',
-              'maxlength' => '100'
+              'maxlength' => '100',
+              'required' => true
             )); ?>
 
             <?php echo $this->Form->input('description', array(
               'label' => 'Description (max 1000)',
               'placeholder' => 'Insert a description here',
-              'maxlength'   => '1000'
+              'maxlength'   => '1000',
+              'required' => true
               )); ?>
 
             <label>Timeframe</label>  
