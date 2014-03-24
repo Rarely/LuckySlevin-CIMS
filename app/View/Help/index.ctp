@@ -41,7 +41,7 @@
                 <div class="row">
                     <a class="help-link"
                     <?php echo "data-id=" . $help['Help']['id']; ?>>
-                    <?php echo $help["Help"]["name"]; ?></a>
+                    <?php echo h($help["Help"]["name"]); ?></a>
                 </div>
             <?php endforeach; ?>
             <?php if ($userData['role'] == 'admin') { 

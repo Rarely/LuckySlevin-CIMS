@@ -32,10 +32,10 @@ class UsersController extends AppController {
             $this->User->set('role', $this->request->data['User']['role']);
             $this->User->set('updated', null);
              if ($this->User->save()) {
-                 $this->Session->setFlash(__('User has been saved.'));
+                 $this->Session->setFlash(__('User has been saved.', 'default', array(), 'gooduser'));
                  return $this->redirect(array('action' => 'index'));
              }
-             $this->Session->setFlash(__('Unable to update a user.'));
+             $this->Session->setFlash(__('Unable to update a user.', 'default', array(), 'baduser'));
         } 
 
     }
@@ -54,10 +54,10 @@ class UsersController extends AppController {
                 if ($this->User->save($this->request->data)) {
                 //issue reset password for new user
                 $this->resetpassword($this->request->data['User']['username']);
-                $this->Session->setFlash(__('User has been saved.'));
-                return $this->redirect(array('action' => 'index'));
+                $this->Session->setFlash(__('User has been saved.', 'default', array(), 'gooduser'));
+                return $this->redirect(array('controller' => 'users', 'action' => 'index'));
             }
-            $this->Session->setFlash(__('Unable to add user.'));
+            $this->Session->setFlash(__('Unable to add user.', 'default', array(), 'baduser'));
         }
     }
 

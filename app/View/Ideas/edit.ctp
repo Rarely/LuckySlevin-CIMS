@@ -61,7 +61,7 @@
   </table>
 
   <?php foreach ($categories as $category) { ?>
-    <label for="categoryDescription"><?php echo $category['Category']['name'] ?></label>
+    <label for="categoryDescription"><?php echo h($category['Category']['name']); ?></label>
     <input type='hidden' class="cat"
     name="data[Category][<?php echo $category['Category']['id']; ?>]"
     <?php if ($category['Category']['multiselect'] == true) { echo 'data-multiple="true"'; } ?>
@@ -74,7 +74,7 @@
       foreach ($values as $value) {
         if (isset($value) && $value != '' && ($value ['Value']['categoryid'] == $category['Category']['id'])) {
           if (isset($value['Value']['id']) && $value['Value']['id'] != '' && isset($value['Value']['name']) && $value['Value']['name'] != '') {
-            array_push($json_values, array('id'=> $value['Value']['id'], 'text' => $value['Value']['name']));
+            array_push($json_values, array('id'=> $value['Value']['id'], 'text' => h($value['Value']['name'])));
           }
         }
       }
@@ -91,12 +91,12 @@
   <?php } ?>
 
   <label for="owner">Owner</label>
-  <input type="hidden" name="data[Idea][userid]" value=" " data-initvalue='<?php echo json_encode(array('id' => $idea['Users']['id'], 'text' => $idea['Users']['name'] . '(' . $idea['Users']['username'] . ')')); ?>' class="owner-select" />
+  <input type="hidden" name="data[Idea][userid]" value=" " data-initvalue='<?php echo json_encode(array('id' => $idea['Users']['id'], 'text' => h($idea['Users']['name']) . '(' . h($idea['Users']['username']) . ')')); ?>' class="owner-select" />
   <label for="data[Idea][references]">Referenced Ideas</label>
   <?php
     $references = array();
     foreach($idea['References'] as $ref) {
-      array_push($references, array('id' => $ref['id'], 'text'=> $ref['name']));
+      array_push($references, array('id' => $ref['id'], 'text'=> h($ref['name'])));
     }
 
     if (count($references) == 1) {

@@ -5,7 +5,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <div class = "row">  
           <h1 class="modal-title inline-block padding-left-10" id="myModalLabel" style="color:white;">
-            <?php echo htmlspecialchars($idea['Idea']['name']); ?>
+            <?php echo h($idea['Idea']['name']); ?>
           </h1>
           <div class="admin-btn-md inline-block padding-left-10">
               <?php echo $this->element('ideaactions', array("idea" => $idea)); ?>
@@ -42,13 +42,13 @@
           <div class = "row">
             <div class="col-md-4">
               <strong>Community Partner</strong><br>
-              <?php echo htmlspecialchars($idea['Idea']['community_partner']); ?><br>
+              <?php echo h($idea['Idea']['community_partner']); ?><br>
               <strong>Contact Name</strong><br>
-              <?php echo htmlspecialchars($idea['Idea']['contact_name']); ?><br>
+              <?php echo h($idea['Idea']['contact_name']); ?><br>
               <strong>Contact Details</strong><br>
-              <?php echo htmlspecialchars($idea['Idea']['contact_email']); ?><br>
-              <?php if(htmlspecialchars($idea['Idea']['contact_phone']) != '') {
-                        echo htmlspecialchars($idea['Idea']['contact_phone']); ?>
+              <?php echo h($idea['Idea']['contact_email']); ?><br>
+              <?php if(h($idea['Idea']['contact_phone']) != '') {
+                        echo h($idea['Idea']['contact_phone']); ?>
                     <br> <?php } ?>
               <Strong>Timeframe</Strong><br>
               <?php if($idea['Idea']['start_date'] == null && $idea['Idea']['end_date'] == null){?>
@@ -66,16 +66,16 @@
             <div class="col-md-8">
             	<div class="desc-width">
 	              <strong>Description</strong><br>
-	              <?php echo htmlspecialchars($idea['Idea']['description']); ?>
+	              <?php echo h($idea['Idea']['description']); ?>
               </div>
               <strong>Owner</strong><br>
-              <?php echo htmlspecialchars($idea['Users']['name']); ?><br>
+              <?php echo h($idea['Users']['name']); ?><br>
               <strong>Referred Ideas</strong><br>
                <ul class="references-list">
                 <?php
                  if (count($idea['References'])) {
                     foreach($idea['References'] as $ref) {
-                     echo '<li><a onclick="Ajax.Idea.showIdea(' . $ref['id'] . ');">' . htmlspecialchars($ref['name']) . '</a></li>';
+                     echo '<li><a onclick="Ajax.Idea.showIdea(' . $ref['id'] . ');">' . h($ref['name']) . '</a></li>';
                     }
                  } else {
                    echo "<li>No Ideas Referred</li>";
@@ -96,8 +96,8 @@
                       <img src="img/person.png">
                     </div>
                     <div class="col-xs-11">
-                      <div class="comment-message"><?php echo htmlspecialchars($comment['Comment']['message']); ?></div>
-                      <div class="comment-user"><?php echo '- ' . htmlspecialchars($comment['User']['name']) . ' ' . $comment['Comment']['created']; ?></div>
+                      <div class="comment-message"><?php echo h($comment['Comment']['message']); ?></div>
+                      <div class="comment-user"><?php echo '- ' . h($comment['User']['name']) . ' ' . $comment['Comment']['created']; ?></div>
                     </div>
                   </li>
                   <?php endforeach; ?>
@@ -128,11 +128,11 @@
         <!--The Rightside of an Idea -->
         <div class="col-md-4">
           <?php foreach($categories as $cat) { ?>
-          <strong><?php echo htmlspecialchars($cat['Category']['name']) ?>:</strong>
+          <strong><?php echo h($cat['Category']['name']) ?>:</strong>
             <ul>
               <?php foreach($ideavalues as $value) { ?>
                 <?php if ($value['Value']['categoryid'] == $cat['Category']['id']) { ?>
-                  <li><?php echo htmlspecialchars($value['Value']['name']); ?></li>
+                  <li><?php echo h($value['Value']['name']); ?></li>
                   <?php } ?>
               <?php } ?>
             </ul>

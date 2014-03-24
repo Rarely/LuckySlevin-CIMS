@@ -93,7 +93,7 @@
                     <div class="row category-row">
                       <input class="cat" name="data[Category][<?php echo $category['Category']['id']; ?>]" data-specifiable="true" data-multiple="true"
                       <?php echo 'data-id="' . $category['Category']['id'] .'"'; ?>
-                      <?php echo 'placeholder="' . $category['Category']['name'] .'"' ?>
+                      <?php echo 'placeholder="' . h($category['Category']['name']) .'"' ?>
                        style='width:100%' />
                     </div>
                 <?php } ?>

@@ -14,10 +14,10 @@
     <tbody>
     <?php foreach ($categories as $category): ?>
     <tr>
-        <td><?php echo $this->Html->link($category['Category']['name'],
+        <td><?php echo $this->Html->link(h($category['Category']['name']),
 array('controller' => 'categories', 'action' => 'view', $category['Category']['id'])); ?>
         </td>
-        <td><?php echo $category['Category']['description'] ?>
+        <td><?php echo h($category['Category']['description']); ?>
         </td>
     </tr>
     <?php endforeach; ?>

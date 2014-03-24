@@ -112,7 +112,7 @@ body {
             </li>
             <li class="dropdown border-line">
               <a href="#" class="welcome-name-btn dropdown-toggle heading-text-color" data-toggle="dropdown"> 
-                Welcome <?php echo $userData['name']?>
+                Welcome <?php echo h($userData['name']); ?>
               </a>
               <ul class="dropdown-menu">
                     <li>

@@ -8,7 +8,12 @@
     array('class' =>'admin-btn admin-btn-md admin-btn-add pull-right inline-block', 'escape' => FALSE, 'style' => 'margin-right: 110px;')
 ); ?>
 
-
+<div class="bg-success">
+    <?php echo $this->Session->flash('gooduser'); ?>
+</div>
+<div class="bg-danger">
+    <?php echo $this->Session->flash('baduser'); ?>
+</div>
 <table class="table">
     <tr>
         <th>Name</th>
@@ -27,9 +32,9 @@
             $userNotificationsCount++;
         }
     } ?>
-    <tr data-id="<?php echo $user['User']['id'] ;?>" data-name="<?php echo $user['User']['name'];?>">
-        <td><?php echo $user['User']['name'] ?></td>
-        <td><?php echo $user['User']['username']; ?></td>
+    <tr data-id="<?php echo $user['User']['id'] ;?>" data-name="<?php echo h($user['User']['name']);?>">
+        <td><?php echo h($user['User']['name']); ?></td>
+        <td><?php echo h($user['User']['username']); ?></td>
         <td><?php echo $userNotificationsCount; ?></td>
         <td><?php echo count($user['Trackings']); ?></td>
         <td> 

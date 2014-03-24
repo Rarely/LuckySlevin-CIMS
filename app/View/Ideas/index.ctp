@@ -1,5 +1,5 @@
 <div class="bg-success">
-<?php echo $this->Session->flash(); ?>
+<?php echo $this->Session->flash('ideas'); ?>
 </div>
 <div class="row">
 <?php echo $this->element('idealist', array("ideas" => $ideas_active, "title" => "Active ideas", "subtitle" => "Ideas most recently updated or commented on")) ?>
