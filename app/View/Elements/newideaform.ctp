@@ -44,6 +44,12 @@
               'required' => true
             )); ?>
 
+            <?php echo $this->Form->input('contact_phone', array(
+                    'label' => 'Contact Phone',
+                    'placeholder' => 'Contact Phone',
+                    'rows'=>1
+                    )); ?>
+
             <?php echo $this->Form->input('description', array(
               'label' => 'Description (max 1000)',
               'placeholder' => 'Insert a description here',

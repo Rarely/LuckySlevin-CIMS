@@ -39,6 +39,11 @@
                     'rows'=>1,
                     'required' => true
                     )); ?>
+                <?php echo $this->Form->input('contact_phone', array(
+                    'label' => 'Contact Phone',
+                    'placeholder' => 'Contact Phone',
+                    'rows'=>1
+                    )); ?>
 
                 <?php echo $this->Form->input('description', array(
                     'label' => 'Description (max 1000)',
@@ -47,7 +52,7 @@
                     'required' => true
                     )); ?>
 
-                <?php echo $this->Form->submit('Save', array(
+                <?php echo $this->Form->submit('Submit', array(
                     'div' => 'form-group',
                     'class' => 'btn btn-primary'
                     )); ?>
