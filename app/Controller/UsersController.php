@@ -74,12 +74,12 @@ class UsersController extends AppController {
             $this->User->set('password', 'temporary');
             $this->User->set('isdeleted', '0'); 
              if ($this->User->save()) {
-                 $this->Session->setFlash(__('User has been saved.'));
                  //issue reset password even if they are a previous user to show account reactivation
                  $this->resetpassword($user['User']['username']);
-                 return $this->redirect(array('action' => 'index'));
+                 return true;
              }
         }
+        return false;
     }
 
     public function beforeFilter() {

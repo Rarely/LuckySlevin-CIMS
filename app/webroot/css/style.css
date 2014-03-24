@@ -1,4 +1,5 @@
 .confirmWidth {
+    /* might want to use max-width when considering viewing on Mobile */
     width: 385px;
     margin: 0 auto;
     margin-bottom: 0;

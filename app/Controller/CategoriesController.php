@@ -80,7 +80,7 @@ class CategoriesController extends AppController {
             $this->Value->set('specified', false); //specified manually
             if ($this->Value->save()) {
                 $this->set('response','success');
-                $this->set('data', array('dataid' => $this->Value->getLastInsertID()));
+                $this->set('data', array('dataid' => $this->Value->getLastInsertID(), 'dataname' => $this->request->query['name']));
                 $this->render('/Elements/jsonreturn');
             } else {
                 $this->set('response','failed');
