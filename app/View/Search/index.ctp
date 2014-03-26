@@ -84,7 +84,7 @@
             <div class="row">
                 <h1>Filters</h1>
             </div>
-            <div class="row filter-controls">
+            <div id="filter-controls" class="row">
             <!-- FILTER -->
                 <div class="row category-row">
                     <input class="user_filter" id='e18' placeholder='Owner' style='width:100%' data-id="user" />

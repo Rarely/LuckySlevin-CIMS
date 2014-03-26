@@ -35,7 +35,7 @@ $(document).ready(function() {
     });
 
 
-    $('.cat').each(function() {
+    $('#filter-controls .cat').each(function() {
             $(this).categorySelect();
     });
 
@@ -57,7 +57,7 @@ $(document).ready(function() {
             applyFilters($(this));
         });
 
-        $(".cat").on('change',function(){
+        $("#filter-controls .cat").on('change',function(){
             applyFilters($(this));
         });
 
