@@ -181,7 +181,16 @@ class IdeasController extends AppController {
         $this->Session->delete('page_description');
 
     }
-
+    
+    /*
+     * Saves the idea references.
+     * input:
+        formdata: the references inputfield
+        ideaid: the id of the idea to add references to
+     * preconditions: The idea id is valid and existing
+     * postconditions:  The idea will now refer to it's child ideas
+     * returns: none
+    */
     public function saveIdeaReferences($formdata, $ideaid) {
         $this->IdeaReference->deleteAll(array('IdeaReference.ideaid' => $ideaid), false);
         $references = array();
@@ -198,6 +207,15 @@ class IdeasController extends AppController {
         }
     }
 
+    /*
+     * Saves the category values for an idea.
+     * input:
+        formdata: the list of category input fields
+        ideaid: the id of the idea to add category values to
+     * preconditions: The idea id is valid and existing
+     * postconditions:  The idea will now have category values associated with it.
+     * returns: none
+    */
     public function saveCategoryInfo($formdata, $ideaid) {
         //delete all values matching ideaid
         $this->IdeaValue->deleteAll(array('IdeaValue.ideaid' => $ideaid), false);
@@ -211,8 +229,9 @@ class IdeasController extends AppController {
             $valuearr = explode(',', $catentry);
             $entries = array();
             foreach ($valuearr as $value) {
+                $value = trim($value);
                 //now we have each individual entry in this category
-                if (isset($value) && $value != '' && !is_numeric($value)) {
+                if (isset($value) && !empty($value) && !is_numeric($value)) {
                     //create value and return id
                     $this->Value->create();
                     $this->Value->set('name', $value); //Value
@@ -224,7 +243,7 @@ class IdeasController extends AppController {
                         //ERROR creating specific value
                     }
                 }
-                if (isset($ideaid) && isset($value)){
+                if (isset($ideaid) && isset($value) && !empty($value)){
                     $entries[] = array('ideaid' => $ideaid,'valueid'=> $value);
                 }
             }

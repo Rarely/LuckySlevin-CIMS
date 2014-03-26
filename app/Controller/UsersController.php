@@ -26,18 +26,14 @@ class UsersController extends AppController {
         $this->set('user', $user);
 
         if ($this->request->is('post')) {
-            $this->User->read(null, $id);
-            $this->User->set('name', $this->request->data['User']['name']);
-            $this->User->set('email', $this->request->data['User']['username']);
-            $this->User->set('role', $this->request->data['User']['role']);
-            $this->User->set('updated', null);
-             if ($this->User->save()) {
-                 $this->Session->setFlash(__('User has been saved.', 'default', array(), 'gooduser'));
-                 return $this->redirect(array('action' => 'index'));
-             }
-             $this->Session->setFlash(__('Unable to update a user.', 'default', array(), 'baduser'));
+            $this->User->set($this->request->data);
+            if ($this->User->save($this->request->data, true, array('name', 'username', 'role'))) {
+                $this->Session->setFlash(__('User has been saved.'), 'default', array(), 'gooduser');
+                return $this->redirect(array('controller' => 'users', 'action' => 'index'));
+            }
+            $this->Session->setFlash(__('Unable to update a user.'), 'default', array(), 'baduser');
+            return $this->redirect(array('controller' => 'users', 'action' => 'index'));
         } 
-
     }
 
     public function add() {

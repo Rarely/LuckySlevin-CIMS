@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $(".user_filter").userSelect(false);
+    $("#filter-controls .user_filter").userSelect(false);
     $("#sort_order").select2();
     $("#sort_by").select2();
     var dimensions = {};
@@ -11,11 +11,22 @@ $(document).ready(function() {
     initializeIdeaStyle();
 
     $('#search-form').submit( function() {
+        ideaSearch(false);
+        return false;
+    });
+
+    $('#btn-reset-search').click( function() {
+        $('#search-query').val('').focus();
+        ideaSearch(true);
+    });
+
+
+    function ideaSearch(reset) {
         $.ajax({
             url     : 'search/result/',
             type    : "GET",
             dataType: 'html',
-            data    : $('#search-form').serialize(),
+            data    : reset ? {q : ""} : $('#search-form').serialize(),
             async: true,
             beforeSend: function() {
                 $('#search-results').html("<div class='inline-block'><h3>Searching...</h3></div><div class='loading-img inline-block'></div>");
@@ -30,12 +41,11 @@ $(document).ready(function() {
             error : function(){
                 bootbox.alert("Failed to retrieve search results.");
             }
-        });
-        return false;
-    });
+        }); 
+    }
 
 
-    $('.cat').each(function() {
+    $('#filter-controls .cat').each(function() {
             $(this).categorySelect();
     });
 
@@ -53,12 +63,14 @@ $(document).ready(function() {
             dimensions[newCat] = "all";
         }); 
 
-        $(".user_filter").on('change',function(){
-            applyFilters($(this));
+        $("#filter-controls .user_filter").on('change',function(){
+            setUpFilters($(this));
+            applyFilters();
         });
 
-        $(".cat").on('change',function(){
-            applyFilters($(this));
+        $("#filter-controls .cat").on('change',function(){
+            setUpFilters($(this));
+            applyFilters();
         });
 
 
@@ -81,32 +93,32 @@ $(document).ready(function() {
         });
     }
 
-    function applyFilters(t){
-        if(t != null){
-            var filters = t.select2('val'),
-            filterString = '';
+    function setUpFilters(t){
+        var filters = t.select2('val'),
+        filterString = '';
 
-            if(filters.length < 1){
-                filterString = 'all';
-            }else{
-                for (var i = 0; i < filters.length; i++) {
-                    if(t.attr('data-id') == 'user'){
-                        filterString += 'user-' + filters[i];
-                    }else{
-                        filterString += 'category-' + t.attr('data-id') + '-' + filters[i];
-                    }
-                    if(i < filters.length-1){
-                        filterString += ' ';
-                    }
+        if(filters.length < 1){
+            filterString = 'all';
+        }else{
+            for (var i = 0; i < filters.length; i++) {
+                if(t.attr('data-id') == 'user'){
+                    filterString += 'user-' + filters[i];
+                }else{
+                    filterString += 'category-' + t.attr('data-id') + '-' + filters[i];
+                }
+                if(i < filters.length-1){
+                    filterString += ' ';
                 }
             }
-            if(t.attr('data-id') == 'user'){
-                dimensions['user'] = filterString;
-            }else{
-                dimensions['category-' + t.attr('data-id')] = filterString;
-            }
         }
+        if(t.attr('data-id') == 'user'){
+            dimensions['user'] = filterString;
+        }else{
+            dimensions['category-' + t.attr('data-id')] = filterString;
+        }
+    }
 
+    function applyFilters(){
         var dataArray = new Array;
         for(var o in dimensions) {
             dataArray.push(dimensions[o]);
@@ -114,6 +126,17 @@ $(document).ready(function() {
         $('#Grid').mixitup('filter',dataArray);
     }
 
+    $('#btn-reset-filters').click( function() {
+        $("#filter-controls .cat").select2('val', '');
+        $("#filter-controls .user_filter").select2('val', '');
+        $('#filter-controls .user_filter').each(function() {
+            setUpFilters($(this));
+        });
+        $('#filter-controls .cat').each(function() {
+            setUpFilters($(this));
+        });
+        applyFilters();
+    });
 
 });
 

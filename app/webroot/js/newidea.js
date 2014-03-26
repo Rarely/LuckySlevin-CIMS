@@ -11,34 +11,34 @@ $(function() {
 
     var nowTemp = new Date();
     var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
-
-    $('#add-idea-dp1').datepicker();
-    var add_idea_start_date_picker = $('#add-idea-dp1').datepicker({
-        format:'yyyy-mm-dd',
-        autoclose: true,
-        onRender: function(date) {
-            return ''; //date.valueOf() < now.valueOf() ? 'disabled' : '' ;
+     
+    var add_start_date = $('#add-idea-dp1').datepicker({
+      onRender: function(date) {
+        return date.valueOf() < now.valueOf() ? 'disabled' : '';
+      }
+    }).on('changeDate', function(ev) {
+        if (ev.date.valueOf() > add_end_date.date.valueOf()) {
+            var newDate = new Date(ev.date)
+            newDate.setDate(newDate.getDate() + 1);
+            add_end_date.setValue(newDate);
         }
-    }).on('changeDate', function(e){
-            var start_date = new Date(e.date);
-            var date_string = start_date.toString('yyyy-MM-dd');
-            $("#add-idea-start-date-text").text(date_string);
-            $("#add-idea-start-date").val(date_string);
-            add_idea_start_date_picker.hide();
-            //$('#add-idea-dp2')[0].focus();
+        var date_string = add_start_date.date.toString('yyyy-MM-dd');
+        $("#add-idea-start-date-text").text(date_string);
+        $("#add-idea-start-date").val(date_string);
+        add_start_date.hide();
+        $('#add-idea-dp2').focus().click();
+    }).data('datepicker');
+    var add_end_date = $('#add-idea-dp2').datepicker({
+      onRender: function(date) {
+        return date.valueOf() <= add_start_date.date.valueOf() ? 'disabled' : '';
+      }
+    }).on('changeDate', function(ev) {
+      var date_string = add_end_date.date.toString('yyyy-MM-dd');
+      $("#add-idea-end-date-text").text(date_string);
+      $("#add-idea-end-date").val(date_string);
+      add_end_date.hide();
     }).data('datepicker');
 
-    var add_idea_end_date_picker = $('#add-idea-dp2').datepicker({
-        format:'yyyy-mm-dd',
-        autoclose: true,
-        onRender: function(date) {
-            return ''; //date.valueOf() <= add_idea_start_date_picker.date.valueOf() ? 'disabled' : '' ;
-        }
-    }).on('changeDate', function(e){
-        var end_date = new Date(e.date);
-        var date_string = end_date.toString('yyyy-MM-dd');
-        $("#add-idea-end-date-text").text(date_string);
-        $("#add-idea-end-date").val(date_string);
-        add_idea_end_date_picker.hide();
-    }).data('datepicker');
+
+
 });
