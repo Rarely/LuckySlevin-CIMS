@@ -49,20 +49,46 @@
     <thead>
       <tr>
         <th>Start date
-          <a href="#" class="btn btn-small" id="dp1" data-date-format="yyyy-mm-dd" data-date="<?php echo $idea['Idea']['start_date'];?>">Change</a>
+          <a href="#" class="btn btn-small" id="edit-idea-dp1" data-date-format="yyyy-mm-dd" data-date="<?php echo $idea['Idea']['start_date'];?>">Change</a>
         </th>
         <th>End date
-          <a href="#" class="btn btn-small" id="dp2" data-date-format="yyyy-mm-dd" data-date="<?php echo $idea['Idea']['end_date'];?>">Change</a>
+          <a href="#" class="btn btn-small" id="edit-idea-dp2" data-date-format="yyyy-mm-dd" data-date="<?php echo $idea['Idea']['end_date'];?>">Change</a>
         </th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><input type='hidden' id="start_date" name="data[Idea][start_date]" ><div id="start_date_text"><?php echo $idea['Idea']['start_date'];?></div></td>
-        <td><input type='hidden' id="end_date" name="data[Idea][end_date]" ><div id="end_date_text"><?php echo $idea['Idea']['end_date'];?></div></td>
+        <td><input type='hidden' id="edit-idea-start-date" name="data[Idea][start_date]" ><div id="edit-idea-start-date-text"><?php echo $idea['Idea']['start_date'];?></div></td>
+        <td><input type='hidden' id="edit-idea-end-date" name="data[Idea][end_date]" ><div id="edit-idea-end-date-text"><?php echo $idea['Idea']['end_date'];?></div></td>
       </tr>
     </tbody>
   </table>
+
+<!--   <label>Timeframe</label>  
+  <table class="table">
+    <thead>
+      <tr>
+        <th>
+          <a href="#" class="btn-small" id="add-idea-dp1" data-date-format="yyyy-mm-dd" data-date="">Start date</a>
+        </th>
+        <th>
+          <a href="#" class="btn-small" id="add-idea-dp2" data-date-format="yyyy-mm-dd" data-date="">End date</a>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <input type='hidden' id="add-idea-start-date" name="data[Idea][start_date]" >
+          <div id="add-idea-start-date-text"></div>
+        </td>
+        <td>
+          <input type='hidden' id="add-idea-end-date" name="data[Idea][end_date]" >
+          <div id="add-idea-end-date-text"></div>
+        </td>
+      </tr>
+    </tbody>
+  </table> -->
 
   <?php foreach ($categories as $category) { ?>
     <label for="categoryDescription"><?php echo h($category['Category']['name']); ?></label>
