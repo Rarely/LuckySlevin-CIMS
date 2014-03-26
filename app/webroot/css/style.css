@@ -67,7 +67,7 @@ hr {
 }
 
 .loading-img {
-    background-image: url('/img/ajax-loader.gif')  !important;
+    background-image: url('../img/ajax-loader.gif')  !important;
     background-color: transparent !important;
     background-size: 100%;  
     border: none !important;

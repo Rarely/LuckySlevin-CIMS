@@ -1,6 +1,6 @@
 <div class="row" id="ubc-logo">
     <div class="col-sm-12">
-        <img src="/img/ubclogo.png" class="img-responsive">
+        <img src="img/ubclogo.png" class="img-responsive">
     </div>
 </div>
 <div class="row">

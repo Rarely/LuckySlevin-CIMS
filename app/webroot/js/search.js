@@ -12,7 +12,7 @@ $(document).ready(function() {
 
     $('#search-form').submit( function() {
         $.ajax({
-            url     : '/search/result/',
+            url     : 'search/result/',
             type    : "GET",
             dataType: 'html',
             data    : $('#search-form').serialize(),
@@ -41,7 +41,7 @@ $(document).ready(function() {
 
     $.ajax({
       type: "GET",
-      url: '/categories/getCategoryIds',
+      url: 'categories/getCategoryIds',
       dataType: 'json',
       async: true,
       success: function(data) {

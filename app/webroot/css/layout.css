@@ -44,7 +44,7 @@ body {
 
 
 .notify-btn{
-    background-image: url('/img/bell.png') !important;
+    background-image: url('../img/bell.png') !important;
     background-color: transparent !important;
     border: none !important;
     background-size: 100%;  
@@ -78,7 +78,7 @@ body {
 }
 
 .nav-collapse-button{
-    background-image: url('/img/arrowdown.png');
+    background-image: url('../img/arrowdown.png');
     background-color:transparent;
     background-size: 100% 100%;
 }

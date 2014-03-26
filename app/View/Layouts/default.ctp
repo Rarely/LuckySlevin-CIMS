@@ -2,7 +2,12 @@
 <html lang="en">
 <head>
 <title><?php echo $title_for_layout?></title>
-<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="mobile-web-app-capable" content="yes" />
+<link rel="apple-touch-icon" href="img/appicon.png"/>
+<link rel="shortcut icon" sizes="120x120" href="img/appicon.png" />
+
+<link rel="shortcut icon" href="img/appicon.png" type="image/x-icon">
 <!-- Include external files and scripts here (See HTML helper for more info.) -->
 <?php
 echo $this->fetch('meta');
@@ -103,7 +108,7 @@ body {
             <li>
               <div class="btn idea-add-btn nav-btn" id="btn-add-idea" data-toggle="modal" data-target="#myModal">
                 <div class="inline-block">
-                  <img src ="/img/addideainverse.png" class ="add-btn" alt="" />
+                  <img src ="img/addideainverse.png" class ="add-btn" alt="" />
                 </div>
                 <div class="padding-top-5 nav inline-block">
                   Add Idea
