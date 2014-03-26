@@ -29,6 +29,10 @@
         'default' => array('standard' => 'Standard')
       )); ?>
 
+      <!-- HIDDEN FIELDS -->
+      <?php
+        echo $this->Form->input('id', array('type' => 'hidden', 'value' => $user['User']['id']));
+      ?>
       <?php echo $this->Form->submit('Submit', array(
         'div' => 'form-group',
         'class' => 'btn btn-primary'
