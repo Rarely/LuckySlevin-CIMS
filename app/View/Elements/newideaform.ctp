@@ -62,7 +62,7 @@
               <thead>
                 <tr>
                   <th>
-                    <a href="#" class="btn-small" id="add-idea-dp1" data-date-format="yyyy-mm-dd" data-date="2014-02-25">Start date</a>
+                    <a href="#" class="btn-small" id="add-idea-dp1" data-date-format="yyyy-mm-dd" data-date="">Start date</a>
                   </th>
                   <th>
                     <a href="#" class="btn-small" id="add-idea-dp2" data-date-format="yyyy-mm-dd" data-date="">End date</a>
