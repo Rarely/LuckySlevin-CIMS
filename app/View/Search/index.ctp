@@ -16,7 +16,7 @@
                     </div>
                     <form id="search-form">
                         <div class="row">
-                            <input id="search-query" type="text" class="form-control" placeholder="Search..." name="q" />
+                            <input id="search-query" type="text" class="form-control" placeholder="Search..." name="q" maxlength ='150'/>
                             <div id='loading'>
                             </div>
                         </div>
