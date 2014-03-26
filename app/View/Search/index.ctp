@@ -16,7 +16,7 @@
                     </div>
                     <form id="search-form">
                         <div class="row">
-                            <input id="search-query" type="text" class="form-control" placeholder="Search..." name="q" />
+                            <input id="search-query" type="text" class="form-control" placeholder="Search..." name="q" maxlength ='150'/>
                             <div id='loading'>
                             </div>
                         </div>
@@ -52,6 +52,7 @@
                         </div>
                         <div class="row">
                             <input type="submit" value="Search" class="btn btn-primary inline-block" id="submit-search" />
+                            <div id="btn-reset-search" class="btn btn-success inline-block">Reset</div>
                             <?php if (isset($userData['role']) && $userData['role'] === 'admin') { ?>
                             <!-- EXPORT -->
                             <div id="btn-export" class="btn btn-success idea-management inline-block">Export</div>
@@ -82,7 +83,8 @@
     <div class="col-md-3">
         <div class="well filter-well">
             <div class="row">
-                <h1>Filters</h1>
+                <div class="inline-block"><h1>Filters</h1></div>
+                <div id="btn-reset-filters" class="btn btn-success inline-block idea-management">Clear</div>
             </div>
             <div id="filter-controls" class="row">
             <!-- FILTER -->
