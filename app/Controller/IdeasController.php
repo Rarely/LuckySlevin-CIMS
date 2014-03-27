@@ -289,6 +289,8 @@ class IdeasController extends AppController {
             $Notifications->sendNotifications($username . " commented on " . $idea['Idea']['name'], $c, $id, $idea['Idea']['userid'], $userid);
 
             if ($this->Comment->save($comment)){
+                $comment = $this->Comment->findById($this->Comment->getLastInsertId());
+                $timestamp = $comment['Comment']['created'];
                 $this->set('response','success');
                 $this->set('data', array('userid'=>$id, 
                     'html' => '<li class="row">
@@ -297,7 +299,7 @@ class IdeasController extends AppController {
                             </div>
                             <div class="col-xs-11">
                               <div class="comment-message">' . $c . '</div>
-                              <div class="comment-user">- ' . $username . '</div>
+                              <div class="comment-user">- ' . $username . ' ' . $timestamp . '</div>
                             </div>
                         </li>'
                     ));
@@ -324,13 +326,14 @@ class IdeasController extends AppController {
         $idea = $this->Idea->findById($id);
         // $comments = $this->Comment->find('all', array('conditions' => array('Comment.ideaid' => $id), 'recursive' => 2));
         $this->set('comments', $this->Comment->find('all', array(
-            'conditions' => array('Comment.ideaid' => $id)
-            ,'recursive' => 2
+            'conditions' => array('Comment.ideaid' => $id),
+            'order' => array('Comment.created DESC'),
+            'recursive' => 2
         )));
 
         $this->set('ideavalues', $this->IdeaValue->find('all', array(
-            'conditions' => array('IdeaValue.ideaid' => $id)
-            ,'recursive'=>2
+            'conditions' => array('IdeaValue.ideaid' => $id),
+            'recursive'=>2
         )));
         
         if (!$idea) {
