@@ -80,10 +80,12 @@
 
 .owner-heading {
     font-size: 18px;
-    width: 90px;
+    width: 120px;
     height:20px;
     line-height: 1.1;
     margin-top: 20px;
+    display:inline-block;
+    margin-left: 10px
 }
 
 .ideacontainer .idea-list-innerwrap {

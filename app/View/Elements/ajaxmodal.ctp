@@ -12,17 +12,24 @@
           </div>
           <div id="modal-edit-email-btn" class="dropdown">
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+              <img src="/img/options.png" alt="" />
               Options <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
-              <li><?php echo $this->Html->link("Split",
-              array('controller' => 'ideas', 'action' => 'split', $idea['Idea']['id'])); ?>
+              <li> 
+                <?php echo $this->Html->link('<img src="/img/editoptions.png" alt="">Edit', 
+                array('controller' => 'ideas', 'action' => 'edit', $idea['Idea']['id']),
+                array('escape' => false)); ?>
               </li>
-              <li> <?php echo $this->Html->link("Edit", 
-              array('controller' => 'ideas', 'action' => 'edit', $idea['Idea']['id'])); ?>
+              <li>
+                <?php echo $this->Html->link('<img src="/img/split.png" alt=""/>Split',
+                array('controller' => 'ideas', 'action' => 'split', $idea['Idea']['id']),
+                array('escape' => false)); ?>
               </li>
-              <li><?php echo $this->Html->link("Email",
-              array('controller' => 'ideas', 'action' => 'email', $idea['Idea']['id'])); ?>
+              <li>
+                <?php echo $this->Html->link('<img src="/img/email.png" alt=""/>Email',
+                array('controller' => 'ideas', 'action' => 'email', $idea['Idea']['id']),
+                array('escape' => false)); ?>
               </li>
             </ul>
           </div>
@@ -105,8 +112,7 @@
               </div>
             </div>
             <div class = "row padding-top-10" id="comment-field">
-              <label for"commentField">Leave a comment</label>
-              <textarea type="text" class="form-control" id="commentField" cols="30" rows"12" placeholder="Leave a comment"> </textarea>
+              <textarea type="text" class="form-control" id="commentField" cols="30" rows"12" placeholder="Leave a comment"></textarea>
             </div>
             <div class="row padding-top-10">
               <div class="btn btn-primary commentbtn">Comment</div>

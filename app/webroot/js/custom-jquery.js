@@ -3,7 +3,7 @@ jQuery.fn.bindIdeaModal = function() {
     var id = $("#ajax-modal").attr("data-id");
 
     //Hook up Sharing
-    $('#ajax-modal .sharing-autocomplete').userSelect(true, null, true, "Share with Others");
+    $('#ajax-modal .sharing-autocomplete').userSelect(true, null, true, "Share with others");
     $('#ajax-modal .btn-share').bind("click", function(e) {
       Ajax.Idea.shareIdea(id, $('#ajax-modal .sharing-autocomplete').select2("val").join(","));
       $('#ajax-modal .sharing-autocomplete').select2('data', null);
