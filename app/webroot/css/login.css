@@ -1,3 +1,17 @@
+html { 
+  background: url(/img/2.png) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+body{
+  background: none !important;
+}
+
+
+
 #UserLoginForm {
     max-width: 360px;
     margin: 120px auto 40px auto;
@@ -57,10 +71,6 @@
 
 .btn-login:hover{
     color: #98B2C3;
-}
-
-body {
-  background-color: #B7C9D3;
 }
 
 .loginheader h3 {
