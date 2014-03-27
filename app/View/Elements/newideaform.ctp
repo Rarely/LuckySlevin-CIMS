@@ -74,10 +74,12 @@
                   <td>
                     <input type='hidden' id="add-idea-start-date" name="data[Idea][start_date]" >
                     <div id="add-idea-start-date-text"></div>
+                    <a class="btn btn-small" id="clear-new-start-date">Clear</a>
                   </td>
                   <td>
                     <input type='hidden' id="add-idea-end-date" name="data[Idea][end_date]" >
                     <div id="add-idea-end-date-text"></div>
+                    <a class="btn btn-small" id="clear-new-end-date">Clear</a>
                   </td>
                 </tr>
               </tbody>

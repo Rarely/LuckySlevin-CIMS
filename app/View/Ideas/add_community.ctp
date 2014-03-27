@@ -1,6 +1,12 @@
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="mobile-web-app-capable" content="yes" />
+<link rel="apple-touch-icon" href="img/appicon.png"/>
+<link rel="shortcut icon" sizes="120x120" href="img/appicon.png" />
+<link rel="shortcut icon" href="img/appicon.png" type="image/x-icon">
+
 <div class="row" id="ubc-logo">
     <div class="col-sm-12">
-        <img src="img/ubclogo.png" class="img-responsive">
+        <img src="/img/ubclogo.png" class="img-responsive">
     </div>
 </div>
 <div class="row">
