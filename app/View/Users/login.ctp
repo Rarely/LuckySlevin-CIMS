@@ -7,6 +7,11 @@
   echo $this->Html->css('login.css');
 ?>
 
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="mobile-web-app-capable" content="yes" />
+<link rel="apple-touch-icon" href="img/appicon.png"/>
+<link rel="shortcut icon" sizes="120x120" href="img/appicon.png" />
+<link rel="shortcut icon" href="img/appicon.png" type="image/x-icon">
 
   <div class="col-md-4 col-md-offset-4">
     <?php echo $this->Form->create('User', array(

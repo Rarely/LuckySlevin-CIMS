@@ -192,7 +192,10 @@ class UsersController extends AppController {
             $this->request->data = $this->User->read(null, $id);
         } else {                
             // $this->request->data['User']['password']=AuthComponent::password($this->request->data['User']['password']);
-            $data = array('id' => $this->request->params['pass'][0], 'password' => $this->request->data['User']['password']);
+            $data = array(
+                'id' => $this->request->params['pass'][0],
+                'password' => $this->request->data['User']['password']
+            );
             if ($this->User->save($data)) {
                 //delkete session token and dlete used ticket from table
                 $this->Session->delete('tokenreset');

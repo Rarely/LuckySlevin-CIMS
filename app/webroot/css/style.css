@@ -5,6 +5,10 @@
     margin-bottom: 0;
 }
 
+.close {
+    color: #ffffff !important;
+    opacity: 1 !important;
+}
 h1, h2, h3, h4, h5 {
     font-family:"Verdana", Times, serif;
     font-weight:bold;
