@@ -65,6 +65,23 @@ hr {
 .padding-left-30{
     padding-left: 30px;
 }
+.margin-left-neg-30{
+    margin-left: -30px;
+}
+.margin-bottom-0{
+    margin-bottom: 0px !important;
+}
+
+.margin-bottom-5{
+    margin-bottom: 5px;
+}
+.margin-right-5{
+    margin-right: 5px;
+}
+
+.margin-left-auto{
+    margin-left: auto;
+}
 
 .loading-img {
     background-image: url('../img/ajax-loader.gif')  !important;
@@ -77,4 +94,21 @@ hr {
 
 #edit-idea-form fieldset{
     margin-top: 10px;
+}
+
+.reset-btn{
+    background-image: url('../img/reset.png');
+    background-color: transparent !important;
+    background-size: 30px 30px;  
+    border: none !important;
+    width:30px;
+    height:30px;
+}
+.reset-btn:active{
+    background-image: url('../img/resetinverse.png');
+    background-color: transparent !important;
+    background-size: 30px 30px;  
+    border: none !important;
+    width:30px;
+    height:30px;
 }

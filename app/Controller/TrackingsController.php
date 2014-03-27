@@ -5,7 +5,7 @@ class TrackingsController extends AppController {
     var $components= array('Session', 'RequestHandler');
 
     public function index() {
-        $this->set('title_for_layout', 'Currently Tracked Ideas');
+        $this->set('title_for_layout', 'My Page');
         $trackedIdeas = $this->Tracking->find('all', array(
             'Idea.isdeleted' => 0,
             'conditions' => array('Tracking.userid' => $this->Session->read('Auth.User.id')),

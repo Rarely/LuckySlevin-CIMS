@@ -151,6 +151,7 @@ $(function() {
             $(this).selectable();
         });
         $("#btn-cancel-csv").css('display', 'inline-block');
+        $("#btn-save-csv").css('display', 'inline-block');
         $("#export-help").show();
         $("#btn-save-csv").show();
         $("#btn-save-csv").unbind().bind("click", function() {
@@ -172,6 +173,8 @@ $(function() {
             $(this).selectable();
         });
         $("#btn-cancel-delete").css('display', 'inline-block');
+        $("#btn-delete-confirm").css('display', 'inline-block');
+        $("#delete-help").show();
         $("#btn-delete-confirm").show();
         $("#btn-delete-confirm").unbind().bind("click", function() {
             var info = [];
@@ -214,6 +217,7 @@ $(function() {
         });
         $("#btn-cancel-delete").hide();
         $("#btn-delete-confirm").hide();
+        $("#delete-help").hide();
         $("#btn-delete").removeAttr("disabled");
     }
 });
