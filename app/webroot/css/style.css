@@ -92,11 +92,11 @@ hr {
     height:30px;
 }
 
-#edit-idea-form fieldset{
+#edit-idea-form fieldset {
     margin-top: 10px;
 }
 
-.reset-btn{
+.reset-btn {
     background-image: url('../img/reset.png');
     background-color: transparent !important;
     background-size: 30px 30px;  
@@ -104,7 +104,18 @@ hr {
     width:30px;
     height:30px;
 }
-.reset-btn:active{
+
+.clear-btn {
+    background-image: url('../img/clear.png');
+    background-color: transparent !important;
+    background-size: 16px 16px;  
+    border: none !important;
+    width:16px;
+    height:16px;
+    background-repeat: no-repeat;
+}
+
+.reset-btn:active {
     background-image: url('../img/resetinverse.png');
     background-color: transparent !important;
     background-size: 30px 30px;  
