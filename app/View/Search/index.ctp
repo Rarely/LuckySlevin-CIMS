@@ -20,7 +20,7 @@
                             <button class="btn btn-primary btn-search" type="submit"><span class="glyphicon glyphicon-search"></span></button>
                         </div>
                         <div class="input-group-btn">
-                            <span id="btn-reset-search" class="btn clear-btn">Clear results</span>
+                            <span id="btn-reset-search" class="btn clear-btn"></span>
                         </div>
                     </div>
                     <div class="panel-group" id="accordion">

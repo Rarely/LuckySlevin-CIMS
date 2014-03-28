@@ -32,6 +32,9 @@
 .admin-btn-add {
     background: url("../img/adduser.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
 }
+.admin-btn-reset {
+    background: url("../img/reset.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
 
 .icon-btn {
     display: inline-block;

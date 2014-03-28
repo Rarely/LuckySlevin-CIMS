@@ -2,8 +2,7 @@
     z-index: 3;
 }
 
-    #btn-reset-search {
-    text-indent: -1000em;
+#btn-reset-search {
     width: 16px;
     height: 16px;
     position: relative;
