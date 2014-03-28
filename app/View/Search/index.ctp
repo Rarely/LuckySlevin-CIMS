@@ -14,38 +14,36 @@
             </div>
             <form id="search-form">
                 <div class="row">
-                    <div class="input-group">
+                    <div class="input-group margin-right-neg-25">
                         <input id="search-query" type="text" class="form-control" placeholder="Search..." name="q" maxlength ='150' />
                         <div class="input-group-btn">
-                            <button class="btn btn-default btn-search" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+                            <button class="btn btn-primary btn-search" type="submit"><span class="glyphicon glyphicon-search"></span></button>
                         </div>
                         <div class="input-group-btn">
                             <span id="btn-reset-search" class="btn clear-btn">Clear results</span>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="panel-group" id="accordion">
-                            <div class="panel-heading">
-                              <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                                  Advanced search options <span class="caret"></span>
-                                </a>
-                              </h4>
-                            </div>
-                            <div id="collapseOne" class="panel-collapse collapse">
-                                <div class="panel-body">
-                                    <div class="col-md-4">
-                                        <input type="checkbox" name="name" checked> Name<br>
-                                        <input type="checkbox" name="description" checked> Description<br>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <input type="checkbox" name="community_partner"> Community Partner<br>
-                                        <input type="checkbox" name="contact_name"> Conact Name<br>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <input type="checkbox" name="contact_phone"> Contact Phone<br>
-                                        <input type="checkbox" name="contact_email"> Contact Email<br>
-                                    </div>
+                    <div class="panel-group" id="accordion">
+                        <div class="panel-heading">
+                          <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                              Advanced search options <span class="caret"></span>
+                            </a>
+                          </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="col-md-4">
+                                    <input type="checkbox" name="name" checked> Name<br>
+                                    <input type="checkbox" name="description" checked> Description<br>
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="checkbox" name="community_partner"> Community Partner<br>
+                                    <input type="checkbox" name="contact_name"> Conact Name<br>
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="checkbox" name="contact_phone"> Contact Phone<br>
+                                    <input type="checkbox" name="contact_email"> Contact Email<br>
                                 </div>
                             </div>
                         </div>

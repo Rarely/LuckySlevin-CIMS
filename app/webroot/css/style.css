@@ -72,6 +72,9 @@ hr {
 .margin-left-neg-30{
     margin-left: -30px;
 }
+.margin-right-neg-25{
+    margin-right: -25px;
+}
 .margin-bottom-0{
     margin-bottom: 0px !important;
 }
@@ -98,15 +101,6 @@ hr {
 
 #edit-idea-form fieldset {
     margin-top: 10px;
-}
-
-.reset-btn {
-    background-image: url('../img/reset.png');
-    background-color: transparent !important;
-    background-size: 30px 30px;  
-    border: none !important;
-    width:30px;
-    height:30px;
 }
 
 .clear-btn {
