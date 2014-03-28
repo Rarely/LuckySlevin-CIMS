@@ -1,3 +1,14 @@
+#btn-reset-search {
+    text-indent: -1000em;
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    background-image: url(http://p.yusukekamiyamane.com/icons/search/fugue/icons/cross.png);
+    background-repeat: no-repeat;
+    position: relative;
+    left: -25px;
+}
+
 .search-well {
     margin-top: 10px;
     padding: 10px 45px 10px 45px;
@@ -86,5 +97,6 @@
     margin-right: 10px;
 }
 #search-query{
-    width:650px;
+    width:95%;
+    display: inline-block;
 }

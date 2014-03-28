@@ -15,18 +15,14 @@
                 </div>
                 <form id="search-form">
                     <div class="row">
-                        <div class="col-md-10">
-                            <div class="row">
-                                <div class="col-md-1">
+                                <!--<div class="col-md-1">
                                     <div id="btn-reset-search" class="reset-btn margin-right-5 btn inline-block"></div>
-                                </div>
-                                <div class="col-md-11 margin-left-neg-30">
-                                    <input id="search-query" type="text" class="form-control" placeholder="Search..." name="q" maxlength ='150'/>
+                                </div>-->
+                                    <input id="search-query" type="text" class="form-control" placeholder="Search..." name="q" maxlength ='150' />
+                                        <div id="btn-reset-search" class="btn">Clear results</div>
                                     <div id='loading'></div>
-                                </div>
-                            </div>
                             <div class="row">
-                                <div class="margin-bottom-0 panel-group" id="accordion">
+                                <div class="panel-group" id="accordion">
                                     <div class="panel-default">
                                         <div class="panel-heading">
                                           <h4 class="panel-title">
@@ -54,23 +50,17 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="row margin-bottom-5 padding-left-10">
+</div>
+<div class="row">
+
                                 <input type="submit" value="Search" class="btn btn-primary inline-block" id="submit-search" />
-                            </div>
                             <?php if (isset($userData['role']) && $userData['role'] === 'admin') { ?>
-                                <div class="row margin-bottom-5 padding-left-10">
                                     <!-- EXPORT -->
-                                    <div id="btn-export" class="btn btn-success inline-block">Export</div>
-                                </div>
-                                <div class="row margin-bottom-5 padding-left-10">
+                                    <div id="btn-export" class="btn btn-success inline-block idea-management">Export</div>
                                     <!-- DELETE -->                                    
-                                    <div id="btn-delete" class="btn btn-danger inline-block">Delete</div>
-                                </div>
+                                    <div id="btn-delete" class="btn btn-danger inline-block idea-management">Delete</div>
                             <?php } ?>
                         </div>
-                    </div>
                     <div class="row margin-left-auto">
                         <div class="row">
                             <span id="export-help">Please click the title of the ideas you would like to <strong>export</strong> below</span>
