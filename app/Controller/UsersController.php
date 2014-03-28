@@ -6,6 +6,14 @@ class UsersController extends AppController {
     var $helpers = array('Html', 'Form');
     var $components =array('Email','Ticketmaster', 'RequestHandler');
     
+    /*
+     * Renders the list of users
+     * input:
+        REST parameters: None
+        Query Parameters: None
+     * preconditions: None
+     * postconditions:  A view with the list of users will be rendered
+    */
     public function index() {
         $this->set('title_for_layout', 'Users');
         $this->set('users', $this->User->find('all', array( 
@@ -13,6 +21,14 @@ class UsersController extends AppController {
         )));
     }
     
+    /*
+     * Edits a user 
+     * input:
+        REST parameters: user id
+        Query Parameters: None
+     * preconditions: user exists and is valid
+     * postconditions: the user's information changes
+    */
     public function edit($id = null) { 
         if (!$id) {
             throw new NotFoundException(__('Invalid User'));
@@ -36,6 +52,14 @@ class UsersController extends AppController {
         } 
     }
 
+    /*
+     * Creates a new user
+     * input:
+        REST parameters: None
+        Query Parameters: None
+     * preconditions: the form data is validated
+     * postconditions:  A new user is created in the database
+    */
     public function add() {
         if ($this->request->is('post')) {
             $user = $this->User->findByUsername($this->request->data['User']['username']);
@@ -57,6 +81,14 @@ class UsersController extends AppController {
         }
     }
 
+    /*
+     * Activates a deleted user
+     * input:
+        REST parameters: username
+        Query Parameters: None
+     * preconditions: The user exists
+     * postconditions:  if the user is deleted, undelete it
+    */
     public function activateDeletedUser($username = null) {
         if (!$username) {
             throw new NotFoundException(__('Invalid User'));
@@ -85,6 +117,14 @@ class UsersController extends AppController {
         $this->Auth->authorize = array('Controller');
     }   
 
+    /*
+     * Logs in a user
+     * input:
+        REST parameters: None
+        Query Parameters: None
+     * preconditions: None
+     * postconditions:  renders the login page or logs the user in.
+    */
     public function login() {
         $this->layout= false;
         if ($this->request->is('post')) {
@@ -97,13 +137,28 @@ class UsersController extends AppController {
                  $this->Session->setFlash(__('Invalid username or password, try again'), 'default', array(), 'badlogin');
            } 
        }
-   }
+    }
 
-
+    /*
+     * Logs out a user
+     * input:
+        REST parameters: None
+        Query Parameters: None
+     * preconditions: None
+     * postconditions:  logs a user out. clears the session variable
+    */
     public function logout() {
         return $this->redirect($this->Auth->logout());
     }
 
+    /*
+     * renders the reset password page
+     * input:
+        REST parameters: email (optional)
+        Query Parameters: None
+     * preconditions: the email is linked to a valid user
+     * postconditions:  a ticket is created and an email is sent to the user.
+    */
     function resetpassword($email=null){
         $this->layout = false;
         if(empty($this->request->data)){
@@ -149,7 +204,15 @@ class UsersController extends AppController {
  
         }
     }
- 
+    
+    /*
+     * Uses a ticket
+     * input:
+        REST parameters: hash
+        Query Parameters: None
+     * preconditions: the ticket is valid
+     * postconditions: applied the action of the ticket.
+    */
     function useticket($hash){
         //purge old tickets
         $results=$this->Ticketmaster->checkTicket($hash);
@@ -169,7 +232,14 @@ class UsersController extends AppController {
  
     }
  
- 
+    /*
+     * renders the new password page
+     * input:
+        REST parameters: user id
+        Query Parameters: None
+     * preconditions: the user id is valid
+     * postconditions: The users password is reset
+    */
     function newpassword($id = null) {
         $this->layout = false;
         if($this->Session->check('tokenreset')){
@@ -207,6 +277,16 @@ class UsersController extends AppController {
         }
     }
 
+    /*
+     * returns the list of users
+     * input:
+        REST parameters: excludeself
+        Query Parameters: term
+     * preconditions: None
+     * postconditions: the list of members are returned
+                        if exclude self is true, the list removes the user.
+                        if term is specified, it searches for the user.
+    */
     function memberslist($excludeSelf = false) {
         $this->layout = false;
         $term = $this->request->query('term');
@@ -237,7 +317,14 @@ class UsersController extends AppController {
         }
     }
 
-
+    /*
+     * deletes a user
+     * input:
+        REST parameters: userid
+        Query Parameters: None
+     * preconditions: the user is valid
+     * postconditions: the user will be flagged as deleted
+    */
     function delete($id = null) {
         $this->layout = false; 
         if (!$id) {

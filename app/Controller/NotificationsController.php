@@ -3,6 +3,14 @@ class NotificationsController extends AppController {
     public $helpers = array('Html', 'Form');
     var $components = array('RequestHandler');
 
+   /*
+     * Renders the list of notifications
+     * input:
+        REST parameters: None
+        Query Parameters: None
+     * preconditions: A user is logged in
+     * postconditions:  A view with the list of notifications for the currently logged in user is returned
+    */
     public function index() {
         $this->set('title_for_layout', 'Notifications');
         $this->set('notifications', $this->Notification->find('all', array(
@@ -12,6 +20,14 @@ class NotificationsController extends AppController {
         )));
     }
 
+    /*
+     * Reads a notification
+     * input:
+        REST parameters: notification id
+        Query Parameters: None
+     * preconditions: the notification id is valid
+     * postconditions:  Marks the notification as read
+    */
     public function notified($id = null) {
         $this->layout = null; //disable layout for json return
         if ($this->RequestHandler->isAjax()) {
@@ -41,8 +57,16 @@ class NotificationsController extends AppController {
     }
 
     /*
-     * Send a notification to a user or the group of users tracking an idea
-     * for use within controllers
+     * Helper function to send notifications to users
+     * input:
+        parameters: title: the title of the notification
+                    message: the subtitle of the notification
+                    ideaid (required): the idea to link the notification to
+                    userid: a specific user to notify
+                    senderid: the user who is initiating the notifications
+        Query Parameters: None
+     * preconditions: all data is valid
+     * postconditions: The owner of an idea, the user, and the tracking users are notified
     */
     public function sendNotifications($title, $message, $ideaid = null, $userid = null, $senderid = null) {
         if ($ideaid != null && $userid != null && $userid != $senderid) {
@@ -85,6 +109,7 @@ class NotificationsController extends AppController {
     }
 
     /*
+     * !!DEPRECATED!!
      * Notifies the designated idea's users
      * url example: http://www.cims.com/notifications/notify/<<IDEA ID>>?userid=USER ID&m=<<TEXT FOR NOTIFICATION>>
     */

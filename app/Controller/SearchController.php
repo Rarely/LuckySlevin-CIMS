@@ -3,6 +3,14 @@ class SearchController extends AppController {
     public $helpers = array('Html', 'Form');
     public $uses = array('Idea', 'IdeaValue');
 
+    /*
+     * Renders the search page
+     * input:
+        REST parameters: None
+        Query Parameters: None
+     * preconditions: None
+     * postconditions:  the search page will be rendered
+    */
     public function index($q = null) {
         $this->set('title_for_layout', 'Search');
 
@@ -25,7 +33,14 @@ class SearchController extends AppController {
     }
 
 
-
+    /*
+     * Performs the search
+     * input:
+        REST parameters: None
+        Query Parameters: q: search query
+     * preconditions: None
+     * postconditions: The search results will be returned as html
+    */
     public function result(){
         $this->layout = null;
         $q = $this->request->query['q'];
@@ -72,8 +87,15 @@ class SearchController extends AppController {
         $this->render('/Elements/ideapage', 'ajax');
     }
 
-
-
+    /*
+     * Exports a list of ideas
+     * input:
+        REST parameters: None
+        Query Parameters: idlist = list of idea ids
+     * preconditions: ids are valid
+     * postconditions:  creates 2 csv files given the ideas and zips them up.
+                        sends the zip file to the user for downloading.
+    */
     public function export($idlist = array()) {
         $idlist = explode(',', $this->request->query('ids'));
         $data = $this->Idea->find('all', array(
@@ -169,7 +191,7 @@ class SearchController extends AppController {
         $this->set($params);
     }
 
-    /* creates a compressed zip file */
+    /* helper function to create a compressed zip file */
     function create_zip($files = array(),$destination = '',$overwrite = false) {
         //if the zip file already exists and overwrite is false, return false
         if(file_exists($destination) && !$overwrite) { return false; }
