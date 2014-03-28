@@ -32,7 +32,7 @@
             $userNotificationsCount++;
         }
     } ?>
-    <tr data-id="<?php echo $user['User']['id'] ;?>" data-name="<?php echo h($user['User']['name']);?>">
+    <tr data-id="<?php echo $user['User']['id'] ;?>" data-name="<?php echo h($user['User']['name']);?>" data-email="<?php echo h($user['User']['username']);?>">
         <td><?php echo h($user['User']['name']); ?></td>
         <td><?php echo h($user['User']['username']); ?></td>
         <td><?php echo $userNotificationsCount; ?></td>
@@ -43,7 +43,8 @@
                 array('controller' => 'users','action' => 'edit', $user['User']['id'])
                 ,array('class' =>'admin-btn admin-btn-sm admin-btn-edit', 'escape' => FALSE)
             );?>
-            </td>
+            <div class="btn-reset-password admin-btn admin-btn-sm admin-btn-reset"></div>
+        </td>
     </tr>
     <?php endforeach; ?>
     <?php unset($user); ?>
