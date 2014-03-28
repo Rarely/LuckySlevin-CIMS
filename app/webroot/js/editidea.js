@@ -36,4 +36,15 @@ $(function() {
       edit_end_date.hide();
     }).data('datepicker');
 
+    $("#clear-start-date").click( function() {
+      var date_string = "";
+      $("#edit-idea-start-date-text").text(date_string);
+      $("#edit-idea-start-date").val(date_string);
+    });
+
+    $("#clear-end-date").click( function() {
+      var date_string = "";
+      $("#edit-idea-end-date-text").text(date_string);
+      $("#edit-idea-end-date").val(date_string);
+    });
 });

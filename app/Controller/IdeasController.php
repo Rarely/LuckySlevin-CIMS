@@ -100,6 +100,8 @@ class IdeasController extends AppController {
             $this->Idea->set('contact_email', $this->request->data['Idea']['contact_email']);
             $this->Idea->set('contact_phone', $this->request->data['Idea']['contact_phone']);
             $this->Idea->set('description', $this->request->data['Idea']['description']);
+            $this->Idea->set('start_date', $this->request->data['Idea']['start_date']);
+            $this->Idea->set('end_date', $this->request->data['Idea']['end_date']);
             $this->Idea->set('userid', $this->request->data['Idea']['userid']);
             $this->Idea->set('updated',null);
 

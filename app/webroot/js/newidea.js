@@ -39,6 +39,16 @@ $(function() {
       add_end_date.hide();
     }).data('datepicker');
 
+    $("#clear-new-start-date").click( function() {
+      var date_string = "";
+      $("#add-idea-start-date-text").text(date_string);
+      $("#add-idea-start-date").val(date_string);
+    });
 
+    $("#clear-new-end-date").click( function() {
+      var date_string = "";
+      $("#add-idea-end-date-text").text(date_string);
+      $("#add-idea-end-date").val(date_string);
+    });
 
 });

@@ -5,9 +5,15 @@
   echo $this->Html->css('login.css');
   echo $this->Html->css('style.css');
 ?>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="mobile-web-app-capable" content="yes" />
+<link rel="apple-touch-icon" href="img/appicon.png"/>
+<link rel="shortcut icon" sizes="120x120" href="img/appicon.png" />
+<link rel="shortcut icon" href="img/appicon.png" type="image/x-icon">
+
 <div class="container">
   <div class="row">
-    <div class="col-xs-12">
+    <div class="col-xs-12 passwordform">
         <?php echo $this->Form->create('User', array(
           'url' => array('controller' => 'users', 'action' => 'resetpassword'),
           'inputDefaults' => array(
@@ -19,31 +25,23 @@
 
         )); ?>
 
-        <div class="row">
-            <div class="resetheader">
-                <h1>Reset Password</h1>
-                <br>
-                <h5>An email will be sent to this address, please follow the process to reset your password</h5>
-                <br>
-            </div>
+        <div class="resetheader">
+          <h1>Reset Password</h1>
+          <h5>Please enter your email to continue the password reset process</h5>
         </div>
 
         <fieldset>
-            <div class="row">
-                <?php echo $this->Form->input('email', array(
-                  'label' => 'Email',
-                  'placeholder' => 'Email…',
-                  'required' => true
-                )); ?>
-            </div>
-            <div class="row">
-                <?php echo $this->Form->submit('Reset Password', array(
-                  'div' => false,
-                  'class' => 'btn btn-primary'
-                )); ?>
-            </div>
+          <?php echo $this->Form->input('email', array(
+            'label' => '',
+            'placeholder' => 'Email…',
+            'required' => true
+          )); ?>
+          <?php echo $this->Form->submit('Reset Password', array(
+            'div' => false,
+            'class' => 'btn btn-primary'
+          )); ?>
         </fieldset>
-    <?php echo $this->Form->end(); ?>
+      <?php echo $this->Form->end(); ?>
     </div>
   </div>
 </div>

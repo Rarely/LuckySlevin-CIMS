@@ -108,7 +108,7 @@ body {
             <li>
               <div class="btn idea-add-btn nav-btn" id="btn-add-idea" data-toggle="modal" data-target="#myModal">
                 <div class="inline-block">
-                  <img src ="img/addideainverse.png" class ="add-btn" alt="" />
+                  <img src ="/img/addideainverse.png" class ="add-btn" alt="" />
                 </div>
                 <div class="padding-top-5 nav inline-block">
                   Add Idea
