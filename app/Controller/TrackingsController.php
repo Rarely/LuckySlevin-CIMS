@@ -3,7 +3,15 @@ class TrackingsController extends AppController {
 	public $helpers = array('Html', 'Form', 'Js');
     public $uses = array('Idea');
     var $components= array('Session', 'RequestHandler');
-
+    
+    /*
+     * Renders the My Page page
+     * input:
+        REST parameters: None
+        Query Parameters: None
+     * preconditions: None
+     * postconditions:  A viwe with the list of owned and tracked ideas is rendered
+    */
     public function index() {
         $this->set('title_for_layout', 'My Page');
         $trackedIdeas = $this->Tracking->find('all', array(
@@ -24,6 +32,15 @@ class TrackingsController extends AppController {
         )));
     }
 
+    /*
+     * Tracks an idea
+     * input:
+        REST parameters: idea id
+        Query Parameters: None
+     * preconditions:   user is logged in
+                        the idea is valid
+     * postconditions:  the user tracks the given idea
+    */
     public function track($id = null) {
         $this->layout = null; //disable layout for json return
         if ($this->RequestHandler->isAjax()) {
@@ -53,6 +70,15 @@ class TrackingsController extends AppController {
         }
     }
 
+    /*
+     * Untracks an idea
+     * input:
+        REST parameters: idea id
+        Query Parameters: None
+     * preconditions:   user is logged in
+                        the idea is valid
+     * postconditions:  the user untracks the given idea
+    */
     public function untrack($id = null) {
         $this->layout = null; //disable layout for json return
         if ($this->RequestHandler->isAjax()) {

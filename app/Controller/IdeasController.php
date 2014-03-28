@@ -3,6 +3,15 @@ class IdeasController extends AppController {
     public $helpers = array('Html', 'Form');
     var $components = array('RequestHandler');
     public $uses = array('Idea','Comment', 'Category', 'IdeaValue', 'Value', 'IdeaReference');
+    
+    /*
+     * Renders the list of ideas.  This is the home page
+     * input:
+        REST parameters: None
+        Query Parameters: None
+     * preconditions: None
+     * postconditions:  A view with the list of ideas will be rendered
+    */
     public function index() {
         $this->set('title_for_layout', 'Ideas');
 
@@ -32,7 +41,15 @@ class IdeasController extends AppController {
         )));
     }
 
-     public function add() {
+    /*
+     * Creates a new idea
+     * input:
+        REST parameters: None
+        Query Parameters: None
+     * preconditions: The form data is successfully validated
+     * postconditions:  A new idea will be created with the specified form data.
+    */
+    public function add() {
         if ($this->request->is('post')) {
 
             $this->Idea->create();
@@ -48,7 +65,15 @@ class IdeasController extends AppController {
             $this->Session->setFlash(__('Unable to add idea.'));
         }
     }
- 
+    
+    /*
+     * Renders the public facing widget for the community to suggest ideas
+     * input:
+        REST parameters: None
+        Query Parameters: None
+     * preconditions: None
+     * postconditions:  A new idea will be added with minimal information
+    */
     public function add_community($id = null) {
         $this->layout= false;
         if ($this->request->is('post')) {
@@ -72,6 +97,16 @@ class IdeasController extends AppController {
         //$this->Auth->authorize = array('Controller');
     } 
 
+    /*
+     * Renders an idea or saves an edited idea
+     * input:
+        REST parameters: idea id
+        Query Parameters: None
+     * preconditions:   the idea exists and is valid
+                        if a http post: form data is validated
+     * postconditions:  1. The edit form will be shown
+                        2. if a http post: the idea will be saved with the form data
+    */
     public function edit($id = null) { 
         if (!$id) {
             throw new NotFoundException(__('Invalid idea'));
@@ -160,6 +195,14 @@ class IdeasController extends AppController {
         }
     }
 
+    /*
+     * Provides a copy-able page  for emailing details of an idea
+     * input:
+        REST parameters: category id
+        Query Parameters: name
+     * preconditions: the category exists and is valid
+     * postconditions:  A new value will be added to the specified category
+    */
     public function email($id=null) { 
         if (!$id) {
             throw new NotFoundException(__('Invalid idea'));
@@ -257,6 +300,15 @@ class IdeasController extends AppController {
         }
     }
 
+    /*
+     * Creates a new comment in an idea
+     * input:
+        REST parameters: idea id
+        Query Parameters: message
+     * preconditions: the idea exists and is valid
+     * postconditions:  A new comment will be added to the specified idea
+                        Users tracking the idea and the idea owner will be notified 
+    */
     public function comment($id = null){
         $this->layout = null;
         if ($this->RequestHandler->isAjax()) {
@@ -319,6 +371,14 @@ class IdeasController extends AppController {
         }
     }
 
+    /*
+     * Views a single idea
+     * input:
+        REST parameters: idea id
+        Query Parameters: None
+     * preconditions: the idea exists and is valid
+     * postconditions:  Renders the ajax modal for an idea
+    */
     public function idea($id = null) {
         $this->layout = false;
         if (!$id) {
@@ -345,6 +405,14 @@ class IdeasController extends AppController {
         $this->render('/Elements/ajaxmodal');
     }
 
+    /*
+     * deletes an idea
+     * input:
+        REST parameters: None
+        Query Parameters: ids = list of idea ids
+     * preconditions: the ideas exist and are valid
+     * postconditions:  a flag (isdeleted) is turned to true for the list of ideas
+    */
     public function delete($idlist = array()) {
         $idlist = explode(',', $this->request->query('ids'));
         
@@ -430,9 +498,17 @@ class IdeasController extends AppController {
         }
     }
 
+    /*
+     * Returns the list of values for a category
+     * input:
+        REST parameters: category id
+        Query Parameters: None
+     * preconditions: The category id is valid
+     * postconditions: the list of values for a given category is returned
+    */
     function valueslist($id = null) {
         if (!$id) {
-            throw new NotFoundException(__('Invalid idea'));
+            throw new NotFoundException(__('Invalid category'));
         }
 
         if ($this->RequestHandler->isAjax()) {
@@ -452,7 +528,14 @@ class IdeasController extends AppController {
             $this->render('/Elements/jsonraw');
         }
     }
-
+    /*
+     * Returns the list of ideas
+     * input:
+        REST parameters: (optional) ideaid
+        Query Parameters: None
+     * preconditions: The idea id is valid (if given)
+     * postconditions: the list of idea are returned.  If the idea id is specified, exclude that idea.
+    */
     function idealist($ideaid = null) {
         $term = $this->request->query('q');
         if ($this->RequestHandler->isAjax()) {
@@ -473,10 +556,6 @@ class IdeasController extends AppController {
             $this->set('response', $answer);
             $this->render('/Elements/jsonraw');
         }
-    }
-
-    function addTwo($x, $y){
-        return $x + $y;
     }
 }
 
