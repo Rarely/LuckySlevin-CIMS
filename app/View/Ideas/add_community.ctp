@@ -19,9 +19,7 @@
         echo $this->Html->css('idea.css');
         ?>
         <?php echo $this->Html->script('editidea.js'); ?>
-
-        <h1> Center for Community Engaged Learning</h1>
-        <h2> Got an idea? Tell us! </h2>
+        
         <?php echo $this->Form->create('Idea', array(
             'inputDefaults' => array(
                 'div' => 'form-group',
@@ -30,7 +28,10 @@
                 ),
             'class' => 'well'
             )); ?>
-
+        <div class="text-center">
+            <h1> Center for Community Engaged Learning</h1>
+            <h3> Got an idea? Tell us! </h3>
+        </div>
             <fieldset>
                 <?php echo $this->Form->input('contact_name', array(
                     'label' => 'Contact Name',
@@ -64,15 +65,15 @@
                     )); ?>
                 </fieldset>
                 <?php echo $this->Form->end(); ?>
-        <div>
-            T: 604.822.1678<br>
-            F: 604.822.2457<br>
-            community.learning@ubc.ca<br>
-            Wesbrook Building<br>
-            Room 300, 6174 University Boulevard <br>
-            Vancouver,  V6T 1Z3<br>
-        </div>
+        
     </div>
-   
+    <div style="margin-top:470px; background-color:white;">
+        T: 604.822.1678<br>
+        F: 604.822.2457<br>
+        community.learning@ubc.ca<br>
+        Wesbrook Building<br>
+        Room 300, 6174 University Boulevard <br>
+        Vancouver,  V6T 1Z3<br>
+    </div>
 
 </div>
