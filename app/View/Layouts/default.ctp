@@ -106,16 +106,13 @@ body {
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li>
-              <div class="btn idea-add-btn nav-btn" id="btn-add-idea" data-toggle="modal" data-target="#myModal">
-                <div class="inline-block">
-                  <img src ="/img/addideainverse.png" class ="add-btn" alt="" />
-                </div>
-                <div class="padding-top-5 nav inline-block">
-                  Add Idea
-                </div>  
-              </div>
+              <button type="button" class =" btn idea-add-btn nav-btn" id="btn-add-idea" data-toggle="modal" data-target="#myModal">
+                 <img src ="/img/addideainverse.png" class ="add-btn" alt="" />
+                 Add Idea
+              </button>
+              
             </li>
-            <li class="dropdown border-line">
+            <li class="dropdown border-line nav-btn">
               <a href="#" class="welcome-name-btn dropdown-toggle heading-text-color" data-toggle="dropdown"> 
                 Welcome <?php echo h($userData['name']); ?>
               </a>
@@ -126,8 +123,8 @@ body {
                     </li>
               </ul>
             </li>
-            <li class="dropdown">
-              <a href="#" class="notify-btn dropdown-toggle notifications-btn" data-toggle="dropdown">
+            <li class="dropdown notifications-btn">
+              <a href="#" class="notify-btn dropdown-toggle " data-toggle="dropdown">
                 <?php if ($notificationsCount > 0){ 
                   echo "<span class=\"notify-count badge badge-important badge-notifications\">$notificationsCount</span>";
                   }

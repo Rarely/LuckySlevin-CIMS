@@ -55,7 +55,7 @@
         <div class="row">
           <?php echo $this->Form->submit('Login', array(
             'div' => false,
-            'class' => 'btn btn-login'
+            'class' => 'btn btn-primary btn-login'
           )); ?>
         </div>
         <div class="row">

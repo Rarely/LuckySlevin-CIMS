@@ -112,6 +112,9 @@ hr {
     height:16px;
     background-repeat: no-repeat;
 }
+.clear-btn:active{
+    background-image: url('../img/clear.png');
+}
 
 .reset-btn:active {
     background-image: url('../img/resetinverse.png');
@@ -121,3 +124,46 @@ hr {
     width:30px;
     height:30px;
 }
+
+.btn{
+    border-radius: 0px;
+
+}
+
+.btn-primary{
+    background-color: #2f5d7c;
+    border-color: #2f5d7c;
+}
+
+.btn-primary:hover{
+    background-color: #5091bd;
+    border-color: #5091bd;
+}
+
+.btn-success{
+    background-color: #2f7c4e;
+    border-color: #2f7c4e;
+}
+
+.btn-success:hover{
+    background-color: #008c48;
+    border-color: #008c48;
+}
+
+.btn-danger{
+    background-color: #7c2f37;
+    border-color: #7c2f37;
+}
+
+.btn-danger:hover{
+    background-color: #9e3c47;
+    border-color: #9e3c47;
+}
+
+.btn-default{
+    color: #002145;
+}
+
+.btn-default:hover{
+    color: #002145;
+    }

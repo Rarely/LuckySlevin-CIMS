@@ -85,3 +85,12 @@
 .glyphicon-search {
     color: white;
 }
+
+.panel-heading{
+    padding-top: 10px;
+    padding-left: 0px;
+}
+
+.glyphicon{
+    position:inherit;
+}

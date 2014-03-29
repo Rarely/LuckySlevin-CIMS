@@ -59,8 +59,8 @@
                 </div>
                 <div class="row margin-left-auto">
                     <div class="row">
-                        <span id="export-help" class="help-text">Please click the title of the ideas you would like to <strong>export</strong> below</span>
-                        <span id="delete-help" class="help-text">Please click the title of the ideas you would like to <strong>delete</strong> below</span>
+                        <span id="export-help" class="help-text">Please click the title of the ideas you would like to <strong style="color:#2f7c4e;">export</strong> below</span>
+                        <span id="delete-help" class="help-text">Please click the title of the ideas you would like to <strong style="color:#7c2f37;">delete</strong> below</span>
                     </div>
                     <div class="row">
                         <div id="btn-cancel-csv" class="btn btn-default btn-hidden">Cancel</div>
