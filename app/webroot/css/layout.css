@@ -11,12 +11,12 @@ body {
 }
 
 .management-btn{
-    margin-top: 8px;
+    height: 50px;
     color:#ffffff !important;
 }
 
 .idea-add-btn {
-    margin-top: 3px;
+    height:50px;
 }
 
 .nav-btn{
@@ -54,6 +54,10 @@ body {
     margin-top: 8px;
 }
 
+.notify-btn:hover{
+    background-image: url('../img/bellinverse.png') !important;
+}
+
 .welcome-name-btn{
     background-color: transparent !important;
     border: none !important;
@@ -88,4 +92,9 @@ body {
     color:white;
     font-size: 16px;
     font-weight:bold;
+}
+
+a.list-group-item.active{
+    background-color: #5E869F;
+    border-color: #5E869F;
 }

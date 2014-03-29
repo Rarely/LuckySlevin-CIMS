@@ -10,8 +10,6 @@ body{
   background: none !important;
 }
 
-
-
 #UserLoginForm {
     max-width: 360px;
     margin: 120px auto 40px auto;
@@ -63,14 +61,12 @@ body{
   height: 35px;
   display: block;
   width: 100%;
-  box-shadow: 0 0 0 1px #46A294, 0 2px 2px #808389;
   color: #FFFFFF;
   font-size: 1.5em;
-  background-color: #5E869F;
 }
 
 .btn-login:hover{
-    color: #98B2C3;
+    color: #ffffff;
 }
 
 .loginheader h3 {
@@ -79,7 +75,7 @@ body{
 
 .passwordform{
   max-width:400px;
-  margin: 0 auto;
+  margin: 120px auto 40px auto;
   float:none;
 }
 .resetheader {
