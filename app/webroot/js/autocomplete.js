@@ -9,7 +9,7 @@ jQuery.fn.userSelect = function(excludeSelf, initvalue, multiple, placeholder) {
       allowClear: true,
       minimumInputLength: 0,
       ajax: {
-        url: "users/memberslist/"+excludeSelf,
+        url: "/users/memberslist/"+excludeSelf,
         dataType: 'json',
         data: function (term, page) {
           return {
@@ -47,7 +47,7 @@ jQuery.fn.userSelect = function(excludeSelf, initvalue, multiple, placeholder) {
     multiple: is_multiple,
     tokenSeparators: [",", ";"],
     ajax: {
-      url: "ideas/valueslist/" + el.attr('data-id'),
+      url: "/ideas/valueslist/" + el.attr('data-id'),
       dataType: 'json',
       data: function (term, page) {
         return {

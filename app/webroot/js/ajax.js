@@ -3,7 +3,7 @@ var Ajax = {
     trackIdea: function(id) {
         $.ajax({
           type: "POST",
-          url: 'trackings/track/' + id,
+          url: '/trackings/track/' + id,
           async: true,
           success: function(data) {
             if (data.response === "success") {
@@ -19,7 +19,7 @@ var Ajax = {
     untrackIdea: function(id) {
         $.ajax({
           type: "POST",
-          url: 'trackings/untrack/' + id,
+          url: '/trackings/untrack/' + id,
           async: true,
           success: function(data) {
             if (data.response === "success") {
@@ -36,7 +36,7 @@ var Ajax = {
       showIdea: function(ideaid) {
         $.ajax({
           type: "GET",
-          url: 'ideas/idea/' + ideaid,
+          url: '/ideas/idea/' + ideaid,
           async: true,
           success: function(data) {
             $('#ajax-modal').remove();
@@ -52,7 +52,7 @@ var Ajax = {
         $.ajax({
           type: "POST",
           dataType: "json",
-          url: 'ideas/delete?ids=' + ideaids,
+          url: '/ideas/delete?ids=' + ideaids,
           async: true,
           success: function(data) {
             if (data.response === "success") {
@@ -71,7 +71,7 @@ var Ajax = {
         $.ajax({
           type: "POST",
           dataType: "json",
-          url: 'ideas/share/' + ideaid + '?userids=' + userids,
+          url: '/ideas/share/' + ideaid + '?userids=' + userids,
           async: true,
           success: function(data) {
             if (data.response === "success") {
@@ -88,7 +88,7 @@ var Ajax = {
       getNotifications: function() {
         $.ajax({
           type: "GET",
-          url: 'notifications',
+          url: '/notifications',
           async: true,
           success: function(data) {
             $('.navbar .notifications-menu').html(data);
@@ -104,7 +104,7 @@ var Ajax = {
       setNotified: function(dom, id) {
         $.ajax({
           type: "GET",
-          url: 'notifications/notified/' + id,
+          url: '/notifications/notified/' + id,
           async: true,
           success: function(data) {
             $(dom).removeClass('active');
@@ -125,7 +125,7 @@ var Ajax = {
        */
       notify: function(message, ideaid, userid) {
         userid = typeof userid !== 'undefined' ? userid : null;
-        var url = 'notifications/notify/' + ideaid + "?m=" + message;
+        var url = '/notifications/notify/' + ideaid + "?m=" + message;
         if (userid != null) {
           url += "&userid=" + userid;
         }
@@ -146,7 +146,7 @@ var Ajax = {
 // url: /comments/comment/<<IDEA ID>>?c=<<TEXT FOR COMMENT>>
     Comments: {
       comment: function(message, ideaid) {
-        var url = 'ideas/comment/' + ideaid + "?c=" + message;
+        var url = '/ideas/comment/' + ideaid + "?c=" + message;
         $.ajax({
            type: "POST",
            url: url,
@@ -168,7 +168,7 @@ var Ajax = {
         $.ajax({
           type: "POST",
           dataType: 'json',
-          url: 'users/delete/' + userid,
+          url: '/users/delete/' + userid,
           async: true,
           success: function(data) {
             if (data.response === "success") {
@@ -184,7 +184,7 @@ var Ajax = {
         $.ajax({
           type: "POST",
           dataType: 'json',
-          url: 'categories/delete/' + valueID,
+          url: '/categories/delete/' + valueID,
           async: true,
           success: function(data) {
             if (data.response === "success") {
@@ -198,7 +198,7 @@ var Ajax = {
         $.ajax({
           type: "POST",
           dataType: 'json',
-          url: 'categories/create/' + categoryID + "?name=" + name,
+          url: '/categories/create/' + categoryID + "?name=" + name,
           async: true,
           success: function(data) {
             if (data.response === "success") {
@@ -236,7 +236,7 @@ var Ajax = {
         $.ajax({
           type: "POST",
           dataType: 'json',
-          url: 'categories/edit/' + valueID + "?name=" + name,
+          url: '/categories/edit/' + valueID + "?name=" + name,
           async: true,
           success: function(data) {
             if (data.response === "success") {

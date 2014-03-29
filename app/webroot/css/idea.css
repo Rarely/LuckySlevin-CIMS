@@ -107,18 +107,18 @@
 .trackbtn {
 	width: 35px;
 	height:35px;
-    background-image: url('../img/tracked.png');
+    background-image: url('/img/tracked.png');
 
 }
 
 .untrackbtn {
 	width: 35px;
 	height:35px;
-    background-image: url('../img/untracked.png');
+    background-image: url('/img/untracked.png');
 }
 
 .email-btn {
-    background-image: url('../img/email.png');
+    background-image: url('/img/email.png');
 }
 
 #ajax-modal .sharing-autocomplete {

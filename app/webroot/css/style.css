@@ -91,7 +91,7 @@ hr {
 }
 
 .loading-img {
-    background-image: url('../img/ajax-loader.gif')  !important;
+    background-image: url('/img/ajax-loader.gif')  !important;
     background-color: transparent !important;
     background-size: 100%;  
     border: none !important;
@@ -104,7 +104,7 @@ hr {
 }
 
 .clear-btn {
-    background-image: url('../img/clear.png');
+    background-image: url('/img/clear.png');
     background-color: transparent !important;
     background-size: 16px 16px;  
     border: none !important;
@@ -113,11 +113,11 @@ hr {
     background-repeat: no-repeat;
 }
 .clear-btn:active{
-    background-image: url('../img/clear.png');
+    background-image: url('/img/clear.png');
 }
 
 .reset-btn:active {
-    background-image: url('../img/resetinverse.png');
+    background-image: url('/img/resetinverse.png');
     background-color: transparent !important;
     background-size: 30px 30px;  
     border: none !important;
