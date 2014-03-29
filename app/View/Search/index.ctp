@@ -17,10 +17,10 @@
                     <div class="input-group margin-right-neg-25">
                         <input id="search-query" type="text" class="form-control" placeholder="Search..." name="q" maxlength ='150' />
                         <div class="input-group-btn">
-                            <button class="btn btn-primary btn-search" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+                            <button class="btn btn-primary btn-search" type="submit" data-toggle="tooltip" title="Search"><span class="glyphicon glyphicon-search"></span></button>
                         </div>
                         <div class="input-group-btn">
-                            <span id="btn-reset-search" class="btn clear-btn"></span>
+                            <span id="btn-reset-search" class="btn clear-btn" data-toggle="tooltip" title="Reset Search Results"></span>
                         </div>
                     </div>
                     <div class="panel-group" id="accordion">
@@ -85,7 +85,7 @@
         <div class="well filter-well">
             <div class="row">
                 <div class="inline-block"><h1>Filters</h1></div>
-                <div id="btn-reset-filters" class="clear-btn btn inline-block idea-management"></div>
+                <div id="btn-reset-filters" class="clear-btn btn inline-block idea-management" data-toggle="tooltip" title="Reset Filter Results"></div>
             </div>
             <div id="filter-controls" class="controls">
             <!-- FILTER -->

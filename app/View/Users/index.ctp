@@ -5,7 +5,7 @@
 <div class="inline-block"><h1>Users</h1></div>
 <?php echo $this->Html->link("",
     array('controller' => 'users', 'action' => 'add'),
-    array('class' =>'admin-btn admin-btn-md admin-btn-add pull-right inline-block', 'escape' => FALSE, 'style' => 'margin-right: 110px;')
+    array('class' =>'admin-btn admin-btn-md admin-btn-add pull-right inline-block','data-toggle' =>'tooltip', 'title' =>'Add User', 'escape' => FALSE, 'style' => 'margin-right: 110px;')
 ); ?>
 
 <div class="bg-success">
@@ -38,12 +38,12 @@
         <td><?php echo $userNotificationsCount; ?></td>
         <td><?php echo count($user['Trackings']); ?></td>
         <td> 
-            <div class="btn-delete-user admin-btn admin-btn-sm admin-btn-delete"></div>
             <?php echo $this->Html->link("",
                 array('controller' => 'users','action' => 'edit', $user['User']['id'])
-                ,array('class' =>'admin-btn admin-btn-sm admin-btn-edit', 'escape' => FALSE)
-            );?>
-            <div class="btn-reset-password admin-btn admin-btn-sm admin-btn-reset"></div>
+                ,array('class' =>'admin-btn admin-btn-sm admin-btn-edit', 'data-toggle' =>'tooltip', 'title' =>'Edit', 'escape' => FALSE)
+            );?>        	
+            <div class="btn-delete-user admin-btn admin-btn-sm admin-btn-delete" data-toggle="tooltip" title="Delete"></div>
+            <div class="btn-reset-password admin-btn admin-btn-sm admin-btn-reset" data-toggle="tooltip" title="Reset Password"></div>
         </td>
     </tr>
     <?php endforeach; ?>
