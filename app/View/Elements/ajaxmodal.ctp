@@ -136,13 +136,18 @@
           <?php foreach($categories as $cat) { ?>
           <strong><?php echo h($cat['Category']['name']) ?>:</strong>
             <ul>
+              <?php $found = false; ?>
               <?php foreach($ideavalues as $value) { ?>
                 <?php if ($value['Value']['categoryid'] == $cat['Category']['id']) { ?>
+                  <?php $found = true; ?>
                   <li><?php echo h($value['Value']['name']); ?></li>
                   <?php } ?>
+              <?php } 
+              if(!$found){ ?>
+                No value specified
               <?php } ?>
             </ul>
-            <?php } ?>
+          <?php } ?>
         </div>
       </div>  
       <div class="modal-footer modal-header-color no-margin">

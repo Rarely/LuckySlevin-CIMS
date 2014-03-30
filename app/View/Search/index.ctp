@@ -20,7 +20,7 @@
                             <button class="btn btn-primary btn-search" type="submit" data-toggle="tooltip" title="Search"><span class="glyphicon glyphicon-search"></span></button>
                         </div>
                         <div class="input-group-btn">
-                            <span id="btn-reset-search" class="btn clear-btn" data-toggle="tooltip" title="Reset Search Results"></span>
+                            <span id="btn-reset-search" class="btn clear-btn" data-toggle="tooltip" title="Reset search results"></span>
                         </div>
                     </div>
                     <div class="panel-group" id="accordion">
@@ -85,7 +85,7 @@
         <div class="well filter-well">
             <div class="row">
                 <div class="inline-block"><h1>Filters</h1></div>
-                <div id="btn-reset-filters" class="clear-btn btn inline-block idea-management" data-toggle="tooltip" title="Reset Filter Results"></div>
+                <div id="btn-reset-filters" class="clear-btn btn inline-block idea-management" data-toggle="tooltip" title="Reset filter results"></div>
             </div>
             <div id="filter-controls" class="controls">
             <!-- FILTER -->

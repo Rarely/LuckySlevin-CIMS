@@ -17,6 +17,7 @@
         echo $this->Html->script('bootstrap.min.js');
         echo $this->Html->css('login.css');
         echo $this->Html->css('idea.css');
+        echo $this->Html->css('style.css');
         ?>
         <?php echo $this->Html->script('editidea.js'); ?>
         
@@ -36,20 +37,17 @@
                 <?php echo $this->Form->input('contact_name', array(
                     'label' => 'Contact Name',
                     'placeholder' => 'Contact Name',
-                    'rows'=>1,
                     'required' => true
                     )); ?>
 
                 <?php echo $this->Form->input('contact_email', array(
                     'label' => 'Contact Email',
                     'placeholder' => 'Contact Email',
-                    'rows'=>1,
                     'required' => true
                     )); ?>
                 <?php echo $this->Form->input('contact_phone', array(
                     'label' => 'Contact Phone',
-                    'placeholder' => 'Contact Phone',
-                    'rows'=>1
+                    'placeholder' => 'Contact Phone'
                     )); ?>
 
                 <?php echo $this->Form->input('description', array(

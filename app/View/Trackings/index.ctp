@@ -5,7 +5,7 @@
     <h1 class="text-center">You do not own any ideas</h1>
   </div>
   <?php }else{ 
-    echo $this->element('idealist', array("ideas" => $ownedideas, "title" => "Ideas you own", "subtitle" => "Ideas which you are the owner of"));
+    echo $this->element('idealist', array("ideas" => $ownedideas, "title" => "Ideas you own", "subtitle" => "You will receive notifications when these ideas are updated or commented on"));
   }?>
 </div>
 
@@ -15,6 +15,6 @@
     <h1 class="text-center">You are not tracking any ideas</h1>
   </div>
   <?php }else{
-    echo $this->element('idealist', array("ideas" => $ideas, "title" => "Ideas you are tracking", "subtitle" => "Ideas for which you've decided to track and recieve notifications from"));
+    echo $this->element('idealist', array("ideas" => $ideas, "title" => "Ideas you are tracking", "subtitle" => "You will receive notifications when these ideas are updated or commented on"));
   }?>              	
 </div>

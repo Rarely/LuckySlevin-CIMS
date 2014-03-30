@@ -5,7 +5,7 @@
 <?php echo $this->element('idealist', array("ideas" => $ideas_active, "title" => "Active ideas", "subtitle" => "Ideas most recently updated or commented on")) ?>
 </div>
 <div class="row">
-<?php echo $this->element('idealist', array("ideas" => $ideas_recent, "title" => "Recently created ideas", "subtitle" => "The most recently created ideas")) ?>
+<?php echo $this->element('idealist', array("ideas" => $ideas_recent, "title" => "Recently created ideas", "subtitle" => "Ideas most recently created")) ?>
 </div>
 <div class="row">
 <?php echo $this->element('idealist', array("ideas" => $ideas_unassigned, "title" => "Community partner ideas", "subtitle" => "Ideas submitted by the community")) ?>
