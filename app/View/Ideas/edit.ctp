@@ -38,7 +38,7 @@
   )); ?>
   
   <?php echo $this->Form->input('description', array(
-    'label' => 'description (max 1000)',
+    'label' => 'description (maximum of 1000 characters)',
     'maxlength'   => '1000',
     'value' => $idea['Idea']['description'],
     'required' => true

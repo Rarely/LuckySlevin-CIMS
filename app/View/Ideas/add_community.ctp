@@ -51,7 +51,7 @@
                     )); ?>
 
                 <?php echo $this->Form->input('description', array(
-                    'label' => 'Description (max 1000)',
+                    'label' => 'Description (maximum of 1000 characters)',
                     'placeholder' => 'Insert a description here',
                     'maxlength'   => '1000',
                     'required' => true
