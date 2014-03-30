@@ -12,6 +12,13 @@ $(function() {
     var nowTemp = new Date();
     var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
      
+    /*
+      description: enables selecting the start date of an idea via bootstrap-datapicker.js
+      input: none
+      preconditions: the idea start_date is valid
+      postconditions: the selected start_date is valid
+      return value: the idea start_date
+    */
     var add_start_date = $('#add-idea-dp1').datepicker({
       onRender: function(date) {
         return date.valueOf() < now.valueOf() ? 'disabled' : '';
@@ -28,6 +35,14 @@ $(function() {
         add_start_date.hide();
         $('#add-idea-dp2').focus().click();
     }).data('datepicker');
+
+    /*
+      description: enables selecting the end date of an idea via bootstrap-datapicker.js
+      input: none
+      preconditions: the idea end_date is valid
+      postconditions: the selected end_date is valid
+      return value: the idea end_date
+    */
     var add_end_date = $('#add-idea-dp2').datepicker({
       onRender: function(date) {
         return date.valueOf() <= add_start_date.date.valueOf() ? 'disabled' : '';
@@ -39,12 +54,26 @@ $(function() {
       add_end_date.hide();
     }).data('datepicker');
 
+    /*
+      description: if button is clicked, start_date is cleared
+      input: start_date
+      preconditions: there is a valid start_date or NULL
+      postconditions: there is no start_date
+      return value: NULL
+    */
     $("#clear-new-start-date").click( function() {
       var date_string = "";
       $("#add-idea-start-date-text").text(date_string);
       $("#add-idea-start-date").val(date_string);
     });
 
+    /*
+      description: if button is clicked, end_date is cleared
+      input: end_date
+      preconditions: there is a valid end_date or NULL
+      postconditions: there is no end_date
+      return value: NULL
+    */
     $("#clear-new-end-date").click( function() {
       var date_string = "";
       $("#add-idea-end-date-text").text(date_string);
