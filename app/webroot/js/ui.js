@@ -4,7 +4,13 @@ $(document).ready(function() {
 
 });
 
-
+    /*
+      description: initializes the text style for different fields
+      input: none
+      preconditions: there is a text field
+      postconditions: the style of the text field identifies properly with each wrapper
+      return value: the default input with correctly initialized style.
+    */
 
 	function initializeIdeaStyle(){
 
@@ -79,7 +85,13 @@ $(document).ready(function() {
 			}
 		});  
 
-
+    /*
+      description: applys a gradient to an small idea view based on the date in which it was last updated.
+      input: the date the idea was last updated
+      preconditions: the idea updated field is valid
+      postconditions: the RGB colour is valid
+      return value: the gradient applied to the small idea view color
+    */
 
 		jQuery('.ideablock').each(function() {
 			var date_string = $(this).attr("data-updated");
@@ -90,7 +102,13 @@ $(document).ready(function() {
 	}
 
 
-
+    /*
+      description: creates an RGB color value based on the date an idea was last updated
+      input: the date the idea was last updated.
+      preconditions: the idea updated field is valid
+      postconditions: the rgb value generated is a 6 digit hexidecimal
+      return value: the rgb value returned
+    */
 
 	function getRGB(lastUpdated) {
 		// days since epoch
@@ -125,6 +143,14 @@ $(document).ready(function() {
 		return returnval;
 	}
 	
+    /*
+      description: chooses a gradient to apply to the small idea view
+      input: the idea image and hexidecimal rgb value
+      preconditions: the rgb value is valid
+      postconditions: the gradient applied varies depending on browser
+      return value: the idea start_date
+    */
+
 	/* element is jquery dom object
 	endColor is hex value without "#" */
 	function applyGradientToIdea(element, endColor) {
@@ -144,6 +170,13 @@ $(document).ready(function() {
 		});
 }
 
+    /*
+      description: creates an rgb value from a hexidecimal value
+      input: a hexidecimal value
+      preconditions: the hexidecimal value is valid
+      postconditions: the rgb value is valid
+      return value: the rgb value
+    */
 function hexToRgb(hex) {
 	var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
 	return result ? {
@@ -153,6 +186,13 @@ function hexToRgb(hex) {
 	} : null;
 }
 
+    /*
+      description: creates an hexidecimal value from a decimal value
+      input: a decimal value
+      preconditions: the decimal value is valid
+      postconditions: the hexadecimal value is valid
+      return value: the hexadecimal value
+    */
 function decimalToHex(d, padding) {
 	var hex = Number(d).toString(16);
 	padding = typeof (padding) === "undefined" || padding === null ? padding = 2 : padding;
