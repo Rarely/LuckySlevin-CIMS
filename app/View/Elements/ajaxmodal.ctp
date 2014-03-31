@@ -16,15 +16,13 @@
               Options <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
-              <li> 
-                <?php echo $this->Html->link('<img src="/img/editoptions.png" alt="">Edit', 
+              <li>
+                <?php echo $this->Html->link('<img src="/img/editoptions.png" alt="">Edit',
                 array('controller' => 'ideas', 'action' => 'edit', $idea['Idea']['id']),
                 array('escape' => false)); ?>
               </li>
               <li>
-                <?php echo $this->Html->link('<img src="/img/split.png" alt=""/>Split',
-                array('controller' => 'ideas', 'action' => 'split', $idea['Idea']['id']),
-                array('escape' => false)); ?>
+                <a href="#" class="split-btn"><img src="/img/split.png" alt="" />Split</a>
               </li>
               <li>
                 <?php echo $this->Html->link('<img src="/img/email.png" alt=""/>Email',
@@ -49,13 +47,15 @@
           <div class = "row">
             <div class="col-md-4">
               <strong>Community Partner</strong><br>
-              <?php echo h($idea['Idea']['community_partner']); ?><br>
+              <span class="community_partner"><?php echo h($idea['Idea']['community_partner']); ?></span><br>
               <strong>Contact Name</strong><br>
-              <?php echo h($idea['Idea']['contact_name']); ?><br>
+              <span class="contact_name"><?php echo h($idea['Idea']['contact_name']); ?></span>
+              <br>
               <strong>Contact Details</strong><br>
-              <?php echo h($idea['Idea']['contact_email']); ?><br>
-              <?php if(h($idea['Idea']['contact_phone']) != '') {
-                        echo h($idea['Idea']['contact_phone']); ?>
+              <span class="contact_email"><?php echo h($idea['Idea']['contact_email']); ?></span>
+              <br>
+              <span class="contact_phone"><?php if(h($idea['Idea']['contact_phone']) != '') {
+                        echo h($idea['Idea']['contact_phone']); ?></span>
                     <br> <?php } ?>
               <Strong>Timeframe</Strong><br>
               <?php if($idea['Idea']['start_date'] == null && $idea['Idea']['end_date'] == null){?>
