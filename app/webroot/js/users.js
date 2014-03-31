@@ -1,5 +1,17 @@
 
 $(function() {
+
+  /*
+   description: attach on click funtion to $('.btn-delete-user') to delete specified user when pressed
+   input: e
+   preconditions:
+          $('.btn-delete-user') exists
+          $('.btn-delete-user') has been clicked
+   postconditions:
+          render confirmation message 
+          call Ajax.User.delete(id)
+   return value: none
+  */
   $('.btn-delete-user').bind("click", function(e) {
     var id = $(this).parent().parent().attr("data-id");
     var name = $(this).parent().parent().attr("data-name");
@@ -17,6 +29,18 @@ $(function() {
     }).find("div.modal-content").addClass("confirmWidth");
   });
   
+
+  /*
+   description: attach on click funtion to $('.btn-reset-password') to reset password for specified user when pressed
+   input: e
+   preconditions:
+          $('.btn-reset-password') exists
+          $('.btn-reset-password') has been clicked
+   postconditions:
+          render confirmation message 
+          ajax call to 'users/resetpassword' with data: {'data[User][email]' : email}
+   return value: none
+  */
   $('.btn-reset-password').bind("click", function(e) {
     var name = $(this).parent().parent().attr("data-name");
     var email = $(this).parent().parent().attr("data-email");
