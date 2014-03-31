@@ -54,8 +54,8 @@
               <strong>Contact Details</strong><br>
               <span class="contact_email"><?php echo h($idea['Idea']['contact_email']); ?></span>
               <br>
-              <span class="contact_phone"><?php if(h($idea['Idea']['contact_phone']) != '') {
-                        echo h($idea['Idea']['contact_phone']); ?></span>
+              <?php if(h($idea['Idea']['contact_phone']) != '') {
+                        echo '<span class="contact_phone">' . h($idea['Idea']['contact_phone']) . '</span>'; ?>
                     <br> <?php } ?>
               <Strong>Timeframe</Strong><br>
               <?php if($idea['Idea']['start_date'] == null && $idea['Idea']['end_date'] == null){?>
