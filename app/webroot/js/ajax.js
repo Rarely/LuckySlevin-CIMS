@@ -296,8 +296,8 @@ var Ajax = {
             if (data.response === "success") {
               var html = "<tr data-id=\"" + data.data.dataid + "\" data-name=\"" + data.data.dataname + "\"><td  class=\"value-name\">" + name + 
               "</td><td>" +
-              "<div class=\"btn-delete-value admin-btn admin-btn-sm admin-btn-delete\"></div>" +
               "<div class=\"btn-edit-value admin-btn admin-btn-sm admin-btn-edit\"></div>" +
+              "<div class=\"btn-delete-value admin-btn admin-btn-sm admin-btn-delete\"></div>" +
               "</td></tr>";
               $('.table-category').append(html);
               $("tr[data-id=\"" + data.data.dataid + "\"] .btn-edit-value").click(function() {
