@@ -30,6 +30,7 @@
         </div>
     </div>  
 
+    <hr>
 
     <div class="row">
         <div class="status-text-wrapper status-heading">
