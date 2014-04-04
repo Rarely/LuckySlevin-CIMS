@@ -63,12 +63,13 @@
     height:40px;
     line-height: 1.1;
     margin-left: 10px;
-    margin-bottom: 5px;
+    margin-bottom: 15px;
 
 }
 
 .status-heading {
-    font-size: 18px;
+    margin-top: 5px;
+    font-size: 14px;
     width: 160px;
     height:40px;
     line-height: 1.1;
@@ -86,6 +87,14 @@
     margin-top: 20px;
     display:inline-block;
     margin-left: 10px
+}
+
+hr {
+    margin: 0px;
+    color: #ffffff;
+    border-top: 0px;
+    background-color: #ffffff;
+    height: 1px;
 }
 
 .ideacontainer .idea-list-innerwrap {
