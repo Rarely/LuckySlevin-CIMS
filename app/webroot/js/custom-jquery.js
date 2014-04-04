@@ -26,7 +26,10 @@ jQuery.fn.bindIdeaModal = function() {
         parentid: $("#ajax-modal").attr('data-id')
       };
 
-      $("#ajax-modal").modal('hide');
+      $("#ajax-modal .close").click(); //close modal
+      $("#ajax-modal").remove();
+      $('.modal-backdrop').remove();
+
       $("#btn-add-idea").click(); //open new idea dialog
       //add hidden field with parent id
       $('<input name="data[Idea][parentid]" id="parent-id">').attr('type','hidden').val(data.parentid).appendTo('#new-idea-form');
