@@ -33,7 +33,8 @@
           <?php echo $this->Form->input('password', array(
             'label' => 'Password',
             'placeholder' => '',
-            'value' => ''
+            'value' => '',
+            'autocomplete'=>'off'
           )); ?>
           <?php echo $this->Form->submit('Set New Password', array(
             'div' => false,

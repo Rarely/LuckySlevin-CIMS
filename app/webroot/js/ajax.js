@@ -117,9 +117,9 @@ var Ajax = {
           async: true,
           success: function(data) {
             if (data.response === "success") {
-              bootbox.alert("Shared");
+              bootbox.alert("Shared").find("div.modal-content").addClass("confirmWidth");
             } else {
-              bootbox.alert("Failed to share idea");
+              bootbox.alert("Failed to share idea").find("div.modal-content").addClass("confirmWidth");
             }
           }
         });

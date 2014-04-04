@@ -66,7 +66,7 @@ $(document).ready(function() {
                 $('#Grid').mixitup('sort',sortArray);
             },
             error : function(){
-                bootbox.alert("Failed to retrieve search results.");
+                bootbox.alert("Failed to retrieve search results.").find("div.modal-content").addClass("confirmWidth");
             }
         }); 
     }

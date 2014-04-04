@@ -1,6 +1,7 @@
 
 $(function() {
-
+  setTimeout(function() {$(".bg-success").fadeOut(3000, function() {$(this).remove();})}, 10000);
+  setTimeout(function() {$(".bg-danger").fadeOut(3000, function() {$(this).remove();})}, 10000);
   /*
    description: attach on click funtion to $('.btn-delete-user') to delete specified user when pressed
    input: e
@@ -60,10 +61,10 @@ $(function() {
             data: {'data[User][email]' : email},
             async: true,
             complete : function(data){
-              bootbox.alert("Password reset email has been sent.");
+              bootbox.alert("Password reset email has been sent.").find("div.modal-content").addClass("confirmWidth");
             },
             error : function(){
-              bootbox.alert("Failed to send password reset email.");
+              bootbox.alert("Failed to send password reset email.").find("div.modal-content").addClass("confirmWidth");
             }
           }); 
         }

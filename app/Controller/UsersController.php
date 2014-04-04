@@ -63,21 +63,29 @@ class UsersController extends AppController {
     public function add() {
         if ($this->request->is('post')) {
             $user = $this->User->findByUsername($this->request->data['User']['username']);
-              if($user) {
-                //activate the deleted user 
-                $this->activateDeletedUser($this->request->data['User']['username']);
-                return $this->redirect(array('action' => 'index'));
-              } 
+
+            if ($user) { 
+                if ($user['User']['isdeleted'] == true) {
+                    $this->activateDeletedUser($this->request->data['User']['username']);
+                    $this->Session->setFlash(__('User already exists, Re-activation email sent.'), 'default', array(), 'gooduser');
+                    return $this->redirect(array('controller'=>'users', 'action' => 'index'));
+                } else {
+                    $this->Session->setFlash(__('User already exists in the system.'), 'default', array(), 'baduser');
+                    return $this->redirect(array('controller' => 'users', 'action' => 'index'));  
+                }
+            } else {
                 $this->User->create();
                 $this->User->set('password', 'temporary');
 
                 if ($this->User->save($this->request->data)) {
-                //issue reset password for new user
-                $this->resetpassword($this->request->data['User']['username']);
-                $this->Session->setFlash(__('User has been saved.', 'default', array(), 'gooduser'));
+                    //issue reset password for new user
+                    $this->resetpassword($this->request->data['User']['username']);
+                    $this->Session->setFlash(__('User has been saved.'), 'default', array(), 'gooduser');
+                    return $this->redirect(array('controller' => 'users', 'action' => 'index'));
+                }
+                $this->Session->setFlash(__('Unable to add user. Please try again'), 'default', array(), 'baduser');
                 return $this->redirect(array('controller' => 'users', 'action' => 'index'));
             }
-            $this->Session->setFlash(__('Unable to add user.', 'default', array(), 'baduser'));
         }
     }
 
@@ -161,10 +169,13 @@ class UsersController extends AppController {
     */
     function resetpassword($email=null){
         $this->layout = false;
-        if(empty($this->request->data)){
-            $this->request->data['User']['email']=$email;
-            //show form
-        }else{
+        $redirect = true;
+        if (isset($email) && !empty($email)) {
+            $this->request->data['User']['email'] = $email;
+            $redirect = false;
+        }
+
+        if(!empty($this->request->data['User']['email'])){
             //already entered email
             if(!$email) $email=$this->request->data['User']['email'];
             // make sure whave email and a check
@@ -174,7 +185,7 @@ class UsersController extends AppController {
                 //email entered, check for it
                 $account=$this->User->findByUsername($email);
 
-                if(!isset($account['User']['username'])){
+                if(!isset($account['User']['username']) && $redirect == true){
                     $this->Session->setFlash('If you have provided a valid email address, you will receive further password reset instructions shortly', 'default', array(), 'goodlogin');
                     $this->redirect('/');
                 }
@@ -193,15 +204,17 @@ class UsersController extends AppController {
                 $data['Ticket']['expires']=$this->Ticketmaster->getExpirationDate();
 
                 if ($this->Ticket->save($data)){
-                    $this->Session->setFlash('An email has been sent with instructions to reset your password', 'default', array(), 'goodlogin');
-                    $this->redirect('/');
+                    if ($redirect == true) {
+                        $this->Session->setFlash('An email has been sent with instructions to reset your password', 'default', array(), 'goodlogin');
+                        $this->redirect('/');
+                    }
                 }else{
-                    $this->Session->setFlash('Ticket could not be issued', 'default', array(), 'badlogin');
-                    $this->redirect('/');
-
+                    if ($redirect == true) {
+                        $this->Session->setFlash('Ticket could not be issued', 'default', array(), 'badlogin');
+                        $this->redirect('/');
+                    }
                 }
             }
- 
         }
     }
     
@@ -242,6 +255,10 @@ class UsersController extends AppController {
     */
     function newpassword($id = null) {
         $this->layout = false;
+        //check if they're logged in as somebody (admin?)
+        if ($this->Session->check('Auth.User')){
+            $this->Auth->logout();
+        }
         if($this->Session->check('tokenreset')){
             //user is not logged in, BUT has TOKEN in hand
         }else{

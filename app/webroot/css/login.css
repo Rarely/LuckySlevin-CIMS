@@ -54,6 +54,10 @@ body{
     text-align: right;
     margin-top: 10px;
 }
+#UserLoginForm .communitypage {
+    text-align: right;
+    margin-top: 10px;
+}
 
 .btn-login{
   padding: 0px;

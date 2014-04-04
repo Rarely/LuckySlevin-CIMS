@@ -66,6 +66,14 @@
             )); ?>
           </div>
         </div>
+        <div class="row">
+          <div class="communitypage">
+            <?php echo $this->Html->link('Looking to Submit an Idea?', array(
+              'controller' => 'ideas',
+              'action' => 'add_community'
+            )); ?>
+          </div>
+        </div>
       </div>
     </fieldset>
     <?php echo $this->Form->end(); ?>
