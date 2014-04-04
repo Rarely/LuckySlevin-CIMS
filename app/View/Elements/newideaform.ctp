@@ -46,8 +46,7 @@
 
             <?php echo $this->Form->input('contact_phone', array(
                     'label' => 'Contact Phone',
-                    'placeholder' => 'Contact Phone',
-                    'rows'=>1
+                    'placeholder' => 'Contact Phone'
                     )); ?>
 
             <?php echo $this->Form->input('description', array(
