@@ -1,0 +1,96 @@
+#search-query {
+    z-index: 3;
+}
+
+#btn-reset-search {
+    width: 16px;
+    height: 16px;
+    position: relative;
+    left: -60px;
+    z-index: 4;
+}
+
+#btn-reset-filters {
+    margin-top: 10px;
+}
+
+.btn-search {
+    left: -3px;
+}
+
+.search-well {
+    margin-top: 10px;
+    padding: 10px 35px 10px 35px;
+    background-color: #FFFFFF;
+}
+
+.filter-well {
+    margin-top: 10px;
+    padding-top: 10px;
+    background-color: #FFFFFF;
+}
+
+.panel-body {
+    border-bottom: 1px solid #DDD;
+}
+
+.help-text{
+    margin-right:20px;
+    font-size: 18px;
+    font-family:"Verdana", Times, serif;
+    display:none;
+    float:center;
+}
+
+.btn-hidden {
+    display:none;
+    margin-top:10px;
+    margin-right:10px;
+}
+
+#btn-export{
+    width:71px;
+}
+
+#btn-delete{
+    width:71px;
+}
+
+#Grid .mix{
+    opacity: 0;
+    display: none;
+}
+
+.controls{
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 10px;
+}
+
+.category-row{
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+.idea-management {
+    float: right;
+    margin-right: 10px;
+}
+
+.form-group {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.glyphicon-search {
+    color: white;
+}
+
+.panel-heading{
+    padding-top: 10px;
+    padding-left: 0px;
+}
+
+.glyphicon{
+    position:inherit;
+}

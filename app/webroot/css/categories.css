@@ -1,0 +1,11 @@
+table {
+    border-radius:10px;
+    margin-top:10px;
+}
+#btn-add-value {
+    margin-left:10px;
+}
+.categories-well {
+    margin-top : 20px;
+    background-color:#ffffff;
+}

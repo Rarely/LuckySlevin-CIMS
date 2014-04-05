@@ -1,0 +1,87 @@
+html { 
+  background: url(/img/2.png) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+body{
+  background: none !important;
+}
+
+#UserLoginForm {
+    max-width: 360px;
+    margin: 120px auto 40px auto;
+}
+
+#UserLoginForm .form-group {
+  padding-right: 20px;
+  padding-left: 20px;
+  position: relative;
+  font-size: 16px;
+  height: auto;
+  width:100%;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  margin-bottom: 0px;
+  display: inline-block;
+}
+
+#UserLoginForm .form-control {
+    -moz-box-sizing: border-box;
+    font-size: 16px;
+    height: auto;
+    position: relative;
+}
+
+#UserLoginForm #UserUsername {
+  height: 40px;
+  display: inline-block;
+}
+
+#UserLoginForm #UserPassword {
+  height: 40px;
+}
+
+#UserLoginForm .loginheader {
+    padding-right: 15px;
+    padding-left: 15px;
+    padding-bottom: 10px;
+}
+
+#UserLoginForm .forgotpassword {
+    text-align: right;
+    margin-top: 10px;
+}
+#UserLoginForm .communitypage {
+    text-align: right;
+    margin-top: 10px;
+}
+
+.btn-login{
+  padding: 0px;
+  margin-top: 10px;
+  height: 35px;
+  display: block;
+  width: 100%;
+  color: #FFFFFF;
+  font-size: 1.5em;
+}
+
+.btn-login:hover{
+    color: #ffffff;
+}
+
+.loginheader h3 {
+  font-style:italic;
+}
+
+.passwordform{
+  max-width:400px;
+  margin: 120px auto 40px auto;
+  float:none;
+}
+.resetheader {
+  margin-bottom:10px;
+}

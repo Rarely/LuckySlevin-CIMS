@@ -1,33 +1,16 @@
-<!-- File: /app/View/Users/index.ctp -->
+<div class="bg-success">
+<?php echo $this->Session->flash('ideas'); ?>
+</div>
+<div class="row">
+<?php echo $this->element('idealist', array("ideas" => $ideas_active, "title" => "Active ideas", "subtitle" => "Ideas most recently updated or commented on")) ?>
+</div>
+<div class="row">
+<?php echo $this->element('idealist', array("ideas" => $ideas_recent, "title" => "Recently created ideas", "subtitle" => "Ideas most recently created")) ?>
+</div>
+<div class="row">
+<?php echo $this->element('idealist', array("ideas" => $ideas_unassigned, "title" => "Community partner ideas", "subtitle" => "Ideas submitted by the community")) ?>
+</div>
+<div class="row">
+<?php echo $this->element('idealist', array("ideas" => $ideas_inactive, "title" => "Inactive ideas", "subtitle" => "Ideas least recently updated or commented on")) ?>
+</div>
 
-<h1>Ideas</h1>
-<table class="table">
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Status</th>
-        <th>Created</th>
-        <th>Updated</th>
-        <th>User ID</th>
-    </tr>
-
-    <!-- Here is where we loop through our $posts array, printing out post info -->
-
-    <?php foreach ($ideas as $idea): ?>
-    <tr>
-        <td><?php echo $idea['Idea']['id']; ?></td>
-        <td><?php echo $idea['Idea']['name']; ?></td>
-        <td><?php echo $idea['Idea']['description']; ?></td>
-        <td><?php echo $idea['Idea']['status']; ?></td>
-        <td><?php echo $idea['Idea']['created']; ?></td>
-        <td><?php echo $idea['Idea']['updated']; ?></td>
-        <td><?php echo $idea['Idea']['userid']; ?></td>
-    </tr>
-    <?php endforeach; ?>
-    <?php unset($idea); ?>
-</table>
-    <?php foreach ($ideas as $idea): ?>
-        <?php echo $this->element('smallidea', array("idea" => $idea)); ?>
-    <?php endforeach; ?>
-    <?php unset($idea); ?>

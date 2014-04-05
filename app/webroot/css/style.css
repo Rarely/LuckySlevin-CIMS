@@ -1,10 +1,169 @@
-
-#ideablock {
-  	border:10px solid #444;
-	-webkit-border-radius: 15px;
-	-moz-border-radius: 15px;
-	border-radius: 15px;
-  	margin: 15px;
-  	width: 300px;
-  	height: 300px;
+.confirmWidth {
+    /* might want to use max-width when considering viewing on Mobile */
+    width: 385px;
+    margin: 0 auto;
+    margin-bottom: 0;
 }
+
+.close {
+    color: #ffffff !important;
+    opacity: 1 !important;
+}
+h1, h2, h3, h4, h5 {
+    font-family:"Verdana", Times, serif;
+    font-weight:bold;
+    margin: 5px;
+}
+h1 {
+    color: #002145;
+    font-size: 25px;
+}
+
+h2{
+    color: #002145;
+    font-size: 20px;
+}
+
+h3 {
+    color: #606060;
+    font-size: 18px;
+}
+
+h4 {
+    color: #606060;
+    font-size: 14px;
+}
+
+hr {
+    color: #002145;
+    background-color: #002145;
+    height: 2px;
+}
+
+.empty-list{
+    margin-top:15px;
+    padding-top:80px;
+}
+
+.well-top-margin {
+    margin-top: 15px;
+}
+
+
+.inline-block{
+    display: inline-block;
+}
+
+.padding-top-5{
+    padding-top:5px;
+}
+
+.padding-top-10{
+    padding-top:10px;
+}
+
+.padding-left-10{
+    padding-left: 10px;
+}
+
+.padding-left-30{
+    padding-left: 30px;
+}
+.margin-left-neg-30{
+    margin-left: -30px;
+}
+.margin-right-neg-25{
+    margin-right: -25px;
+}
+.margin-bottom-0{
+    margin-bottom: 0px !important;
+}
+
+.margin-bottom-5{
+    margin-bottom: 5px;
+}
+.margin-right-5{
+    margin-right: 5px;
+}
+
+.margin-left-auto{
+    margin-left: auto;
+}
+
+.loading-img {
+    background-image: url('/img/ajax-loader.gif')  !important;
+    background-color: transparent !important;
+    background-size: 100%;  
+    border: none !important;
+    width:30px;
+    height:30px;
+}
+
+#edit-idea-form fieldset {
+    margin-top: 10px;
+}
+
+.clear-btn {
+    background-image: url('/img/clear.png');
+    background-color: transparent !important;
+    background-size: 16px 16px;  
+    border: none !important;
+    width:16px;
+    height:16px;
+    background-repeat: no-repeat;
+}
+.clear-btn:active{
+    background-image: url('/img/clear.png');
+}
+
+.reset-btn:active {
+    background-image: url('/img/resetinverse.png');
+    background-color: transparent !important;
+    background-size: 30px 30px;  
+    border: none !important;
+    width:30px;
+    height:30px;
+}
+
+.btn{
+    border-radius: 0px;
+
+}
+
+.btn-primary{
+    background-color: #2f5d7c;
+    border-color: #2f5d7c;
+}
+
+.btn-primary:hover{
+    background-color: #5091bd;
+    border-color: #5091bd;
+}
+
+.btn-success{
+    background-color: #2f7c4e;
+    border-color: #2f7c4e;
+}
+
+.btn-success:hover{
+    background-color: #008c48;
+    border-color: #008c48;
+}
+
+.btn-danger{
+    background-color: #7c2f37;
+    border-color: #7c2f37;
+}
+
+.btn-danger:hover{
+    background-color: #9e3c47;
+    border-color: #9e3c47;
+}
+
+.btn-default{
+    color: #002145;
+}
+
+.btn-default:hover{
+    color: #002145;
+    }

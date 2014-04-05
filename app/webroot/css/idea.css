@@ -1,0 +1,189 @@
+.ideacontainer {
+    width: 100%;
+    padding: 10px 0px 0px 0px;
+    margin: 0 auto;
+    overflow: auto;
+}
+
+.ideacontainer-standard {
+    height: 250px;
+}
+
+.ideacontainer-search {
+    max-height: 670px;
+}
+
+.ideacontainer .ideablock {
+    height: 210px;
+    overflow-x: hidden;
+    text-align: left;
+    white-space: inherit;
+    width: 190px;
+    word-wrap: break-word;
+    margin-right: 5px;
+    border:none;
+    background: #3d9ad1;
+    background-size:190px;
+
+    -webkit-transition: all 200ms linear;
+    -moz-transition: all 200ms linear;
+    -o-transition: all 200ms linear;
+    transition: all 200ms linear;
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+}
+
+.ideacontainer-search .ideablock {
+    margin-bottom: 10px;
+}
+
+.ideacontainer .ideablock:hover {
+    -webkit-transform: scale(1.05) translateZ(0);
+    -moz-transform: scale(1.05) translateZ(0);
+    -o-transform: scale(1.05) translateZ(0);
+    transform: scale(1.05) translateZ(0);
+    z-index:1;
+}
+
+.title-heading {
+    font-size: 18px;
+    width: 130px;
+    height:40px;
+    line-height: 1.1;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    color:#002145;
+}
+
+.description-heading {
+    font-size: 14px;
+    width: 160px;
+    height:40px;
+    line-height: 1.1;
+    margin-left: 10px;
+    margin-bottom: 15px;
+
+}
+
+.status-heading {
+    margin-top: 5px;
+    font-size: 14px;
+    width: 160px;
+    height:40px;
+    line-height: 1.1;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    max-height:20px;
+    color:#2F5D7C;
+}
+
+.owner-heading {
+    font-size: 18px;
+    width: 120px;
+    height:20px;
+    line-height: 1.1;
+    margin-top: 20px;
+    display:inline-block;
+    margin-left: 10px
+}
+
+hr {
+    margin: 0px;
+    color: #ffffff;
+    border-top: 0px;
+    background-color: #ffffff;
+    height: 1px;
+}
+
+.ideacontainer .idea-list-innerwrap {
+    float: left;
+    margin-right: -30000px;
+    padding-left: 20px;
+}
+
+.idea-tracking-btn {
+    width:60px;
+    height:60px;
+    background-size: 100%;
+    background-color: transparent;
+    background-size: 100%;
+    border:none;
+    padding: 0;
+}
+
+.trackbtn {
+	width: 35px;
+	height:35px;
+    background-image: url('/img/tracked.png');
+
+}
+
+.untrackbtn {
+	width: 35px;
+	height:35px;
+    background-image: url('/img/untracked.png');
+}
+
+.email-btn {
+    background-image: url('/img/email.png');
+}
+
+#ajax-modal .sharing-autocomplete {
+    width:100%;
+}
+
+.ideapage-container {
+    padding:0px 0px 0px 40px;
+    margin-bottom: 0px;
+    background-color: #ffffff;
+}
+
+.idealist-container {
+    padding:0px 5px;
+    margin-bottom: 0px;
+    margin-top: 15px;
+    background-color: #ffffff;
+}
+
+.idealist-title {
+    padding-left: 15px;
+}
+
+#comment-field textarea.form-control {
+  height: 90px;
+}
+
+#modal-edit-email-btn{
+    float:right;
+    padding-right:50px;
+}
+
+.no-margin{
+    margin:0px;
+}
+
+.owner-select, .idea-references{
+    width:100%;
+}
+
+.modal-header-color{
+	background-color:#002145;
+}
+
+.desc-width{
+	width:440px;
+}
+
+.subtitle-idealist {
+    color: #6F6F6F;
+    font-size: 14px;
+    padding-top: 5px;
+}
+#ubc-logo {
+    background-color:#002145;
+}
+#ubc-logo img {
+    margin:10px auto;
+    display:block;

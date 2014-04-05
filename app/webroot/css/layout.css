@@ -1,0 +1,100 @@
+body {
+	background-color: #B7C9D3;
+}
+
+#heading-colour{
+    background-color: #002145;
+}
+
+.heading-text-color{
+	color:#ffffff;
+}
+
+.management-btn{
+    height: 50px;
+    color:#ffffff !important;
+}
+
+.idea-add-btn {
+    height:50px;
+}
+
+.nav-btn{
+    border:none;
+    background-color: #002145;
+    color:white;
+    font-size: 16px;
+    font-weight:bold;
+}
+
+.nav-btn:hover{
+    text-decoration: none;
+    background-color: #eee;
+    color: #2a6496 !important;
+    font
+    outline:0;
+}
+
+.add-btn {
+    background-color: transparent !important;
+    background-size: 100%;  
+    border: none !important;
+    width:30px;
+    height:30px;
+}
+
+
+.notify-btn{
+    background-image: url('/img/bell.png') !important;
+    background-color: transparent !important;
+    border: none !important;
+    background-size: 100%;  
+    width:10px !important;
+    height:10px !important;
+    margin-top: 8px;
+}
+
+.notify-btn:hover{
+    background-image: url('/img/bellinverse.png') !important;
+}
+
+.welcome-name-btn{
+    background-color: transparent !important;
+    border: none !important;
+    background-size: 100%;  
+}
+
+.notify-count{
+    background-color: red !important;
+}
+
+#notifications-menu {
+    height: 300px;
+    overflow: auto;
+    width: 450px;
+    border-radius:10px;
+    padding-top:0;
+}
+
+.border-line{
+	border-left-width: 3px; 
+	border-left-color: white; 
+	border-left-style: solid; 
+}
+
+.nav-collapse-button{
+    background-image: url('/img/arrowdown.png');
+    background-color:transparent;
+    background-size: 100% 100%;
+}
+
+.nav-font{
+    color:white;
+    font-size: 16px;
+    font-weight:bold;
+}
+
+a.list-group-item.active{
+    background-color: #5E869F;
+    border-color: #5E869F;
+}
