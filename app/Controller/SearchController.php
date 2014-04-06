@@ -84,6 +84,7 @@ class SearchController extends AppController {
         }
     
         $this->set('ideas', $searchResult);
+        $this->set('emptymessage', 'No ideas match the search criteria');
         $this->render('/Elements/ideapage', 'ajax');
     }
 

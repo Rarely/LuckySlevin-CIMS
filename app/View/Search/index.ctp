@@ -74,11 +74,8 @@
         </div>
        
         <div class="row" id="search-results">
-            <?php if(count($ideas) < 1) { ?>
-                <div class="ideacontainer well empty-list"><h1 class="text-center">There are no ideas matching your current search criteria</h1></div>
-            <?php } else {
-                echo $this->element('ideapage', array("ideas" => $ideas)); 
-            } ?>
+            <?php echo $this->element('ideapage', array("ideas" => $ideas,
+                                        "emptymessage" => "No ideas match the search criteria")); ?>
         </div>
     </div>
     <div class="col-md-3">
