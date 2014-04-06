@@ -2,8 +2,7 @@
 class TrackingsControllerTest extends ControllerTestCase {
     public $dropTables = false;
     /**
-    * @covers Trackings::index
-    *
+    * @covers TrackingsController::index
     */
     public function testIndex() {
         $result = $this->testAction('/trackings/index', array(
@@ -13,7 +12,7 @@ class TrackingsControllerTest extends ControllerTestCase {
     }
 
     /**
-    * @covers Trackings::track
+    * @covers TrackingsController::track
     *
     */
     public function testTrack() {
@@ -41,7 +40,7 @@ class TrackingsControllerTest extends ControllerTestCase {
     }
     
     /**
-    * @covers Trackings::track
+    * @covers TrackingsController::track
     * @expectedException NotFoundException
     *
     */
@@ -52,7 +51,7 @@ class TrackingsControllerTest extends ControllerTestCase {
     }
 
     /**
-    * @covers Trackings::untrack
+    * @covers TrackingsController::untrack
     *
     */
     public function testUntrack() {
@@ -80,7 +79,7 @@ class TrackingsControllerTest extends ControllerTestCase {
     }
 
     /**
-    * @covers Trackings::untrack
+    * @covers TrackingsController::untrack
     * @expectedException NotFoundException
     *
     */

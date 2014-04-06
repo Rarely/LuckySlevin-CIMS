@@ -1,5 +1,4 @@
 <?php
-App::uses('AppController', 'Controller');
 class NotificationsController extends AppController {
     public $helpers = array('Html', 'Form');
     var $components = array('RequestHandler');

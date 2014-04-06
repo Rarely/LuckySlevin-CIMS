@@ -1,8 +1,9 @@
 <?php
+App::uses('AppController', 'Controller');
 class NotificationsControllerTest extends ControllerTestCase {
     public $dropTables = false;
     /**
-    * @covers Notifications::index
+    * @covers NotificationsController::index
     *
     */
     public function testIndex() {
@@ -13,7 +14,7 @@ class NotificationsControllerTest extends ControllerTestCase {
     }
     
     /**
-    * @covers Notifications::notified
+    * @covers NotificationsController::notified
     *
     */
     public function testNotified() {
@@ -41,7 +42,7 @@ class NotificationsControllerTest extends ControllerTestCase {
     }
 
     /**
-    * @covers Notifications::notified
+    * @covers NotificationsController::notified
     * @expectedException NotFoundException
     *
     */
@@ -52,7 +53,7 @@ class NotificationsControllerTest extends ControllerTestCase {
     }
 
     /**
-    * @covers Notifications::sendNotifications
+    * @covers NotificationsController::sendNotifications
     *
     */
     public function testSendNotification() {
