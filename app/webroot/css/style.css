@@ -44,6 +44,13 @@ hr {
     margin-top: 15px;
 }
 
+.save-btn {
+    padding-top: 15px;
+    padding-right: 10px;
+    margin-top: 15px;
+    text-align: right;
+    border-top: 1px solid #e5e5e5;
+}
 
 .inline-block{
     display: inline-block;

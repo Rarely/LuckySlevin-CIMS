@@ -116,9 +116,10 @@
   <br />
 
   <?php echo $this->Form->submit('Save', array(
-    'div' => 'form-group',
+    'div' => 'form-group save-btn',
     'class' => 'btn btn-primary'
   )); ?>
+    
 </fieldset>
 <?php echo $this->Form->end(); ?>
 </div>
