@@ -1,4 +1,6 @@
 <?php
+App::uses('AppController', 'Controller');
+
 class TrackingsController extends AppController {
 	public $helpers = array('Html', 'Form', 'Js');
     public $uses = array('Idea');
@@ -47,20 +49,29 @@ class TrackingsController extends AppController {
             if(!$id) {
                 $id = @$this->request->query('id');
             }
-            if (!$id) {
+            if (!$id || !is_numeric($id)) {
                 throw new NotFoundException(__('No id'));
             } 
-            $tracking = $this->Tracking->create();
-            $tracking['Tracking']['userid'] = $this->Auth->user('id');
-            $tracking['Tracking']['ideaid'] = $id;
-            if ($this->Tracking->save($tracking)) {
+            if ($this->Tracking->hasAny(array(
+                'userid' => $this->Auth->user('id'),
+                'ideaid' => $id
+            ))){
                 $this->set('response', 'success');
                 $this->set('data', $id);
                 $this->render('/Elements/jsonreturn');
             } else {
-                $this->set('response', 'failed');
-                $this->set('data', $id);
-                $this->render('/Elements/jsonreturn');
+                $tracking = $this->Tracking->create();
+                $tracking['Tracking']['userid'] = $this->Auth->user('id');
+                $tracking['Tracking']['ideaid'] = $id;
+                if ($this->Tracking->save($tracking)) {
+                    $this->set('response', 'success');
+                    $this->set('data', $id);
+                    $this->render('/Elements/jsonreturn');
+                } else {
+                    $this->set('response', 'failed');
+                    $this->set('data', $id);
+                    $this->render('/Elements/jsonreturn');
+                }
             }
         } else {
             //non-ajax
@@ -85,7 +96,7 @@ class TrackingsController extends AppController {
             if(!$id) {
                 $id = @$this->request->query('id');
             }
-            if (!$id) {
+            if (!$id || !is_numeric($id)) {
                 throw new NotFoundException(__('No id'));
             } 
             

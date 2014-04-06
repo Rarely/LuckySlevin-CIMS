@@ -8,6 +8,8 @@
 /dist
 /tags
 
+/app/Vendor
+
 /app/webroot/files
 
 # OS generated files #
