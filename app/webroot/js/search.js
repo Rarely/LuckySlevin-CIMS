@@ -281,7 +281,7 @@ $(function() {
                 info.push($(this).attr("data-id"));
             });
             bootbox.confirm({
-                message: "Are you sure you want to delete this idea?",
+                message: "Are you sure you want to delete the selected idea(s)?",
                 buttons: {
                     confirm: {label: "Delete"},
                     cancel: {label: "Don't do it!"}

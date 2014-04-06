@@ -39,7 +39,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <input type="checkbox" name="community_partner"> Community Partner<br>
-                                    <input type="checkbox" name="contact_name"> Conact Name<br>
+                                    <input type="checkbox" name="contact_name"> Contact Name<br>
                                 </div>
                                 <div class="col-md-4">
                                     <input type="checkbox" name="contact_phone"> Contact Phone<br>
