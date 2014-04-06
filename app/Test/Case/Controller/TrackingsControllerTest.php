@@ -1,6 +1,6 @@
 <?php
 class TrackingsControllerTest extends ControllerTestCase {
-    public $fixtures = array('app.tracking');
+    public $dropTables = false;
     /**
     * @covers Trackings::index
     *
@@ -57,7 +57,7 @@ class TrackingsControllerTest extends ControllerTestCase {
     */
     public function testUntrack() {
         $_ENV['HTTP_X_REQUESTED_WITH'] = 'XMLHttpRequest';
-
+        $result = $this->testAction('/trackings/track/2');
         //TEST GOOD RESPONSE
         $result = $this->testAction('/trackings/untrack/2');
         $result = json_decode($result, true);
