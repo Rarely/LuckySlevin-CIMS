@@ -49,6 +49,8 @@ $(document).ready(function() {
       return value: none
     */
     function ideaSearch(reset) {
+        canceldelete();
+        cancelcsv();
         $.ajax({
             url     : '/search/result/',
             type    : "GET",
@@ -296,27 +298,30 @@ $(function() {
     });
     $("#btn-cancel-delete").click(canceldelete);
 
-    function cancelcsv(e) {
-        jQuery('.ideablock').each(function() {
-            $(this).unbind("click");
-            $(this).attr("onclick", "Ajax.Idea.showIdea($(this).attr(\"data-id\"));");
-            $(this).selectable(false);
-        });
-        $("#btn-cancel-csv").hide();
-        $("#export-help").hide();
-        $("#btn-save-csv").hide();
-        $("#btn-export").removeAttr("disabled");
-    }
 
-    function canceldelete(e) {
-        jQuery('.ideablock').each(function() {
-            $(this).unbind("click");
-            $(this).attr("onclick", "Ajax.Idea.showIdea($(this).attr(\"data-id\"));");
-            $(this).selectable(false);
-        });
-        $("#btn-cancel-delete").hide();
-        $("#btn-delete-confirm").hide();
-        $("#delete-help").hide();
-        $("#btn-delete").removeAttr("disabled");
-    }
 });
+
+
+function cancelcsv(e) {
+    jQuery('.ideablock').each(function() {
+        $(this).unbind("click");
+        $(this).attr("onclick", "Ajax.Idea.showIdea($(this).attr(\"data-id\"));");
+        $(this).selectable(false);
+    });
+    $("#btn-cancel-csv").hide();
+    $("#export-help").hide();
+    $("#btn-save-csv").hide();
+    $("#btn-export").removeAttr("disabled");
+}
+
+function canceldelete(e) {
+    jQuery('.ideablock').each(function() {
+        $(this).unbind("click");
+        $(this).attr("onclick", "Ajax.Idea.showIdea($(this).attr(\"data-id\"));");
+        $(this).selectable(false);
+    });
+    $("#btn-cancel-delete").hide();
+    $("#btn-delete-confirm").hide();
+    $("#delete-help").hide();
+    $("#btn-delete").removeAttr("disabled");
+}
