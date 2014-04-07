@@ -51,6 +51,7 @@
 	width: 90%;
 	word-wrap: break-word;
 	text-align: left;
+    white-space: pre-wrap;
 }
 
 .comment-bg{

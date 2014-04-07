@@ -109,7 +109,7 @@ var Ajax = {
        postconditions: Render bootbox informing the user is idea was shared successfully or not
        return value: none
       */
-      shareIdea: function(ideaid, userids) {
+      shareIdea: function(ideaid, userids, userdata) {
         $.ajax({
           type: "POST",
           dataType: "json",
@@ -117,7 +117,17 @@ var Ajax = {
           async: true,
           success: function(data) {
             if (data.response === "success") {
-              bootbox.alert("Shared").find("div.modal-content").addClass("confirmWidth");
+              var userString = "Shared with ";
+              for (var i=0; i<userdata.length; i++){
+                if(i == userdata.length - 1 && i > 0){
+                  userString += ' and ';
+                }else if(i != userdata.length - 1 && i > 0){
+                  userString += ', ';
+                }
+                userString += userdata[i].name;
+              }
+
+              bootbox.alert(userString).find("div.modal-content").addClass("confirmWidth");
             } else {
               bootbox.alert("Failed to share idea").find("div.modal-content").addClass("confirmWidth");
             }
@@ -215,7 +225,7 @@ var Ajax = {
        return value: none
       */
       comment: function(message, ideaid) {
-        var url = '/ideas/comment/' + ideaid + "?c=" + message;
+        var url = '/ideas/comment/' + ideaid + "?c=" + encodeURIComponent(message);
         $.ajax({
            type: "POST",
            url: url,
