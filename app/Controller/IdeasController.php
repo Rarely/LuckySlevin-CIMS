@@ -1,4 +1,7 @@
 <?php
+
+App::uses('AppController', 'Controller');
+
 class IdeasController extends AppController {
     public $helpers = array('Html', 'Form');
     var $components = array('RequestHandler');
