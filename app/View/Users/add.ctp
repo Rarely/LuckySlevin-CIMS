@@ -28,7 +28,7 @@
       )); ?>
 
       <?php echo $this->Form->submit('Submit', array(
-        'div' => 'form-group',
+        'div' => 'form-group save-btn',
         'class' => 'btn btn-primary'
       )); ?>
     </fieldset>
