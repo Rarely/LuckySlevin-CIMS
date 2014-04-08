@@ -1,6 +1,8 @@
 <?php 
 // app/Controller/UsersController.php
 
+App::uses('AppController', 'Controller');
+
 class UsersController extends AppController {
     var $uses =array('User','Ticket', 'CakeEmail', 'Network/Email');
     var $helpers = array('Html', 'Form');
