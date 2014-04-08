@@ -481,7 +481,7 @@ class IdeasController extends AppController {
 
         if ($this->RequestHandler->isAjax()) {
             $values = $this->Value->find('all', array(
-                'conditions' => array('categoryid' => $id),
+                'conditions' => array('categoryid' => $id, 'specified' => 0),
                 'fields' => 'Value.id, Value.name',
                 'recursive'=>2
             ));

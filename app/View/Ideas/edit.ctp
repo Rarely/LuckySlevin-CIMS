@@ -1,5 +1,5 @@
 <?php echo $this->Html->script('editidea.js'); ?>
-<div class="row well well-top-margin">
+<div id="edit-idea-content" class="row well well-top-margin" data-id="<?php echo $idea['Idea']['id']; ?>">
 <h1> <?php echo $this->Session->read('page_title'); ?> </h1>
 <h3> <?php echo $this->Session->read('page_description'); ?> </h3>
 

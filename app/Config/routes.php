@@ -28,7 +28,7 @@
 /**
  * ...and connect the rest of 'Pages' controller's URLs.
  */
-
+    Router::connect('/mypage', array('controller' => 'trackings', 'action' => 'index'));
 /**
  * Load all plugin routes. See the CakePlugin documentation on
  * how to customize the loading of plugin routes.

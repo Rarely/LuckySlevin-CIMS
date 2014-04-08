@@ -4,7 +4,7 @@ $(function() {
     });
     $("#edit-idea-form .owner-select").userSelect(false, $('#edit-idea-form .owner-select').attr('data-initvalue'), false, "Owner");
 
-    $("#edit-idea-form .idea-references").ideaSelect();
+    $("#edit-idea-form .idea-references").ideaSelect($('#edit-idea-content').attr('data-id')); //$('#edit-idea-content').attr('data-id')
 
     var nowTemp = new Date();
     var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);

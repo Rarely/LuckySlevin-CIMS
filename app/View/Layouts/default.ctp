@@ -71,9 +71,7 @@ body {
                                               array('controller'=>'search', 'action'=>'index'),
                                               array('class' =>'heading-text-color'));?></li>
             <li>
-                <?php echo $this->Html->link('My Page', 
-                                              array('controller'=>'trackings', 'action'=>'index'),
-                                              array('class' =>'heading-text-color'));?>
+                <a href="/mypage" class="heading-text-color">My Page</a>
             </li>
             <?php if ($userData['role'] == 'admin') { ?>
                 <li>
