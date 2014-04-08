@@ -23,7 +23,7 @@
       )); ?>
 
       <?php echo $this->Form->input('role', array(
-        'options' => array('standard' => 'Standard','admin' => 'Admin'),
+        'options' => array('standard' => 'Standard','admin' => 'Administrator'),
         'default' => array('standard' => 'Standard')
       )); ?>
 

@@ -37,8 +37,8 @@
             'required' => true
           )); ?>
           <?php echo $this->Form->submit('Reset Password', array(
-            'div' => false,
-            'class' => 'btn btn-primary'
+            'div' => 'save-btn',
+            'class' => 'btn btn-primary '
           )); ?>
         </fieldset>
       <?php echo $this->Form->end(); ?>

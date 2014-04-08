@@ -34,6 +34,11 @@ body {
     font
     outline:0;
 }
+.nav-btn:active{
+    background-color: #eee;
+    border-color:#eee;
+    color: #2a6496 !important
+}
 
 .add-btn {
     background-color: transparent !important;

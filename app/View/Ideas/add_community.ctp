@@ -58,8 +58,8 @@
                     )); ?>
 
                 <?php echo $this->Form->submit('Submit', array(
-                    'div' => 'form-group',
-                    'class' => 'btn btn-primary'
+                    'div' => 'form-group save-btn',
+                    'class' => 'btn btn-primary '
                     )); ?>
                 </fieldset>
                 <?php echo $this->Form->end(); ?>

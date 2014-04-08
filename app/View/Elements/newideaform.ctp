@@ -102,8 +102,8 @@
           </fieldset>
       </div>
       <div class="modal-footer modal-header-color">
-        <input class="btn btn-primary" type="submit" value="Submit" />
         <div class="btn btn-default" data-dismiss="modal">Cancel</div>
+        <input class="btn btn-primary" type="submit" value="Submit" />
       </div>
       <?php echo $this->Form->end(); ?>
     </div>

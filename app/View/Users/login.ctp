@@ -42,7 +42,7 @@
       <div class="row">
         <?php echo $this->Form->input('username', array(
           'label' => '',
-          'placeholder' => ' Email address',
+          'placeholder' => ' Email',
         )); ?>
         </div>
         <div class="row">

@@ -37,7 +37,7 @@
             'autocomplete'=>'off'
           )); ?>
           <?php echo $this->Form->submit('Set New Password', array(
-            'div' => false,
+            'div' => 'save-btn',
             'class' => 'btn btn-primary'
           )); ?>
         </fieldset>
