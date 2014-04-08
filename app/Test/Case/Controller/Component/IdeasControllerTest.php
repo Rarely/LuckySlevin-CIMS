@@ -1,7 +1,8 @@
 <?php
 
-// App::uses('AppController', 'Controller');
-// App::uses('Idea', 'Model');
+App::uses('AppController', 'Controller');
+App::uses('Idea', 'Model');
+App::uses('Comment', 'Model');
 
     class IdeasControllerTest extends ControllerTestCase {
     /**
@@ -18,66 +19,11 @@
 
     }
 
-    /*
-  public function testadd(){
-     $data = array(
-     'User' => array(
-     'name' => 'Ted',
-     'username' => 'ted@cims.com',
-     'role' => 'standard'
-     )
-     );
 
-     $result = $this->testAction('/users/add', array('data' => $data, 'method', 'post'));
-     $newuser = $this->User->findByUsername('ted@cims.com');
-     $this->assertEquals($newuser['user']['name'], 'Ted');
-
-   }
-    */
-
-    // public function setup() {
-    //     $this->Idea = ClassRegistry::init('idea');
-    // }
-
-    /**
-    *
-    *   @covers Ideas::add
-    *
-    */
-
-    // public function testAdd() {
-    //     $data = array(
-    //         'Idea' => array(
-    //             'name' => 'test idea',
-    //             'contact_name' => 'test contact',
-    //             'description' => 'test desciption',
-    //             'contact_email' => 'test@cims.com',
-    //             'owner' => 'admin@cims.com'
-    //             ));
-    //     $result = $this->testAction('/ideas/add', array('data' => $data, 'method', 'post'));
-    //     $newidea = $this->Idea->getOwner();
-    //     $this->assertEquals($newidea['idea']['Owner'], 'admin@cims.com');
-
-    // }
-    /**
-    *
-    *   @covers Ideas::add_community
-    *
-    */
-
-    //     public function testAdd_community() {
-    //     $data = array(
-    //         'Idea' => array(
-    //             'contact_name' => 'test contact',
-    //             'contact_email' => 'test@cims.com',
-    //             'contact_phone' => '111-111-1111',
-    //             'description' => 'test desciption'
-    //             ));
-    //     $result = $this->testAction('/ideas/add_community', array('data' => $data, 'method', 'post'));
-    //     $newidea = $this->Idea->find();
-    //     $this->assertEquals($newidea, $result);
-
-    // }
+    public function setup() {
+        $this->Idea = ClassRegistry::init('idea');
+        $this->Comment = ClassRegistry::init('comment');
+    }
 
     /**
     *
@@ -137,38 +83,22 @@
 
     /**
     *
-    *   @covers Ideas::saveIdeaReferences
-    *
-    */
-
-    /**
-    *
-    *   @covers Ideas::saveCategoryInfo
-    *
-    */
-
-    /**
-    *
     *   @covers Ideas::comment
     *
     */
 
     // I am having a timestamp issue with this test, can't figure it out...
 
-    // public function testComment() {
-    //         $_ENV['HTTP_X_REQUESTED_WITH'] = 'XMLHttpRequest';
+    public function testComment() {
+            $_ENV['HTTP_X_REQUESTED_WITH'] = 'XMLHttpRequest';
 
-    //         $result = $this->testAction('/ideas/comment/13?c=');
-    //         $result = json_decode($result, true);
-    //         $expected = array(
-    //             'response' => 'success',
-    //             'data' => array(
-    //                 'userid' => '13','html' => '- Admin '));
-    //         $this->assertEquals($result, $expected);
+            $result = $this->testAction('/ideas/comment/13?c=abcd');
+            $result = json_decode($result, true);
+
+            $this->assertEquals($result['response'], 'success');
             
-    //         unset($_ENV['HTTP_X_REQUESTED_WITH']);
-    // }
-
+            unset($_ENV['HTTP_X_REQUESTED_WITH']);
+    }
 
     /**
     *
