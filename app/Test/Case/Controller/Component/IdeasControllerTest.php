@@ -1,4 +1,8 @@
 <?php
+
+// App::uses('AppController', 'Controller');
+// App::uses('Idea', 'Model');
+
     class IdeasControllerTest extends ControllerTestCase {
     /**
     *
@@ -14,17 +18,66 @@
 
     }
 
+    /*
+  public function testadd(){
+     $data = array(
+     'User' => array(
+     'name' => 'Ted',
+     'username' => 'ted@cims.com',
+     'role' => 'standard'
+     )
+     );
+
+     $result = $this->testAction('/users/add', array('data' => $data, 'method', 'post'));
+     $newuser = $this->User->findByUsername('ted@cims.com');
+     $this->assertEquals($newuser['user']['name'], 'Ted');
+
+   }
+    */
+
+    // public function setup() {
+    //     $this->Idea = ClassRegistry::init('idea');
+    // }
+
     /**
     *
     *   @covers Ideas::add
     *
     */
 
+    // public function testAdd() {
+    //     $data = array(
+    //         'Idea' => array(
+    //             'name' => 'test idea',
+    //             'contact_name' => 'test contact',
+    //             'description' => 'test desciption',
+    //             'contact_email' => 'test@cims.com',
+    //             'owner' => 'admin@cims.com'
+    //             ));
+    //     $result = $this->testAction('/ideas/add', array('data' => $data, 'method', 'post'));
+    //     $newidea = $this->Idea->getOwner();
+    //     $this->assertEquals($newidea['idea']['Owner'], 'admin@cims.com');
+
+    // }
     /**
     *
     *   @covers Ideas::add_community
     *
     */
+
+    //     public function testAdd_community() {
+    //     $data = array(
+    //         'Idea' => array(
+    //             'contact_name' => 'test contact',
+    //             'contact_email' => 'test@cims.com',
+    //             'contact_phone' => '111-111-1111',
+    //             'description' => 'test desciption'
+    //             ));
+    //     $result = $this->testAction('/ideas/add_community', array('data' => $data, 'method', 'post'));
+    //     $newidea = $this->Idea->find();
+    //     $this->assertEquals($newidea, $result);
+
+    // }
 
     /**
     *
@@ -110,18 +163,12 @@
     //         $expected = array(
     //             'response' => 'success',
     //             'data' => array(
-    //                 'userid' => '13','html' => '<li class="row">
-    //                         <div class= "col-xs-1 comment-avatar">
-    //                           <img src="img/person.png">
-    //                         </div>
-    //                         <div class="col-xs-11">
-    //                           <div class="comment-message"></div>
-    //                           <div class="comment-user">- </div>
-    //                         </div>
-    //                     </li>'));
+    //                 'userid' => '13','html' => '- Admin '));
     //         $this->assertEquals($result, $expected);
+            
     //         unset($_ENV['HTTP_X_REQUESTED_WITH']);
     // }
+
 
     /**
     *
