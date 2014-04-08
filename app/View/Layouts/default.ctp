@@ -75,8 +75,8 @@ body {
             </li>
             <?php if ($userData['role'] == 'admin') { ?>
                 <li>
-                    <div class ="btn-group">
-                      <button type="button" class = "management-btn btn nav-font dropdown-toggle nav-btn" data-toggle="dropdown">
+                    <div class ="btn-group dropdown">
+                      <button type="button" class = "btn btn-default nav-font dropdown-toggle nav-btn management-btn" data-toggle="dropdown">
                         Management
                         <span class ="caret"></span>
                         <span class ="sr-only">Management</span>
