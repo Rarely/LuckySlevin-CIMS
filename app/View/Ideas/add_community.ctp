@@ -19,7 +19,7 @@
         echo $this->Html->css('idea.css');
         echo $this->Html->css('style.css');
         ?>
-        <?php echo $this->Html->script('editidea.js'); ?>
+        
         
         <?php echo $this->Form->create('Idea', array(
             'inputDefaults' => array(
