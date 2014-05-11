@@ -1,0 +1,19 @@
+.help-well {
+   margin-top: 10px;
+   background-color: #FFFFFF;
+}
+
+.help_edit {
+    width: 100%;
+    background-color: #FFFFFF;
+}
+
+.help_header {
+    margin-bottom: 20px;
+}
+
+.help_header hr {
+    color: #002145;
+    background-color: #002145;
+    height: 2px;
+}

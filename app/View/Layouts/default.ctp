@@ -116,6 +116,10 @@ body {
               </a>
               <ul class="dropdown-menu">
                     <li>
+                      <?php echo $this->Html->link('Help', 
+                                              array('controller'=>'help', 'action'=>'index'));?>
+                    </li>
+                    <li>
                         <?php echo $this->Html->link('Logout', 
                                                        array('controller'=>'users', 'action'=>'logout'));?>
                     </li>
