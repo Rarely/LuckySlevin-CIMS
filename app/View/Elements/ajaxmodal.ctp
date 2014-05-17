@@ -77,15 +77,15 @@
               </div>
               <strong>Owner</strong><br>
               <?php echo h($idea['Users']['name']); ?><br>
-              <strong>Referred Ideas</strong><br>
+              <strong>Related Ideas</strong><br>
                <ul class="references-list">
                 <?php
                  if (count($idea['References'])) {
                     foreach($idea['References'] as $ref) {
-                     echo '<li><a onclick="Ajax.Idea.showIdea(' . $ref['id'] . ');">' . h($ref['name']) . '</a></li>';
+                     echo '<li><a onclick="Ajax.Idea.showIdea(' . $ref['id'] . ');">' . h($ref['name'] .' for '. h($ref['community_partner'])) . '</a></li>';
                     }
                  } else {
-                   echo "<li>No Ideas Referred</li>";
+                   echo "<li>No related ideas</li>";
                  }
                 ?>
               </ul>
