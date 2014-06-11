@@ -36,12 +36,6 @@ class IdeasController extends AppController {
             'limit' => 15,
             'recursive' => 2
         )));
-        $this->set('ideas_unassigned', $this->Idea->find('all', array(
-            'conditions' => array('Idea.isdeleted' => 0, 'Idea.userid' => null),
-            'order' => array('Idea.created DESC'),
-            'limit' => 15,
-            'recursive' => 2
-        )));
     }
 
     /*

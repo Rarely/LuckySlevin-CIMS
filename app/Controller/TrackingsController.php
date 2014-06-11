@@ -32,6 +32,12 @@ class TrackingsController extends AppController {
             'conditions' => array('Idea.userid' => $this->Session->read('Auth.User.id')),
             'recursive' => 3
         )));
+        $this->set('ideas_unassigned', $this->Idea->find('all', array(
+            'conditions' => array('Idea.isdeleted' => 0, 'Idea.userid' => null),
+            'order' => array('Idea.created DESC'),
+            'limit' => 15,
+            'recursive' => 2
+        )));
     }
 
     /*

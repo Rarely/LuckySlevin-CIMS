@@ -45,7 +45,7 @@
   )); ?>
 
   <label>Timeframe</label> 
-  (If one or no dates are selected, timeframe will be deemed flexible.)
+  (If no dates are selected, timeframe will be displayed as flexible.)
   <table class="table">
     <thead>
       <tr>
