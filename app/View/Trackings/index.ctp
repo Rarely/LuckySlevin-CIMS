@@ -14,3 +14,11 @@
                           "subtitle" => "You will receive notifications when these ideas are updated or commented on",
                             "emptymessage" => "You are not tracking any ideas"));?>              	
 </div>
+<?php if ($userData['role'] == 'admin') { ?>
+<div class="row">
+<?php echo $this->element('idealist', array("ideas" => $ideas_unassigned,
+                            "title" => "Community partner ideas",
+                            "subtitle" => "Ideas submitted by the community",
+                            "emptymessage" => "No ideas submitted by the community")) ?>
+</div>
+<?php } ?>

@@ -23,7 +23,7 @@
                     <tr data-id="<?php echo $value['id']; ?>" data-name="<?php echo h($value['name']); ?>">
                         <td class="value-name"><?php echo h($value['name']); ?></td>
                         <td>
-                         	<div class="btn-edit-value admin-btn admin-btn-sm admin-btn-edit" data-toggle="tooltip" title="Edit"></div>
+                            <div class="btn-edit-value admin-btn admin-btn-sm admin-btn-edit" data-toggle="tooltip" title="Edit"></div>
                             <div class="btn-delete-value admin-btn admin-btn-sm admin-btn-delete" data-toggle="tooltip" title="Delete"></div>
                         </td>
                     </tr>
@@ -31,4 +31,35 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+
+    <div class="panel-group" id="accordion">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+          Specified values currently in use <span class="caret"></span>
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse">
+        <table class="table table-category" data-id="<?php echo $category['Category']['id']; ?>">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($category['Value'] as $value): ?>
+                    <?php if ($value['specified'] == 1) { ?>
+                        <tr data-id="<?php echo $value['id']; ?>" data-name="<?php echo h($value['name']); ?>">
+                            <td class="value-name"><?php echo h($value['name']); ?></td>
+                        </tr>
+                    <?php } ?>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
 </div>

@@ -14,12 +14,6 @@
                             "emptymessage" => "No recently created ideas")) ?>
 </div>
 <div class="row">
-<?php echo $this->element('idealist', array("ideas" => $ideas_unassigned,
-                            "title" => "Community partner ideas",
-                            "subtitle" => "Ideas submitted by the community",
-                            "emptymessage" => "No ideas submitted by the community")) ?>
-</div>
-<div class="row">
 <?php echo $this->element('idealist', array("ideas" => $ideas_inactive,
                             "title" => "Inactive ideas",
                             "subtitle" => "Ideas least recently updated or commented on",

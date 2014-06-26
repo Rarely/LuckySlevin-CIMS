@@ -57,6 +57,7 @@
               )); ?>
 
             <label>Timeframe</label>  
+            (If no dates are selected, timeframe will be displayed as flexible.)
             <table class="table">
               <thead>
                 <tr>
