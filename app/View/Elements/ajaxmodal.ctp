@@ -148,6 +148,18 @@
               <?php } ?>
             </ul>
           <?php } ?>
+
+          <!-- FILES -->
+          <strong>Files</strong>
+          <ul id="filelist">
+          <?php if (!empty($idea['Idea_File'])) {?>
+            <?php foreach ($idea['Idea_File'] as $file) {
+              echo '<li><a href="'.$file['filepath'].'" target="_blank">' . $file['filename'] . '</a></li>';
+            } ?>
+          <?php } else { ?>
+            <li>There are no Files</li>
+          <?php } ?>
+          </ul>
         </div>
       </div>  
       <div class="modal-footer modal-header-color no-margin">

@@ -10,6 +10,7 @@
     'class' => 'form-control'
   ),
   'id' => 'edit-idea-form'
+  ,'type' => 'file'
 )); ?>
 
 <fieldset>
@@ -113,6 +114,21 @@
     }
     ?>
   <input type="hidden" class="idea-references" name="data[Idea][references]" value=" " data-initvalue='<?php echo json_encode($references); ?>' data-multiple="true" />
+  <label>Existing Files</label>
+  <ul id="filelist">
+  <?php if (!empty($files)) { ?>
+    <?php foreach ($files as $file) { ?>
+      <li data-id="<?php echo $file['IdeaFile']['id']?>"><?php echo $file['IdeaFile']['filename']; ?><?php echo $this->Html->link(
+        ' &times; Remove'
+        ,'javascript:Ajax.Idea.deleteIdeaFile(' . $file['IdeaFile']['id'] . ');'
+        ,array('escape' => false, 'class' => 'btn btn-close pull-right')
+        ,"Are you sure you want to remove this file?"); ?></li>
+    <?php } ?>
+  <?php } else { ?>
+    <li>There are no files</li>
+  <?php } ?>  
+  </ul>
+  <?php echo $this->Form->input('files.', array('type' => 'file', 'multiple'=>'multiple', 'required'=>false)); ?>
   <br />
 
   <?php echo $this->Form->submit('Save', array(

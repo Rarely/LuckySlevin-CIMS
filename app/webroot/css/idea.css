@@ -191,3 +191,22 @@ hr {
 #ubc-logo img {
     margin:10px auto;
     display:block;
+}
+#filelist {
+    list-style:none;
+    padding:0;
+}
+#filelist li {
+    background-color: #002145;
+    color:#FFFFFF;
+    padding: 6px 12px;
+}
+#filelist li a {
+    padding: 0;
+}
+#filelist li a:visited {
+    color: #428bca;
+}
+#filelist li a:hover {
+    color:#FFFFFF;
+}

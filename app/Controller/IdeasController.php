@@ -5,7 +5,7 @@ App::uses('AppController', 'Controller');
 class IdeasController extends AppController {
     public $helpers = array('Html', 'Form');
     var $components = array('RequestHandler');
-    public $uses = array('Idea','Comment', 'Category', 'IdeaValue', 'Value', 'IdeaReference');
+    public $uses = array('Idea','Comment', 'Category', 'IdeaValue', 'Value', 'IdeaReference', 'IdeaFile');
     
     /*
      * Renders the list of ideas.  This is the home page
@@ -54,7 +54,6 @@ class IdeasController extends AppController {
     */
     public function add() {
         if ($this->request->is('post')) {
-
             $this->Idea->create();
             $this->request->data['Idea']['created'] = date('Y-m-d H:i:s');
             $this->request->data['Idea']['updated'] = null;
@@ -62,6 +61,7 @@ class IdeasController extends AppController {
                 $newid = $this->Idea->getLastInsertID();
                 $this->saveCategoryInfo($this->request->data['Category'], $newid);
                 $this->saveIdeaReferences($this->request->data['Idea']['references'], $newid);
+                $this->saveIdeaFiles($this->request->data['Idea']['files'], $newid);
                 //check if this was a split idea
                 if (isset($this->request->data['Idea']['parentid']) && !empty($this->request->data['Idea']['parentid']))  {
                     $this->IdeaReference->save(array('ideaid' => $this->request->data['Idea']['parentid'],'refers_to'=> $newid));
@@ -120,10 +120,12 @@ class IdeasController extends AppController {
         }
 
         $idea = $this->Idea->findById($id);
+        $files = $this->IdeaFile->find('all', array('conditions'=>array('ideaid'=>$id)));
         if (!$idea) {
             throw new NotFoundException(__('Invalid idea'));
         }
         $this->set('idea', $idea);
+        $this->set('files', $files);
         $this->set('values', $this->IdeaValue->find('all', array(
             'conditions' => array('ideaid' => $id),
             'fields' => 'Value.id, Value.name, Value.categoryid',
@@ -146,10 +148,10 @@ class IdeasController extends AppController {
             $this->Idea->set('end_date', $this->request->data['Idea']['end_date']);
             $this->Idea->set('userid', $this->request->data['Idea']['userid']);
             $this->Idea->set('updated',null);
-
             if ($this->Idea->save()) {
                 $this->saveCategoryInfo($this->request->data['Category'], $id);
                 $this->saveIdeaReferences($this->request->data['Idea']['references'], $id);
+                $this->saveIdeaFiles($this->request->data['Idea']['files'], $id);
                 //Notify
                 App::import('Controller', 'Notifications'); // mention at top
                 $Notifications = new NotificationsController; // Instantiation // mention within cron function
@@ -212,6 +214,7 @@ class IdeasController extends AppController {
                 continue;
             }
             $references[] = array('ideaid' => $ideaid,'refers_to'=> $idea);
+            $references[] = array('ideaid' => $idea,'refers_to'=> $ideaid);
         }
         if (count($references) > 0 && $this->IdeaReference->saveAll($references)) {
             //TODO: Return true
@@ -219,6 +222,77 @@ class IdeasController extends AppController {
             //TODO: Throw Error Can't csave
         }
     }
+
+    /*
+    Deletes a file and its reference to the idea
+    */
+    public function deletefile($id) {
+        $this->layout = null;
+        if (!$id) {
+            throw new NotFoundException(__('Invalid idea'));
+        }
+
+        $file = $this->IdeaFile->findById($id);
+        if (!$file) {
+            throw new NotFoundException(__('Invalid idea'));
+        }
+        if (is_file($file['IdeaFile']['filepath'])) {
+            unlink($file['IdeaFile']['filepath']); //delete file
+        }
+        $this->IdeaFile->delete($id);
+        $this->set('response','success');
+        $this->set('data', array());
+        $this->render('/Elements/jsonreturn');
+    }
+
+    /*
+    Helper function to save files to an idea, used from add() and edit()
+    */
+    public function saveIdeaFiles($formdata, $ideaid) {
+        if (isset($formdata) && !empty($formdata)) {
+            $errormsg = null;
+            foreach ($formdata as $f) {
+                $fileName = $f["name"]; // The file name
+                $fileTmpLoc = $f["tmp_name"]; // File in the PHP tmp folder
+                $fileType = $f["type"]; // The type of file it is
+                $fileSize = $f["size"]; // File size in bytes
+                $fileErrorMsg = $f["error"]; // 0 for false... and 1 for true
+                if ($fileErrorMsg != 0) {
+                    continue;
+                }
+                //VALIDATION
+                $filetypes = array('image/psd', 'application/zip', 'application/octet-stream', 'application/pdf', 'application/doc', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'image/gif', 'image/jpg', 'image/jpeg', 'image/bmp', 'application/eps', 'application/postscript');
+                $maxsize = 5243000; //5MB
+                if (!(in_array($fileType, $filetypes))) {
+                    $errormsg = "ERROR: File type not supported.";
+                    exit();
+                }
+                if ($fileSize > $maxsize) {
+                    $errormsg = "ERROR: File Size is too large";
+                    exit();
+                }
+                if (!$fileTmpLoc) { // if file not chosen
+                    $errormsg = "ERROR: Please browse for a file before clicking the upload button.";
+                    exit();
+                }
+                $filepath = "uploads/$fileName";
+                if (is_file($filepath)) {
+                    //change name so it will not overwrite others
+                    $date = new DateTime();
+                    $filepath = "uploads/" . $date->getTimestamp() . "-" . $fileName;
+                }
+
+                if(move_uploaded_file($fileTmpLoc, $filepath)){
+                    //save to database
+                    $this->IdeaFile->saveAll(array('ideaid' => $ideaid,'filepath'=> $filepath, 'filename' => $fileName));
+                } else {
+                    $errormsg = "Bad Upload";
+                }
+            }
+        }
+    }
+
+ 
 
     /*
      * Saves the category values for an idea.

@@ -244,6 +244,16 @@ $(document).ready(function() {
 
 
 $(function() {
+    $("#btn-select-all").click(function(e) {
+      jQuery('.ideablock').each(function() {
+        $(this).addClass("selected");
+      });
+    });
+    $("#btn-select-none").click(function(e) {
+      jQuery('.ideablock').each(function() {
+        $(this).removeClass("selected");
+      });
+    });
     $("#btn-export").click(function(e) {
         $("#btn-export").attr("disabled", "disabled");
         canceldelete();
@@ -263,6 +273,9 @@ $(function() {
             window.location = "/search/export?ids=" + info;
             cancelcsv();
         });
+
+        $("#btn-select-all").css('display', 'inline-block');
+        $("#btn-select-none").css('display', 'inline-block');
     });
     $("#btn-cancel-csv").click(cancelcsv);
 
@@ -295,6 +308,8 @@ $(function() {
                 }
             }).find("div.modal-content").addClass("confirmWidth");
         });
+        $("#btn-select-all").css('display', 'inline-block');
+        $("#btn-select-none").css('display', 'inline-block');
     });
     $("#btn-cancel-delete").click(canceldelete);
 
@@ -311,6 +326,8 @@ function cancelcsv(e) {
     $("#btn-cancel-csv").hide();
     $("#export-help").hide();
     $("#btn-save-csv").hide();
+    $("#btn-select-all").hide();
+    $("#btn-select-none").hide();
     $("#btn-export").removeAttr("disabled");
 }
 

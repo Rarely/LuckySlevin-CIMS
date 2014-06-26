@@ -11,6 +11,7 @@
 /app/Vendor
 
 /app/webroot/files
+/app/webroot/uploads
 
 # OS generated files #
 ######################

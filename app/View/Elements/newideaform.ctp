@@ -4,13 +4,13 @@
   <div class="modal-dialog">
     <div class="modal-content">
     <?php echo $this->Form->create('Idea', array(
-          'url' => array('controller' => 'ideas', 'action' => 'add'),
-          'inputDefaults' => array(
+          'url' => array('controller' => 'ideas', 'action' => 'add')
+          ,'inputDefaults' => array(
             'div' => 'form-group',
             'wrapInput' => false,
-            'class' => 'form-control'
-          ),
-          'id' => 'new-idea-form'
+            'class' => 'form-control')
+          ,'id' => 'new-idea-form'
+          ,'type' => 'file'
         )); ?>
 
       <div class="modal-header modal-header-color">
@@ -99,6 +99,8 @@
 
             <label>Referenced Ideas</label>
             <input type="hidden" class="idea-references" name="data[Idea][references]" value=" " data-multiple="true" />
+
+            <?php echo $this->Form->input('files.', array('type' => 'file', 'multiple'=>'multiple', 'required'=>false)); ?>
           </fieldset>
       </div>
       <div class="modal-footer modal-header-color">

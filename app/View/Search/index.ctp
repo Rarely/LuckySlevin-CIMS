@@ -68,6 +68,9 @@
                     
                         <div id="btn-cancel-delete" class="btn btn-default btn-hidden">Cancel</div>
                         <div id="btn-delete-confirm" class="btn btn-primary btn-hidden">Confirm</div>
+
+                        <div id="btn-select-all" class="btn btn-warning btn-hidden">Select All</div>
+                        <div id="btn-select-none" class="btn btn-warning btn-hidden">Select None</div>
                     </div>
                 </div>
             </form>

@@ -102,6 +102,23 @@ var Ajax = {
         });
       },
 
+      deleteIdeaFile: function(fileid) {
+        $.ajax({
+          type: "POST",
+          dataType: "json",
+          url: '/ideas/deletefile/' + fileid,
+          async: true,
+          success: function(data) {
+            if (data.response === "success") {
+              bootbox.alert("File Successfully Removed");
+              $("#filelist li[data-id=" + fileid + "]").remove();
+            } else {
+              bootbox.alert("Could not remove file");
+            }
+          }
+        });
+      },
+
       /*
        description: send out an ajax call to '/ideas/share/' + ideaid + '?userids=' + userids
        input: ideaid, userids

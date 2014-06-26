@@ -10,6 +10,11 @@ class Idea extends AppModel {
                                 ,'className' => 'IdeaValue'
                                 ,'foreignKey' => 'ideaid'
             ),
+            'Idea_File' => array('Idea_File' => 'Idea_File'
+                                ,'className' => 'IdeaFile'
+                                ,'foreignKey' => 'ideaid'
+                                ,'joinTable' => 'idea_files'
+            ),
         );
         public $hasAndBelongsToMany = array(
           'References' => array(

@@ -123,14 +123,20 @@ class SearchController extends AppController {
 
         fputcsv($file, array(
             'Community Partners'
+            ,'Organization Address'
+            ,'Organization City'
+            ,'Organization Postal Code'
             ,'Contact Name'
             ,'Contact Email'
+            ,'Contact Phone'
         ));
         foreach($data as $i) {
             fputcsv($file, array(
                 $i['Idea']['community_partner']
+                ,'','',''
                 ,$i['Idea']['contact_name']
                 ,$i['Idea']['contact_email']
+                ,''
             ));
         }
         fclose($file);
@@ -150,12 +156,24 @@ class SearchController extends AppController {
             ,'Contact Name'
             ,'Contact Email'
             ,'Contact Phone'
+            ,'Community Partner City'
+            ,'Idea Focus Area'
+            ,'Idea Main Activities'
+            ,'Idea Type'
+            ,'Possible Program Referral'
+            ,'Idea Delivery Location'
+            ,'Possible Disciplines'
+            ,'Timeframe'
+            ,'Current Status'
         ));
         foreach($data as $i) {
-            //get project type
+            //get project type and current status
             foreach ($values as $value) {
                 if ($value['Value']['categoryid'] == "1" && $value['Idea']['id'] == $i['Idea']['id']) {
                     $projectType = $value['Value']['name'];
+                }
+                if ($value['Value']['categoryid'] == "8" && $value['Idea']['id'] == $i['Idea']['id']) {
+                    $currentStatus = $value['Value']['name'];
                 }
             }
             fputcsv($file, array( 
@@ -168,6 +186,15 @@ class SearchController extends AppController {
                 ,$i['Idea']['contact_name']
                 ,$i['Idea']['contact_email']
                 ,$i['Idea']['contact_phone']
+                ,''
+                ,''
+                ,''
+                ,''
+                ,''
+                ,''
+                ,''
+                ,''
+                ,$currentStatus
             ));
         }
         fclose($file);
