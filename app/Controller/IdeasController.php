@@ -144,6 +144,7 @@ class IdeasController extends AppController {
             $this->Idea->set('updated',null);
             if ($this->Idea->save()) {
                 $this->saveCategoryInfo($this->request->data['Category'], $id);
+                $this->cleanupCategoryInfo();
                 $this->saveIdeaReferences($this->request->data['Idea']['references'], $id);
                 $this->saveIdeaFiles($this->request->data['Idea']['files'], $id);
                 //Notify
@@ -157,6 +158,14 @@ class IdeasController extends AppController {
             $this->Session->setFlash(__('Unable to add idea.'));
         } 
 
+    }
+
+    //USE FOR EDIT AND DELETE
+    public function cleanupCategoryInfo() {
+        //DELETE FROM cims.values WHERE id NOT IN (SELECT valueid  FROM idea_values) AND values.specified = 1;
+        $results = $this->Value->query("DELETE FROM cims.values   
+                                        WHERE id NOT IN (SELECT valueid  FROM idea_values)
+                                        AND values.specified = 1;");
     }
 
     /*
@@ -470,6 +479,7 @@ class IdeasController extends AppController {
                 }
 
                 if (count($errors) == 0) {
+                    $this->cleanupCategoryInfo();
                     $this->set('response','success');
                     $this->set('data', $deletedlist);
                     $this->render('/Elements/jsonreturn');
